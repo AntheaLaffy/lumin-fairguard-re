@@ -1,0 +1,29 @@
+{
+  "snapshot_sha256": "841e5c8bfb5a38abf30674614df7b2d820083907df40ed4dd1506151960a9ae5",
+  "bundles": [
+    {
+      "input": "recon/bundles/cs_vol/__data",
+      "output": ".",
+      "input_sha256": "dc3686353c89eca70cee8919c9ae20a3f31d844b7203cf4274dcb470a51f249c",
+      "restored_sha256": "c553c5bc733659fb2413f7211798ef27b76bfcd3d46c98e8258dba1929526841",
+      "blocks": 1,
+      "objects": {
+        "AssetBundle": 1,
+        "TextAsset": 1
+      },
+      "exports": [
+        {
+          "name": "rogueArtifacts",
+          "path_id": 6186220395851580935,
+          "file": "TextAssets/rogueArtifacts",
+          "size": 1042,
+          "sha256": "b875b7baf193aa2f2f8f9f84782d6c2adc5fba638cc96a56efd4178f202bbbb1"
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "input_count": 1,
+  "complete": true,
+  "elapsed_seconds": 0.35
+}

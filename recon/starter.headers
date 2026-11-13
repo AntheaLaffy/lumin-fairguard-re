@@ -1,0 +1,11 @@
+HTTP/2 200 
+date: Fri, 13 Nov 2026 11:21:37 GMT
+content-type: text/html; charset=utf-8
+content-length: 1940
+server: openresty
+last-modified: Sat, 07 Nov 2026 08:24:48 GMT
+vary: Accept-Encoding
+etag: "6aeee050-794"
+cache-control: no-store
+accept-ranges: bytes
+

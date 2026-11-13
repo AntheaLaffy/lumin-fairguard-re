@@ -1,0 +1,205 @@
+{
+  "code": 0,
+  "message": "",
+  "data": {
+    "build_id": 12450,
+    "client_version": "1.0.2",
+    "assets": {
+      "cdn": "https://cdn-rs-lm.zhuziplay.com",
+      "backup_cdn": "https://lm-cdn.zhuziplay.com",
+      "manifest_prefix": "/manifest_v1/release/en/w/prod",
+      "bundle_prefix": "/bundle_v1/release/en/w",
+      "normal": {
+        "version": 43,
+        "full": [
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/a132cb-Preload-43-3.zip",
+            "size": "1347249221",
+            "hash": "6cf8a193fccc72ecea826b6f2170bfcd",
+            "tag": "Preload"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/e63d52-Preload-43-1.zip",
+            "size": "2138828698",
+            "hash": "4d25be98770739626f9448d041c891f1",
+            "tag": "Preload"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/d1c7f9-Preload-43-2.zip",
+            "size": "2144661245",
+            "hash": "32af4ae3dafdeae1e91c30149fb1021b",
+            "tag": "Preload"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/a58374-Default-38-3.zip",
+            "size": "2106678373",
+            "hash": "be623c8bbefe49147a72c93bbd205c83",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/570804-Default-38-1.zip",
+            "size": "2140428862",
+            "hash": "0f8e541875899725d2d4250a6aa07091",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/1738b9-Default-38-4.zip",
+            "size": "2131240106",
+            "hash": "8a3e0dae0432f0707cebffdf919f56fb",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/e14b9f-Default-38-2.zip",
+            "size": "2117732053",
+            "hash": "0034e6d83e66be15076d881c3c343b52",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/e9a4a0-Default-38-7.zip",
+            "size": "221275119",
+            "hash": "cfa1c2aa6d15a75f11b8318c1fda2c96",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/72cc1f-Default-38-6.zip",
+            "size": "2147565753",
+            "hash": "74bf23c0d3af173568b022b75324de9e",
+            "tag": "Default"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/Assets/a25283-Default-38-5.zip",
+            "size": "2147544855",
+            "hash": "dee8bab6ad236446564e4e8ba6cb1090",
+            "tag": "Default"
+          }
+        ],
+        "diff": []
+      },
+      "pre_download": {
+        "version": 0,
+        "full": [],
+        "diff": []
+      },
+      "hotfix": {
+        "version": 0,
+        "diff": []
+      }
+    },
+    "client_static": {
+      "cdn": "https://cdn-rs-lm.zhuziplay.com",
+      "backup_cdn": "https://lm-cdn.zhuziplay.com",
+      "manifest_prefix": "/manifest_v1/release/en/w/prod",
+      "bundle_prefix": "/bundle_v1/release/en/w",
+      "normal": {
+        "version": 54,
+        "full": [
+          {
+            "url": "/full_v1/release/en/w/prod/ClientStatic/f4fa58-Preload-53-1.zip",
+            "size": "6714857",
+            "hash": "099ce292166dfd30aea12db11b91f3df",
+            "tag": "Preload"
+          }
+        ],
+        "diff": []
+      },
+      "pre_download": {
+        "version": 0,
+        "full": [],
+        "diff": []
+      },
+      "hotfix": {
+        "version": 0,
+        "diff": []
+      }
+    },
+    "dll": {
+      "cdn": "https://cdn-rs-lm.zhuziplay.com",
+      "backup_cdn": "https://lm-cdn.zhuziplay.com",
+      "manifest_prefix": "/manifest_v1/release/en/w/prod",
+      "bundle_prefix": "/bundle_v1/release/en/w",
+      "normal": {
+        "version": 61,
+        "full": [
+          {
+            "url": "/full_v1/release/en/w/prod/Dll/e8164f-Preload-61-1.zip",
+            "size": "13274026",
+            "hash": "6588f23d460e0fa1d455446cc186d72e",
+            "tag": "Preload"
+          }
+        ],
+        "diff": []
+      },
+      "pre_download": {
+        "version": 0,
+        "full": [],
+        "diff": []
+      },
+      "hotfix": {
+        "version": 0,
+        "diff": []
+      }
+    },
+    "raw_file": {
+      "cdn": "https://cdn-rs-lm.zhuziplay.com",
+      "backup_cdn": "https://lm-cdn.zhuziplay.com",
+      "manifest_prefix": "/manifest_v1/release/en/w/prod",
+      "bundle_prefix": "/bundle_v1/release/en/w",
+      "normal": {
+        "version": 20,
+        "full": [
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/f414ac-Video-10-3.zip",
+            "size": "848790457",
+            "hash": "f414ac39135e636aed9b0fdb38e6cf70",
+            "tag": "Video"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/6e8141-Video-10-2.zip",
+            "size": "1876381482",
+            "hash": "6e8141eb873391d4e1d21cc16e7ed019",
+            "tag": "Video"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/d568e8-Video-10-1.zip",
+            "size": "1964395154",
+            "hash": "d568e80a12b74ec3735d342011e6e254",
+            "tag": "Video"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/797365-CN-Preload-13-1.zip",
+            "size": "289478663",
+            "hash": "797365eece8a010c3c9b4912f954c5c8",
+            "tag": "CN-Preload"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/5fc07c-Preload-19-1.zip",
+            "size": "389504235",
+            "hash": "5fc07cbda7f69af4b4ba1bf541778964",
+            "tag": "Preload"
+          },
+          {
+            "url": "/full_v1/release/en/w/prod/RawFile/b8a198-JP-15-1.zip",
+            "size": "60793015",
+            "hash": "b8a198c896b07c39a4a92f6ec453ce1d",
+            "tag": "JP"
+          }
+        ],
+        "diff": []
+      },
+      "pre_download": {
+        "version": 0,
+        "full": [],
+        "diff": []
+      },
+      "hotfix": {
+        "version": 0,
+        "diff": []
+      }
+    },
+    "client_shield": [],
+    "server_url": "https://login-prod-lm.zhuziplay.com",
+    "server_name": "prod",
+    "update_type": 0,
+    "update_link": ""
+  }
+}

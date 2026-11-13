@@ -1,0 +1,28142 @@
+(function () {
+  const t = document.createElement("link").relList;
+  if (t && t.supports && t.supports("modulepreload")) return;
+  for (const r of document.querySelectorAll('link[rel="modulepreload"]')) s(r);
+  new MutationObserver((r) => {
+    for (const i of r)
+      if (i.type === "childList")
+        for (const o of i.addedNodes)
+          o.tagName === "LINK" && o.rel === "modulepreload" && s(o);
+  }).observe(document, { childList: !0, subtree: !0 });
+  function n(r) {
+    const i = {};
+    return (
+      r.integrity && (i.integrity = r.integrity),
+      r.referrerPolicy && (i.referrerPolicy = r.referrerPolicy),
+      r.crossOrigin === "use-credentials"
+        ? (i.credentials = "include")
+        : r.crossOrigin === "anonymous"
+          ? (i.credentials = "omit")
+          : (i.credentials = "same-origin"),
+      i
+    );
+  }
+  function s(r) {
+    if (r.ep) return;
+    r.ep = !0;
+    const i = n(r);
+    fetch(r.href, i);
+  }
+})();
+(function (t, n) {
+  var s = n.documentElement,
+    r = t.devicePixelRatio || 1;
+  function i() {
+    n.body
+      ? (n.body.style.fontSize = 12 * r + "px")
+      : n.addEventListener("DOMContentLoaded", i);
+  }
+  i();
+  function o() {
+    var u = s.clientWidth / 10;
+    s.style.fontSize = u + "px";
+  }
+  if (
+    (o(),
+    t.addEventListener("resize", o),
+    t.addEventListener("pageshow", function (u) {
+      u.persisted && o();
+    }),
+    r >= 2)
+  ) {
+    var a = n.createElement("body"),
+      l = n.createElement("div");
+    ((l.style.border = ".5px solid transparent"),
+      a.appendChild(l),
+      s.appendChild(a),
+      l.offsetHeight === 1 && s.classList.add("hairlines"),
+      s.removeChild(a));
+  }
+})(window, document);
+function mitt(e) {
+  return {
+    all: (e = e || new Map()),
+    on: function (t, n) {
+      var s = e.get(t);
+      s ? s.push(n) : e.set(t, [n]);
+    },
+    off: function (t, n) {
+      var s = e.get(t);
+      s && (n ? s.splice(s.indexOf(n) >>> 0, 1) : e.set(t, []));
+    },
+    emit: function (t, n) {
+      var s = e.get(t);
+      (s &&
+        s.slice().map(function (r) {
+          r(n);
+        }),
+        (s = e.get("*")) &&
+          s.slice().map(function (r) {
+            r(t, n);
+          }));
+    },
+  };
+}
+function getDefaultExportFromCjs(e) {
+  return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default")
+    ? e.default
+    : e;
+}
+var thinkingdata_umd_min$1 = { exports: {} },
+  thinkingdata_umd_min = thinkingdata_umd_min$1.exports,
+  hasRequiredThinkingdata_umd_min;
+function requireThinkingdata_umd_min() {
+  return (
+    hasRequiredThinkingdata_umd_min ||
+      ((hasRequiredThinkingdata_umd_min = 1),
+      (function (module, exports) {
+        ((e, t) => {
+          module.exports = t();
+        })(thinkingdata_umd_min, function () {
+          function _typeof(e) {
+            return (_typeof =
+              typeof Symbol == "function" && typeof Symbol.iterator == "symbol"
+                ? function (t) {
+                    return typeof t;
+                  }
+                : function (t) {
+                    return t &&
+                      typeof Symbol == "function" &&
+                      t.constructor === Symbol &&
+                      t !== Symbol.prototype
+                      ? "symbol"
+                      : typeof t;
+                  })(e);
+          }
+          function _classCallCheck(e, t) {
+            if (!(e instanceof t))
+              throw new TypeError("Cannot call a class as a function");
+          }
+          function _defineProperties(e, t) {
+            for (var n = 0; n < t.length; n++) {
+              var s = t[n];
+              ((s.enumerable = s.enumerable || !1),
+                (s.configurable = !0),
+                "value" in s && (s.writable = !0),
+                Object.defineProperty(e, s.key, s));
+            }
+          }
+          function _createClass(e, t, n) {
+            (t && _defineProperties(e.prototype, t),
+              n && _defineProperties(e, n));
+          }
+          function _toConsumableArray(e) {
+            return (
+              _arrayWithoutHoles(e) ||
+              _iterableToArray(e) ||
+              _nonIterableSpread()
+            );
+          }
+          function _arrayWithoutHoles(e) {
+            if (Array.isArray(e)) {
+              for (var t = 0, n = new Array(e.length); t < e.length; t++)
+                n[t] = e[t];
+              return n;
+            }
+          }
+          function _iterableToArray(e) {
+            if (
+              Symbol.iterator in Object(e) ||
+              Object.prototype.toString.call(e) === "[object Arguments]"
+            )
+              return Array.from(e);
+          }
+          function _nonIterableSpread() {
+            throw new TypeError(
+              "Invalid attempt to spread non-iterable instance",
+            );
+          }
+          ((typeof JSON > "u" ? "undefined" : _typeof(JSON)) !== "object" &&
+            (JSON = {}),
+            (function () {
+              var rx_one = /^[\],:{}\s]*$/,
+                rx_two = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,
+                rx_three =
+                  /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
+                rx_four = /(?:^|:|,)(?:\s*\[)+/g,
+                rx_escapable =
+                  /[\\"\u0000-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+                rx_dangerous =
+                  /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+                gap,
+                indent,
+                meta,
+                rep;
+              function f(e) {
+                return e < 10 ? "0" + e : e;
+              }
+              function this_value() {
+                return this.valueOf();
+              }
+              function quote(e) {
+                return (
+                  (rx_escapable.lastIndex = 0),
+                  rx_escapable.test(e)
+                    ? '"' +
+                      e.replace(rx_escapable, function (t) {
+                        var n = meta[t];
+                        return typeof n == "string"
+                          ? n
+                          : "\\u" +
+                              ("0000" + t.charCodeAt(0).toString(16)).slice(-4);
+                      }) +
+                      '"'
+                    : '"' + e + '"'
+                );
+              }
+              function str(e, t) {
+                var n,
+                  s,
+                  r,
+                  i,
+                  o,
+                  a = gap,
+                  l = t[e];
+                switch (
+                  (l &&
+                    _typeof(l) === "object" &&
+                    typeof l.toJSON == "function" &&
+                    (l = l.toJSON(e)),
+                  _typeof(
+                    (l = typeof rep == "function" ? rep.call(t, e, l) : l),
+                  ))
+                ) {
+                  case "string":
+                    return quote(l);
+                  case "number":
+                    return isFinite(l) ? String(l) : "null";
+                  case "boolean":
+                  case "null":
+                    return String(l);
+                  case "object":
+                    if (!l) return "null";
+                    if (
+                      ((gap += indent),
+                      (o = []),
+                      Object.prototype.toString.apply(l) === "[object Array]")
+                    ) {
+                      for (i = l.length, n = 0; n < i; n += 1)
+                        o[n] = str(n, l) || "null";
+                      r =
+                        o.length === 0
+                          ? "[]"
+                          : gap
+                            ? `[
+` +
+                              gap +
+                              o.join(
+                                `,
+` + gap,
+                              ) +
+                              `
+` +
+                              a +
+                              "]"
+                            : "[" + o.join(",") + "]";
+                    } else {
+                      if (rep && _typeof(rep) === "object")
+                        for (i = rep.length, n = 0; n < i; n += 1)
+                          typeof rep[n] == "string" &&
+                            (r = str((s = rep[n]), l)) &&
+                            o.push(quote(s) + (gap ? ": " : ":") + r);
+                      else
+                        for (s in l)
+                          Object.prototype.hasOwnProperty.call(l, s) &&
+                            (r = str(s, l)) &&
+                            o.push(quote(s) + (gap ? ": " : ":") + r);
+                      r =
+                        o.length === 0
+                          ? "{}"
+                          : gap
+                            ? `{
+` +
+                              gap +
+                              o.join(
+                                `,
+` + gap,
+                              ) +
+                              `
+` +
+                              a +
+                              "}"
+                            : "{" + o.join(",") + "}";
+                    }
+                    return ((gap = a), r);
+                }
+              }
+              (typeof Date.prototype.toJSON != "function" &&
+                ((Date.prototype.toJSON = function () {
+                  return isFinite(this.valueOf())
+                    ? this.getUTCFullYear() +
+                        "-" +
+                        f(this.getUTCMonth() + 1) +
+                        "-" +
+                        f(this.getUTCDate()) +
+                        "T" +
+                        f(this.getUTCHours()) +
+                        ":" +
+                        f(this.getUTCMinutes()) +
+                        ":" +
+                        f(this.getUTCSeconds()) +
+                        "Z"
+                    : null;
+                }),
+                (Boolean.prototype.toJSON = this_value),
+                (Number.prototype.toJSON = this_value),
+                (String.prototype.toJSON = this_value)),
+                typeof JSON.stringify != "function" &&
+                  ((meta = {
+                    "\b": "\\b",
+                    "	": "\\t",
+                    "\n": "\\n",
+                    "\f": "\\f",
+                    "\r": "\\r",
+                    '"': '\\"',
+                    "\\": "\\\\",
+                  }),
+                  (JSON.stringify = function (e, t, n) {
+                    var s;
+                    if (((indent = gap = ""), typeof n == "number"))
+                      for (s = 0; s < n; s += 1) indent += " ";
+                    else typeof n == "string" && (indent = n);
+                    if (
+                      !(rep = t) ||
+                      typeof t == "function" ||
+                      (_typeof(t) === "object" && typeof t.length == "number")
+                    )
+                      return str("", { "": e });
+                    throw new Error("JSON.stringify");
+                  })),
+                typeof JSON.parse != "function" &&
+                  (JSON.parse = function (text, reviver) {
+                    var j;
+                    function walk(e, t) {
+                      var n,
+                        s,
+                        r = e[t];
+                      if (r && _typeof(r) === "object")
+                        for (n in r)
+                          Object.prototype.hasOwnProperty.call(r, n) &&
+                            ((s = walk(r, n)) !== void 0
+                              ? (r[n] = s)
+                              : delete r[n]);
+                      return reviver.call(e, t, r);
+                    }
+                    if (
+                      ((text = String(text)),
+                      (rx_dangerous.lastIndex = 0),
+                      rx_dangerous.test(text) &&
+                        (text = text.replace(rx_dangerous, function (e) {
+                          return (
+                            "\\u" +
+                            ("0000" + e.charCodeAt(0).toString(16)).slice(-4)
+                          );
+                        })),
+                      rx_one.test(
+                        text
+                          .replace(rx_two, "@")
+                          .replace(rx_three, "]")
+                          .replace(rx_four, ""),
+                      ))
+                    )
+                      return (
+                        (j = eval("(" + text + ")")),
+                        typeof reviver == "function" ? walk({ "": j }, "") : j
+                      );
+                    throw new SyntaxError("JSON.parse");
+                  }));
+            })());
+          var Config = { LIB_VERSION: "2.3.1" },
+            MAX_REFERRER_STRING_LENGTH = 200,
+            ArrayProto = Array.prototype,
+            ObjProto = Object.prototype,
+            slice = ArrayProto.slice,
+            toString = ObjProto.toString,
+            hasOwnProperty = ObjProto.hasOwnProperty,
+            nativeForEach = ArrayProto.forEach,
+            breaker = {},
+            utmTypes = [
+              "utm_source",
+              "utm_medium",
+              "utm_campaign",
+              "utm_content",
+              "utm_term",
+            ],
+            _ = {
+              each: function (e, t, n) {
+                if (e !== null) {
+                  if (nativeForEach && e.forEach === nativeForEach)
+                    e.forEach(t, n);
+                  else if (e.length === +e.length) {
+                    for (var s = 0, r = e.length; s < r; s++)
+                      if (s in e && t.call(n, e[s], s, e) === breaker) return;
+                  } else
+                    for (var i in e)
+                      if (
+                        hasOwnProperty.call(e, i) &&
+                        t.call(n, e[i], i, e) === breaker
+                      )
+                        return;
+                }
+              },
+              extend: function (e) {
+                return (
+                  _.each(slice.call(arguments, 1), function (t) {
+                    for (var n in t) t[n] !== void 0 && (e[n] = t[n]);
+                  }),
+                  e
+                );
+              },
+              formatDate: function (e) {
+                function t(n) {
+                  return n < 10 ? "0" + n : n;
+                }
+                return (
+                  e.getFullYear() +
+                  "-" +
+                  t(e.getMonth() + 1) +
+                  "-" +
+                  t(e.getDate()) +
+                  " " +
+                  t(e.getHours()) +
+                  ":" +
+                  t(e.getMinutes()) +
+                  ":" +
+                  t(e.getSeconds()) +
+                  "." +
+                  ((e = e.getMilliseconds()) < 10
+                    ? "00" + e
+                    : e < 100
+                      ? "0" + e
+                      : e)
+                );
+              },
+              formatTimeZone: function (e, t) {
+                var n;
+                return typeof t != "number"
+                  ? e
+                  : ((n = e.getTime()),
+                    (e = 6e4 * e.getTimezoneOffset()),
+                    new Date(n + e + 36e5 * t));
+              },
+              formatJsonString: function (e) {
+                try {
+                  return JSON.stringify(e, null, 8);
+                } catch {
+                  return JSON.stringify(e);
+                }
+              },
+              searchObjDate: function (e, t) {
+                (_.check.isObject(e) || _.check.isArray(e)) &&
+                  _.each(e, function (n, s) {
+                    _.check.isObject(n) || _.check.isArray(n)
+                      ? _.searchObjDate(e[s], t)
+                      : _.check.isDate(n) &&
+                        (e[s] = _.formatDate(_.formatTimeZone(n, t)));
+                  });
+              },
+              check: {
+                isUndefined: function (e) {
+                  return e === void 0;
+                },
+                isObject: function (e) {
+                  return toString.call(e) === "[object Object]" && e !== null;
+                },
+                isEmptyObject: function (e) {
+                  if (_.check.isObject(e)) {
+                    for (var t in e) if (hasOwnProperty.call(e, t)) return !1;
+                    return !0;
+                  }
+                  return !1;
+                },
+                isArray: function (e) {
+                  return toString.call(e) === "[object Array]";
+                },
+                isString: function (e) {
+                  return toString.call(e) === "[object String]";
+                },
+                isDate: function (e) {
+                  return toString.call(e) === "[object Date]";
+                },
+                isNumber: function (e) {
+                  return toString.call(e) === "[object Number]";
+                },
+                isBoolean: function (e) {
+                  return toString.call(e) === "[object Boolean]";
+                },
+                isJSONString: function (e) {
+                  try {
+                    JSON.parse(e);
+                  } catch {
+                    return !1;
+                  }
+                  return !0;
+                },
+                isValidString: function (e) {
+                  return e !== null && !this.isUndefined(e) && e.trim() !== "";
+                },
+              },
+            },
+            Log =
+              ((_.UUID = (() => {
+                function e() {
+                  for (var t = +new Date(), n = 0; t === +new Date();) n++;
+                  return t.toString(16) + n.toString(16);
+                }
+                return function () {
+                  var t =
+                      (t = String(screen.height * screen.width)) &&
+                      /\d{5,}/.test(t)
+                        ? t.toString(16)
+                        : String(31242 * Math.random())
+                            .replace(".", "")
+                            .slice(0, 8),
+                    t =
+                      e() +
+                      "-" +
+                      Math.random().toString(16).replace(".", "") +
+                      "-" +
+                      (() => {
+                        var n,
+                          s,
+                          r = navigator.userAgent,
+                          i = [],
+                          o = 0;
+                        function a(l, u) {
+                          for (var d = 0, c = 0; c < u.length; c++)
+                            d |= i[c] << (8 * c);
+                          return l ^ d;
+                        }
+                        for (n = 0; n < r.length; n++)
+                          ((s = r.charCodeAt(n)),
+                            i.unshift(255 & s),
+                            4 <= i.length && ((o = a(o, i)), (i = [])));
+                        return (o = 0 < i.length ? a(o, i) : o).toString(16);
+                      })() +
+                      "-" +
+                      t +
+                      "-" +
+                      e();
+                  return (
+                    t ||
+                    (
+                      String(Math.random()) +
+                      String(Math.random()) +
+                      String(Math.random())
+                    ).slice(2, 15)
+                  );
+                };
+              })()),
+              (_.UUIDv4 = function () {
+                return typeof crypto < "u" &&
+                  typeof crypto.randomUUID == "function"
+                  ? crypto.randomUUID()
+                  : "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+                      /[xy]/g,
+                      function (e) {
+                        var t = (16 * Math.random()) | 0;
+                        return (e === "x" ? t : (3 & t) | 8).toString(16);
+                      },
+                    );
+              }),
+              (_.getReferrer = function (e) {
+                return (
+                  (e = e || document.referrer),
+                  typeof e != "string"
+                    ? "referrer exception" + String(e)
+                    : typeof (e = (e =
+                          e.indexOf("https://www.baidu.com/") === 0
+                            ? e.split("?")[0]
+                            : e).slice(0, MAX_REFERRER_STRING_LENGTH)) ==
+                        "string"
+                      ? e
+                      : ""
+                );
+              }),
+              (_.url = (() => {
+                function e() {
+                  return new RegExp(
+                    /(.*?)\.?([^\.]*?)\.(com|net|org|biz|ws|in|me|co\.uk|co|org\.uk|ltd\.uk|plc\.uk|me\.uk|edu|mil|br\.com|cn\.com|eu\.com|hu\.com|no\.com|qc\.com|sa\.com|se\.com|se\.net|us\.com|uy\.com|ac|co\.ac|gv\.ac|or\.ac|ac\.ac|af|am|as|at|ac\.at|co\.at|gv\.at|or\.at|asn\.au|com\.au|edu\.au|org\.au|net\.au|id\.au|be|ac\.be|adm\.br|adv\.br|am\.br|arq\.br|art\.br|bio\.br|cng\.br|cnt\.br|com\.br|ecn\.br|eng\.br|esp\.br|etc\.br|eti\.br|fm\.br|fot\.br|fst\.br|g12\.br|gov\.br|ind\.br|inf\.br|jor\.br|lel\.br|med\.br|mil\.br|net\.br|nom\.br|ntr\.br|odo\.br|org\.br|ppg\.br|pro\.br|psc\.br|psi\.br|rec\.br|slg\.br|tmp\.br|tur\.br|tv\.br|vet\.br|zlg\.br|br|ab\.ca|bc\.ca|mb\.ca|nb\.ca|nf\.ca|ns\.ca|nt\.ca|on\.ca|pe\.ca|qc\.ca|sk\.ca|yk\.ca|ca|cc|ac\.cn|net\.cn|com\.cn|edu\.cn|gov\.cn|org\.cn|bj\.cn|sh\.cn|tj\.cn|cq\.cn|he\.cn|nm\.cn|ln\.cn|jl\.cn|hl\.cn|js\.cn|zj\.cn|ah\.cn|gd\.cn|gx\.cn|hi\.cn|sc\.cn|gz\.cn|yn\.cn|xz\.cn|sn\.cn|gs\.cn|qh\.cn|nx\.cn|xj\.cn|tw\.cn|hk\.cn|mo\.cn|cn|cx|cz|de|dk|fo|com\.ec|tm\.fr|com\.fr|asso\.fr|presse\.fr|fr|gf|gs|co\.il|net\.il|ac\.il|k12\.il|gov\.il|muni\.il|ac\.in|co\.in|org\.in|ernet\.in|gov\.in|net\.in|res\.in|is|it|ac\.jp|co\.jp|go\.jp|or\.jp|ne\.jp|ac\.kr|co\.kr|go\.kr|ne\.kr|nm\.kr|or\.kr|li|lt|lu|asso\.mc|tm\.mc|com\.mm|org\.mm|net\.mm|edu\.mm|gov\.mm|ms|nl|no|nu|pl|ro|org\.ro|store\.ro|tm\.ro|firm\.ro|www\.ro|arts\.ro|rec\.ro|info\.ro|nom\.ro|nt\.ro|se|si|com\.sg|org\.sg|net\.sg|gov\.sg|sk|st|tf|ac\.th|co\.th|go\.th|mi\.th|net\.th|or\.th|tm|to|com\.tr|edu\.tr|gov\.tr|k12\.tr|net\.tr|org\.tr|com\.tw|org\.tw|net\.tw|ac\.uk|uk\.com|uk\.net|gb\.com|gb\.net|vg|sh|kz|ch|info|ua|gov|name|pro|ie|hk|com\.hk|org\.hk|net\.hk|edu\.hk|us|tk|cd|by|ad|lv|eu\.lv|bz|es|jp|cl|ag|mobi|eu|co\.nz|org\.nz|net\.nz|maori\.nz|iwi\.nz|io|la|md|sc|sg|vc|tw|travel|my|se|tv|pt|com\.pt|edu\.pt|asia|fi|com\.ve|net\.ve|fi|org\.ve|web\.ve|info\.ve|co\.ve|tel|im|gr|ru|net\.ru|org\.ru|hr|com\.hr|ly|xyz)$/,
+                  );
+                }
+                function t(s, o) {
+                  var i = s.charAt(0),
+                    o = o.split(i);
+                  return i === s
+                    ? o
+                    : o[
+                        (s = parseInt(s.substring(1), 10)) < 0
+                          ? o.length + s
+                          : s - 1
+                      ];
+                }
+                function n(s, r) {
+                  for (
+                    var i,
+                      o = s.charAt(0),
+                      a = r.split("&"),
+                      l = [],
+                      u = {},
+                      d = s.substring(1),
+                      c = 0,
+                      v = a.length;
+                    c < v;
+                    c++
+                  )
+                    if (
+                      (l = (l = a[c].match(/(.*?)=(.*)/)) || [
+                        a[c],
+                        a[c],
+                        "",
+                      ])[1].replace(/\s/g, "") !== ""
+                    ) {
+                      if (
+                        ((l[2] =
+                          ((i = l[2] || ""),
+                          _.decodeURIComponent(i.replace(/\+/g, " ")))),
+                        d === l[1])
+                      )
+                        return l[2];
+                      (i = l[1].match(/(.*)\[([0-9]+)\]/))
+                        ? ((u[i[1]] = u[i[1]] || []), (u[i[1]][i[2]] = l[2]))
+                        : (u[l[1]] = l[2]);
+                    }
+                  return o === s ? u : u[d];
+                }
+                return function (s, r) {
+                  var i,
+                    o = {};
+                  if (s === "tld?") return e();
+                  if (((r = r || window.location.toString()), !s)) return r;
+                  if (((s = s.toString()), (i = r.match(/^mailto:([^\/].+)/))))
+                    ((o.protocol = "mailto"), (o.email = i[1]));
+                  else {
+                    if (
+                      ((i = (r = (i = r.match(/(.*?)\/#\!(.*)/))
+                        ? i[1] + i[2]
+                        : r).match(/(.*?)#(.*)/)) &&
+                        ((o.hash = i[2]), (r = i[1])),
+                      o.hash && s.match(/^#/))
+                    )
+                      return n(s, o.hash);
+                    if (
+                      ((i = r.match(/(.*?)\?(.*)/)) &&
+                        ((o.query = i[2]), (r = i[1])),
+                      o.query && s.match(/^\?/))
+                    )
+                      return n(s, o.query);
+                    if (
+                      ((i = r.match(/(.*?)\:?\/\/(.*)/)) &&
+                        ((o.protocol = i[1].toLowerCase()), (r = i[2])),
+                      (i = r.match(/(.*?)(\/.*)/)) &&
+                        ((o.path = i[2]), (r = i[1])),
+                      (o.path = (o.path || "")
+                        .replace(/^([^\/])/, "/$1")
+                        .replace(/\/$/, "")),
+                      (s = s.match(/^[\-0-9]+$/)
+                        ? s.replace(/^([^\/])/, "/$1")
+                        : s).match(/^\//))
+                    )
+                      return t(s, o.path.substring(1));
+                    if (
+                      ((i =
+                        (i = t("/-1", o.path.substring(1))) &&
+                        i.match(/(.*?)\.(.*)/)) &&
+                        ((o.file = i[0]),
+                        (o.filename = i[1]),
+                        (o.fileext = i[2])),
+                      (i = r.match(/(.*)\:([0-9]+)$/)) &&
+                        ((o.port = i[2]), (r = i[1])),
+                      (i = r.match(/(.*?)@(.*)/)) &&
+                        ((o.auth = i[1]), (r = i[2])),
+                      o.auth &&
+                        ((i = o.auth.match(/(.*)\:(.*)/)),
+                        (o.user = i ? i[1] : o.auth),
+                        (o.pass = i ? i[2] : void 0)),
+                      (o.hostname = r.toLowerCase()),
+                      s.charAt(0) === ".")
+                    )
+                      return t(s, o.hostname);
+                    (e() &&
+                      (i = o.hostname.match(e())) &&
+                      ((o.tld = i[3]),
+                      (o.domain = i[2] ? i[2] + "." + i[3] : void 0),
+                      (o.sub = i[1] || void 0)),
+                      (r = o.port ? ":" + o.port : ""),
+                      (o.protocol =
+                        o.protocol ||
+                        window.location.protocol.replace(":", "")),
+                      (o.port =
+                        o.port || (o.protocol === "https" ? "443" : "80")),
+                      (o.protocol =
+                        o.protocol || (o.port === "443" ? "https" : "http")),
+                      (o.basic = o.protocol + "://" + o.hostname + r));
+                  }
+                  return s in o ? o[s] : s === "{}" ? o : "";
+                };
+              })()),
+              (_.hashCode = function (e) {
+                if (typeof e != "string") return 0;
+                var t = 0;
+                if (e.length !== 0)
+                  for (var n = 0; n < e.length; n++)
+                    ((t = (t << 5) - t + e.charCodeAt(n)), (t &= t));
+                return t;
+              }),
+              (_.decodeURIComponent = function (e) {
+                var t = "";
+                try {
+                  t = decodeURIComponent(e);
+                } catch {
+                  t = e;
+                }
+                return t;
+              }),
+              (_.encodeURIComponent = function (e) {
+                var t = "";
+                try {
+                  t = encodeURIComponent(e);
+                } catch {
+                  t = e;
+                }
+                return t;
+              }),
+              (_.utf8Encode = function (e) {
+                for (
+                  var t,
+                    n = "",
+                    s = (t = 0),
+                    r = (e = (e + "")
+                      .replace(
+                        /\r\n/g,
+                        `
+`,
+                      )
+                      .replace(
+                        /\r/g,
+                        `
+`,
+                      )).length,
+                    i = 0;
+                  i < r;
+                  i++
+                ) {
+                  var o = e.charCodeAt(i),
+                    a = null;
+                  (o < 128
+                    ? t++
+                    : (a =
+                        127 < o && o < 2048
+                          ? String.fromCharCode((o >> 6) | 192, (63 & o) | 128)
+                          : String.fromCharCode(
+                              (o >> 12) | 224,
+                              ((o >> 6) & 63) | 128,
+                              (63 & o) | 128,
+                            )),
+                    a !== null &&
+                      (s < t && (n += e.substring(s, t)),
+                      (n += a),
+                      (s = t = i + 1)));
+                }
+                return (s < t && (n += e.substring(s, e.length)), n);
+              }),
+              (_.base64Encode = function (e) {
+                return (
+                  (e = new TextEncoder().encode(e)),
+                  btoa(String.fromCharCode.apply(String, _toConsumableArray(e)))
+                );
+              }),
+              (_.cookie = {
+                get: function (e) {
+                  for (
+                    var t = e + "=", n = document.cookie.split(";"), s = 0;
+                    s < n.length;
+                    s++
+                  ) {
+                    for (var r = n[s]; r.charAt(0) === " ";)
+                      r = r.substring(1, r.length);
+                    if (r.indexOf(t) === 0)
+                      return _.decodeURIComponent(
+                        r.substring(t.length, r.length),
+                      );
+                  }
+                  return null;
+                },
+                set: function (e, t, l, s, r) {
+                  var i = "",
+                    o = "",
+                    a = "",
+                    l =
+                      ((l = l === null ? 73e3 : l),
+                      s &&
+                        (i = (s = _.url("domain", location.href))
+                          ? "; domain=." + s
+                          : ""),
+                      l &&
+                        ((s = new Date()),
+                        String(l).slice(-1) === "s"
+                          ? s.setTime(
+                              s.getTime() +
+                                1e3 * Number(String(l).slice(0, -1)),
+                            )
+                          : s.setTime(s.getTime() + 24 * l * 60 * 60 * 1e3),
+                        (o = "; expires=" + s.toGMTString())),
+                      r && (a = "; secure"),
+                      e + "=" + encodeURIComponent(t) + o + "; path=/" + i + a);
+                  return (document.cookie = l);
+                },
+                remove: function (e, t) {
+                  _.cookie.set(e, "", -1, t);
+                },
+              }),
+              (_.localStorage = {
+                get: function (e) {
+                  try {
+                    return window.localStorage.getItem(e);
+                  } catch (t) {
+                    _.localStorage.error(t);
+                  }
+                },
+                parse: function (e) {
+                  var t;
+                  try {
+                    t = JSON.parse(_.localStorage.get(e)) || null;
+                  } catch (n) {
+                    _.localStorage.error(n);
+                  }
+                  return t;
+                },
+                set: function (e, t) {
+                  try {
+                    window.localStorage.setItem(e, t);
+                  } catch (n) {
+                    _.localStorage.error(n);
+                  }
+                },
+                remove: function (e) {
+                  try {
+                    window.localStorage.removeItem(e);
+                  } catch (t) {
+                    _.localStorage.error(t);
+                  }
+                },
+                error: function (e) {
+                  console.error("localStorage error: " + e);
+                },
+                isSupported: function () {
+                  var e = !0;
+                  try {
+                    var t = "__thinkingdatasupport__",
+                      n = "testIsSupportStorage";
+                    (_.localStorage.set(t, n),
+                      _.localStorage.get(t) !== n && (e = !1),
+                      _.localStorage.remove(t));
+                  } catch {
+                    e = !1;
+                  }
+                  return e;
+                },
+              }),
+              (_.stripEmptyProperties = function (e) {
+                var t = {};
+                return (
+                  _.each(e, function (n, s) {
+                    _.check.isString(n) && 0 < n.length && (t[s] = n);
+                  }),
+                  t
+                );
+              }),
+              (_.info = {
+                os: function () {
+                  var e = navigator.userAgent;
+                  return /Windows/i.test(e)
+                    ? /Phone/.test(e) || /WPDesktop/.test(e)
+                      ? "Windows Phone"
+                      : "Windows"
+                    : /(iPhone|iPad|iPod)/.test(e)
+                      ? "iOS"
+                      : /Android/.test(e)
+                        ? "Android"
+                        : /(BlackBerry|PlayBook|BB10)/i.test(e)
+                          ? "BlackBerry"
+                          : /Mac/i.test(e)
+                            ? "Mac OS X"
+                            : /Linux/.test(e)
+                              ? "Linux"
+                              : /CrOS/.test(e)
+                                ? "Chrome OS"
+                                : /Harmony/i.test(e)
+                                  ? "HarmonyOS OS"
+                                  : "";
+                },
+                browser: function () {
+                  var e = { type: "", version: "" };
+                  try {
+                    var t,
+                      n,
+                      s = navigator.userAgent.toLowerCase(),
+                      r = [];
+                    (s.match(/baidubrowser/) !== null
+                      ? ((e.type = "baidu"), r.push(/baidubrowser\/([\d.]+)/))
+                      : s.match(/bidubrowser/) !== null
+                        ? ((e.type = "baidu"), r.push(/bidubrowser\/([\d.]+)/))
+                        : s.match(/edga/) !== null
+                          ? ((e.type = "edge"), r.push(/edga\/([\d.]+)/))
+                          : s.match(/edgios/) !== null
+                            ? ((e.type = "edge"), r.push(/edgios\/([\d.]+)/))
+                            : s.match(/liebaofast/) !== null
+                              ? ((e.type = "liebao"),
+                                r.push(/liebaofast\/([\d.]+)/))
+                              : s.match(/sogoumobilebrowser/) !== null
+                                ? ((e.type = "sogou"),
+                                  r.push(/sogoumobilebrowser\/([\d.]+)/))
+                                : s.match(/lbbrowser/) !== null
+                                  ? ((e.type = "liebao"),
+                                    r.push(/lbbrowser\/([\d.]+)/))
+                                  : s.match(/crios/) !== null
+                                    ? ((e.type = "chrome"),
+                                      r.push(/crios\/([\d.]+)/))
+                                    : s.match(/qihoobrowser/) !== null
+                                      ? ((e.type = "360"),
+                                        r.push(/qihoobrowser\/([\d.]+)/))
+                                      : s.match(/mxios/) !== null
+                                        ? ((e.type = "maxthon"),
+                                          r.push(/mxios\/([\d.]+)/))
+                                        : s.match(/fxios/) !== null
+                                          ? ((e.type = "firefox"),
+                                            r.push(/fxios\/([\d.\w]+)/))
+                                          : s.match(/edge/) !== null
+                                            ? ((e.type = "edge"),
+                                              r.push(/edge\/([\d.]+)/))
+                                            : s.match(/metasr/) !== null
+                                              ? ((e.type = "sogou"),
+                                                r.push(/metasr ([\d.]+)/))
+                                              : s.match(/micromessenger/) !==
+                                                  null
+                                                ? ((e.type = "micromessenger"),
+                                                  r.push(
+                                                    /micromessenger\/([\d.]+)/,
+                                                  ))
+                                                : s.match(/mqqbrowser/) !== null
+                                                  ? ((e.type = "qq"),
+                                                    r.push(
+                                                      /mqqbrowser\/([\d.]+)/,
+                                                    ))
+                                                  : s.match(/qqbrowserlite/) !==
+                                                      null
+                                                    ? ((e.type = "qq"),
+                                                      r.push(
+                                                        /qqbrowserlite\/([\d.]+)/,
+                                                      ))
+                                                    : s.match(
+                                                          /tencenttraveler/,
+                                                        ) !== null
+                                                      ? ((e.type = "qq"),
+                                                        r.push(
+                                                          /tencenttraveler\/([\d.]+)/,
+                                                        ))
+                                                      : s.match(/qqbrowser/) !==
+                                                          null
+                                                        ? ((e.type = "qq"),
+                                                          r.push(
+                                                            /qqbrowser\/([\d.]+)/,
+                                                          ))
+                                                        : s.match(/maxthon/) !==
+                                                            null
+                                                          ? ((e.type =
+                                                              "maxthon"),
+                                                            r.push(
+                                                              /maxthon\/([\d.]+)/,
+                                                            ))
+                                                          : s.match(
+                                                                /ubrowser/,
+                                                              ) !== null
+                                                            ? ((e.type = "uc"),
+                                                              r.push(
+                                                                /ubrowser\/([\d.]+)/,
+                                                              ))
+                                                            : s.match(
+                                                                  /ucbrowser/,
+                                                                ) !== null
+                                                              ? ((e.type =
+                                                                  "uc"),
+                                                                r.push(
+                                                                  /ucbrowser\/([\d.]+)/,
+                                                                ))
+                                                              : s.match(
+                                                                    /firefox/,
+                                                                  ) !== null
+                                                                ? ((e.type =
+                                                                    "firefox"),
+                                                                  r.push(
+                                                                    /firefox\/([\d.]+)/,
+                                                                  ))
+                                                                : s.match(
+                                                                      /opera/,
+                                                                    ) !== null
+                                                                  ? ((e.type =
+                                                                      "opera"),
+                                                                    r.push(
+                                                                      /opera\/([\d.]+)/,
+                                                                    ))
+                                                                  : s.match(
+                                                                        /opr/,
+                                                                      ) !== null
+                                                                    ? ((e.type =
+                                                                        "opera"),
+                                                                      r.push(
+                                                                        /opr\/([\d.]+)/,
+                                                                      ))
+                                                                    : s.match(
+                                                                          /chrome/,
+                                                                        ) !==
+                                                                        null
+                                                                      ? ((e.type =
+                                                                          "chrome"),
+                                                                        r.push(
+                                                                          /chrome\/([\d.]+)/,
+                                                                        ))
+                                                                      : s.match(
+                                                                            /safari/,
+                                                                          ) !==
+                                                                          null
+                                                                        ? ((e.type =
+                                                                            "safari"),
+                                                                          r.push(
+                                                                            /version\/([\d.]+)/,
+                                                                          ))
+                                                                        : (s.match(
+                                                                            /trident/,
+                                                                          ) ===
+                                                                            null &&
+                                                                            s.match(
+                                                                              /msie/,
+                                                                            ) ===
+                                                                              null) ||
+                                                                          (e.type =
+                                                                            "ie"),
+                      e.type === "ie"
+                        ? ((t = s.match(/trident\/([\d.]+)/)
+                            ? s.match(/trident\/([\d.]+)/)[1]
+                            : ""),
+                          (n = s.match(/msie ([\d.]+)/)
+                            ? s.match(/msie ([\d.]+)/)[1]
+                            : ""),
+                          t !== ""
+                            ? (e.version = String(parseInt(t) + 4))
+                            : n !== "" && (e.version = n))
+                        : r &&
+                          (e.version = s.match(r[0]) ? s.match(r[0])[1] : ""));
+                  } catch (i) {
+                    Log.w("getting browser info failed due to ", i);
+                  }
+                  return e;
+                },
+                properties: function (e) {
+                  var t,
+                    n = _.info.browser();
+                  return _.check.isArray(e) && 0 < e.length
+                    ? ((t = {}),
+                      e.includes("#os") || (t["#os"] = _.info.os()),
+                      e.includes("#lib_version") ||
+                        (t["#lib_version"] = Config.LIB_VERSION),
+                      e.includes("#lib") || (t["#lib"] = "js"),
+                      e.includes("#screen_height") ||
+                        (t["#screen_height"] = screen.height),
+                      e.includes("#screen_width") ||
+                        (t["#screen_width"] = screen.width),
+                      e.includes("#browser") || (t["#browser"] = n.type),
+                      e.includes("#browser_version") ||
+                        (t["#browser_version"] = n.version),
+                      e.includes("#system_language") ||
+                        (t["#system_language"] = _.check.isString(
+                          navigator.language,
+                        )
+                          ? navigator.language
+                          : "Value exception"),
+                      e.includes("#ua") ||
+                        (t["#ua"] = _.check.isString(navigator.userAgent)
+                          ? navigator.userAgent.toLowerCase()
+                          : "Value exception"),
+                      e.includes("#utm") || (t["#utm"] = _.getUtm()),
+                      t)
+                    : _.extend({
+                        "#os": _.info.os(),
+                        "#lib_version": Config.LIB_VERSION,
+                        "#lib": "js",
+                        "#screen_height": screen.height,
+                        "#screen_width": screen.width,
+                        "#browser": n.type,
+                        "#browser_version": n.version,
+                        "#system_language": _.check.isString(navigator.language)
+                          ? navigator.language
+                          : "Value exception",
+                        "#ua": _.check.isString(navigator.userAgent)
+                          ? navigator.userAgent.toLowerCase()
+                          : "Value exception",
+                        "#utm": _.getUtm(),
+                      });
+                },
+                pageProperties: function (e) {
+                  var t,
+                    n = _.getReferrer();
+                  return _.check.isArray(e) && 0 < e.length
+                    ? ((t = {}),
+                      e.includes("#referrer") || (t["#referrer"] = n),
+                      e.includes("#referrer_host") ||
+                        (t["#referrer_host"] = n && _.url("hostname", n)),
+                      e.includes("#url") || (t["#url"] = location.href),
+                      e.includes("#url_path") ||
+                        (t["#url_path"] = location.pathname),
+                      e.includes("#title") || (t["#title"] = document.title),
+                      t)
+                    : _.stripEmptyProperties({
+                        "#referrer": n,
+                        "#referrer_host": n && _.url("hostname", n),
+                        "#url": location.href,
+                        "#url_path": location.pathname,
+                        "#title": document.title,
+                      });
+                },
+              }),
+              (_.isDisableProperties = function (e, t) {
+                return !!_.check.isArray(e) && e.includes(t);
+              }),
+              (_.getUtm = function () {
+                var e = {};
+                return (
+                  _.each(utmTypes, function (t) {
+                    var n = _.getQueryParam(location.href, t);
+                    n.length && (e[t] = n);
+                  }),
+                  JSON.stringify(e)
+                );
+              }),
+              (_.getQueryParam = function (e, t) {
+                return (
+                  (t = t.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]")),
+                  (e = _.decodeURIComponent(e)),
+                  (t = new RegExp("[\\?&]" + t + "=([^&#]*)").exec(e)),
+                  t === null || (t && typeof t[1] != "string" && t[1].length)
+                    ? ""
+                    : _.decodeURIComponent(t[1])
+                );
+              }),
+              (_.createString = function (e) {
+                for (
+                  var t = e, n = Math.random().toString(36).substr(2);
+                  n.length < t;
+                )
+                  n += Math.random().toString(36).substr(2);
+                return (n = n.substr(0, e));
+              }),
+              (_.createAesKey = function () {
+                return _.createString(16);
+              }),
+              (_.generateEncryptyData = function (e, t) {
+                if (t !== void 0) {
+                  var n = t.publicKey,
+                    t = t.version;
+                  if (
+                    n !== void 0 &&
+                    t !== void 0 &&
+                    typeof CryptoJS < "u" &&
+                    typeof JSEncrypt < "u"
+                  ) {
+                    var s = _.createAesKey();
+                    try {
+                      var r = CryptoJS.enc.Utf8.parse(s),
+                        i = CryptoJS.enc.Utf8.parse(JSON.stringify(e)),
+                        o = CryptoJS.AES.encrypt(i, r, {
+                          mode: CryptoJS.mode.ECB,
+                          padding: CryptoJS.pad.Pkcs7,
+                        }).toString(),
+                        a = new JSEncrypt(),
+                        l = (a.setPublicKey(n), a.encrypt(s));
+                      return l === !1
+                        ? (Log.w("encryption failed"), e)
+                        : { pkv: t, ekey: l, payload: o };
+                    } catch {
+                      Log.w("encryption failed");
+                    }
+                  }
+                }
+                return e;
+              }),
+              (_.paramType = function (e) {
+                return Object.prototype.toString
+                  .call(e)
+                  .replace("[object ", "")
+                  .replace("]", "");
+              }),
+              (_.addEvent = function (e, t, n, s) {
+                if (document.addEventListener)
+                  if (
+                    (this.paramType(e) !== "Array" &&
+                      this.paramType(e) !== "HTMLCollection") ||
+                    !e.length ||
+                    e === window
+                  )
+                    e.addEventListener(t, n, s);
+                  else
+                    for (var r = 0; r < e.length; r++)
+                      this.addEvent(e[r], t, n, s);
+                else if (e.length && e !== window)
+                  for (var i = 0; i < e.length; i++) this.addEvent(e[i], t, n);
+                else
+                  e.attachEvent("on" + t, function () {
+                    return n.call(e, window.event);
+                  });
+              }),
+              (_.getRandom = function () {
+                return (
+                  new Date().getTime() + "_" + Math.floor(1e6 * Math.random())
+                );
+              }),
+              (_.safeJSONParse = function (e) {
+                var t = null;
+                try {
+                  t = JSON.parse(e);
+                } catch {
+                  return e;
+                }
+                return t;
+              }),
+              (_.saveObjectVal = function (e, t) {
+                (_.check.isString(t) || (t = JSON.stringify(t)),
+                  _.localStorage.set(e, t));
+              }),
+              (_.readObjectVal = function (e) {
+                return (
+                  (e = _.localStorage.get(e)),
+                  e ? _.safeJSONParse(e) : null
+                );
+              }),
+              (_.indexOf = function (e, t) {
+                var n = e.indexOf;
+                if (n) return n.call(e, t);
+                for (var s = 0; s < e.length; s++) if (t === e[s]) return s;
+                return -1;
+              }),
+              (_.hasEncrypty = function (e) {
+                return (
+                  !!_.check.isObject() &&
+                  e.pkv !== "undefined" &&
+                  e.ekey !== "undefined" &&
+                  e.payload !== "undefined"
+                );
+              }),
+              (_.addSiteEvent = function (e, t, n, s) {
+                function r(o) {
+                  return (
+                    o &&
+                      ((o.preventDefault = r.preventDefault),
+                      (o.stopPropagation = r.stopPropagation),
+                      (o._getPath = r._getPath)),
+                    o
+                  );
+                }
+                r._getPath = function () {
+                  var o;
+                  return (
+                    this.path ||
+                    (this.composedPath && this.composedPath()) ||
+                    ((o = this.target), new i(o).getParents())
+                  );
+                };
+                var i = function (o) {
+                  this.ele = o;
+                };
+                ((r.preventDefault = function () {
+                  this.returnValue = !1;
+                }),
+                  (r.stopPropagation = function () {
+                    this.cancelBubble = !0;
+                  }),
+                  function (o, a, l) {
+                    var u, d, c, v, E, x;
+                    (s === void 0 && a === "click" && (s = !0),
+                      o && o.addEventListener
+                        ? o.addEventListener(
+                            a,
+                            function (B) {
+                              ((B._getPath = r._getPath), l.call(this, B));
+                            },
+                            s,
+                          )
+                        : ((d = o[(u = "on" + a)]),
+                          (o[u] =
+                            ((c = o),
+                            (v = l),
+                            (E = d),
+                            (x = a),
+                            function (B) {
+                              var G, q;
+                              if ((B = B || r(window.event)))
+                                return (
+                                  (B.target = B.srcElement),
+                                  (G = !0),
+                                  typeof E == "function" && (q = E(B)),
+                                  (B = v.call(c, B)),
+                                  x !== "beforeunload"
+                                    ? q !== !1 && B !== !1 && G
+                                    : void 0
+                                );
+                            }))));
+                  }.apply(null, arguments));
+              }),
+              (_.getURLSearchParams = function (e) {
+                for (
+                  var t = {}, n = (e = e || "").substring(1).split("&"), s = 0;
+                  s < n.length;
+                  s++
+                ) {
+                  var r,
+                    i = n[s].indexOf("=");
+                  i !== -1 &&
+                    ((r = n[s].substring(0, i)),
+                    (i = n[s].substring(i + 1)),
+                    (r = _.decodeURIComponent(r)),
+                    (i = _.decodeURIComponent(i)),
+                    (t[r] = i));
+                }
+                return t;
+              }),
+              (_.urlParse = function (e) {
+                function t(n) {
+                  ((this._fields = {
+                    Username: 4,
+                    Password: 5,
+                    Port: 7,
+                    Protocol: 2,
+                    Host: 6,
+                    Path: 8,
+                    URL: 0,
+                    QueryString: 9,
+                    Fragment: 10,
+                  }),
+                    (this._values = {}),
+                    (this._regex =
+                      /^((\w+):\/\/)?((\w+):?(\w+)?@)?([^\/\?:]+):?(\d+)?(\/?[^\?#]+)?\??([^#]+)?#?(\w*)/),
+                    n !== void 0 && this._parse(n));
+                }
+                return (
+                  (t.prototype.setUrl = function (n) {
+                    this._parse(n);
+                  }),
+                  (t.prototype._initValues = function () {
+                    for (var n in this._fields) this._values[n] = "";
+                  }),
+                  (t.prototype.addQueryString = function (n) {
+                    if (_typeof(n) !== "object") return !1;
+                    var s,
+                      r = this._values.QueryString || "";
+                    for (s in n)
+                      r = new RegExp(s + "[^&]+").test(r)
+                        ? r.replace(new RegExp(s + "[^&]+"), s + "=" + n[s])
+                        : r.slice(-1) === "&"
+                          ? r + s + "=" + n[s]
+                          : r === ""
+                            ? s + "=" + n[s]
+                            : r + "&" + s + "=" + n[s];
+                    this._values.QueryString = r;
+                  }),
+                  (t.prototype.getUrl = function () {
+                    var n = "";
+                    return (
+                      (n += this._values.Origin) +
+                      (this._values.Port ? ":" + this._values.Port : "") +
+                      this._values.Path +
+                      (this._values.QueryString
+                        ? "?" + this._values.QueryString
+                        : "") +
+                      (this._values.Fragment ? "#" + this._values.Fragment : "")
+                    );
+                  }),
+                  (t.prototype._parse = function (i) {
+                    (this._initValues(),
+                      this._regex.exec(i) ||
+                        Log.i("URLParser::_parse -> Invalid URL"));
+                    var s,
+                      i = i.split("#"),
+                      r = i[0],
+                      i = i.slice(1).join("#"),
+                      o = this._regex.exec(r);
+                    for (s in this._fields)
+                      o[this._fields[s]] !== void 0 &&
+                        (this._values[s] = o[this._fields[s]]);
+                    ((this._values.Hostname = this._values.Host.replace(
+                      /:\d+$/,
+                      "",
+                    )),
+                      (this._values.Origin =
+                        this._values.Protocol + "://" + this._values.Hostname),
+                      (this._values.Fragment = i));
+                  }),
+                  new t(e)
+                );
+              }),
+              (_.trim = function (e) {
+                return e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
+              }),
+              (_.URL = function (e) {
+                var t,
+                  n,
+                  s = {};
+                if (
+                  typeof window.URL == "function" &&
+                  (() => {
+                    try {
+                      return (
+                        new URL("http://modernizr.com/").href ===
+                        "http://modernizr.com/"
+                      );
+                    } catch {
+                      return !1;
+                    }
+                  })()
+                )
+                  (s = new URL(e)).searchParams ||
+                    (s.searchParams =
+                      ((n = _.getURLSearchParams(s.search)),
+                      {
+                        get: function (r) {
+                          return n[r];
+                        },
+                      }));
+                else {
+                  if (
+                    (_.check.isString(e) || (e = String(e)),
+                    (e = _.trim(e)),
+                    /^https?:\/\/.+/.test(e) === !1)
+                  )
+                    return void Log.w("Invalid URL");
+                  ((e = _.urlParse(e)),
+                    (s.hash = e._values.Fragment),
+                    (s.host = e._values.Host
+                      ? e._values.Host +
+                        (e._values.Port ? ":" + e._values.Port : "")
+                      : ""),
+                    (s.href = e._values.URL),
+                    (s.password = e._values.Password),
+                    (s.pathname = e._values.Path),
+                    (s.port = e._values.Port),
+                    (s.search = e._values.QueryString
+                      ? "?" + e._values.QueryString
+                      : ""),
+                    (s.username = e._values.Username),
+                    (s.hostname = e._values.Hostname),
+                    (s.protocol = e._values.Protocol
+                      ? e._values.Protocol + ":"
+                      : ""),
+                    (s.origin = e._values.Origin
+                      ? e._values.Origin +
+                        (e._values.Port ? ":" + e._values.Port : "")
+                      : ""),
+                    (s.searchParams =
+                      ((t = _.getURLSearchParams("?" + e._values.QueryString)),
+                      {
+                        get: function (r) {
+                          return t[r];
+                        },
+                      })));
+                }
+                return s;
+              }),
+              (_.isFunction = function (e) {
+                return (
+                  !!e &&
+                  ((e = Object.prototype.toString.call(e)) ===
+                    "[object Function]" ||
+                    e === "[object AsyncFunction]")
+                );
+              }),
+              (_.isDebug = function (e) {
+                return e === "debug" || e === "debug_only";
+              }),
+              (_.isDebugOnly = function (e) {
+                return e === "debug_only";
+              }),
+              (_.getCurrentTimeStamp = function () {
+                return Date.now();
+              }),
+              (_.getCurrentDate = function () {
+                return new Date(Date.now());
+              }),
+              (() => {
+                function e() {
+                  _classCallCheck(this, e);
+                }
+                return (
+                  _createClass(e, null, [
+                    {
+                      key: "i",
+                      value: function () {
+                        if (!this.showLog) return !1;
+                        if (
+                          ((this.showLog !== !0 && this.showLog !== "string") ||
+                            (arguments[0] = _.formatJsonString(arguments[0])),
+                          (typeof console > "u"
+                            ? "undefined"
+                            : _typeof(console)) === "object" && console.log)
+                        )
+                          try {
+                            return (
+                              e.listener && e.listener(arguments[0]),
+                              console.log.apply(console, arguments)
+                            );
+                          } catch {
+                            (e.listener && e.listener(arguments[0]),
+                              console.log(arguments[0]));
+                          }
+                      },
+                    },
+                    {
+                      key: "w",
+                      value: function () {
+                        if (!this.showLog) return !1;
+                        if (
+                          ((this.showLog !== !0 && this.showLog !== "string") ||
+                            (arguments[0] = _.formatJsonString(arguments[0])),
+                          (typeof console > "u"
+                            ? "undefined"
+                            : _typeof(console)) === "object" && console.warn)
+                        )
+                          try {
+                            return console.warn.apply(console, arguments);
+                          } catch {
+                            console.warn(arguments[0]);
+                          }
+                      },
+                    },
+                    {
+                      key: "e",
+                      value: function () {
+                        if (!this.showLog) return !1;
+                        if (
+                          ((this.showLog !== !0 && this.showLog !== "string") ||
+                            (arguments[0] = _.formatJsonString(arguments[0])),
+                          (typeof console > "u"
+                            ? "undefined"
+                            : _typeof(console)) === "object" && console.error)
+                        )
+                          try {
+                            return console.error.apply(console, arguments);
+                          } catch {
+                            console.error(arguments[0]);
+                          }
+                      },
+                    },
+                  ]),
+                  e
+                );
+              })()),
+            KEY_NAME_MATCH_REGEX = /^[a-zA-Z][a-zA-Z0-9_]{0,49}$/,
+            PropertyChecker = (() => {
+              function e() {
+                _classCallCheck(this, e);
+              }
+              return (
+                _createClass(e, null, [
+                  {
+                    key: "stripProperties",
+                    value: function (t) {
+                      return (
+                        _.check.isObject(t) &&
+                          _.each(t, function (n, s) {
+                            _.check.isString(n) ||
+                              _.check.isNumber(n) ||
+                              _.check.isDate(n) ||
+                              _.check.isBoolean(n) ||
+                              _.check.isArray(n) ||
+                              _.check.isObject(n) ||
+                              Log.w(
+                                "The format of Data-",
+                                s,
+                                n,
+                                " does not meet the requirements and may not be stored correctly. The attribute value only supports String, Number, Date, Boolean, Array，Object",
+                              );
+                          }),
+                        t
+                      );
+                    },
+                  },
+                  {
+                    key: "_checkPropertiesKey",
+                    value: function (t) {
+                      var n = !0;
+                      return (
+                        _.each(t, function (s, r) {
+                          KEY_NAME_MATCH_REGEX.test(r) ||
+                            (Log.w("invalid key: " + r), (n = !1));
+                        }),
+                        n
+                      );
+                    },
+                  },
+                  {
+                    key: "event",
+                    value: function (t) {
+                      return (
+                        !(
+                          !_.check.isString(t) || !KEY_NAME_MATCH_REGEX.test(t)
+                        ) ||
+                        (Log.w(
+                          "Please check the parameter format, eventName must be an English letter or a string starting with '_', containing letters and numbers with no more than 50 characters: " +
+                            t,
+                        ),
+                        !1)
+                      );
+                    },
+                  },
+                  {
+                    key: "propertyName",
+                    value: function (t) {
+                      return (
+                        !(
+                          !_.check.isString(t) || !KEY_NAME_MATCH_REGEX.test(t)
+                        ) ||
+                        (Log.w(
+                          "Please check the parameter format, propertyName must be an English letter or a string starting with '_', containing letters and numbers with no more than 50 characters: " +
+                            t,
+                        ),
+                        !1)
+                      );
+                    },
+                  },
+                  {
+                    key: "properties",
+                    value: function (t) {
+                      return (
+                        this.stripProperties(t),
+                        !t ||
+                          !(
+                            !_.check.isObject(t) ||
+                            (!this._checkPropertiesKey(t) &&
+                              (Log.w(
+                                "Please check the parameter format, the key of properties can only start with a letter, contain numbers, letters and underscores _, and the maximum length is 50 characters",
+                              ),
+                              1))
+                          )
+                      );
+                    },
+                  },
+                  {
+                    key: "propertiesMust",
+                    value: function (t) {
+                      return (
+                        this.stripProperties(t),
+                        t === void 0 ||
+                        !_.check.isObject(t) ||
+                        _.check.isEmptyObject(t)
+                          ? (Log.w(
+                              "properties must be objects and have values",
+                            ),
+                            !1)
+                          : !!this._checkPropertiesKey(t) ||
+                            (Log.w(
+                              "Please check the parameter format, the key of properties can only start with a letter, contain numbers, letters and underscores _, and the maximum length is 50 characters",
+                            ),
+                            !1)
+                      );
+                    },
+                  },
+                  {
+                    key: "userId",
+                    value: function (t) {
+                      return (
+                        !(!_.check.isString(t) || !/^.{1,63}$/.test(t)) ||
+                        (Log.w(
+                          "User id must be a string that cannot be empty and is less than 64 bits",
+                        ),
+                        !1)
+                      );
+                    },
+                  },
+                ]),
+                e
+              );
+            })(),
+            MASTER_INSTANCE_NAME = "thinkingdata",
+            DEFAULT_CONFIG = {
+              _name: MASTER_INSTANCE_NAME,
+              appId: "",
+              send_method: "image",
+              persistence: "localStorage",
+              persistencePrefix: "ThinkingDataJSSDK",
+              persistenceEnabled: !0,
+              crossSubDomain: !0,
+              maxReferrerStringLength: 200,
+              showLog: !0,
+              dataSendTimeout: 3e3,
+              useAppTrack: !1,
+              strict: !1,
+              tryCount: 3,
+              enableCalibrationTime: !1,
+              imgUseCrossorigin: !1,
+              disablePresetProperties: [],
+              disableEventList: [],
+            },
+            ThinkingDataPersistence = function (e) {
+              ((this._state = {}),
+                (this.crossSubDomain = e.crossSubDomain),
+                (this.enabled = e.persistenceEnabled));
+              var t,
+                n = null;
+              (this.enabled &&
+                (e.crossSubDomain === !1
+                  ? ((t = _.url("sub", location.href)),
+                    (this.name =
+                      typeof t == "string" && t !== ""
+                        ? e.persistencePrefix + "_" + t
+                        : e.persistencePrefix + "_root"))
+                  : (this.name = e.persistencePrefix + "_cross"),
+                (t = e.persistence) !== "cookie" &&
+                  t !== "localStorage" &&
+                  (Log.i(
+                    "Unknown persistence type " +
+                      t +
+                      "; falling back to cookie",
+                  ),
+                  (t = e.persistence = "cookie")),
+                t === "localStorage" && _.localStorage.isSupported()
+                  ? ((this.storage = _.localStorage),
+                    (n = _.cookie.get(this.name)) &&
+                      _.cookie.remove(this.name, this.crossSubDomain))
+                  : (Log.i(
+                      "localStorage is not support by the browser; falling back to cookie",
+                    ),
+                    (this.storage = _.cookie))),
+                this._load(n),
+                this.getDistinctId() ||
+                  ((t = e.uuid || _.UUID()),
+                  this._setDeviceId(t),
+                  this.setDistinctId(t)));
+            },
+            TDAnalytics =
+              ((ThinkingDataPersistence.prototype._load = function (e) {
+                var t;
+                this.enabled &&
+                  ((t = e !== null ? e : this.storage.get(this.name)) !==
+                    null &&
+                    _.check.isJSONString(t) &&
+                    (this._state = _.extend({}, JSON.parse(t))),
+                  e !== null) &&
+                  this._save();
+              }),
+              (ThinkingDataPersistence.prototype.getDistinctId = function () {
+                return this._state.distinct_id;
+              }),
+              (ThinkingDataPersistence.prototype.setDistinctId = function (e) {
+                this._set("distinct_id", e);
+              }),
+              (ThinkingDataPersistence.prototype.setEnableTracking = function (
+                e,
+              ) {
+                this._set("enable_tracking", e);
+              }),
+              (ThinkingDataPersistence.prototype.getEnableTracking =
+                function () {
+                  return (
+                    !!_.check.isUndefined(this._state.enable_tracking) ||
+                    this._state.enable_tracking
+                  );
+                }),
+              (ThinkingDataPersistence.prototype.clear = function () {
+                ((this._state = {}), this._save());
+              }),
+              (ThinkingDataPersistence.prototype.setOptTracking = function (e) {
+                this._set("opt_tracking", e);
+              }),
+              (ThinkingDataPersistence.prototype.getOptTracking = function () {
+                return (
+                  !!_.check.isUndefined(this._state.opt_tracking) ||
+                  this._state.opt_tracking
+                );
+              }),
+              (ThinkingDataPersistence.prototype.setDistinctId = function (e) {
+                _.check.isValidString(e) && this._set("distinct_id", e);
+              }),
+              (ThinkingDataPersistence.prototype.getAccountId = function () {
+                return this._state.account_id;
+              }),
+              (ThinkingDataPersistence.prototype.setAccountId = function (e) {
+                this._set("account_id", e);
+              }),
+              (ThinkingDataPersistence.prototype.getDeviceId = function () {
+                return this._state.device_id;
+              }),
+              (ThinkingDataPersistence.prototype.setSuperProperties = function (
+                e,
+              ) {
+                this._set("super_properties", e);
+              }),
+              (ThinkingDataPersistence.prototype.getSuperProperties =
+                function () {
+                  return this._state.super_properties || {};
+                }),
+              (ThinkingDataPersistence.prototype.setEventTimer = function (
+                e,
+                t,
+              ) {
+                var n = this._state.event_timers || {};
+                ((n[e] = t), this._set("event_timers", n));
+              }),
+              (ThinkingDataPersistence.prototype.clearEventTimer = function () {
+                this._set("event_timers", {});
+              }),
+              (ThinkingDataPersistence.prototype.removeEventTimer = function (
+                e,
+              ) {
+                var t = (this._state.event_timers || {})[e];
+                return (
+                  _.check.isUndefined(t) ||
+                    (delete this._state.event_timers[e], this._save()),
+                  t
+                );
+              }),
+              (ThinkingDataPersistence.prototype._setDeviceId = function (e) {
+                this._state.device_id
+                  ? Log.w(
+                      "Current device_id is ",
+                      this.getDeviceId(),
+                      ", it couldn't been set to: ",
+                      e,
+                    )
+                  : this._set("device_id", e);
+              }),
+              (ThinkingDataPersistence.prototype._save = function () {
+                this.enabled &&
+                  this.storage.set(
+                    this.name,
+                    JSON.stringify(this._state),
+                    73e3,
+                    this.crossSubDomain,
+                  );
+              }),
+              (ThinkingDataPersistence.prototype._set = function (e, t) {
+                ((this._state = this._state || {}),
+                  (this._state[e] = t),
+                  this._save());
+              }),
+              function () {
+                window.addEventListener("message", function (e) {
+                  e.data === "__ta_init_port__" &&
+                    e.ports[0] !== null &&
+                    (window.taHarmonyPort = e.ports[0]);
+                });
+              }),
+            tabStoragePrefix =
+              ((TDAnalytics.prototype.trackLink = function (e, t, n) {
+                var s,
+                  r,
+                  i = this;
+                this._isCollectData() &&
+                  ((s = this._getConfig("strict")),
+                  !PropertyChecker.properties(n) && s
+                    ? Log.w("trackLink failed due to invalid properties.")
+                    : e &&
+                      _.check.isObject(e) &&
+                      ((r = this._compileMatchRules(e)),
+                      document.removeEventListener(
+                        "click",
+                        this._linkClickHandler,
+                      ),
+                      (this._linkClickHandler = function (o) {
+                        i._handleLinkClick(o, r, t, n, s);
+                      }),
+                      document.addEventListener(
+                        "click",
+                        this._linkClickHandler,
+                      )));
+              }),
+              (TDAnalytics.prototype._handleLinkClick = function (
+                e,
+                t,
+                n,
+                s,
+                r,
+              ) {
+                for (var i = e.target; i && i !== document && !t(i);)
+                  i = i.parentNode;
+                i &&
+                  i !== document &&
+                  ((e = this._getConfig("disablePresetProperties")),
+                  (s = _.extend({}, _.info.pageProperties(e), s)),
+                  _.isDisableProperties(e, "#element_type") ||
+                    (s["#element_type"] = i.nodeName.toLowerCase()),
+                  _.check.isUndefined(s.name) &&
+                    (s.name =
+                      i.getAttribute("td-name") ||
+                      i.innerHTML ||
+                      i.value ||
+                      "Unable to get Identify"),
+                  this._sendRequest({
+                    type: "track",
+                    event: n,
+                    properties: r ? PropertyChecker.stripProperties(s) : s,
+                  }));
+              }),
+              (TDAnalytics.prototype._compileMatchRules = function (e) {
+                var t = { tags: new Set(), classes: new Set(), ids: new Set() };
+                return (
+                  _.each(e, function (n, s) {
+                    n &&
+                      _.check.isArray(n) &&
+                      _.each(n, function (r) {
+                        switch (s) {
+                          case "tag":
+                            t.tags.add(r.toLowerCase());
+                            break;
+                          case "class":
+                            t.classes.add(r);
+                            break;
+                          case "id":
+                            t.ids.add(r);
+                        }
+                      });
+                  }),
+                  function (n) {
+                    if (n) {
+                      if (
+                        (0 < t.ids.size && t.ids.has(n.id)) ||
+                        (0 < t.tags.size &&
+                          t.tags.has(n.nodeName.toLowerCase()))
+                      )
+                        return !0;
+                      if (0 < t.classes.size) {
+                        var s = n.classList,
+                          r = !0,
+                          n = !1,
+                          i = void 0;
+                        try {
+                          for (
+                            var o, a = t.classes[Symbol.iterator]();
+                            !(r = (o = a.next()).done);
+                            r = !0
+                          ) {
+                            var l = o.value;
+                            if (s.contains(l)) return !0;
+                          }
+                        } catch (d) {
+                          ((n = !0), (i = d));
+                        } finally {
+                          try {
+                            r || a.return == null || a.return();
+                          } finally {
+                            if (n) throw i;
+                          }
+                        }
+                      }
+                    }
+                    return !1;
+                  }
+                );
+              }),
+              (TDAnalytics.prototype.setPageProperty = function (e) {
+                this._isCollectData() &&
+                  (PropertyChecker.properties(e) || !this._getConfig("strict")
+                    ? _.extend(this.currentProps, e)
+                    : Log.w("Page property setting error"));
+              }),
+              (TDAnalytics.prototype.getPageProperty = function () {
+                return this.currentProps;
+              }),
+              (TDAnalytics.prototype.getPresetProperties = function () {
+                var t = _.info.properties(
+                    this._getConfig("disablePresetProperties"),
+                  ),
+                  e = {},
+                  t =
+                    (t["#os"] && (e.os = t["#os"]),
+                    t["#screen_width"] && (e.screenWidth = t["#screen_width"]),
+                    t["#screen_height"] &&
+                      (e.screenHeight = t["#screen_height"]),
+                    t["#browser"] && (e.browser = t["#browser"]),
+                    t["#browser_version"] &&
+                      (e.browserVersion = t["#browser_version"]),
+                    (e.deviceId = this.getDeviceId()),
+                    0 - _.getCurrentDate().getTimezoneOffset() / 60);
+                return (
+                  this._getConfig("zoneOffset") &&
+                    (t = this._getConfig("zoneOffset")),
+                  (e.zoneOffset = t),
+                  (e.toEventPresetProperties = function () {
+                    return {
+                      "#os": e.os,
+                      "#screen_width": e.screenWidth,
+                      "#screen_height": e.screenHeight,
+                      "#browser": e.browser,
+                      "#browser_version": e.browserVersion,
+                      "#device_id": e.deviceId,
+                      "#zone_offset": e.zoneOffset,
+                    };
+                  }),
+                  e
+                );
+              }),
+              (TDAnalytics.prototype.login = function (e) {
+                this._isCollectData() &&
+                  (typeof e == "number" && (e = String(e)),
+                  PropertyChecker.userId(e) || !this._getConfig("strict")
+                    ? e !== this.persistence.getAccountId() &&
+                      (this.persistence.setAccountId(e),
+                      Log.i("[ThinkingData] Info: Login SDK, AccountId = " + e),
+                      this.notifyAllObserver("onAccountChanged", {
+                        accountId: e,
+                        distinctId: this.getDistinctId(),
+                      }))
+                    : Log.e("The parameters of the login API must be strings"));
+              }),
+              (TDAnalytics.prototype.logout = function (e) {
+                this._isCollectData() &&
+                  (e === !0 &&
+                    ((e = _.UUID()), this.persistence.setDistinctId(e)),
+                  this.persistence.setAccountId(""),
+                  Log.i("[ThinkingData] Info: Logout SDK"),
+                  this.notifyAllObserver("onAccountChanged", {
+                    accountId: "",
+                    distinctId: this.getDistinctId(),
+                  }));
+              }),
+              (TDAnalytics.prototype.userSet = function (e, t) {
+                !this._isCollectData() ||
+                  (!PropertyChecker.propertiesMust(e) &&
+                    this._getConfig("strict")) ||
+                  this._sendRequest({ type: "user_set", properties: e }, t);
+              }),
+              (TDAnalytics.prototype.userSetOnce = function (e, t) {
+                !this._isCollectData() ||
+                  (!PropertyChecker.propertiesMust(e) &&
+                    this._getConfig("strict")) ||
+                  this._sendRequest({ type: "user_setOnce", properties: e }, t);
+              }),
+              (TDAnalytics.prototype.userUnset = function (e, t) {
+                var n;
+                !this._isCollectData() ||
+                  (!PropertyChecker.propertyName(e) &&
+                    this._getConfig("strict")) ||
+                  (((n = {})[e] = 0),
+                  this._sendRequest({ type: "user_unset", properties: n }, t));
+              }),
+              (TDAnalytics.prototype.userAdd = function (e, t) {
+                var n;
+                this._isCollectData() &&
+                  (_.check.isString(e) && ((n = e), ((e = {})[n] = 1)),
+                  PropertyChecker.propertiesMust(e)) &&
+                  (((s) => {
+                    for (var r in s) if (!/-*\d+/.test(String(s[r]))) return;
+                    return 1;
+                  })(e) || !this._getConfig("strict")
+                    ? this._sendRequest({ type: "user_add", properties: e }, t)
+                    : Log.w(
+                        "The property value of useradd api must be a number",
+                      ));
+              }),
+              (TDAnalytics.prototype.userAppend = function (e, t) {
+                this._isCollectData() &&
+                  ((PropertyChecker.propertiesMust(e) &&
+                    ((n) => {
+                      for (var s in n) if (!_.check.isArray(n[s])) return;
+                      return 1;
+                    })(e)) ||
+                  !this._getConfig("strict")
+                    ? this._sendRequest(
+                        { type: "user_append", properties: e },
+                        t,
+                      )
+                    : Log.w(
+                        "The value in the userAppend property can only be Array",
+                      ));
+              }),
+              (TDAnalytics.prototype.userUniqAppend = function (e, t) {
+                this._isCollectData() &&
+                  ((PropertyChecker.propertiesMust(e) &&
+                    ((n) => {
+                      for (var s in n) if (!_.check.isArray(n[s])) return;
+                      return 1;
+                    })(e)) ||
+                  !this._getConfig("strict")
+                    ? this._sendRequest(
+                        { type: "user_uniq_append", properties: e },
+                        t,
+                      )
+                    : Log.w(
+                        "The value in the userUniqAppend property can only be Array",
+                      ));
+              }),
+              (TDAnalytics.prototype.flush = function () {
+                this.batchConsumer &&
+                  !this._isDebug() &&
+                  this.batchConsumer.flush();
+              }),
+              (TDAnalytics.prototype.userDel = function (e) {
+                this.userDelete(e);
+              }),
+              (TDAnalytics.prototype.userDelete = function (e) {
+                this._isCollectData() &&
+                  this._sendRequest({ type: "user_del" }, e);
+              }),
+              (TDAnalytics.prototype.setLogPrintListener = function (e) {
+                Log.listener = e;
+              }),
+              (TDAnalytics.prototype._sendRequest = function (e, t, n) {
+                var s,
+                  r,
+                  i =
+                    _.check.isUndefined(e.time) || !_.check.isDate(e.time)
+                      ? _.getCurrentDate()
+                      : e.time,
+                  o = {
+                    data: [
+                      {
+                        "#type": e.type,
+                        "#time": _.formatDate(
+                          _.formatTimeZone(i, this._getConfig("zoneOffset")),
+                        ),
+                        "#distinct_id": this.persistence.getDistinctId(),
+                      },
+                    ],
+                  };
+                if (
+                  (this.persistence.getAccountId() &&
+                    (o.data[0]["#account_id"] =
+                      this.persistence.getAccountId()),
+                  e.type === "track" ||
+                  e.type === "track_update" ||
+                  e.type === "track_overwrite"
+                    ? ((o.data[0]["#event_name"] = e.event),
+                      e.type === "track_update" || e.type === "track_overwrite"
+                        ? (o.data[0]["#event_id"] = e.extraId)
+                        : e.firstCheckId &&
+                          (o.data[0]["#first_check_id"] = e.firstCheckId),
+                      (i = 0 - i.getTimezoneOffset() / 60),
+                      this._getConfig("zoneOffset") !== void 0 &&
+                        (i = this._getConfig("zoneOffset")),
+                      (o.data[0].properties = _.extend(
+                        {},
+                        {
+                          "#device_id": this.persistence.getDeviceId(),
+                          "#zone_offset": i,
+                        },
+                        _.info.properties(
+                          this._getConfig("disablePresetProperties"),
+                        ),
+                        this.getSuperProperties(),
+                        this.dynamicProperties ? this.dynamicProperties() : {},
+                        this.getPageProperty(),
+                      )),
+                      (i = this.persistence.removeEventTimer(e.event)),
+                      _.check.isUndefined(i) ||
+                        ((i = _.getCurrentTimeStamp() - i),
+                        (i = parseFloat((i / 1e3).toFixed(3))),
+                        (o.data[0].properties["#duration"] = i =
+                          86400 < i ? 86400 : i)))
+                    : (o.data[0].properties = {}),
+                  _.check.isObject(e.properties) &&
+                    !_.check.isEmptyObject(e.properties) &&
+                    _.extend(o.data[0].properties, e.properties),
+                  _.searchObjDate(o.data[0], this._getConfig("zoneOffset")),
+                  this._getConfig("send_method") === "ajax" &&
+                    (o.data[0] = _.generateEncryptyData(
+                      o.data[0],
+                      this._getConfig("secretKey"),
+                    )),
+                  (o["#app_id"] = this._getConfig("appId")),
+                  (o["#flush_time"] = _.formatTimeZone(
+                    _.getCurrentDate(),
+                    this._getConfig("zoneOffset"),
+                  ).getTime()),
+                  this.notifyAllObserver("onDataEnqueue", {
+                    appId: this._getConfig("appId"),
+                    event: o.data[0],
+                  }),
+                  this._getConfig("useAppTrack"))
+                ) {
+                  var i = window.ThinkingData_APP_JS_Bridge || {};
+                  if (_typeof(i) === "object" && i.thinkingdata_track)
+                    return (
+                      i.thinkingdata_track(JSON.stringify(o)),
+                      void (typeof t == "function" && t())
+                    );
+                  if (
+                    /td-sdk-ios/.test(navigator.userAgent) &&
+                    !window.MSStream
+                  )
+                    return (
+                      (i = document.createElement("iframe")).setAttribute(
+                        "src",
+                        "thinkinganalytics://trackEvent?event=" +
+                          _.encodeURIComponent(JSON.stringify(o)),
+                      ),
+                      document.documentElement.appendChild(i),
+                      i.parentNode.removeChild(i),
+                      (i = null),
+                      void (typeof t == "function" && t())
+                    );
+                  if (window.ThinkingData_APP_Flutter_Bridge)
+                    return void window.ThinkingData_APP_Flutter_Bridge.postMessage(
+                      JSON.stringify(o),
+                    );
+                  if (
+                    window.ReactNativeWebView &&
+                    window.ThinkingData_APP_ReactNative_Bridge
+                  )
+                    return void window.ThinkingData_APP_ReactNative_Bridge(
+                      JSON.stringify({
+                        type: "tdanalytics_reactnative_sdk",
+                        event: o,
+                      }),
+                    );
+                  if (window.taHarmonyPort)
+                    return void window.taHarmonyPort.postMessage(
+                      JSON.stringify(o),
+                    );
+                }
+                !this.batchConsumer ||
+                this._isDebug() ||
+                _.isDebug(e.debugMode) ||
+                n
+                  ? (Log.i("[ThinkingData] Info: Post data : "),
+                    Log.i(o),
+                    this._isDebug() || _.isDebug(e.debugMode)
+                      ? ((s =
+                          "&data=" +
+                          _.encodeURIComponent(JSON.stringify(o.data[0])) +
+                          "&source=client&deviceId=" +
+                          this.getDeviceId() +
+                          "&appid=" +
+                          this._getConfig("appId") +
+                          "&version=" +
+                          Config.LIB_VERSION),
+                        (this._getConfig("mode") !== "debug_only" &&
+                          !_.isDebugOnly(e.debugMode)) ||
+                          (s += "&dryRun=1"))
+                      : ((o = JSON.stringify(o)),
+                        (i = _.base64Encode(o)),
+                        (r = "crc=" + _.hashCode(i)),
+                        (s =
+                          "&data=" +
+                          _.encodeURIComponent(i) +
+                          "&ext=" +
+                          _.encodeURIComponent(r) +
+                          "&version=" +
+                          Config.LIB_VERSION)),
+                    n &&
+                    (typeof navigator > "u"
+                      ? "undefined"
+                      : _typeof(navigator)) !== void 0 &&
+                    navigator.sendBeacon
+                      ? ((i = new FormData()),
+                        this._isDebug()
+                          ? (i.append("data", JSON.stringify(o.data[0])),
+                            i.append("source", "client"),
+                            i.append("deviceId", this.getDeviceId()),
+                            i.append("appid", this._getConfig("appId")),
+                            i.append("version", Config.LIB_VERSION),
+                            this._getConfig("mode") === "debug_only" &&
+                              i.append("dryRun", 1))
+                          : i.append("data", _.base64Encode(o)),
+                        navigator.sendBeacon(this._getConfig("serverUrl"), i))
+                      : ((r = this._getConfig("serverUrl")),
+                        _.isDebug(e.debugMode) &&
+                          (r = this._getConfig("originalUrl") + "/data_debug"),
+                        this._getConfig("send_method") === "ajax"
+                          ? new AjaxTask(
+                              s,
+                              r,
+                              this._getConfig("tryCount"),
+                              t,
+                              null,
+                              this._isDebug(),
+                              this._getConfig("dataSendTimeout"),
+                            ).run()
+                          : this._sendRequestWithImage(r, s, t)))
+                  : ((o.data[0]["#uuid"] = _.UUIDv4()),
+                    this.batchConsumer.add(o.data[0]));
+              }),
+              "tab_"),
+            storagePrefix = "ta_jssdk_";
+          function BatchConsumer(e) {
+            ((this.config = e),
+              (this.timer = null),
+              (this.batchConfig = _.extend(
+                { size: 6, interval: 6e3, maxLimit: 500 },
+                this.config.batch,
+              )),
+              this.batchConfig.size < 1 && (this.batchConfig.size = 1),
+              30 < this.batchConfig.size && (this.batchConfig.size = 30),
+              (this.maxLimit = this.batchConfig.maxLimit),
+              (this.batchList = []),
+              (this.storageKey = storagePrefix + this.config.appId));
+            try {
+              var t = JSON.parse(_.localStorage.get(this.storageKey));
+              _.check.isArray(t) && (this.batchList = t);
+              var n =
+                  this.config.persistencePrefix +
+                  tabStoragePrefix +
+                  this.config.appId,
+                s = JSON.parse(_.localStorage.get(n));
+              if (_.check.isArray(s)) {
+                for (var r = 0; r < s.length; r++) {
+                  var i = JSON.parse(_.localStorage.get(s[r]));
+                  (console.log(i),
+                    this.batchList.push(i),
+                    _.localStorage.remove(s[r]));
+                }
+                _.localStorage.remove(n);
+              }
+            } catch (o) {
+              Log.e(o);
+            }
+            ((this.dataHasChange = !1), (this.dataSendTimeStamp = 0));
+          }
+          BatchConsumer.prototype = {
+            batchInterval: function () {
+              (this.loopWrite(), this.loopSend());
+            },
+            loopWrite: function () {
+              var e = this;
+              setTimeout(function () {
+                (e.batchWrite(), e.loopWrite());
+              }, 500);
+            },
+            batchWrite: function () {
+              this.dataHasChange &&
+                ((this.dataHasChange = !1),
+                _.localStorage.set(
+                  this.storageKey,
+                  JSON.stringify(this.batchList),
+                ));
+            },
+            loopSend: function () {
+              var e = this;
+              e.timer = setTimeout(function () {
+                (e.batchSend(), clearTimeout(e.timer), e.loopSend());
+              }, this.batchConfig.interval);
+            },
+            add: function (e) {
+              (Log.i("[ThinkingData] Info: Enqueue data : "),
+                Log.i(e),
+                this.batchList.length > this.maxLimit && this.batchList.shift(),
+                this.batchList.push(e),
+                (this.dataHasChange = !0),
+                this.batchList.length > this.batchConfig.size &&
+                  this.batchSend());
+            },
+            batchSend: function () {
+              var e,
+                t,
+                n,
+                s = _.getCurrentTimeStamp();
+              (this.dataSendTimeStamp !== 0 &&
+                s - this.dataSendTimeStamp <
+                  this.config.dataSendTimeout + 500) ||
+                ((this.dataSendTimeStamp = s),
+                (e = (s =
+                  50 < this.batchList.length
+                    ? this.batchList.slice(0, 50)
+                    : this.batchList).length),
+                (t = this),
+                0 < e &&
+                  (((n = {}).data = s),
+                  (n["#app_id"] = this.config.appId),
+                  (n["#flush_time"] = _.getCurrentTimeStamp()),
+                  Log.i("[ThinkingData] Debug: Send event, Request ="),
+                  Log.i(n),
+                  (s = JSON.stringify(n)),
+                  (n = _.base64Encode(s)),
+                  (s = "crc=" + _.hashCode(n)),
+                  (n =
+                    "&data=" +
+                    _.encodeURIComponent(n) +
+                    "&ext=" +
+                    _.encodeURIComponent(s) +
+                    "&version=" +
+                    Config.LIB_VERSION),
+                  new AjaxTask(
+                    n,
+                    this.config.serverUrl,
+                    0,
+                    function () {
+                      t.batchRemove(e);
+                    },
+                    function () {
+                      t.dataSendTimeStamp = 0;
+                    },
+                    !1,
+                    this.config.dataSendTimeout,
+                  ).run()));
+            },
+            flush: function () {
+              (clearTimeout(this.timer), this.batchSend(), this.loopSend());
+            },
+            batchRemove: function (e) {
+              ((this.dataSendTimeStamp = 0),
+                this.batchList.splice(0, e),
+                (this.dataHasChange = !0),
+                this.batchWrite(),
+                0 < this.batchList.length && this.flush());
+            },
+          };
+          var AjaxTask = (() => {
+              function e(t, n, s, r, i, o, a) {
+                (_classCallCheck(this, e),
+                  (this.data = t),
+                  (this.serverUrl = n),
+                  (this.tryCount = s ?? 3),
+                  (this.success = r),
+                  (this.error = i),
+                  (this.isDebug = o),
+                  (this.dataSendTimeout = a));
+              }
+              return (
+                _createClass(e, [
+                  {
+                    key: "run",
+                    value: function () {
+                      var t,
+                        n = null,
+                        s =
+                          ((n = window.XMLHttpRequest
+                            ? new XMLHttpRequest()
+                            : new ActiveXObject("Microsoft.XMLHTTP")).open(
+                            "post",
+                            this.serverUrl,
+                            !0,
+                          ),
+                          n.setRequestHeader(
+                            "Content-type",
+                            "application/x-www-form-urlencoded",
+                          ),
+                          this);
+                      ((t = setTimeout(function () {
+                        try {
+                          n && _typeof(n) === "object" && n.abort && n.abort();
+                        } catch (r) {
+                          Log.e(r);
+                        }
+                        t &&
+                          (clearTimeout(t),
+                          (t = null),
+                          s.error && s.error(),
+                          (n.onreadystatechange = null),
+                          (n.onload = null),
+                          (n.onerror = null));
+                      }, this.dataSendTimeout)),
+                        (n.onreadystatechange = function () {
+                          try {
+                            var r;
+                            n.readyState === 4 &&
+                              (100 <= n.status && n.status < 200
+                                ? Log.i("Ignoring temporary status code 1xx.")
+                                : (200 <= n.status && n.status < 300) ||
+                                    n.status === 304
+                                  ? (s.success && s.success(),
+                                    t && (clearTimeout(t), (t = null)),
+                                    s.isDebug &&
+                                      ((r = JSON.parse(n.response))
+                                        .errorLevel !== 0
+                                        ? Log.w(r)
+                                        : Log.i(r)))
+                                  : (s.error && s.error(),
+                                    t && (clearTimeout(t), (t = null)),
+                                    0 < s.tryCount && s.onFailed()));
+                          } catch (i) {
+                            Log.e(i);
+                          }
+                        }),
+                        n.send(this.data));
+                    },
+                  },
+                  {
+                    key: "onFailed",
+                    value: function () {
+                      0 <= --this.tryCount && this.run();
+                    },
+                  },
+                ]),
+                e
+              );
+            })(),
+            PageLifeCycle =
+              ((TDAnalytics.prototype._isDebug = function () {
+                return (
+                  this._getConfig("mode") === "debug" ||
+                  this._getConfig("mode") === "debug_only"
+                );
+              }),
+              (TDAnalytics.prototype._sendRequestWithImage = function (
+                e,
+                t,
+                n,
+              ) {
+                function s(r) {
+                  r &&
+                    !r.hasCalled &&
+                    ((r.hasCalled = !0), r.callback) &&
+                    r.callback();
+                }
+                ((e = (e.indexOf("?") !== -1 ? e : e + "?") + t),
+                  (t = document.createElement("img")),
+                  (t.callback = n),
+                  this._getConfig("imgUseCrossorigin") &&
+                    (t.crossOrigin = "anonymous"),
+                  setTimeout(s, this._getConfig("dataSendTimeout"), t),
+                  (t.onload = function () {
+                    ((this.onload = null), s(this));
+                  }),
+                  (t.onerror = function () {
+                    ((this.onerror = null), s(this));
+                  }),
+                  (t.onabort = function () {
+                    ((this.onabort = null), s(this));
+                  }),
+                  (t.src = e));
+              }),
+              (TDAnalytics.prototype.track = function (e, t, n, s) {
+                var r;
+                this._isCollectData() &&
+                  (e === "ta_page_show" || e === "ta_page_hide"
+                    ? this._sendRequest(
+                        { type: "track", event: e, time: n, properties: t },
+                        s,
+                      )
+                    : ((r = this._getConfig("disableEventList")),
+                      (this._getConfig("disableEventList") !== null &&
+                        _.check.isArray(r) &&
+                        r.includes(e)) ||
+                        (((PropertyChecker.event(e) &&
+                          PropertyChecker.properties(t)) ||
+                          !this._getConfig("strict")) &&
+                          this._sendRequest(
+                            { type: "track", event: e, time: n, properties: t },
+                            s,
+                          ))));
+              }),
+              (TDAnalytics.prototype.trackInternal = function (e) {
+                this._isCollectData() &&
+                  this._sendRequest({
+                    type: "track",
+                    event: e.eventName,
+                    properties: e.properties,
+                    debugMode: e.debugMode,
+                  });
+              }),
+              (TDAnalytics.prototype.trackUpdate = function (e) {
+                this._isCollectData() &&
+                  (_.check.isObject(e)
+                    ? ((PropertyChecker.event(e.eventName) &&
+                        PropertyChecker.properties(e.properties)) ||
+                        !this._getConfig("strict")) &&
+                      this._sendRequest(
+                        {
+                          type: "track_update",
+                          event: e.eventName,
+                          time: e.eventTime,
+                          properties: e.properties,
+                          extraId: e.eventId,
+                        },
+                        e.callback,
+                      )
+                    : Log.e(
+                        "The parameter of updateble event does not meet the requirements",
+                      ));
+              }),
+              (TDAnalytics.prototype.trackOverwrite = function (e) {
+                this._isCollectData() &&
+                  (_.check.isObject(e)
+                    ? ((PropertyChecker.event(e.eventName) &&
+                        PropertyChecker.properties(e.properties)) ||
+                        !this._getConfig("strict")) &&
+                      this._sendRequest(
+                        {
+                          type: "track_overwrite",
+                          event: e.eventName,
+                          time: e.eventTime,
+                          properties: e.properties,
+                          extraId: e.eventId,
+                        },
+                        e.callback,
+                      )
+                    : Log.e(
+                        "The parameter of overwritable event  does not meet the requirements",
+                      ));
+              }),
+              (TDAnalytics.prototype.trackFirstEvent = function (e) {
+                this.trackFirst(e);
+              }),
+              (TDAnalytics.prototype.trackFirst = function (e) {
+                this._isCollectData() &&
+                  (_.check.isObject(e)
+                    ? ((PropertyChecker.event(e.eventName) &&
+                        PropertyChecker.properties(e.properties)) ||
+                        !this._getConfig("strict")) &&
+                      this._sendRequest(
+                        {
+                          type: "track",
+                          event: e.eventName,
+                          time: e.eventTime,
+                          properties: e.properties,
+                          firstCheckId: e.firstCheckId || this.getDeviceId(),
+                        },
+                        e.callback,
+                      )
+                    : Log.e(
+                        "The parameter of first event does not meet the requirements",
+                      ));
+              }),
+              (TDAnalytics.prototype.trackWithBeacon = function (e, t, n, s) {
+                (e === "ta_page_hide" ||
+                  (PropertyChecker.event(e) && PropertyChecker.properties(t)) ||
+                  !this._getConfig("strict")) &&
+                  this._sendRequest(
+                    { type: "track", event: e, time: n, properties: t },
+                    s,
+                    !0,
+                  );
+              }),
+              (TDAnalytics.prototype.identify = function (e) {
+                this.setDistinctId(e);
+              }),
+              (TDAnalytics.prototype.setDistinctId = function (e) {
+                this._isCollectData() &&
+                  (typeof e == "number" && (e = String(e)),
+                  PropertyChecker.userId(e) || !this._getConfig("strict")
+                    ? e !== this.persistence.getDistinctId() &&
+                      (this.persistence.setDistinctId(e),
+                      Log.i(
+                        "[ThinkingData] Info: Setting distinct ID, DistinctId = " +
+                          e,
+                      ),
+                      this.notifyAllObserver("onAccountChanged", {
+                        accountId: this.getAccountId(),
+                        distinctId: e,
+                      }))
+                    : Log.e(
+                        "The parameter of setDistinctId API requires a string",
+                      ));
+              }),
+              (TDAnalytics.prototype.getDistinctId = function () {
+                return this.persistence.getDistinctId();
+              }),
+              (TDAnalytics.prototype.getAccountId = function () {
+                return this.persistence.getAccountId();
+              }),
+              (TDAnalytics.prototype.getSDKVersion = function () {
+                return Config.LIB_VERSION;
+              }),
+              (TDAnalytics.prototype.registerAnalyticsObserver = function (e) {
+                this._isCollectData() &&
+                  (typeof e == "function"
+                    ? this.observers.push(e)
+                    : Log.i(
+                        "registerAnalyticsObserver parameter must be a function type",
+                      ));
+              }),
+              (TDAnalytics.prototype.notifyAllObserver = function (e, t) {
+                for (var n = 0; n < this.observers.length; n++)
+                  this.observers[n](e, t);
+              }),
+              (TDAnalytics.prototype.getDeviceId = function () {
+                return this.persistence.getDeviceId();
+              }),
+              (TDAnalytics.prototype._isCollectData = function () {
+                return (
+                  this.persistence.getOptTracking() &&
+                  this.persistence.getEnableTracking()
+                );
+              }),
+              (TDAnalytics.prototype.setSuperProperties = function (e) {
+                this._isCollectData() &&
+                  (PropertyChecker.propertiesMust(e) ||
+                  !this._getConfig("strict")
+                    ? this.persistence.setSuperProperties(
+                        _.extend({}, this.getSuperProperties(), e),
+                      )
+                    : Log.w(
+                        "The paramater of setSuperProperties API requires object",
+                      ));
+              }),
+              (TDAnalytics.prototype.getSuperProperties = function () {
+                return this.persistence.getSuperProperties();
+              }),
+              (TDAnalytics.prototype.clearSuperProperties = function () {
+                this._isCollectData() &&
+                  this.persistence.setSuperProperties({});
+              }),
+              (TDAnalytics.prototype.unsetSuperProperty = function (e) {
+                var t;
+                this._isCollectData() &&
+                  _.check.isString(e) &&
+                  (delete (t = this.getSuperProperties())[e],
+                  this.persistence.setSuperProperties(t));
+              }),
+              (TDAnalytics.prototype.setDynamicSuperProperties = function (e) {
+                this._isCollectData() &&
+                  (typeof e == "function"
+                    ? PropertyChecker.properties(e()) ||
+                      !this._getConfig("strict")
+                      ? (this.dynamicProperties = e)
+                      : Log.w(
+                          "The return value of dynamic properties requires an object",
+                        )
+                    : Log.w(
+                        "The paramater of setDynamicSuperProperties API requires function type",
+                      ));
+              }),
+              (TDAnalytics.prototype.timeEvent = function (e) {
+                this._isCollectData() &&
+                  (_.check.isUndefined(e)
+                    ? Log.w("No event name provided to timeEvent")
+                    : this.persistence.setEventTimer(
+                        e,
+                        _.getCurrentTimeStamp(),
+                      ));
+              }),
+              (TDAnalytics.prototype.autoTrackSinglePage = function () {
+                this.pageLifeCycle.autoTrackSinglePage();
+              }),
+              (TDAnalytics.prototype.quick = function (e, t) {
+                var n;
+                this._isCollectData() &&
+                  (typeof e == "string" && e === "autoTrack"
+                    ? ((n = {}),
+                      PropertyChecker.properties(t) && _.extend(n, t),
+                      this._sendRequest({
+                        type: "track",
+                        event: "ta_pageview",
+                        properties: _.extend(
+                          n,
+                          _.info.pageProperties(
+                            this._getConfig("disablePresetProperties"),
+                          ),
+                        ),
+                      }))
+                    : typeof e == "string" && e === "siteLinker"
+                      ? siteLinker.init(this, t)
+                      : Log.w(
+                          "The quick method does not support the parameter of" +
+                            e,
+                        ));
+              }),
+              (TDAnalytics.prototype._setConfig = function (e) {
+                _.check.isObject(e) &&
+                  (_.extend(this.config, e),
+                  this._getConfig("persistencePrefix") ||
+                    (this.config.persistencePrefix = this.config.cookiePrefix),
+                  this.persistence);
+              }),
+              (TDAnalytics.prototype._getConfig = function (e) {
+                return this.config[e];
+              }),
+              (TDAnalytics.prototype.init = function (e) {
+                var t,
+                  n,
+                  s = this;
+                _.check.isUndefined(e.appId) ||
+                  e.appId === "" ||
+                  e.appId.replace(/\s*/g, "") === "" ||
+                  _.check.isUndefined(e.serverUrl) ||
+                  e.serverUrl === "" ||
+                  e.serverUrl.replace(/\s*/g, "") === "" ||
+                  (_.check.isUndefined(this.config)
+                    ? ((this.config = {}),
+                      (this.currentProps = this.currentProps || {}),
+                      this._setConfig(_.extend({}, DEFAULT_CONFIG, e)),
+                      (this.observers = []),
+                      (this.persistence = new ThinkingDataPersistence(
+                        this.config,
+                      )),
+                      (t = this._getConfig("appId")),
+                      _.check.isUndefined(t) ||
+                        this._setConfig({ appId: t.replace(/\s*/g, "") }),
+                      (Log.showLog = this._getConfig("showLog")),
+                      (t = this._getConfig("send_method")) !== "image" &&
+                        t !== "ajax" &&
+                        t !== "beacon" &&
+                        (Log.i(
+                          "send_method",
+                          t,
+                          "is not supported. Changed to image as default value",
+                        ),
+                        this._setConfig({ send_method: "image" })),
+                      this._setConfig({
+                        originalUrl: _.url(
+                          "basic",
+                          e.serverUrl.replace(/\s*/g, ""),
+                        ),
+                      }),
+                      this._isDebug()
+                        ? this._setConfig({
+                            serverUrl:
+                              this._getConfig("originalUrl") + "/data_debug",
+                          })
+                        : this._setConfig({
+                            serverUrl:
+                              this._getConfig("originalUrl") + "/sync_js",
+                          }),
+                      this._getConfig("batch") !== void 0 &&
+                        this._getConfig("batch") !== !1 &&
+                        _.localStorage.isSupported() &&
+                        ((this.batchConsumer = new BatchConsumer(this.config)),
+                        this.batchConsumer.batchInterval()),
+                      this._getConfig("accountId") &&
+                        this.login(this._getConfig("accountId")),
+                      this._getConfig("distinctId") &&
+                        this.setDistinctId(this._getConfig("distinctId")),
+                      this._getConfig("superProperties") &&
+                        this.setSuperProperties(
+                          this._getConfig("superProperties"),
+                        ),
+                      (this.pageLifeCycle = new PageLifeCycle(
+                        this,
+                        this._getConfig("autoTrack"),
+                        this._getConfig("disablePresetProperties"),
+                      )),
+                      this.pageLifeCycle.start(),
+                      (t = "normal"),
+                      this.config.mode && (t = this.config.mode),
+                      (n = null),
+                      (n = window.XMLHttpRequest
+                        ? new XMLHttpRequest()
+                        : new ActiveXObject("Microsoft.XMLHTTP")),
+                      (e = ""
+                        .concat(
+                          this._getConfig("originalUrl"),
+                          "/config?appid=",
+                        )
+                        .concat(this.config.appId)),
+                      n.open("GET", e, !0),
+                      (n.onload = function () {
+                        var r;
+                        200 <= n.status && n.status < 300
+                          ? ((r = JSON.parse(n.responseText)),
+                            Log.i(
+                              "[ThinkingData] Info: TDAnalytics SDK config data: ",
+                            ),
+                            Log.i(r),
+                            s._setConfig({
+                              disableEventList: r.data.disable_event_list,
+                            }))
+                          : Log.e(
+                              "TDAnalytics SDK config error code: " + n.status,
+                            );
+                      }),
+                      (n.onerror = function () {
+                        Log.e("TDAnalytics SDK config network error");
+                      }),
+                      n.send(),
+                      Log.i(
+                        "[ThinkingData] Info: TDAnalytics SDK initialize success, AppId = " +
+                          this.config.appId +
+                          ", ServerUrl = " +
+                          this.config.serverUrl +
+                          ", Mode = " +
+                          t +
+                          ", DeviceId = " +
+                          this.getDeviceId() +
+                          ", Lib = js, LibVersion = " +
+                          Config.LIB_VERSION,
+                      ))
+                    : Log.i("The ThinkingData libraray has been initialized."));
+              }),
+              (() => {
+                function e(t, n, s) {
+                  (_classCallCheck(this, e),
+                    (this.taLib = t),
+                    _.paramType(n) === "Object" &&
+                    _.paramType(n.pageShow) === "Boolean"
+                      ? (this.autoPageShow = n.pageShow)
+                      : (this.autoPageShow = !1),
+                    _.paramType(n) === "Object" &&
+                    _.paramType(n.pageHide) === "Boolean"
+                      ? (this.autoPageHide = n.pageHide)
+                      : (this.autoPageHide = !1),
+                    _.paramType(n) === "Object" &&
+                      ((this.staticProperties = n.properties),
+                      (this.callback = n.callback)),
+                    (this.disableList = s),
+                    (this.lastPageUrl = ""),
+                    (this.lastPagePath = ""),
+                    (this.title = ""),
+                    (this.isFirstRouter = !0));
+                }
+                return (
+                  _createClass(e, [
+                    {
+                      key: "start",
+                      value: function () {
+                        var t = this;
+                        (t.trackPageShowEvent(),
+                          "onvisibilitychange" in document &&
+                            _.addEvent(
+                              document,
+                              "visibilitychange",
+                              function () {
+                                document.hidden
+                                  ? t.trackPageHideEvent()
+                                  : t.trackPageShowEvent();
+                              },
+                            ));
+                      },
+                    },
+                    {
+                      key: "getPageProperties",
+                      value: function () {
+                        var t = _.info.pageProperties(this.disableList);
+                        return (
+                          t["#url"] !== null && (t["#url"] = this.lastPageUrl),
+                          t["#url_path"] !== null &&
+                            (t["#url_path"] = this.lastPagePath),
+                          t["#title"] !== null && (t["#title"] = this.title),
+                          t
+                        );
+                      },
+                    },
+                    {
+                      key: "autoTrackSinglePage",
+                      value: function () {
+                        var t = this;
+                        this.isFirstRouter
+                          ? (this.isFirstRouter = !1)
+                          : (this.autoPageHide &&
+                              this.taLib.trackWithBeacon(
+                                "ta_page_hide",
+                                _.extend(
+                                  this.getPageProperties(),
+                                  this.staticProperties,
+                                  _.isFunction(this.callback)
+                                    ? this.callback("pageHide")
+                                    : {},
+                                ),
+                              ),
+                            setTimeout(function () {
+                              t.trackPageShowEvent();
+                            }, 0));
+                      },
+                    },
+                    {
+                      key: "trackPageShowEvent",
+                      value: function () {
+                        ((this.isFirstRouter = !1),
+                          this.autoPageShow &&
+                            (this.taLib.track(
+                              "ta_page_show",
+                              _.extend(
+                                _.info.pageProperties(this.disableList),
+                                this.staticProperties,
+                                _.isFunction(this.callback)
+                                  ? this.callback("pageShow")
+                                  : {},
+                              ),
+                            ),
+                            (this.lastPageUrl = location.href),
+                            (this.lastPagePath = location.pathname),
+                            (this.title = document.title)),
+                          this.taLib.timeEvent("ta_page_hide"));
+                      },
+                    },
+                    {
+                      key: "trackPageHideEvent",
+                      value: function () {
+                        this.autoPageHide &&
+                          this.taLib.trackWithBeacon(
+                            "ta_page_hide",
+                            _.extend(
+                              _.info.pageProperties(this.disableList),
+                              this.staticProperties,
+                              _.isFunction(this.callback)
+                                ? this.callback("pageHide")
+                                : {},
+                            ),
+                          );
+                      },
+                    },
+                    {
+                      key: "trackPageHideEventOnClose",
+                      value: function () {
+                        this.autoPageHide &&
+                          this.isPageShow &&
+                          this.taLib.trackWithBeacon(
+                            "ta_page_hide",
+                            _.extend(
+                              _.info.pageProperties(this.disableList),
+                              this.staticProperties,
+                              _.isFunction(this.callback)
+                                ? this.callback("pageHide")
+                                : {},
+                            ),
+                          );
+                      },
+                    },
+                  ]),
+                  e
+                );
+              })()),
+            siteLinker =
+              ((TDAnalytics.prototype.initInstance = function (e, s) {
+                if (
+                  !_.check.isString(e) ||
+                  (!_.check.isUndefined(s) && !_.check.isObject(s))
+                )
+                  return (
+                    Log.w("invalid parameter of initInstance(string, object)."),
+                    null
+                  );
+                if (this._getConfig("_name") !== MASTER_INSTANCE_NAME)
+                  return (
+                    Log.w("This function is allowed for master instance only"),
+                    null
+                  );
+                if (e === MASTER_INSTANCE_NAME || this[e])
+                  return (
+                    Log.w(
+                      "The name ",
+                      e,
+                      " couldn't be used for create new instance.",
+                    ),
+                    null
+                  );
+                _.check.isUndefined(s) && (s = {});
+                var n = new TDAnalytics(),
+                  s = _.extend(
+                    {},
+                    this.config,
+                    {
+                      _name: e,
+                      persistenceEnabled: !1,
+                      uuid: this.getDeviceId(),
+                    },
+                    s,
+                  );
+                (s.persistenceEnabled &&
+                  (s.persistencePrefix = s.persistencePrefix + "_" + e),
+                  n.init(s),
+                  (this[e] = n));
+              }),
+              (TDAnalytics.prototype.enableTracking = function (e) {
+                typeof e == "boolean" && this.persistence.setEnableTracking(e);
+              }),
+              (TDAnalytics.prototype.optOutTracking = function () {
+                (this.persistence.setSuperProperties({}),
+                  this.persistence.setAccountId(""),
+                  this.persistence.clearEventTimer(),
+                  this.persistence.setOptTracking(!1));
+              }),
+              (TDAnalytics.prototype.optInTracking = function () {
+                this.persistence.setOptTracking(!0);
+              }),
+              (TDAnalytics.prototype.setTrackStatus = function (e) {
+                _.check.isObject(e) &&
+                  ((e = e.status),
+                  Log.i("[ThinkingData] Info: Change Status to " + e),
+                  e === "pause"
+                    ? this.enableTracking(!1)
+                    : e === "stop"
+                      ? this.optOutTracking()
+                      : e === "normal" &&
+                        (this.enableTracking(!0), this.optInTracking()));
+              }),
+              {});
+          function initAsModule() {
+            return new TDAnalytics();
+          }
+          ((siteLinker.getPartUrl = function (e) {
+            var t = this.option.length;
+            if (t) {
+              for (var n = 0; n < t; n++)
+                if (-1 < e.indexOf(this.option[n].part_url)) return !0;
+            }
+            return !1;
+          }),
+            (siteLinker.getPartHash = function (e) {
+              var t = this.option.length;
+              if (t) {
+                for (var n = 0; n < t; n++)
+                  if (-1 < e.indexOf(this.option[n].part_url))
+                    return this.option[n].after_hash;
+              }
+              return !1;
+            }),
+            (siteLinker.getCurrenId = function () {
+              var e = this.ta.getDistinctId();
+              return encodeURIComponent("d" + e);
+            }),
+            (siteLinker.rewriteUrl = function (e, t) {
+              var n,
+                s,
+                r,
+                i = /([^?#]+)(\?[^#]*)?(#.*)?/.exec(e),
+                o = "";
+              if (i)
+                return (
+                  (n = i[1] || ""),
+                  (s = i[2] || ""),
+                  (i = i[3] || ""),
+                  (o = this.getPartHash(e)
+                    ? ((r = i.indexOf("_tasdk")),
+                      -1 < i.indexOf("?")
+                        ? -1 < r
+                          ? n +
+                            s +
+                            "#" +
+                            i.substring(1, r) +
+                            "_tasdk=" +
+                            this.getCurrenId()
+                          : n +
+                            s +
+                            "#" +
+                            i.substring(1) +
+                            "&_tasdk=" +
+                            this.getCurrenId()
+                        : n +
+                          s +
+                          "#" +
+                          i.substring(1) +
+                          "?_tasdk=" +
+                          this.getCurrenId())
+                    : ((r = s.indexOf("_tasdk")),
+                      /^\?(\w)+/.test(s)
+                        ? -1 < r
+                          ? n +
+                            "?" +
+                            s.substring(1, r) +
+                            "_tasdk=" +
+                            this.getCurrenId() +
+                            i
+                          : n +
+                            "?" +
+                            s.substring(1) +
+                            "&_tasdk=" +
+                            this.getCurrenId() +
+                            i
+                        : n +
+                          "?" +
+                          s.substring(1) +
+                          "_tasdk=" +
+                          this.getCurrenId() +
+                          i)),
+                  t && (t.href = o),
+                  o
+                );
+            }),
+            (siteLinker.addClickListen = function () {
+              function e(n) {
+                var s,
+                  r = (n = n.target).tagName.toLowerCase(),
+                  i = n.parentNode;
+                ((r === "a" && n.href) ||
+                  (i &&
+                    i.tagName &&
+                    i.tagName.toLowerCase() === "a" &&
+                    i.href)) &&
+                  ((r =
+                    r === "a" && n.href
+                      ? ((s = n.href), n)
+                      : ((s = i.href), i)),
+                  ((n = _.URL(s).protocol) !== "http:" && n !== "https:") ||
+                    (t.getPartUrl(s) && t.rewriteUrl(s, r)));
+              }
+              var t = this;
+              (_.addSiteEvent(document, "mousedown", e),
+                window.PointerEvent &&
+                  "maxTouchPoints" in window.navigator &&
+                  0 <= window.navigator.maxTouchPoints &&
+                  _.addSiteEvent(document, "pointerdown", e));
+            }),
+            (siteLinker.getUrlId = function () {
+              var e = location.href.match(/_tasdk=([aufd][^\?\#\&\=]+)/);
+              return _.check.isArray(e) && e[1] ? decodeURIComponent(e[1]) : "";
+            }),
+            (siteLinker.setRefferId = function () {
+              var e,
+                t = this.ta.getDistinctId(),
+                n = this.getUrlId();
+              return (
+                n !== "" &&
+                ((e = n.substring(0, 1) === "d"), (n = n.substring(1)) !== t) &&
+                void (n && e && this.ta.setDistinctId(n))
+              );
+            }),
+            (siteLinker.init = function (e, t) {
+              this.isInited ||
+                ((this.isInited = !0),
+                (this.ta = e),
+                this.setRefferId(),
+                _.check.isObject(t) &&
+                  _.check.isArray(t.linker) &&
+                  0 < t.linker.length &&
+                  (this.addClickListen(),
+                  (this.option = t.linker),
+                  (this.option = ((n) => {
+                    for (var s = n.length, r = [], i = 0; i < s; i++)
+                      /[A-Za-z0-9]+\./.test(n[i].part_url) &&
+                      Object.prototype.toString.call(n[i].after_hash) ===
+                        "[object Boolean]"
+                        ? r.push(n[i])
+                        : Log.w(
+                            "The configuration of linker " +
+                              (i + 1) +
+                              " is not supported.Please check format",
+                          );
+                    return r;
+                  })(this.option))));
+            }));
+          var td = initAsModule();
+          return ((window.tdanalytics2024 = td), td);
+        });
+      })(thinkingdata_umd_min$1)),
+    thinkingdata_umd_min$1.exports
+  );
+}
+var thinkingdata_umd_minExports = requireThinkingdata_umd_min();
+const thinkingData = getDefaultExportFromCjs(thinkingdata_umd_minExports);
+/**
+ * @vue/shared v3.5.17
+ * (c) 2018-present Yuxi (Evan) You and Vue contributors
+ * @license MIT
+ **/ /*! #__NO_SIDE_EFFECTS__ */ function makeMap(e) {
+  const t = Object.create(null);
+  for (const n of e.split(",")) t[n] = 1;
+  return (n) => n in t;
+}
+const EMPTY_OBJ = {},
+  EMPTY_ARR = [],
+  NOOP = () => {},
+  NO = () => !1,
+  isOn = (e) =>
+    e.charCodeAt(0) === 111 &&
+    e.charCodeAt(1) === 110 &&
+    (e.charCodeAt(2) > 122 || e.charCodeAt(2) < 97),
+  isModelListener = (e) => e.startsWith("onUpdate:"),
+  extend$4 = Object.assign,
+  remove = (e, t) => {
+    const n = e.indexOf(t);
+    n > -1 && e.splice(n, 1);
+  },
+  hasOwnProperty$2 = Object.prototype.hasOwnProperty,
+  hasOwn = (e, t) => hasOwnProperty$2.call(e, t),
+  isArray$2 = Array.isArray,
+  isMap = (e) => toTypeString(e) === "[object Map]",
+  isSet = (e) => toTypeString(e) === "[object Set]",
+  isFunction$1 = (e) => typeof e == "function",
+  isString$1 = (e) => typeof e == "string",
+  isSymbol = (e) => typeof e == "symbol",
+  isObject$4 = (e) => e !== null && typeof e == "object",
+  isPromise = (e) =>
+    (isObject$4(e) || isFunction$1(e)) &&
+    isFunction$1(e.then) &&
+    isFunction$1(e.catch),
+  objectToString = Object.prototype.toString,
+  toTypeString = (e) => objectToString.call(e),
+  toRawType = (e) => toTypeString(e).slice(8, -1),
+  isPlainObject$2 = (e) => toTypeString(e) === "[object Object]",
+  isIntegerKey = (e) =>
+    isString$1(e) && e !== "NaN" && e[0] !== "-" && "" + parseInt(e, 10) === e,
+  isReservedProp = makeMap(
+    ",key,ref,ref_for,ref_key,onVnodeBeforeMount,onVnodeMounted,onVnodeBeforeUpdate,onVnodeUpdated,onVnodeBeforeUnmount,onVnodeUnmounted",
+  ),
+  cacheStringFunction = (e) => {
+    const t = Object.create(null);
+    return (n) => t[n] || (t[n] = e(n));
+  },
+  camelizeRE = /-(\w)/g,
+  camelize = cacheStringFunction((e) =>
+    e.replace(camelizeRE, (t, n) => (n ? n.toUpperCase() : "")),
+  ),
+  hyphenateRE = /\B([A-Z])/g,
+  hyphenate = cacheStringFunction((e) =>
+    e.replace(hyphenateRE, "-$1").toLowerCase(),
+  ),
+  capitalize = cacheStringFunction(
+    (e) => e.charAt(0).toUpperCase() + e.slice(1),
+  ),
+  toHandlerKey = cacheStringFunction((e) => (e ? `on${capitalize(e)}` : "")),
+  hasChanged = (e, t) => !Object.is(e, t),
+  invokeArrayFns = (e, ...t) => {
+    for (let n = 0; n < e.length; n++) e[n](...t);
+  },
+  def = (e, t, n, s = !1) => {
+    Object.defineProperty(e, t, {
+      configurable: !0,
+      enumerable: !1,
+      writable: s,
+      value: n,
+    });
+  },
+  looseToNumber = (e) => {
+    const t = parseFloat(e);
+    return isNaN(t) ? e : t;
+  },
+  toNumber = (e) => {
+    const t = isString$1(e) ? Number(e) : NaN;
+    return isNaN(t) ? e : t;
+  };
+let _globalThis;
+const getGlobalThis = () =>
+  _globalThis ||
+  (_globalThis =
+    typeof globalThis < "u"
+      ? globalThis
+      : typeof self < "u"
+        ? self
+        : typeof window < "u"
+          ? window
+          : typeof global < "u"
+            ? global
+            : {});
+function normalizeStyle(e) {
+  if (isArray$2(e)) {
+    const t = {};
+    for (let n = 0; n < e.length; n++) {
+      const s = e[n],
+        r = isString$1(s) ? parseStringStyle(s) : normalizeStyle(s);
+      if (r) for (const i in r) t[i] = r[i];
+    }
+    return t;
+  } else if (isString$1(e) || isObject$4(e)) return e;
+}
+const listDelimiterRE = /;(?![^(]*\))/g,
+  propertyDelimiterRE = /:([^]+)/,
+  styleCommentRE = /\/\*[^]*?\*\//g;
+function parseStringStyle(e) {
+  const t = {};
+  return (
+    e
+      .replace(styleCommentRE, "")
+      .split(listDelimiterRE)
+      .forEach((n) => {
+        if (n) {
+          const s = n.split(propertyDelimiterRE);
+          s.length > 1 && (t[s[0].trim()] = s[1].trim());
+        }
+      }),
+    t
+  );
+}
+function normalizeClass(e) {
+  let t = "";
+  if (isString$1(e)) t = e;
+  else if (isArray$2(e))
+    for (let n = 0; n < e.length; n++) {
+      const s = normalizeClass(e[n]);
+      s && (t += s + " ");
+    }
+  else if (isObject$4(e)) for (const n in e) e[n] && (t += n + " ");
+  return t.trim();
+}
+const specialBooleanAttrs =
+    "itemscope,allowfullscreen,formnovalidate,ismap,nomodule,novalidate,readonly",
+  isSpecialBooleanAttr = makeMap(specialBooleanAttrs);
+function includeBooleanAttr(e) {
+  return !!e || e === "";
+}
+const isRef$1 = (e) => !!(e && e.__v_isRef === !0),
+  toDisplayString = (e) =>
+    isString$1(e)
+      ? e
+      : e == null
+        ? ""
+        : isArray$2(e) ||
+            (isObject$4(e) &&
+              (e.toString === objectToString || !isFunction$1(e.toString)))
+          ? isRef$1(e)
+            ? toDisplayString(e.value)
+            : JSON.stringify(e, replacer, 2)
+          : String(e),
+  replacer = (e, t) =>
+    isRef$1(t)
+      ? replacer(e, t.value)
+      : isMap(t)
+        ? {
+            [`Map(${t.size})`]: [...t.entries()].reduce(
+              (n, [s, r], i) => ((n[stringifySymbol(s, i) + " =>"] = r), n),
+              {},
+            ),
+          }
+        : isSet(t)
+          ? {
+              [`Set(${t.size})`]: [...t.values()].map((n) =>
+                stringifySymbol(n),
+              ),
+            }
+          : isSymbol(t)
+            ? stringifySymbol(t)
+            : isObject$4(t) && !isArray$2(t) && !isPlainObject$2(t)
+              ? String(t)
+              : t,
+  stringifySymbol = (e, t = "") => {
+    var n;
+    return isSymbol(e) ? `Symbol(${(n = e.description) != null ? n : t})` : e;
+  };
+/**
+ * @vue/reactivity v3.5.17
+ * (c) 2018-present Yuxi (Evan) You and Vue contributors
+ * @license MIT
+ **/ let activeEffectScope;
+class EffectScope {
+  constructor(t = !1) {
+    ((this.detached = t),
+      (this._active = !0),
+      (this._on = 0),
+      (this.effects = []),
+      (this.cleanups = []),
+      (this._isPaused = !1),
+      (this.parent = activeEffectScope),
+      !t &&
+        activeEffectScope &&
+        (this.index =
+          (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(
+            this,
+          ) - 1));
+  }
+  get active() {
+    return this._active;
+  }
+  pause() {
+    if (this._active) {
+      this._isPaused = !0;
+      let t, n;
+      if (this.scopes)
+        for (t = 0, n = this.scopes.length; t < n; t++) this.scopes[t].pause();
+      for (t = 0, n = this.effects.length; t < n; t++) this.effects[t].pause();
+    }
+  }
+  resume() {
+    if (this._active && this._isPaused) {
+      this._isPaused = !1;
+      let t, n;
+      if (this.scopes)
+        for (t = 0, n = this.scopes.length; t < n; t++) this.scopes[t].resume();
+      for (t = 0, n = this.effects.length; t < n; t++) this.effects[t].resume();
+    }
+  }
+  run(t) {
+    if (this._active) {
+      const n = activeEffectScope;
+      try {
+        return ((activeEffectScope = this), t());
+      } finally {
+        activeEffectScope = n;
+      }
+    }
+  }
+  on() {
+    ++this._on === 1 &&
+      ((this.prevScope = activeEffectScope), (activeEffectScope = this));
+  }
+  off() {
+    this._on > 0 &&
+      --this._on === 0 &&
+      ((activeEffectScope = this.prevScope), (this.prevScope = void 0));
+  }
+  stop(t) {
+    if (this._active) {
+      this._active = !1;
+      let n, s;
+      for (n = 0, s = this.effects.length; n < s; n++) this.effects[n].stop();
+      for (this.effects.length = 0, n = 0, s = this.cleanups.length; n < s; n++)
+        this.cleanups[n]();
+      if (((this.cleanups.length = 0), this.scopes)) {
+        for (n = 0, s = this.scopes.length; n < s; n++) this.scopes[n].stop(!0);
+        this.scopes.length = 0;
+      }
+      if (!this.detached && this.parent && !t) {
+        const r = this.parent.scopes.pop();
+        r &&
+          r !== this &&
+          ((this.parent.scopes[this.index] = r), (r.index = this.index));
+      }
+      this.parent = void 0;
+    }
+  }
+}
+function effectScope(e) {
+  return new EffectScope(e);
+}
+function getCurrentScope() {
+  return activeEffectScope;
+}
+function onScopeDispose(e, t = !1) {
+  activeEffectScope && activeEffectScope.cleanups.push(e);
+}
+let activeSub;
+const pausedQueueEffects = new WeakSet();
+class ReactiveEffect {
+  constructor(t) {
+    ((this.fn = t),
+      (this.deps = void 0),
+      (this.depsTail = void 0),
+      (this.flags = 5),
+      (this.next = void 0),
+      (this.cleanup = void 0),
+      (this.scheduler = void 0),
+      activeEffectScope &&
+        activeEffectScope.active &&
+        activeEffectScope.effects.push(this));
+  }
+  pause() {
+    this.flags |= 64;
+  }
+  resume() {
+    this.flags & 64 &&
+      ((this.flags &= -65),
+      pausedQueueEffects.has(this) &&
+        (pausedQueueEffects.delete(this), this.trigger()));
+  }
+  notify() {
+    (this.flags & 2 && !(this.flags & 32)) || this.flags & 8 || batch(this);
+  }
+  run() {
+    if (!(this.flags & 1)) return this.fn();
+    ((this.flags |= 2), cleanupEffect(this), prepareDeps(this));
+    const t = activeSub,
+      n = shouldTrack;
+    ((activeSub = this), (shouldTrack = !0));
+    try {
+      return this.fn();
+    } finally {
+      (cleanupDeps(this),
+        (activeSub = t),
+        (shouldTrack = n),
+        (this.flags &= -3));
+    }
+  }
+  stop() {
+    if (this.flags & 1) {
+      for (let t = this.deps; t; t = t.nextDep) removeSub(t);
+      ((this.deps = this.depsTail = void 0),
+        cleanupEffect(this),
+        this.onStop && this.onStop(),
+        (this.flags &= -2));
+    }
+  }
+  trigger() {
+    this.flags & 64
+      ? pausedQueueEffects.add(this)
+      : this.scheduler
+        ? this.scheduler()
+        : this.runIfDirty();
+  }
+  runIfDirty() {
+    isDirty(this) && this.run();
+  }
+  get dirty() {
+    return isDirty(this);
+  }
+}
+let batchDepth = 0,
+  batchedSub,
+  batchedComputed;
+function batch(e, t = !1) {
+  if (((e.flags |= 8), t)) {
+    ((e.next = batchedComputed), (batchedComputed = e));
+    return;
+  }
+  ((e.next = batchedSub), (batchedSub = e));
+}
+function startBatch() {
+  batchDepth++;
+}
+function endBatch() {
+  if (--batchDepth > 0) return;
+  if (batchedComputed) {
+    let t = batchedComputed;
+    for (batchedComputed = void 0; t;) {
+      const n = t.next;
+      ((t.next = void 0), (t.flags &= -9), (t = n));
+    }
+  }
+  let e;
+  for (; batchedSub;) {
+    let t = batchedSub;
+    for (batchedSub = void 0; t;) {
+      const n = t.next;
+      if (((t.next = void 0), (t.flags &= -9), t.flags & 1))
+        try {
+          t.trigger();
+        } catch (s) {
+          e || (e = s);
+        }
+      t = n;
+    }
+  }
+  if (e) throw e;
+}
+function prepareDeps(e) {
+  for (let t = e.deps; t; t = t.nextDep)
+    ((t.version = -1),
+      (t.prevActiveLink = t.dep.activeLink),
+      (t.dep.activeLink = t));
+}
+function cleanupDeps(e) {
+  let t,
+    n = e.depsTail,
+    s = n;
+  for (; s;) {
+    const r = s.prevDep;
+    (s.version === -1
+      ? (s === n && (n = r), removeSub(s), removeDep(s))
+      : (t = s),
+      (s.dep.activeLink = s.prevActiveLink),
+      (s.prevActiveLink = void 0),
+      (s = r));
+  }
+  ((e.deps = t), (e.depsTail = n));
+}
+function isDirty(e) {
+  for (let t = e.deps; t; t = t.nextDep)
+    if (
+      t.dep.version !== t.version ||
+      (t.dep.computed &&
+        (refreshComputed(t.dep.computed) || t.dep.version !== t.version))
+    )
+      return !0;
+  return !!e._dirty;
+}
+function refreshComputed(e) {
+  if (
+    (e.flags & 4 && !(e.flags & 16)) ||
+    ((e.flags &= -17), e.globalVersion === globalVersion) ||
+    ((e.globalVersion = globalVersion),
+    !e.isSSR && e.flags & 128 && ((!e.deps && !e._dirty) || !isDirty(e)))
+  )
+    return;
+  e.flags |= 2;
+  const t = e.dep,
+    n = activeSub,
+    s = shouldTrack;
+  ((activeSub = e), (shouldTrack = !0));
+  try {
+    prepareDeps(e);
+    const r = e.fn(e._value);
+    (t.version === 0 || hasChanged(r, e._value)) &&
+      ((e.flags |= 128), (e._value = r), t.version++);
+  } catch (r) {
+    throw (t.version++, r);
+  } finally {
+    ((activeSub = n), (shouldTrack = s), cleanupDeps(e), (e.flags &= -3));
+  }
+}
+function removeSub(e, t = !1) {
+  const { dep: n, prevSub: s, nextSub: r } = e;
+  if (
+    (s && ((s.nextSub = r), (e.prevSub = void 0)),
+    r && ((r.prevSub = s), (e.nextSub = void 0)),
+    n.subs === e && ((n.subs = s), !s && n.computed))
+  ) {
+    n.computed.flags &= -5;
+    for (let i = n.computed.deps; i; i = i.nextDep) removeSub(i, !0);
+  }
+  !t && !--n.sc && n.map && n.map.delete(n.key);
+}
+function removeDep(e) {
+  const { prevDep: t, nextDep: n } = e;
+  (t && ((t.nextDep = n), (e.prevDep = void 0)),
+    n && ((n.prevDep = t), (e.nextDep = void 0)));
+}
+let shouldTrack = !0;
+const trackStack = [];
+function pauseTracking() {
+  (trackStack.push(shouldTrack), (shouldTrack = !1));
+}
+function resetTracking() {
+  const e = trackStack.pop();
+  shouldTrack = e === void 0 ? !0 : e;
+}
+function cleanupEffect(e) {
+  const { cleanup: t } = e;
+  if (((e.cleanup = void 0), t)) {
+    const n = activeSub;
+    activeSub = void 0;
+    try {
+      t();
+    } finally {
+      activeSub = n;
+    }
+  }
+}
+let globalVersion = 0;
+class Link {
+  constructor(t, n) {
+    ((this.sub = t),
+      (this.dep = n),
+      (this.version = n.version),
+      (this.nextDep =
+        this.prevDep =
+        this.nextSub =
+        this.prevSub =
+        this.prevActiveLink =
+          void 0));
+  }
+}
+class Dep {
+  constructor(t) {
+    ((this.computed = t),
+      (this.version = 0),
+      (this.activeLink = void 0),
+      (this.subs = void 0),
+      (this.map = void 0),
+      (this.key = void 0),
+      (this.sc = 0),
+      (this.__v_skip = !0));
+  }
+  track(t) {
+    if (!activeSub || !shouldTrack || activeSub === this.computed) return;
+    let n = this.activeLink;
+    if (n === void 0 || n.sub !== activeSub)
+      ((n = this.activeLink = new Link(activeSub, this)),
+        activeSub.deps
+          ? ((n.prevDep = activeSub.depsTail),
+            (activeSub.depsTail.nextDep = n),
+            (activeSub.depsTail = n))
+          : (activeSub.deps = activeSub.depsTail = n),
+        addSub(n));
+    else if (n.version === -1 && ((n.version = this.version), n.nextDep)) {
+      const s = n.nextDep;
+      ((s.prevDep = n.prevDep),
+        n.prevDep && (n.prevDep.nextDep = s),
+        (n.prevDep = activeSub.depsTail),
+        (n.nextDep = void 0),
+        (activeSub.depsTail.nextDep = n),
+        (activeSub.depsTail = n),
+        activeSub.deps === n && (activeSub.deps = s));
+    }
+    return n;
+  }
+  trigger(t) {
+    (this.version++, globalVersion++, this.notify(t));
+  }
+  notify(t) {
+    startBatch();
+    try {
+      for (let n = this.subs; n; n = n.prevSub)
+        n.sub.notify() && n.sub.dep.notify();
+    } finally {
+      endBatch();
+    }
+  }
+}
+function addSub(e) {
+  if ((e.dep.sc++, e.sub.flags & 4)) {
+    const t = e.dep.computed;
+    if (t && !e.dep.subs) {
+      t.flags |= 20;
+      for (let s = t.deps; s; s = s.nextDep) addSub(s);
+    }
+    const n = e.dep.subs;
+    (n !== e && ((e.prevSub = n), n && (n.nextSub = e)), (e.dep.subs = e));
+  }
+}
+const targetMap = new WeakMap(),
+  ITERATE_KEY = Symbol(""),
+  MAP_KEY_ITERATE_KEY = Symbol(""),
+  ARRAY_ITERATE_KEY = Symbol("");
+function track(e, t, n) {
+  if (shouldTrack && activeSub) {
+    let s = targetMap.get(e);
+    s || targetMap.set(e, (s = new Map()));
+    let r = s.get(n);
+    (r || (s.set(n, (r = new Dep())), (r.map = s), (r.key = n)), r.track());
+  }
+}
+function trigger(e, t, n, s, r, i) {
+  const o = targetMap.get(e);
+  if (!o) {
+    globalVersion++;
+    return;
+  }
+  const a = (l) => {
+    l && l.trigger();
+  };
+  if ((startBatch(), t === "clear")) o.forEach(a);
+  else {
+    const l = isArray$2(e),
+      u = l && isIntegerKey(n);
+    if (l && n === "length") {
+      const d = Number(s);
+      o.forEach((c, v) => {
+        (v === "length" ||
+          v === ARRAY_ITERATE_KEY ||
+          (!isSymbol(v) && v >= d)) &&
+          a(c);
+      });
+    } else
+      switch (
+        ((n !== void 0 || o.has(void 0)) && a(o.get(n)),
+        u && a(o.get(ARRAY_ITERATE_KEY)),
+        t)
+      ) {
+        case "add":
+          l
+            ? u && a(o.get("length"))
+            : (a(o.get(ITERATE_KEY)),
+              isMap(e) && a(o.get(MAP_KEY_ITERATE_KEY)));
+          break;
+        case "delete":
+          l ||
+            (a(o.get(ITERATE_KEY)), isMap(e) && a(o.get(MAP_KEY_ITERATE_KEY)));
+          break;
+        case "set":
+          isMap(e) && a(o.get(ITERATE_KEY));
+          break;
+      }
+  }
+  endBatch();
+}
+function getDepFromReactive(e, t) {
+  const n = targetMap.get(e);
+  return n && n.get(t);
+}
+function reactiveReadArray(e) {
+  const t = toRaw(e);
+  return t === e
+    ? t
+    : (track(t, "iterate", ARRAY_ITERATE_KEY),
+      isShallow(e) ? t : t.map(toReactive));
+}
+function shallowReadArray(e) {
+  return (track((e = toRaw(e)), "iterate", ARRAY_ITERATE_KEY), e);
+}
+const arrayInstrumentations = {
+  __proto__: null,
+  [Symbol.iterator]() {
+    return iterator$1(this, Symbol.iterator, toReactive);
+  },
+  concat(...e) {
+    return reactiveReadArray(this).concat(
+      ...e.map((t) => (isArray$2(t) ? reactiveReadArray(t) : t)),
+    );
+  },
+  entries() {
+    return iterator$1(this, "entries", (e) => ((e[1] = toReactive(e[1])), e));
+  },
+  every(e, t) {
+    return apply(this, "every", e, t, void 0, arguments);
+  },
+  filter(e, t) {
+    return apply(this, "filter", e, t, (n) => n.map(toReactive), arguments);
+  },
+  find(e, t) {
+    return apply(this, "find", e, t, toReactive, arguments);
+  },
+  findIndex(e, t) {
+    return apply(this, "findIndex", e, t, void 0, arguments);
+  },
+  findLast(e, t) {
+    return apply(this, "findLast", e, t, toReactive, arguments);
+  },
+  findLastIndex(e, t) {
+    return apply(this, "findLastIndex", e, t, void 0, arguments);
+  },
+  forEach(e, t) {
+    return apply(this, "forEach", e, t, void 0, arguments);
+  },
+  includes(...e) {
+    return searchProxy(this, "includes", e);
+  },
+  indexOf(...e) {
+    return searchProxy(this, "indexOf", e);
+  },
+  join(e) {
+    return reactiveReadArray(this).join(e);
+  },
+  lastIndexOf(...e) {
+    return searchProxy(this, "lastIndexOf", e);
+  },
+  map(e, t) {
+    return apply(this, "map", e, t, void 0, arguments);
+  },
+  pop() {
+    return noTracking(this, "pop");
+  },
+  push(...e) {
+    return noTracking(this, "push", e);
+  },
+  reduce(e, ...t) {
+    return reduce(this, "reduce", e, t);
+  },
+  reduceRight(e, ...t) {
+    return reduce(this, "reduceRight", e, t);
+  },
+  shift() {
+    return noTracking(this, "shift");
+  },
+  some(e, t) {
+    return apply(this, "some", e, t, void 0, arguments);
+  },
+  splice(...e) {
+    return noTracking(this, "splice", e);
+  },
+  toReversed() {
+    return reactiveReadArray(this).toReversed();
+  },
+  toSorted(e) {
+    return reactiveReadArray(this).toSorted(e);
+  },
+  toSpliced(...e) {
+    return reactiveReadArray(this).toSpliced(...e);
+  },
+  unshift(...e) {
+    return noTracking(this, "unshift", e);
+  },
+  values() {
+    return iterator$1(this, "values", toReactive);
+  },
+};
+function iterator$1(e, t, n) {
+  const s = shallowReadArray(e),
+    r = s[t]();
+  return (
+    s !== e &&
+      !isShallow(e) &&
+      ((r._next = r.next),
+      (r.next = () => {
+        const i = r._next();
+        return (i.value && (i.value = n(i.value)), i);
+      })),
+    r
+  );
+}
+const arrayProto = Array.prototype;
+function apply(e, t, n, s, r, i) {
+  const o = shallowReadArray(e),
+    a = o !== e && !isShallow(e),
+    l = o[t];
+  if (l !== arrayProto[t]) {
+    const c = l.apply(e, i);
+    return a ? toReactive(c) : c;
+  }
+  let u = n;
+  o !== e &&
+    (a
+      ? (u = function (c, v) {
+          return n.call(this, toReactive(c), v, e);
+        })
+      : n.length > 2 &&
+        (u = function (c, v) {
+          return n.call(this, c, v, e);
+        }));
+  const d = l.call(o, u, s);
+  return a && r ? r(d) : d;
+}
+function reduce(e, t, n, s) {
+  const r = shallowReadArray(e);
+  let i = n;
+  return (
+    r !== e &&
+      (isShallow(e)
+        ? n.length > 3 &&
+          (i = function (o, a, l) {
+            return n.call(this, o, a, l, e);
+          })
+        : (i = function (o, a, l) {
+            return n.call(this, o, toReactive(a), l, e);
+          })),
+    r[t](i, ...s)
+  );
+}
+function searchProxy(e, t, n) {
+  const s = toRaw(e);
+  track(s, "iterate", ARRAY_ITERATE_KEY);
+  const r = s[t](...n);
+  return (r === -1 || r === !1) && isProxy(n[0])
+    ? ((n[0] = toRaw(n[0])), s[t](...n))
+    : r;
+}
+function noTracking(e, t, n = []) {
+  (pauseTracking(), startBatch());
+  const s = toRaw(e)[t].apply(e, n);
+  return (endBatch(), resetTracking(), s);
+}
+const isNonTrackableKeys = makeMap("__proto__,__v_isRef,__isVue"),
+  builtInSymbols = new Set(
+    Object.getOwnPropertyNames(Symbol)
+      .filter((e) => e !== "arguments" && e !== "caller")
+      .map((e) => Symbol[e])
+      .filter(isSymbol),
+  );
+function hasOwnProperty$1(e) {
+  isSymbol(e) || (e = String(e));
+  const t = toRaw(this);
+  return (track(t, "has", e), t.hasOwnProperty(e));
+}
+class BaseReactiveHandler {
+  constructor(t = !1, n = !1) {
+    ((this._isReadonly = t), (this._isShallow = n));
+  }
+  get(t, n, s) {
+    if (n === "__v_skip") return t.__v_skip;
+    const r = this._isReadonly,
+      i = this._isShallow;
+    if (n === "__v_isReactive") return !r;
+    if (n === "__v_isReadonly") return r;
+    if (n === "__v_isShallow") return i;
+    if (n === "__v_raw")
+      return s ===
+        (r
+          ? i
+            ? shallowReadonlyMap
+            : readonlyMap
+          : i
+            ? shallowReactiveMap
+            : reactiveMap
+        ).get(t) || Object.getPrototypeOf(t) === Object.getPrototypeOf(s)
+        ? t
+        : void 0;
+    const o = isArray$2(t);
+    if (!r) {
+      let l;
+      if (o && (l = arrayInstrumentations[n])) return l;
+      if (n === "hasOwnProperty") return hasOwnProperty$1;
+    }
+    const a = Reflect.get(t, n, isRef(t) ? t : s);
+    return (isSymbol(n) ? builtInSymbols.has(n) : isNonTrackableKeys(n)) ||
+      (r || track(t, "get", n), i)
+      ? a
+      : isRef(a)
+        ? o && isIntegerKey(n)
+          ? a
+          : a.value
+        : isObject$4(a)
+          ? r
+            ? readonly(a)
+            : reactive(a)
+          : a;
+  }
+}
+class MutableReactiveHandler extends BaseReactiveHandler {
+  constructor(t = !1) {
+    super(!1, t);
+  }
+  set(t, n, s, r) {
+    let i = t[n];
+    if (!this._isShallow) {
+      const l = isReadonly(i);
+      if (
+        (!isShallow(s) && !isReadonly(s) && ((i = toRaw(i)), (s = toRaw(s))),
+        !isArray$2(t) && isRef(i) && !isRef(s))
+      )
+        return l ? !1 : ((i.value = s), !0);
+    }
+    const o =
+        isArray$2(t) && isIntegerKey(n) ? Number(n) < t.length : hasOwn(t, n),
+      a = Reflect.set(t, n, s, isRef(t) ? t : r);
+    return (
+      t === toRaw(r) &&
+        (o
+          ? hasChanged(s, i) && trigger(t, "set", n, s)
+          : trigger(t, "add", n, s)),
+      a
+    );
+  }
+  deleteProperty(t, n) {
+    const s = hasOwn(t, n);
+    t[n];
+    const r = Reflect.deleteProperty(t, n);
+    return (r && s && trigger(t, "delete", n, void 0), r);
+  }
+  has(t, n) {
+    const s = Reflect.has(t, n);
+    return ((!isSymbol(n) || !builtInSymbols.has(n)) && track(t, "has", n), s);
+  }
+  ownKeys(t) {
+    return (
+      track(t, "iterate", isArray$2(t) ? "length" : ITERATE_KEY),
+      Reflect.ownKeys(t)
+    );
+  }
+}
+class ReadonlyReactiveHandler extends BaseReactiveHandler {
+  constructor(t = !1) {
+    super(!0, t);
+  }
+  set(t, n) {
+    return !0;
+  }
+  deleteProperty(t, n) {
+    return !0;
+  }
+}
+const mutableHandlers = new MutableReactiveHandler(),
+  readonlyHandlers = new ReadonlyReactiveHandler(),
+  shallowReactiveHandlers = new MutableReactiveHandler(!0),
+  shallowReadonlyHandlers = new ReadonlyReactiveHandler(!0),
+  toShallow = (e) => e,
+  getProto = (e) => Reflect.getPrototypeOf(e);
+function createIterableMethod(e, t, n) {
+  return function (...s) {
+    const r = this.__v_raw,
+      i = toRaw(r),
+      o = isMap(i),
+      a = e === "entries" || (e === Symbol.iterator && o),
+      l = e === "keys" && o,
+      u = r[e](...s),
+      d = n ? toShallow : t ? toReadonly : toReactive;
+    return (
+      !t && track(i, "iterate", l ? MAP_KEY_ITERATE_KEY : ITERATE_KEY),
+      {
+        next() {
+          const { value: c, done: v } = u.next();
+          return v
+            ? { value: c, done: v }
+            : { value: a ? [d(c[0]), d(c[1])] : d(c), done: v };
+        },
+        [Symbol.iterator]() {
+          return this;
+        },
+      }
+    );
+  };
+}
+function createReadonlyMethod(e) {
+  return function (...t) {
+    return e === "delete" ? !1 : e === "clear" ? void 0 : this;
+  };
+}
+function createInstrumentations(e, t) {
+  const n = {
+    get(r) {
+      const i = this.__v_raw,
+        o = toRaw(i),
+        a = toRaw(r);
+      e || (hasChanged(r, a) && track(o, "get", r), track(o, "get", a));
+      const { has: l } = getProto(o),
+        u = t ? toShallow : e ? toReadonly : toReactive;
+      if (l.call(o, r)) return u(i.get(r));
+      if (l.call(o, a)) return u(i.get(a));
+      i !== o && i.get(r);
+    },
+    get size() {
+      const r = this.__v_raw;
+      return (
+        !e && track(toRaw(r), "iterate", ITERATE_KEY),
+        Reflect.get(r, "size", r)
+      );
+    },
+    has(r) {
+      const i = this.__v_raw,
+        o = toRaw(i),
+        a = toRaw(r);
+      return (
+        e || (hasChanged(r, a) && track(o, "has", r), track(o, "has", a)),
+        r === a ? i.has(r) : i.has(r) || i.has(a)
+      );
+    },
+    forEach(r, i) {
+      const o = this,
+        a = o.__v_raw,
+        l = toRaw(a),
+        u = t ? toShallow : e ? toReadonly : toReactive;
+      return (
+        !e && track(l, "iterate", ITERATE_KEY),
+        a.forEach((d, c) => r.call(i, u(d), u(c), o))
+      );
+    },
+  };
+  return (
+    extend$4(
+      n,
+      e
+        ? {
+            add: createReadonlyMethod("add"),
+            set: createReadonlyMethod("set"),
+            delete: createReadonlyMethod("delete"),
+            clear: createReadonlyMethod("clear"),
+          }
+        : {
+            add(r) {
+              !t && !isShallow(r) && !isReadonly(r) && (r = toRaw(r));
+              const i = toRaw(this);
+              return (
+                getProto(i).has.call(i, r) ||
+                  (i.add(r), trigger(i, "add", r, r)),
+                this
+              );
+            },
+            set(r, i) {
+              !t && !isShallow(i) && !isReadonly(i) && (i = toRaw(i));
+              const o = toRaw(this),
+                { has: a, get: l } = getProto(o);
+              let u = a.call(o, r);
+              u || ((r = toRaw(r)), (u = a.call(o, r)));
+              const d = l.call(o, r);
+              return (
+                o.set(r, i),
+                u
+                  ? hasChanged(i, d) && trigger(o, "set", r, i)
+                  : trigger(o, "add", r, i),
+                this
+              );
+            },
+            delete(r) {
+              const i = toRaw(this),
+                { has: o, get: a } = getProto(i);
+              let l = o.call(i, r);
+              (l || ((r = toRaw(r)), (l = o.call(i, r))), a && a.call(i, r));
+              const u = i.delete(r);
+              return (l && trigger(i, "delete", r, void 0), u);
+            },
+            clear() {
+              const r = toRaw(this),
+                i = r.size !== 0,
+                o = r.clear();
+              return (i && trigger(r, "clear", void 0, void 0), o);
+            },
+          },
+    ),
+    ["keys", "values", "entries", Symbol.iterator].forEach((r) => {
+      n[r] = createIterableMethod(r, e, t);
+    }),
+    n
+  );
+}
+function createInstrumentationGetter(e, t) {
+  const n = createInstrumentations(e, t);
+  return (s, r, i) =>
+    r === "__v_isReactive"
+      ? !e
+      : r === "__v_isReadonly"
+        ? e
+        : r === "__v_raw"
+          ? s
+          : Reflect.get(hasOwn(n, r) && r in s ? n : s, r, i);
+}
+const mutableCollectionHandlers = { get: createInstrumentationGetter(!1, !1) },
+  shallowCollectionHandlers = { get: createInstrumentationGetter(!1, !0) },
+  readonlyCollectionHandlers = { get: createInstrumentationGetter(!0, !1) },
+  shallowReadonlyCollectionHandlers = {
+    get: createInstrumentationGetter(!0, !0),
+  },
+  reactiveMap = new WeakMap(),
+  shallowReactiveMap = new WeakMap(),
+  readonlyMap = new WeakMap(),
+  shallowReadonlyMap = new WeakMap();
+function targetTypeMap(e) {
+  switch (e) {
+    case "Object":
+    case "Array":
+      return 1;
+    case "Map":
+    case "Set":
+    case "WeakMap":
+    case "WeakSet":
+      return 2;
+    default:
+      return 0;
+  }
+}
+function getTargetType(e) {
+  return e.__v_skip || !Object.isExtensible(e)
+    ? 0
+    : targetTypeMap(toRawType(e));
+}
+function reactive(e) {
+  return isReadonly(e)
+    ? e
+    : createReactiveObject(
+        e,
+        !1,
+        mutableHandlers,
+        mutableCollectionHandlers,
+        reactiveMap,
+      );
+}
+function shallowReactive(e) {
+  return createReactiveObject(
+    e,
+    !1,
+    shallowReactiveHandlers,
+    shallowCollectionHandlers,
+    shallowReactiveMap,
+  );
+}
+function readonly(e) {
+  return createReactiveObject(
+    e,
+    !0,
+    readonlyHandlers,
+    readonlyCollectionHandlers,
+    readonlyMap,
+  );
+}
+function shallowReadonly(e) {
+  return createReactiveObject(
+    e,
+    !0,
+    shallowReadonlyHandlers,
+    shallowReadonlyCollectionHandlers,
+    shallowReadonlyMap,
+  );
+}
+function createReactiveObject(e, t, n, s, r) {
+  if (!isObject$4(e) || (e.__v_raw && !(t && e.__v_isReactive))) return e;
+  const i = getTargetType(e);
+  if (i === 0) return e;
+  const o = r.get(e);
+  if (o) return o;
+  const a = new Proxy(e, i === 2 ? s : n);
+  return (r.set(e, a), a);
+}
+function isReactive(e) {
+  return isReadonly(e) ? isReactive(e.__v_raw) : !!(e && e.__v_isReactive);
+}
+function isReadonly(e) {
+  return !!(e && e.__v_isReadonly);
+}
+function isShallow(e) {
+  return !!(e && e.__v_isShallow);
+}
+function isProxy(e) {
+  return e ? !!e.__v_raw : !1;
+}
+function toRaw(e) {
+  const t = e && e.__v_raw;
+  return t ? toRaw(t) : e;
+}
+function markRaw(e) {
+  return (
+    !hasOwn(e, "__v_skip") && Object.isExtensible(e) && def(e, "__v_skip", !0),
+    e
+  );
+}
+const toReactive = (e) => (isObject$4(e) ? reactive(e) : e),
+  toReadonly = (e) => (isObject$4(e) ? readonly(e) : e);
+function isRef(e) {
+  return e ? e.__v_isRef === !0 : !1;
+}
+function ref(e) {
+  return createRef(e, !1);
+}
+function shallowRef(e) {
+  return createRef(e, !0);
+}
+function createRef(e, t) {
+  return isRef(e) ? e : new RefImpl(e, t);
+}
+class RefImpl {
+  constructor(t, n) {
+    ((this.dep = new Dep()),
+      (this.__v_isRef = !0),
+      (this.__v_isShallow = !1),
+      (this._rawValue = n ? t : toRaw(t)),
+      (this._value = n ? t : toReactive(t)),
+      (this.__v_isShallow = n));
+  }
+  get value() {
+    return (this.dep.track(), this._value);
+  }
+  set value(t) {
+    const n = this._rawValue,
+      s = this.__v_isShallow || isShallow(t) || isReadonly(t);
+    ((t = s ? t : toRaw(t)),
+      hasChanged(t, n) &&
+        ((this._rawValue = t),
+        (this._value = s ? t : toReactive(t)),
+        this.dep.trigger()));
+  }
+}
+function unref(e) {
+  return isRef(e) ? e.value : e;
+}
+const shallowUnwrapHandlers = {
+  get: (e, t, n) => (t === "__v_raw" ? e : unref(Reflect.get(e, t, n))),
+  set: (e, t, n, s) => {
+    const r = e[t];
+    return isRef(r) && !isRef(n)
+      ? ((r.value = n), !0)
+      : Reflect.set(e, t, n, s);
+  },
+};
+function proxyRefs(e) {
+  return isReactive(e) ? e : new Proxy(e, shallowUnwrapHandlers);
+}
+function toRefs(e) {
+  const t = isArray$2(e) ? new Array(e.length) : {};
+  for (const n in e) t[n] = propertyToRef(e, n);
+  return t;
+}
+class ObjectRefImpl {
+  constructor(t, n, s) {
+    ((this._object = t),
+      (this._key = n),
+      (this._defaultValue = s),
+      (this.__v_isRef = !0),
+      (this._value = void 0));
+  }
+  get value() {
+    const t = this._object[this._key];
+    return (this._value = t === void 0 ? this._defaultValue : t);
+  }
+  set value(t) {
+    this._object[this._key] = t;
+  }
+  get dep() {
+    return getDepFromReactive(toRaw(this._object), this._key);
+  }
+}
+function propertyToRef(e, t, n) {
+  const s = e[t];
+  return isRef(s) ? s : new ObjectRefImpl(e, t, n);
+}
+class ComputedRefImpl {
+  constructor(t, n, s) {
+    ((this.fn = t),
+      (this.setter = n),
+      (this._value = void 0),
+      (this.dep = new Dep(this)),
+      (this.__v_isRef = !0),
+      (this.deps = void 0),
+      (this.depsTail = void 0),
+      (this.flags = 16),
+      (this.globalVersion = globalVersion - 1),
+      (this.next = void 0),
+      (this.effect = this),
+      (this.__v_isReadonly = !n),
+      (this.isSSR = s));
+  }
+  notify() {
+    if (((this.flags |= 16), !(this.flags & 8) && activeSub !== this))
+      return (batch(this, !0), !0);
+  }
+  get value() {
+    const t = this.dep.track();
+    return (
+      refreshComputed(this),
+      t && (t.version = this.dep.version),
+      this._value
+    );
+  }
+  set value(t) {
+    this.setter && this.setter(t);
+  }
+}
+function computed$1(e, t, n = !1) {
+  let s, r;
+  return (
+    isFunction$1(e) ? (s = e) : ((s = e.get), (r = e.set)),
+    new ComputedRefImpl(s, r, n)
+  );
+}
+const INITIAL_WATCHER_VALUE = {},
+  cleanupMap = new WeakMap();
+let activeWatcher;
+function onWatcherCleanup(e, t = !1, n = activeWatcher) {
+  if (n) {
+    let s = cleanupMap.get(n);
+    (s || cleanupMap.set(n, (s = [])), s.push(e));
+  }
+}
+function watch$1(e, t, n = EMPTY_OBJ) {
+  const {
+      immediate: s,
+      deep: r,
+      once: i,
+      scheduler: o,
+      augmentJob: a,
+      call: l,
+    } = n,
+    u = (z) =>
+      r
+        ? z
+        : isShallow(z) || r === !1 || r === 0
+          ? traverse(z, 1)
+          : traverse(z);
+  let d,
+    c,
+    v,
+    E,
+    x = !1,
+    B = !1;
+  if (
+    (isRef(e)
+      ? ((c = () => e.value), (x = isShallow(e)))
+      : isReactive(e)
+        ? ((c = () => u(e)), (x = !0))
+        : isArray$2(e)
+          ? ((B = !0),
+            (x = e.some((z) => isReactive(z) || isShallow(z))),
+            (c = () =>
+              e.map((z) => {
+                if (isRef(z)) return z.value;
+                if (isReactive(z)) return u(z);
+                if (isFunction$1(z)) return l ? l(z, 2) : z();
+              })))
+          : isFunction$1(e)
+            ? t
+              ? (c = l ? () => l(e, 2) : e)
+              : (c = () => {
+                  if (v) {
+                    pauseTracking();
+                    try {
+                      v();
+                    } finally {
+                      resetTracking();
+                    }
+                  }
+                  const z = activeWatcher;
+                  activeWatcher = d;
+                  try {
+                    return l ? l(e, 3, [E]) : e(E);
+                  } finally {
+                    activeWatcher = z;
+                  }
+                })
+            : (c = NOOP),
+    t && r)
+  ) {
+    const z = c,
+      Y = r === !0 ? 1 / 0 : r;
+    c = () => traverse(z(), Y);
+  }
+  const G = getCurrentScope(),
+    q = () => {
+      (d.stop(), G && G.active && remove(G.effects, d));
+    };
+  if (i && t) {
+    const z = t;
+    t = (...Y) => {
+      (z(...Y), q());
+    };
+  }
+  let b = B
+    ? new Array(e.length).fill(INITIAL_WATCHER_VALUE)
+    : INITIAL_WATCHER_VALUE;
+  const N = (z) => {
+    if (!(!(d.flags & 1) || (!d.dirty && !z)))
+      if (t) {
+        const Y = d.run();
+        if (
+          r ||
+          x ||
+          (B ? Y.some((X, K) => hasChanged(X, b[K])) : hasChanged(Y, b))
+        ) {
+          v && v();
+          const X = activeWatcher;
+          activeWatcher = d;
+          try {
+            const K = [
+              Y,
+              b === INITIAL_WATCHER_VALUE
+                ? void 0
+                : B && b[0] === INITIAL_WATCHER_VALUE
+                  ? []
+                  : b,
+              E,
+            ];
+            ((b = Y), l ? l(t, 3, K) : t(...K));
+          } finally {
+            activeWatcher = X;
+          }
+        }
+      } else d.run();
+  };
+  return (
+    a && a(N),
+    (d = new ReactiveEffect(c)),
+    (d.scheduler = o ? () => o(N, !1) : N),
+    (E = (z) => onWatcherCleanup(z, !1, d)),
+    (v = d.onStop =
+      () => {
+        const z = cleanupMap.get(d);
+        if (z) {
+          if (l) l(z, 4);
+          else for (const Y of z) Y();
+          cleanupMap.delete(d);
+        }
+      }),
+    t ? (s ? N(!0) : (b = d.run())) : o ? o(N.bind(null, !0), !0) : d.run(),
+    (q.pause = d.pause.bind(d)),
+    (q.resume = d.resume.bind(d)),
+    (q.stop = q),
+    q
+  );
+}
+function traverse(e, t = 1 / 0, n) {
+  if (
+    t <= 0 ||
+    !isObject$4(e) ||
+    e.__v_skip ||
+    ((n = n || new Set()), n.has(e))
+  )
+    return e;
+  if ((n.add(e), t--, isRef(e))) traverse(e.value, t, n);
+  else if (isArray$2(e))
+    for (let s = 0; s < e.length; s++) traverse(e[s], t, n);
+  else if (isSet(e) || isMap(e))
+    e.forEach((s) => {
+      traverse(s, t, n);
+    });
+  else if (isPlainObject$2(e)) {
+    for (const s in e) traverse(e[s], t, n);
+    for (const s of Object.getOwnPropertySymbols(e))
+      Object.prototype.propertyIsEnumerable.call(e, s) && traverse(e[s], t, n);
+  }
+  return e;
+}
+/**
+ * @vue/runtime-core v3.5.17
+ * (c) 2018-present Yuxi (Evan) You and Vue contributors
+ * @license MIT
+ **/ const stack = [];
+let isWarning = !1;
+function warn$1(e, ...t) {
+  if (isWarning) return;
+  ((isWarning = !0), pauseTracking());
+  const n = stack.length ? stack[stack.length - 1].component : null,
+    s = n && n.appContext.config.warnHandler,
+    r = getComponentTrace();
+  if (s)
+    callWithErrorHandling(s, n, 11, [
+      e +
+        t
+          .map((i) => {
+            var o, a;
+            return (a = (o = i.toString) == null ? void 0 : o.call(i)) != null
+              ? a
+              : JSON.stringify(i);
+          })
+          .join(""),
+      n && n.proxy,
+      r.map(({ vnode: i }) => `at <${formatComponentName(n, i.type)}>`).join(`
+`),
+      r,
+    ]);
+  else {
+    const i = [`[Vue warn]: ${e}`, ...t];
+    (r.length &&
+      i.push(
+        `
+`,
+        ...formatTrace(r),
+      ),
+      console.warn(...i));
+  }
+  (resetTracking(), (isWarning = !1));
+}
+function getComponentTrace() {
+  let e = stack[stack.length - 1];
+  if (!e) return [];
+  const t = [];
+  for (; e;) {
+    const n = t[0];
+    n && n.vnode === e
+      ? n.recurseCount++
+      : t.push({ vnode: e, recurseCount: 0 });
+    const s = e.component && e.component.parent;
+    e = s && s.vnode;
+  }
+  return t;
+}
+function formatTrace(e) {
+  const t = [];
+  return (
+    e.forEach((n, s) => {
+      t.push(
+        ...(s === 0
+          ? []
+          : [
+              `
+`,
+            ]),
+        ...formatTraceEntry(n),
+      );
+    }),
+    t
+  );
+}
+function formatTraceEntry({ vnode: e, recurseCount: t }) {
+  const n = t > 0 ? `... (${t} recursive calls)` : "",
+    s = e.component ? e.component.parent == null : !1,
+    r = ` at <${formatComponentName(e.component, e.type, s)}`,
+    i = ">" + n;
+  return e.props ? [r, ...formatProps(e.props), i] : [r + i];
+}
+function formatProps(e) {
+  const t = [],
+    n = Object.keys(e);
+  return (
+    n.slice(0, 3).forEach((s) => {
+      t.push(...formatProp(s, e[s]));
+    }),
+    n.length > 3 && t.push(" ..."),
+    t
+  );
+}
+function formatProp(e, t, n) {
+  return isString$1(t)
+    ? ((t = JSON.stringify(t)), n ? t : [`${e}=${t}`])
+    : typeof t == "number" || typeof t == "boolean" || t == null
+      ? n
+        ? t
+        : [`${e}=${t}`]
+      : isRef(t)
+        ? ((t = formatProp(e, toRaw(t.value), !0)),
+          n ? t : [`${e}=Ref<`, t, ">"])
+        : isFunction$1(t)
+          ? [`${e}=fn${t.name ? `<${t.name}>` : ""}`]
+          : ((t = toRaw(t)), n ? t : [`${e}=`, t]);
+}
+function callWithErrorHandling(e, t, n, s) {
+  try {
+    return s ? e(...s) : e();
+  } catch (r) {
+    handleError$1(r, t, n);
+  }
+}
+function callWithAsyncErrorHandling(e, t, n, s) {
+  if (isFunction$1(e)) {
+    const r = callWithErrorHandling(e, t, n, s);
+    return (
+      r &&
+        isPromise(r) &&
+        r.catch((i) => {
+          handleError$1(i, t, n);
+        }),
+      r
+    );
+  }
+  if (isArray$2(e)) {
+    const r = [];
+    for (let i = 0; i < e.length; i++)
+      r.push(callWithAsyncErrorHandling(e[i], t, n, s));
+    return r;
+  }
+}
+function handleError$1(e, t, n, s = !0) {
+  const r = t ? t.vnode : null,
+    { errorHandler: i, throwUnhandledErrorInProduction: o } =
+      (t && t.appContext.config) || EMPTY_OBJ;
+  if (t) {
+    let a = t.parent;
+    const l = t.proxy,
+      u = `https://vuejs.org/error-reference/#runtime-${n}`;
+    for (; a;) {
+      const d = a.ec;
+      if (d) {
+        for (let c = 0; c < d.length; c++) if (d[c](e, l, u) === !1) return;
+      }
+      a = a.parent;
+    }
+    if (i) {
+      (pauseTracking(),
+        callWithErrorHandling(i, null, 10, [e, l, u]),
+        resetTracking());
+      return;
+    }
+  }
+  logError(e, n, r, s, o);
+}
+function logError(e, t, n, s = !0, r = !1) {
+  if (r) throw e;
+  console.error(e);
+}
+const queue = [];
+let flushIndex = -1;
+const pendingPostFlushCbs = [];
+let activePostFlushCbs = null,
+  postFlushIndex = 0;
+const resolvedPromise = Promise.resolve();
+let currentFlushPromise = null;
+function nextTick$1(e) {
+  const t = currentFlushPromise || resolvedPromise;
+  return e ? t.then(this ? e.bind(this) : e) : t;
+}
+function findInsertionIndex$1(e) {
+  let t = flushIndex + 1,
+    n = queue.length;
+  for (; t < n;) {
+    const s = (t + n) >>> 1,
+      r = queue[s],
+      i = getId(r);
+    i < e || (i === e && r.flags & 2) ? (t = s + 1) : (n = s);
+  }
+  return t;
+}
+function queueJob(e) {
+  if (!(e.flags & 1)) {
+    const t = getId(e),
+      n = queue[queue.length - 1];
+    (!n || (!(e.flags & 2) && t >= getId(n))
+      ? queue.push(e)
+      : queue.splice(findInsertionIndex$1(t), 0, e),
+      (e.flags |= 1),
+      queueFlush());
+  }
+}
+function queueFlush() {
+  currentFlushPromise ||
+    (currentFlushPromise = resolvedPromise.then(flushJobs));
+}
+function queuePostFlushCb(e) {
+  (isArray$2(e)
+    ? pendingPostFlushCbs.push(...e)
+    : activePostFlushCbs && e.id === -1
+      ? activePostFlushCbs.splice(postFlushIndex + 1, 0, e)
+      : e.flags & 1 || (pendingPostFlushCbs.push(e), (e.flags |= 1)),
+    queueFlush());
+}
+function flushPreFlushCbs(e, t, n = flushIndex + 1) {
+  for (; n < queue.length; n++) {
+    const s = queue[n];
+    if (s && s.flags & 2) {
+      if (e && s.id !== e.uid) continue;
+      (queue.splice(n, 1),
+        n--,
+        s.flags & 4 && (s.flags &= -2),
+        s(),
+        s.flags & 4 || (s.flags &= -2));
+    }
+  }
+}
+function flushPostFlushCbs(e) {
+  if (pendingPostFlushCbs.length) {
+    const t = [...new Set(pendingPostFlushCbs)].sort(
+      (n, s) => getId(n) - getId(s),
+    );
+    if (((pendingPostFlushCbs.length = 0), activePostFlushCbs)) {
+      activePostFlushCbs.push(...t);
+      return;
+    }
+    for (
+      activePostFlushCbs = t, postFlushIndex = 0;
+      postFlushIndex < activePostFlushCbs.length;
+      postFlushIndex++
+    ) {
+      const n = activePostFlushCbs[postFlushIndex];
+      (n.flags & 4 && (n.flags &= -2), n.flags & 8 || n(), (n.flags &= -2));
+    }
+    ((activePostFlushCbs = null), (postFlushIndex = 0));
+  }
+}
+const getId = (e) => (e.id == null ? (e.flags & 2 ? -1 : 1 / 0) : e.id);
+function flushJobs(e) {
+  try {
+    for (flushIndex = 0; flushIndex < queue.length; flushIndex++) {
+      const t = queue[flushIndex];
+      t &&
+        !(t.flags & 8) &&
+        (t.flags & 4 && (t.flags &= -2),
+        callWithErrorHandling(t, t.i, t.i ? 15 : 14),
+        t.flags & 4 || (t.flags &= -2));
+    }
+  } finally {
+    for (; flushIndex < queue.length; flushIndex++) {
+      const t = queue[flushIndex];
+      t && (t.flags &= -2);
+    }
+    ((flushIndex = -1),
+      (queue.length = 0),
+      flushPostFlushCbs(),
+      (currentFlushPromise = null),
+      (queue.length || pendingPostFlushCbs.length) && flushJobs());
+  }
+}
+let currentRenderingInstance = null,
+  currentScopeId = null;
+function setCurrentRenderingInstance(e) {
+  const t = currentRenderingInstance;
+  return (
+    (currentRenderingInstance = e),
+    (currentScopeId = (e && e.type.__scopeId) || null),
+    t
+  );
+}
+function withCtx(e, t = currentRenderingInstance, n) {
+  if (!t || e._n) return e;
+  const s = (...r) => {
+    s._d && setBlockTracking(-1);
+    const i = setCurrentRenderingInstance(t);
+    let o;
+    try {
+      o = e(...r);
+    } finally {
+      (setCurrentRenderingInstance(i), s._d && setBlockTracking(1));
+    }
+    return o;
+  };
+  return ((s._n = !0), (s._c = !0), (s._d = !0), s);
+}
+function withDirectives(e, t) {
+  if (currentRenderingInstance === null) return e;
+  const n = getComponentPublicInstance(currentRenderingInstance),
+    s = e.dirs || (e.dirs = []);
+  for (let r = 0; r < t.length; r++) {
+    let [i, o, a, l = EMPTY_OBJ] = t[r];
+    i &&
+      (isFunction$1(i) && (i = { mounted: i, updated: i }),
+      i.deep && traverse(o),
+      s.push({
+        dir: i,
+        instance: n,
+        value: o,
+        oldValue: void 0,
+        arg: a,
+        modifiers: l,
+      }));
+  }
+  return e;
+}
+function invokeDirectiveHook(e, t, n, s) {
+  const r = e.dirs,
+    i = t && t.dirs;
+  for (let o = 0; o < r.length; o++) {
+    const a = r[o];
+    i && (a.oldValue = i[o].value);
+    let l = a.dir[s];
+    l &&
+      (pauseTracking(),
+      callWithAsyncErrorHandling(l, n, 8, [e.el, a, e, t]),
+      resetTracking());
+  }
+}
+const TeleportEndKey = Symbol("_vte"),
+  isTeleport = (e) => e.__isTeleport,
+  isTeleportDisabled = (e) => e && (e.disabled || e.disabled === ""),
+  isTeleportDeferred = (e) => e && (e.defer || e.defer === ""),
+  isTargetSVG = (e) => typeof SVGElement < "u" && e instanceof SVGElement,
+  isTargetMathML = (e) =>
+    typeof MathMLElement == "function" && e instanceof MathMLElement,
+  resolveTarget = (e, t) => {
+    const n = e && e.to;
+    return isString$1(n) ? (t ? t(n) : null) : n;
+  },
+  TeleportImpl = {
+    name: "Teleport",
+    __isTeleport: !0,
+    process(e, t, n, s, r, i, o, a, l, u) {
+      const {
+          mc: d,
+          pc: c,
+          pbc: v,
+          o: { insert: E, querySelector: x, createText: B, createComment: G },
+        } = u,
+        q = isTeleportDisabled(t.props);
+      let { shapeFlag: b, children: N, dynamicChildren: z } = t;
+      if (e == null) {
+        const Y = (t.el = B("")),
+          X = (t.anchor = B(""));
+        (E(Y, n, s), E(X, n, s));
+        const K = (m, S) => {
+            b & 16 &&
+              (r && r.isCE && (r.ce._teleportTarget = m),
+              d(N, m, S, r, i, o, a, l));
+          },
+          w = () => {
+            const m = (t.target = resolveTarget(t.props, x)),
+              S = prepareAnchor(m, t, B, E);
+            m &&
+              (o !== "svg" && isTargetSVG(m)
+                ? (o = "svg")
+                : o !== "mathml" && isTargetMathML(m) && (o = "mathml"),
+              q || (K(m, S), updateCssVars(t, !1)));
+          };
+        (q && (K(n, X), updateCssVars(t, !0)),
+          isTeleportDeferred(t.props)
+            ? ((t.el.__isMounted = !1),
+              queuePostRenderEffect(() => {
+                (w(), delete t.el.__isMounted);
+              }, i))
+            : w());
+      } else {
+        if (isTeleportDeferred(t.props) && e.el.__isMounted === !1) {
+          queuePostRenderEffect(() => {
+            TeleportImpl.process(e, t, n, s, r, i, o, a, l, u);
+          }, i);
+          return;
+        }
+        ((t.el = e.el), (t.targetStart = e.targetStart));
+        const Y = (t.anchor = e.anchor),
+          X = (t.target = e.target),
+          K = (t.targetAnchor = e.targetAnchor),
+          w = isTeleportDisabled(e.props),
+          m = w ? n : X,
+          S = w ? Y : K;
+        if (
+          (o === "svg" || isTargetSVG(X)
+            ? (o = "svg")
+            : (o === "mathml" || isTargetMathML(X)) && (o = "mathml"),
+          z
+            ? (v(e.dynamicChildren, z, m, r, i, o, a),
+              traverseStaticChildren(e, t, !0))
+            : l || c(e, t, m, S, r, i, o, a, !1),
+          q)
+        )
+          w
+            ? t.props &&
+              e.props &&
+              t.props.to !== e.props.to &&
+              (t.props.to = e.props.to)
+            : moveTeleport(t, n, Y, u, 1);
+        else if ((t.props && t.props.to) !== (e.props && e.props.to)) {
+          const $ = (t.target = resolveTarget(t.props, x));
+          $ && moveTeleport(t, $, null, u, 0);
+        } else w && moveTeleport(t, X, K, u, 1);
+        updateCssVars(t, q);
+      }
+    },
+    remove(e, t, n, { um: s, o: { remove: r } }, i) {
+      const {
+        shapeFlag: o,
+        children: a,
+        anchor: l,
+        targetStart: u,
+        targetAnchor: d,
+        target: c,
+        props: v,
+      } = e;
+      if ((c && (r(u), r(d)), i && r(l), o & 16)) {
+        const E = i || !isTeleportDisabled(v);
+        for (let x = 0; x < a.length; x++) {
+          const B = a[x];
+          s(B, t, n, E, !!B.dynamicChildren);
+        }
+      }
+    },
+    move: moveTeleport,
+    hydrate: hydrateTeleport,
+  };
+function moveTeleport(e, t, n, { o: { insert: s }, m: r }, i = 2) {
+  i === 0 && s(e.targetAnchor, t, n);
+  const { el: o, anchor: a, shapeFlag: l, children: u, props: d } = e,
+    c = i === 2;
+  if ((c && s(o, t, n), (!c || isTeleportDisabled(d)) && l & 16))
+    for (let v = 0; v < u.length; v++) r(u[v], t, n, 2);
+  c && s(a, t, n);
+}
+function hydrateTeleport(
+  e,
+  t,
+  n,
+  s,
+  r,
+  i,
+  {
+    o: {
+      nextSibling: o,
+      parentNode: a,
+      querySelector: l,
+      insert: u,
+      createText: d,
+    },
+  },
+  c,
+) {
+  const v = (t.target = resolveTarget(t.props, l));
+  if (v) {
+    const E = isTeleportDisabled(t.props),
+      x = v._lpa || v.firstChild;
+    if (t.shapeFlag & 16)
+      if (E)
+        ((t.anchor = c(o(e), t, a(e), n, s, r, i)),
+          (t.targetStart = x),
+          (t.targetAnchor = x && o(x)));
+      else {
+        t.anchor = o(e);
+        let B = x;
+        for (; B;) {
+          if (B && B.nodeType === 8) {
+            if (B.data === "teleport start anchor") t.targetStart = B;
+            else if (B.data === "teleport anchor") {
+              ((t.targetAnchor = B),
+                (v._lpa = t.targetAnchor && o(t.targetAnchor)));
+              break;
+            }
+          }
+          B = o(B);
+        }
+        (t.targetAnchor || prepareAnchor(v, t, d, u),
+          c(x && o(x), t, v, n, s, r, i));
+      }
+    updateCssVars(t, E);
+  }
+  return t.anchor && o(t.anchor);
+}
+const Teleport = TeleportImpl;
+function updateCssVars(e, t) {
+  const n = e.ctx;
+  if (n && n.ut) {
+    let s, r;
+    for (
+      t
+        ? ((s = e.el), (r = e.anchor))
+        : ((s = e.targetStart), (r = e.targetAnchor));
+      s && s !== r;
+    )
+      (s.nodeType === 1 && s.setAttribute("data-v-owner", n.uid),
+        (s = s.nextSibling));
+    n.ut();
+  }
+}
+function prepareAnchor(e, t, n, s) {
+  const r = (t.targetStart = n("")),
+    i = (t.targetAnchor = n(""));
+  return ((r[TeleportEndKey] = i), e && (s(r, e), s(i, e)), i);
+}
+const leaveCbKey = Symbol("_leaveCb"),
+  enterCbKey = Symbol("_enterCb");
+function useTransitionState() {
+  const e = {
+    isMounted: !1,
+    isLeaving: !1,
+    isUnmounting: !1,
+    leavingVNodes: new Map(),
+  };
+  return (
+    onMounted(() => {
+      e.isMounted = !0;
+    }),
+    onBeforeUnmount(() => {
+      e.isUnmounting = !0;
+    }),
+    e
+  );
+}
+const TransitionHookValidator = [Function, Array],
+  BaseTransitionPropsValidators = {
+    mode: String,
+    appear: Boolean,
+    persisted: Boolean,
+    onBeforeEnter: TransitionHookValidator,
+    onEnter: TransitionHookValidator,
+    onAfterEnter: TransitionHookValidator,
+    onEnterCancelled: TransitionHookValidator,
+    onBeforeLeave: TransitionHookValidator,
+    onLeave: TransitionHookValidator,
+    onAfterLeave: TransitionHookValidator,
+    onLeaveCancelled: TransitionHookValidator,
+    onBeforeAppear: TransitionHookValidator,
+    onAppear: TransitionHookValidator,
+    onAfterAppear: TransitionHookValidator,
+    onAppearCancelled: TransitionHookValidator,
+  },
+  recursiveGetSubtree = (e) => {
+    const t = e.subTree;
+    return t.component ? recursiveGetSubtree(t.component) : t;
+  },
+  BaseTransitionImpl = {
+    name: "BaseTransition",
+    props: BaseTransitionPropsValidators,
+    setup(e, { slots: t }) {
+      const n = getCurrentInstance(),
+        s = useTransitionState();
+      return () => {
+        const r = t.default && getTransitionRawChildren(t.default(), !0);
+        if (!r || !r.length) return;
+        const i = findNonCommentChild(r),
+          o = toRaw(e),
+          { mode: a } = o;
+        if (s.isLeaving) return emptyPlaceholder(i);
+        const l = getInnerChild$1(i);
+        if (!l) return emptyPlaceholder(i);
+        let u = resolveTransitionHooks(l, o, s, n, (c) => (u = c));
+        l.type !== Comment && setTransitionHooks(l, u);
+        let d = n.subTree && getInnerChild$1(n.subTree);
+        if (
+          d &&
+          d.type !== Comment &&
+          !isSameVNodeType(l, d) &&
+          recursiveGetSubtree(n).type !== Comment
+        ) {
+          let c = resolveTransitionHooks(d, o, s, n);
+          if ((setTransitionHooks(d, c), a === "out-in" && l.type !== Comment))
+            return (
+              (s.isLeaving = !0),
+              (c.afterLeave = () => {
+                ((s.isLeaving = !1),
+                  n.job.flags & 8 || n.update(),
+                  delete c.afterLeave,
+                  (d = void 0));
+              }),
+              emptyPlaceholder(i)
+            );
+          a === "in-out" && l.type !== Comment
+            ? (c.delayLeave = (v, E, x) => {
+                const B = getLeavingNodesForType(s, d);
+                ((B[String(d.key)] = d),
+                  (v[leaveCbKey] = () => {
+                    (E(),
+                      (v[leaveCbKey] = void 0),
+                      delete u.delayedLeave,
+                      (d = void 0));
+                  }),
+                  (u.delayedLeave = () => {
+                    (x(), delete u.delayedLeave, (d = void 0));
+                  }));
+              })
+            : (d = void 0);
+        } else d && (d = void 0);
+        return i;
+      };
+    },
+  };
+function findNonCommentChild(e) {
+  let t = e[0];
+  if (e.length > 1) {
+    for (const n of e)
+      if (n.type !== Comment) {
+        t = n;
+        break;
+      }
+  }
+  return t;
+}
+const BaseTransition = BaseTransitionImpl;
+function getLeavingNodesForType(e, t) {
+  const { leavingVNodes: n } = e;
+  let s = n.get(t.type);
+  return (s || ((s = Object.create(null)), n.set(t.type, s)), s);
+}
+function resolveTransitionHooks(e, t, n, s, r) {
+  const {
+      appear: i,
+      mode: o,
+      persisted: a = !1,
+      onBeforeEnter: l,
+      onEnter: u,
+      onAfterEnter: d,
+      onEnterCancelled: c,
+      onBeforeLeave: v,
+      onLeave: E,
+      onAfterLeave: x,
+      onLeaveCancelled: B,
+      onBeforeAppear: G,
+      onAppear: q,
+      onAfterAppear: b,
+      onAppearCancelled: N,
+    } = t,
+    z = String(e.key),
+    Y = getLeavingNodesForType(n, e),
+    X = (m, S) => {
+      m && callWithAsyncErrorHandling(m, s, 9, S);
+    },
+    K = (m, S) => {
+      const $ = S[1];
+      (X(m, S),
+        isArray$2(m)
+          ? m.every((R) => R.length <= 1) && $()
+          : m.length <= 1 && $());
+    },
+    w = {
+      mode: o,
+      persisted: a,
+      beforeEnter(m) {
+        let S = l;
+        if (!n.isMounted)
+          if (i) S = G || l;
+          else return;
+        m[leaveCbKey] && m[leaveCbKey](!0);
+        const $ = Y[z];
+        ($ && isSameVNodeType(e, $) && $.el[leaveCbKey] && $.el[leaveCbKey](),
+          X(S, [m]));
+      },
+      enter(m) {
+        let S = u,
+          $ = d,
+          R = c;
+        if (!n.isMounted)
+          if (i) ((S = q || u), ($ = b || d), (R = N || c));
+          else return;
+        let P = !1;
+        const W = (m[enterCbKey] = (D) => {
+          P ||
+            ((P = !0),
+            D ? X(R, [m]) : X($, [m]),
+            w.delayedLeave && w.delayedLeave(),
+            (m[enterCbKey] = void 0));
+        });
+        S ? K(S, [m, W]) : W();
+      },
+      leave(m, S) {
+        const $ = String(e.key);
+        if ((m[enterCbKey] && m[enterCbKey](!0), n.isUnmounting)) return S();
+        X(v, [m]);
+        let R = !1;
+        const P = (m[leaveCbKey] = (W) => {
+          R ||
+            ((R = !0),
+            S(),
+            W ? X(B, [m]) : X(x, [m]),
+            (m[leaveCbKey] = void 0),
+            Y[$] === e && delete Y[$]);
+        });
+        ((Y[$] = e), E ? K(E, [m, P]) : P());
+      },
+      clone(m) {
+        const S = resolveTransitionHooks(m, t, n, s, r);
+        return (r && r(S), S);
+      },
+    };
+  return w;
+}
+function emptyPlaceholder(e) {
+  if (isKeepAlive(e)) return ((e = cloneVNode(e)), (e.children = null), e);
+}
+function getInnerChild$1(e) {
+  if (!isKeepAlive(e))
+    return isTeleport(e.type) && e.children
+      ? findNonCommentChild(e.children)
+      : e;
+  if (e.component) return e.component.subTree;
+  const { shapeFlag: t, children: n } = e;
+  if (n) {
+    if (t & 16) return n[0];
+    if (t & 32 && isFunction$1(n.default)) return n.default();
+  }
+}
+function setTransitionHooks(e, t) {
+  e.shapeFlag & 6 && e.component
+    ? ((e.transition = t), setTransitionHooks(e.component.subTree, t))
+    : e.shapeFlag & 128
+      ? ((e.ssContent.transition = t.clone(e.ssContent)),
+        (e.ssFallback.transition = t.clone(e.ssFallback)))
+      : (e.transition = t);
+}
+function getTransitionRawChildren(e, t = !1, n) {
+  let s = [],
+    r = 0;
+  for (let i = 0; i < e.length; i++) {
+    let o = e[i];
+    const a = n == null ? o.key : String(n) + String(o.key != null ? o.key : i);
+    o.type === Fragment
+      ? (o.patchFlag & 128 && r++,
+        (s = s.concat(getTransitionRawChildren(o.children, t, a))))
+      : (t || o.type !== Comment) &&
+        s.push(a != null ? cloneVNode(o, { key: a }) : o);
+  }
+  if (r > 1) for (let i = 0; i < s.length; i++) s[i].patchFlag = -2;
+  return s;
+}
+/*! #__NO_SIDE_EFFECTS__ */ function defineComponent(e, t) {
+  return isFunction$1(e) ? extend$4({ name: e.name }, t, { setup: e }) : e;
+}
+function markAsyncBoundary(e) {
+  e.ids = [e.ids[0] + e.ids[2]++ + "-", 0, 0];
+}
+function setRef(e, t, n, s, r = !1) {
+  if (isArray$2(e)) {
+    e.forEach((x, B) => setRef(x, t && (isArray$2(t) ? t[B] : t), n, s, r));
+    return;
+  }
+  if (isAsyncWrapper(s) && !r) {
+    s.shapeFlag & 512 &&
+      s.type.__asyncResolved &&
+      s.component.subTree.component &&
+      setRef(e, t, n, s.component.subTree);
+    return;
+  }
+  const i = s.shapeFlag & 4 ? getComponentPublicInstance(s.component) : s.el,
+    o = r ? null : i,
+    { i: a, r: l } = e,
+    u = t && t.r,
+    d = a.refs === EMPTY_OBJ ? (a.refs = {}) : a.refs,
+    c = a.setupState,
+    v = toRaw(c),
+    E = c === EMPTY_OBJ ? () => !1 : (x) => hasOwn(v, x);
+  if (
+    (u != null &&
+      u !== l &&
+      (isString$1(u)
+        ? ((d[u] = null), E(u) && (c[u] = null))
+        : isRef(u) && (u.value = null)),
+    isFunction$1(l))
+  )
+    callWithErrorHandling(l, a, 12, [o, d]);
+  else {
+    const x = isString$1(l),
+      B = isRef(l);
+    if (x || B) {
+      const G = () => {
+        if (e.f) {
+          const q = x ? (E(l) ? c[l] : d[l]) : l.value;
+          r
+            ? isArray$2(q) && remove(q, i)
+            : isArray$2(q)
+              ? q.includes(i) || q.push(i)
+              : x
+                ? ((d[l] = [i]), E(l) && (c[l] = d[l]))
+                : ((l.value = [i]), e.k && (d[e.k] = l.value));
+        } else
+          x
+            ? ((d[l] = o), E(l) && (c[l] = o))
+            : B && ((l.value = o), e.k && (d[e.k] = o));
+      };
+      o ? ((G.id = -1), queuePostRenderEffect(G, n)) : G();
+    }
+  }
+}
+getGlobalThis().requestIdleCallback;
+getGlobalThis().cancelIdleCallback;
+const isAsyncWrapper = (e) => !!e.type.__asyncLoader,
+  isKeepAlive = (e) => e.type.__isKeepAlive;
+function onActivated(e, t) {
+  registerKeepAliveHook(e, "a", t);
+}
+function onDeactivated(e, t) {
+  registerKeepAliveHook(e, "da", t);
+}
+function registerKeepAliveHook(e, t, n = currentInstance) {
+  const s =
+    e.__wdc ||
+    (e.__wdc = () => {
+      let r = n;
+      for (; r;) {
+        if (r.isDeactivated) return;
+        r = r.parent;
+      }
+      return e();
+    });
+  if ((injectHook(t, s, n), n)) {
+    let r = n.parent;
+    for (; r && r.parent;)
+      (isKeepAlive(r.parent.vnode) && injectToKeepAliveRoot(s, t, n, r),
+        (r = r.parent));
+  }
+}
+function injectToKeepAliveRoot(e, t, n, s) {
+  const r = injectHook(t, e, s, !0);
+  onUnmounted(() => {
+    remove(s[t], r);
+  }, n);
+}
+function injectHook(e, t, n = currentInstance, s = !1) {
+  if (n) {
+    const r = n[e] || (n[e] = []),
+      i =
+        t.__weh ||
+        (t.__weh = (...o) => {
+          pauseTracking();
+          const a = setCurrentInstance(n),
+            l = callWithAsyncErrorHandling(t, n, e, o);
+          return (a(), resetTracking(), l);
+        });
+    return (s ? r.unshift(i) : r.push(i), i);
+  }
+}
+const createHook =
+    (e) =>
+    (t, n = currentInstance) => {
+      (!isInSSRComponentSetup || e === "sp") &&
+        injectHook(e, (...s) => t(...s), n);
+    },
+  onBeforeMount = createHook("bm"),
+  onMounted = createHook("m"),
+  onBeforeUpdate = createHook("bu"),
+  onUpdated = createHook("u"),
+  onBeforeUnmount = createHook("bum"),
+  onUnmounted = createHook("um"),
+  onServerPrefetch = createHook("sp"),
+  onRenderTriggered = createHook("rtg"),
+  onRenderTracked = createHook("rtc");
+function onErrorCaptured(e, t = currentInstance) {
+  injectHook("ec", e, t);
+}
+const COMPONENTS = "components";
+function resolveComponent(e, t) {
+  return resolveAsset(COMPONENTS, e, !0, t) || e;
+}
+const NULL_DYNAMIC_COMPONENT = Symbol.for("v-ndc");
+function resolveAsset(e, t, n = !0, s = !1) {
+  const r = currentRenderingInstance || currentInstance;
+  if (r) {
+    const i = r.type;
+    {
+      const a = getComponentName(i, !1);
+      if (a && (a === t || a === camelize(t) || a === capitalize(camelize(t))))
+        return i;
+    }
+    const o = resolve(r[e] || i[e], t) || resolve(r.appContext[e], t);
+    return !o && s ? i : o;
+  }
+}
+function resolve(e, t) {
+  return e && (e[t] || e[camelize(t)] || e[capitalize(camelize(t))]);
+}
+function renderList(e, t, n, s) {
+  let r;
+  const i = n,
+    o = isArray$2(e);
+  if (o || isString$1(e)) {
+    const a = o && isReactive(e);
+    let l = !1,
+      u = !1;
+    (a && ((l = !isShallow(e)), (u = isReadonly(e)), (e = shallowReadArray(e))),
+      (r = new Array(e.length)));
+    for (let d = 0, c = e.length; d < c; d++)
+      r[d] = t(
+        l ? (u ? toReadonly(toReactive(e[d])) : toReactive(e[d])) : e[d],
+        d,
+        void 0,
+        i,
+      );
+  } else if (typeof e == "number") {
+    r = new Array(e);
+    for (let a = 0; a < e; a++) r[a] = t(a + 1, a, void 0, i);
+  } else if (isObject$4(e))
+    if (e[Symbol.iterator]) r = Array.from(e, (a, l) => t(a, l, void 0, i));
+    else {
+      const a = Object.keys(e);
+      r = new Array(a.length);
+      for (let l = 0, u = a.length; l < u; l++) {
+        const d = a[l];
+        r[l] = t(e[d], d, l, i);
+      }
+    }
+  else r = [];
+  return r;
+}
+function renderSlot(e, t, n = {}, s, r) {
+  if (
+    currentRenderingInstance.ce ||
+    (currentRenderingInstance.parent &&
+      isAsyncWrapper(currentRenderingInstance.parent) &&
+      currentRenderingInstance.parent.ce)
+  )
+    return (
+      openBlock(),
+      createBlock(Fragment, null, [createVNode("slot", n, s)], 64)
+    );
+  let i = e[t];
+  (i && i._c && (i._d = !1), openBlock());
+  const o = i && ensureValidVNode(i(n)),
+    a = n.key || (o && o.key),
+    l = createBlock(
+      Fragment,
+      { key: (a && !isSymbol(a) ? a : `_${t}`) + "" },
+      o || [],
+      o && e._ === 1 ? 64 : -2,
+    );
+  return (
+    l.scopeId && (l.slotScopeIds = [l.scopeId + "-s"]),
+    i && i._c && (i._d = !0),
+    l
+  );
+}
+function ensureValidVNode(e) {
+  return e.some((t) =>
+    isVNode(t)
+      ? !(
+          t.type === Comment ||
+          (t.type === Fragment && !ensureValidVNode(t.children))
+        )
+      : !0,
+  )
+    ? e
+    : null;
+}
+const getPublicInstance = (e) =>
+    e
+      ? isStatefulComponent(e)
+        ? getComponentPublicInstance(e)
+        : getPublicInstance(e.parent)
+      : null,
+  publicPropertiesMap = extend$4(Object.create(null), {
+    $: (e) => e,
+    $el: (e) => e.vnode.el,
+    $data: (e) => e.data,
+    $props: (e) => e.props,
+    $attrs: (e) => e.attrs,
+    $slots: (e) => e.slots,
+    $refs: (e) => e.refs,
+    $parent: (e) => getPublicInstance(e.parent),
+    $root: (e) => getPublicInstance(e.root),
+    $host: (e) => e.ce,
+    $emit: (e) => e.emit,
+    $options: (e) => resolveMergedOptions(e),
+    $forceUpdate: (e) =>
+      e.f ||
+      (e.f = () => {
+        queueJob(e.update);
+      }),
+    $nextTick: (e) => e.n || (e.n = nextTick$1.bind(e.proxy)),
+    $watch: (e) => instanceWatch.bind(e),
+  }),
+  hasSetupBinding = (e, t) =>
+    e !== EMPTY_OBJ && !e.__isScriptSetup && hasOwn(e, t),
+  PublicInstanceProxyHandlers = {
+    get({ _: e }, t) {
+      if (t === "__v_skip") return !0;
+      const {
+        ctx: n,
+        setupState: s,
+        data: r,
+        props: i,
+        accessCache: o,
+        type: a,
+        appContext: l,
+      } = e;
+      let u;
+      if (t[0] !== "$") {
+        const E = o[t];
+        if (E !== void 0)
+          switch (E) {
+            case 1:
+              return s[t];
+            case 2:
+              return r[t];
+            case 4:
+              return n[t];
+            case 3:
+              return i[t];
+          }
+        else {
+          if (hasSetupBinding(s, t)) return ((o[t] = 1), s[t]);
+          if (r !== EMPTY_OBJ && hasOwn(r, t)) return ((o[t] = 2), r[t]);
+          if ((u = e.propsOptions[0]) && hasOwn(u, t))
+            return ((o[t] = 3), i[t]);
+          if (n !== EMPTY_OBJ && hasOwn(n, t)) return ((o[t] = 4), n[t]);
+          shouldCacheAccess && (o[t] = 0);
+        }
+      }
+      const d = publicPropertiesMap[t];
+      let c, v;
+      if (d) return (t === "$attrs" && track(e.attrs, "get", ""), d(e));
+      if ((c = a.__cssModules) && (c = c[t])) return c;
+      if (n !== EMPTY_OBJ && hasOwn(n, t)) return ((o[t] = 4), n[t]);
+      if (((v = l.config.globalProperties), hasOwn(v, t))) return v[t];
+    },
+    set({ _: e }, t, n) {
+      const { data: s, setupState: r, ctx: i } = e;
+      return hasSetupBinding(r, t)
+        ? ((r[t] = n), !0)
+        : s !== EMPTY_OBJ && hasOwn(s, t)
+          ? ((s[t] = n), !0)
+          : hasOwn(e.props, t) || (t[0] === "$" && t.slice(1) in e)
+            ? !1
+            : ((i[t] = n), !0);
+    },
+    has(
+      {
+        _: {
+          data: e,
+          setupState: t,
+          accessCache: n,
+          ctx: s,
+          appContext: r,
+          propsOptions: i,
+        },
+      },
+      o,
+    ) {
+      let a;
+      return (
+        !!n[o] ||
+        (e !== EMPTY_OBJ && hasOwn(e, o)) ||
+        hasSetupBinding(t, o) ||
+        ((a = i[0]) && hasOwn(a, o)) ||
+        hasOwn(s, o) ||
+        hasOwn(publicPropertiesMap, o) ||
+        hasOwn(r.config.globalProperties, o)
+      );
+    },
+    defineProperty(e, t, n) {
+      return (
+        n.get != null
+          ? (e._.accessCache[t] = 0)
+          : hasOwn(n, "value") && this.set(e, t, n.value, null),
+        Reflect.defineProperty(e, t, n)
+      );
+    },
+  };
+function normalizePropsOrEmits(e) {
+  return isArray$2(e) ? e.reduce((t, n) => ((t[n] = null), t), {}) : e;
+}
+let shouldCacheAccess = !0;
+function applyOptions(e) {
+  const t = resolveMergedOptions(e),
+    n = e.proxy,
+    s = e.ctx;
+  ((shouldCacheAccess = !1),
+    t.beforeCreate && callHook$1(t.beforeCreate, e, "bc"));
+  const {
+    data: r,
+    computed: i,
+    methods: o,
+    watch: a,
+    provide: l,
+    inject: u,
+    created: d,
+    beforeMount: c,
+    mounted: v,
+    beforeUpdate: E,
+    updated: x,
+    activated: B,
+    deactivated: G,
+    beforeDestroy: q,
+    beforeUnmount: b,
+    destroyed: N,
+    unmounted: z,
+    render: Y,
+    renderTracked: X,
+    renderTriggered: K,
+    errorCaptured: w,
+    serverPrefetch: m,
+    expose: S,
+    inheritAttrs: $,
+    components: R,
+    directives: P,
+    filters: W,
+  } = t;
+  if ((u && resolveInjections(u, s, null), o))
+    for (const V in o) {
+      const F = o[V];
+      isFunction$1(F) && (s[V] = F.bind(n));
+    }
+  if (r) {
+    const V = r.call(n, n);
+    isObject$4(V) && (e.data = reactive(V));
+  }
+  if (((shouldCacheAccess = !0), i))
+    for (const V in i) {
+      const F = i[V],
+        Z = isFunction$1(F)
+          ? F.bind(n, n)
+          : isFunction$1(F.get)
+            ? F.get.bind(n, n)
+            : NOOP,
+        re = !isFunction$1(F) && isFunction$1(F.set) ? F.set.bind(n) : NOOP,
+        ae = computed({ get: Z, set: re });
+      Object.defineProperty(s, V, {
+        enumerable: !0,
+        configurable: !0,
+        get: () => ae.value,
+        set: (ce) => (ae.value = ce),
+      });
+    }
+  if (a) for (const V in a) createWatcher(a[V], s, n, V);
+  if (l) {
+    const V = isFunction$1(l) ? l.call(n) : l;
+    Reflect.ownKeys(V).forEach((F) => {
+      provide(F, V[F]);
+    });
+  }
+  d && callHook$1(d, e, "c");
+  function k(V, F) {
+    isArray$2(F) ? F.forEach((Z) => V(Z.bind(n))) : F && V(F.bind(n));
+  }
+  if (
+    (k(onBeforeMount, c),
+    k(onMounted, v),
+    k(onBeforeUpdate, E),
+    k(onUpdated, x),
+    k(onActivated, B),
+    k(onDeactivated, G),
+    k(onErrorCaptured, w),
+    k(onRenderTracked, X),
+    k(onRenderTriggered, K),
+    k(onBeforeUnmount, b),
+    k(onUnmounted, z),
+    k(onServerPrefetch, m),
+    isArray$2(S))
+  )
+    if (S.length) {
+      const V = e.exposed || (e.exposed = {});
+      S.forEach((F) => {
+        Object.defineProperty(V, F, {
+          get: () => n[F],
+          set: (Z) => (n[F] = Z),
+        });
+      });
+    } else e.exposed || (e.exposed = {});
+  (Y && e.render === NOOP && (e.render = Y),
+    $ != null && (e.inheritAttrs = $),
+    R && (e.components = R),
+    P && (e.directives = P),
+    m && markAsyncBoundary(e));
+}
+function resolveInjections(e, t, n = NOOP) {
+  isArray$2(e) && (e = normalizeInject(e));
+  for (const s in e) {
+    const r = e[s];
+    let i;
+    (isObject$4(r)
+      ? "default" in r
+        ? (i = inject(r.from || s, r.default, !0))
+        : (i = inject(r.from || s))
+      : (i = inject(r)),
+      isRef(i)
+        ? Object.defineProperty(t, s, {
+            enumerable: !0,
+            configurable: !0,
+            get: () => i.value,
+            set: (o) => (i.value = o),
+          })
+        : (t[s] = i));
+  }
+}
+function callHook$1(e, t, n) {
+  callWithAsyncErrorHandling(
+    isArray$2(e) ? e.map((s) => s.bind(t.proxy)) : e.bind(t.proxy),
+    t,
+    n,
+  );
+}
+function createWatcher(e, t, n, s) {
+  let r = s.includes(".") ? createPathGetter(n, s) : () => n[s];
+  if (isString$1(e)) {
+    const i = t[e];
+    isFunction$1(i) && watch(r, i);
+  } else if (isFunction$1(e)) watch(r, e.bind(n));
+  else if (isObject$4(e))
+    if (isArray$2(e)) e.forEach((i) => createWatcher(i, t, n, s));
+    else {
+      const i = isFunction$1(e.handler) ? e.handler.bind(n) : t[e.handler];
+      isFunction$1(i) && watch(r, i, e);
+    }
+}
+function resolveMergedOptions(e) {
+  const t = e.type,
+    { mixins: n, extends: s } = t,
+    {
+      mixins: r,
+      optionsCache: i,
+      config: { optionMergeStrategies: o },
+    } = e.appContext,
+    a = i.get(t);
+  let l;
+  return (
+    a
+      ? (l = a)
+      : !r.length && !n && !s
+        ? (l = t)
+        : ((l = {}),
+          r.length && r.forEach((u) => mergeOptions$1(l, u, o, !0)),
+          mergeOptions$1(l, t, o)),
+    isObject$4(t) && i.set(t, l),
+    l
+  );
+}
+function mergeOptions$1(e, t, n, s = !1) {
+  const { mixins: r, extends: i } = t;
+  (i && mergeOptions$1(e, i, n, !0),
+    r && r.forEach((o) => mergeOptions$1(e, o, n, !0)));
+  for (const o in t)
+    if (!(s && o === "expose")) {
+      const a = internalOptionMergeStrats[o] || (n && n[o]);
+      e[o] = a ? a(e[o], t[o]) : t[o];
+    }
+  return e;
+}
+const internalOptionMergeStrats = {
+  data: mergeDataFn,
+  props: mergeEmitsOrPropsOptions,
+  emits: mergeEmitsOrPropsOptions,
+  methods: mergeObjectOptions,
+  computed: mergeObjectOptions,
+  beforeCreate: mergeAsArray,
+  created: mergeAsArray,
+  beforeMount: mergeAsArray,
+  mounted: mergeAsArray,
+  beforeUpdate: mergeAsArray,
+  updated: mergeAsArray,
+  beforeDestroy: mergeAsArray,
+  beforeUnmount: mergeAsArray,
+  destroyed: mergeAsArray,
+  unmounted: mergeAsArray,
+  activated: mergeAsArray,
+  deactivated: mergeAsArray,
+  errorCaptured: mergeAsArray,
+  serverPrefetch: mergeAsArray,
+  components: mergeObjectOptions,
+  directives: mergeObjectOptions,
+  watch: mergeWatchOptions,
+  provide: mergeDataFn,
+  inject: mergeInject,
+};
+function mergeDataFn(e, t) {
+  return t
+    ? e
+      ? function () {
+          return extend$4(
+            isFunction$1(e) ? e.call(this, this) : e,
+            isFunction$1(t) ? t.call(this, this) : t,
+          );
+        }
+      : t
+    : e;
+}
+function mergeInject(e, t) {
+  return mergeObjectOptions(normalizeInject(e), normalizeInject(t));
+}
+function normalizeInject(e) {
+  if (isArray$2(e)) {
+    const t = {};
+    for (let n = 0; n < e.length; n++) t[e[n]] = e[n];
+    return t;
+  }
+  return e;
+}
+function mergeAsArray(e, t) {
+  return e ? [...new Set([].concat(e, t))] : t;
+}
+function mergeObjectOptions(e, t) {
+  return e ? extend$4(Object.create(null), e, t) : t;
+}
+function mergeEmitsOrPropsOptions(e, t) {
+  return e
+    ? isArray$2(e) && isArray$2(t)
+      ? [...new Set([...e, ...t])]
+      : extend$4(
+          Object.create(null),
+          normalizePropsOrEmits(e),
+          normalizePropsOrEmits(t ?? {}),
+        )
+    : t;
+}
+function mergeWatchOptions(e, t) {
+  if (!e) return t;
+  if (!t) return e;
+  const n = extend$4(Object.create(null), e);
+  for (const s in t) n[s] = mergeAsArray(e[s], t[s]);
+  return n;
+}
+function createAppContext() {
+  return {
+    app: null,
+    config: {
+      isNativeTag: NO,
+      performance: !1,
+      globalProperties: {},
+      optionMergeStrategies: {},
+      errorHandler: void 0,
+      warnHandler: void 0,
+      compilerOptions: {},
+    },
+    mixins: [],
+    components: {},
+    directives: {},
+    provides: Object.create(null),
+    optionsCache: new WeakMap(),
+    propsCache: new WeakMap(),
+    emitsCache: new WeakMap(),
+  };
+}
+let uid$1 = 0;
+function createAppAPI(e, t) {
+  return function (s, r = null) {
+    (isFunction$1(s) || (s = extend$4({}, s)),
+      r != null && !isObject$4(r) && (r = null));
+    const i = createAppContext(),
+      o = new WeakSet(),
+      a = [];
+    let l = !1;
+    const u = (i.app = {
+      _uid: uid$1++,
+      _component: s,
+      _props: r,
+      _container: null,
+      _context: i,
+      _instance: null,
+      version,
+      get config() {
+        return i.config;
+      },
+      set config(d) {},
+      use(d, ...c) {
+        return (
+          o.has(d) ||
+            (d && isFunction$1(d.install)
+              ? (o.add(d), d.install(u, ...c))
+              : isFunction$1(d) && (o.add(d), d(u, ...c))),
+          u
+        );
+      },
+      mixin(d) {
+        return (i.mixins.includes(d) || i.mixins.push(d), u);
+      },
+      component(d, c) {
+        return c ? ((i.components[d] = c), u) : i.components[d];
+      },
+      directive(d, c) {
+        return c ? ((i.directives[d] = c), u) : i.directives[d];
+      },
+      mount(d, c, v) {
+        if (!l) {
+          const E = u._ceVNode || createVNode(s, r);
+          return (
+            (E.appContext = i),
+            v === !0 ? (v = "svg") : v === !1 && (v = void 0),
+            e(E, d, v),
+            (l = !0),
+            (u._container = d),
+            (d.__vue_app__ = u),
+            getComponentPublicInstance(E.component)
+          );
+        }
+      },
+      onUnmount(d) {
+        a.push(d);
+      },
+      unmount() {
+        l &&
+          (callWithAsyncErrorHandling(a, u._instance, 16),
+          e(null, u._container),
+          delete u._container.__vue_app__);
+      },
+      provide(d, c) {
+        return ((i.provides[d] = c), u);
+      },
+      runWithContext(d) {
+        const c = currentApp;
+        currentApp = u;
+        try {
+          return d();
+        } finally {
+          currentApp = c;
+        }
+      },
+    });
+    return u;
+  };
+}
+let currentApp = null;
+function provide(e, t) {
+  if (currentInstance) {
+    let n = currentInstance.provides;
+    const s = currentInstance.parent && currentInstance.parent.provides;
+    (s === n && (n = currentInstance.provides = Object.create(s)), (n[e] = t));
+  }
+}
+function inject(e, t, n = !1) {
+  const s = currentInstance || currentRenderingInstance;
+  if (s || currentApp) {
+    let r = currentApp
+      ? currentApp._context.provides
+      : s
+        ? s.parent == null || s.ce
+          ? s.vnode.appContext && s.vnode.appContext.provides
+          : s.parent.provides
+        : void 0;
+    if (r && e in r) return r[e];
+    if (arguments.length > 1)
+      return n && isFunction$1(t) ? t.call(s && s.proxy) : t;
+  }
+}
+function hasInjectionContext() {
+  return !!(currentInstance || currentRenderingInstance || currentApp);
+}
+const internalObjectProto = {},
+  createInternalObject = () => Object.create(internalObjectProto),
+  isInternalObject = (e) => Object.getPrototypeOf(e) === internalObjectProto;
+function initProps(e, t, n, s = !1) {
+  const r = {},
+    i = createInternalObject();
+  ((e.propsDefaults = Object.create(null)), setFullProps(e, t, r, i));
+  for (const o in e.propsOptions[0]) o in r || (r[o] = void 0);
+  (n
+    ? (e.props = s ? r : shallowReactive(r))
+    : e.type.props
+      ? (e.props = r)
+      : (e.props = i),
+    (e.attrs = i));
+}
+function updateProps(e, t, n, s) {
+  const {
+      props: r,
+      attrs: i,
+      vnode: { patchFlag: o },
+    } = e,
+    a = toRaw(r),
+    [l] = e.propsOptions;
+  let u = !1;
+  if ((s || o > 0) && !(o & 16)) {
+    if (o & 8) {
+      const d = e.vnode.dynamicProps;
+      for (let c = 0; c < d.length; c++) {
+        let v = d[c];
+        if (isEmitListener(e.emitsOptions, v)) continue;
+        const E = t[v];
+        if (l)
+          if (hasOwn(i, v)) E !== i[v] && ((i[v] = E), (u = !0));
+          else {
+            const x = camelize(v);
+            r[x] = resolvePropValue(l, a, x, E, e, !1);
+          }
+        else E !== i[v] && ((i[v] = E), (u = !0));
+      }
+    }
+  } else {
+    setFullProps(e, t, r, i) && (u = !0);
+    let d;
+    for (const c in a)
+      (!t || (!hasOwn(t, c) && ((d = hyphenate(c)) === c || !hasOwn(t, d)))) &&
+        (l
+          ? n &&
+            (n[c] !== void 0 || n[d] !== void 0) &&
+            (r[c] = resolvePropValue(l, a, c, void 0, e, !0))
+          : delete r[c]);
+    if (i !== a)
+      for (const c in i) (!t || !hasOwn(t, c)) && (delete i[c], (u = !0));
+  }
+  u && trigger(e.attrs, "set", "");
+}
+function setFullProps(e, t, n, s) {
+  const [r, i] = e.propsOptions;
+  let o = !1,
+    a;
+  if (t)
+    for (let l in t) {
+      if (isReservedProp(l)) continue;
+      const u = t[l];
+      let d;
+      r && hasOwn(r, (d = camelize(l)))
+        ? !i || !i.includes(d)
+          ? (n[d] = u)
+          : ((a || (a = {}))[d] = u)
+        : isEmitListener(e.emitsOptions, l) ||
+          ((!(l in s) || u !== s[l]) && ((s[l] = u), (o = !0)));
+    }
+  if (i) {
+    const l = toRaw(n),
+      u = a || EMPTY_OBJ;
+    for (let d = 0; d < i.length; d++) {
+      const c = i[d];
+      n[c] = resolvePropValue(r, l, c, u[c], e, !hasOwn(u, c));
+    }
+  }
+  return o;
+}
+function resolvePropValue(e, t, n, s, r, i) {
+  const o = e[n];
+  if (o != null) {
+    const a = hasOwn(o, "default");
+    if (a && s === void 0) {
+      const l = o.default;
+      if (o.type !== Function && !o.skipFactory && isFunction$1(l)) {
+        const { propsDefaults: u } = r;
+        if (n in u) s = u[n];
+        else {
+          const d = setCurrentInstance(r);
+          ((s = u[n] = l.call(null, t)), d());
+        }
+      } else s = l;
+      r.ce && r.ce._setProp(n, s);
+    }
+    o[0] &&
+      (i && !a
+        ? (s = !1)
+        : o[1] && (s === "" || s === hyphenate(n)) && (s = !0));
+  }
+  return s;
+}
+const mixinPropsCache = new WeakMap();
+function normalizePropsOptions(e, t, n = !1) {
+  const s = n ? mixinPropsCache : t.propsCache,
+    r = s.get(e);
+  if (r) return r;
+  const i = e.props,
+    o = {},
+    a = [];
+  let l = !1;
+  if (!isFunction$1(e)) {
+    const d = (c) => {
+      l = !0;
+      const [v, E] = normalizePropsOptions(c, t, !0);
+      (extend$4(o, v), E && a.push(...E));
+    };
+    (!n && t.mixins.length && t.mixins.forEach(d),
+      e.extends && d(e.extends),
+      e.mixins && e.mixins.forEach(d));
+  }
+  if (!i && !l) return (isObject$4(e) && s.set(e, EMPTY_ARR), EMPTY_ARR);
+  if (isArray$2(i))
+    for (let d = 0; d < i.length; d++) {
+      const c = camelize(i[d]);
+      validatePropName(c) && (o[c] = EMPTY_OBJ);
+    }
+  else if (i)
+    for (const d in i) {
+      const c = camelize(d);
+      if (validatePropName(c)) {
+        const v = i[d],
+          E = (o[c] =
+            isArray$2(v) || isFunction$1(v) ? { type: v } : extend$4({}, v)),
+          x = E.type;
+        let B = !1,
+          G = !0;
+        if (isArray$2(x))
+          for (let q = 0; q < x.length; ++q) {
+            const b = x[q],
+              N = isFunction$1(b) && b.name;
+            if (N === "Boolean") {
+              B = !0;
+              break;
+            } else N === "String" && (G = !1);
+          }
+        else B = isFunction$1(x) && x.name === "Boolean";
+        ((E[0] = B), (E[1] = G), (B || hasOwn(E, "default")) && a.push(c));
+      }
+    }
+  const u = [o, a];
+  return (isObject$4(e) && s.set(e, u), u);
+}
+function validatePropName(e) {
+  return e[0] !== "$" && !isReservedProp(e);
+}
+const isInternalKey = (e) => e[0] === "_" || e === "$stable",
+  normalizeSlotValue = (e) =>
+    isArray$2(e) ? e.map(normalizeVNode) : [normalizeVNode(e)],
+  normalizeSlot$1 = (e, t, n) => {
+    if (t._n) return t;
+    const s = withCtx((...r) => normalizeSlotValue(t(...r)), n);
+    return ((s._c = !1), s);
+  },
+  normalizeObjectSlots = (e, t, n) => {
+    const s = e._ctx;
+    for (const r in e) {
+      if (isInternalKey(r)) continue;
+      const i = e[r];
+      if (isFunction$1(i)) t[r] = normalizeSlot$1(r, i, s);
+      else if (i != null) {
+        const o = normalizeSlotValue(i);
+        t[r] = () => o;
+      }
+    }
+  },
+  normalizeVNodeSlots = (e, t) => {
+    const n = normalizeSlotValue(t);
+    e.slots.default = () => n;
+  },
+  assignSlots = (e, t, n) => {
+    for (const s in t) (n || !isInternalKey(s)) && (e[s] = t[s]);
+  },
+  initSlots = (e, t, n) => {
+    const s = (e.slots = createInternalObject());
+    if (e.vnode.shapeFlag & 32) {
+      const r = t.__;
+      r && def(s, "__", r, !0);
+      const i = t._;
+      i
+        ? (assignSlots(s, t, n), n && def(s, "_", i, !0))
+        : normalizeObjectSlots(t, s);
+    } else t && normalizeVNodeSlots(e, t);
+  },
+  updateSlots = (e, t, n) => {
+    const { vnode: s, slots: r } = e;
+    let i = !0,
+      o = EMPTY_OBJ;
+    if (s.shapeFlag & 32) {
+      const a = t._;
+      (a
+        ? n && a === 1
+          ? (i = !1)
+          : assignSlots(r, t, n)
+        : ((i = !t.$stable), normalizeObjectSlots(t, r)),
+        (o = t));
+    } else t && (normalizeVNodeSlots(e, t), (o = { default: 1 }));
+    if (i) for (const a in r) !isInternalKey(a) && o[a] == null && delete r[a];
+  },
+  queuePostRenderEffect = queueEffectWithSuspense;
+function createRenderer(e) {
+  return baseCreateRenderer(e);
+}
+function baseCreateRenderer(e, t) {
+  const n = getGlobalThis();
+  n.__VUE__ = !0;
+  const {
+      insert: s,
+      remove: r,
+      patchProp: i,
+      createElement: o,
+      createText: a,
+      createComment: l,
+      setText: u,
+      setElementText: d,
+      parentNode: c,
+      nextSibling: v,
+      setScopeId: E = NOOP,
+      insertStaticContent: x,
+    } = e,
+    B = (
+      y,
+      T,
+      g,
+      C = null,
+      I = null,
+      O = null,
+      M = void 0,
+      U = null,
+      H = !!T.dynamicChildren,
+    ) => {
+      if (y === T) return;
+      (y && !isSameVNodeType(y, T) && ((C = Q(y)), ce(y, I, O, !0), (y = null)),
+        T.patchFlag === -2 && ((H = !1), (T.dynamicChildren = null)));
+      const { type: J, ref: te, shapeFlag: ee } = T;
+      switch (J) {
+        case Text:
+          G(y, T, g, C);
+          break;
+        case Comment:
+          q(y, T, g, C);
+          break;
+        case Static:
+          y == null && b(T, g, C, M);
+          break;
+        case Fragment:
+          R(y, T, g, C, I, O, M, U, H);
+          break;
+        default:
+          ee & 1
+            ? Y(y, T, g, C, I, O, M, U, H)
+            : ee & 6
+              ? P(y, T, g, C, I, O, M, U, H)
+              : (ee & 64 || ee & 128) &&
+                J.process(y, T, g, C, I, O, M, U, H, A);
+      }
+      te != null && I
+        ? setRef(te, y && y.ref, O, T || y, !T)
+        : te == null && y && y.ref != null && setRef(y.ref, null, O, y, !0);
+    },
+    G = (y, T, g, C) => {
+      if (y == null) s((T.el = a(T.children)), g, C);
+      else {
+        const I = (T.el = y.el);
+        T.children !== y.children && u(I, T.children);
+      }
+    },
+    q = (y, T, g, C) => {
+      y == null ? s((T.el = l(T.children || "")), g, C) : (T.el = y.el);
+    },
+    b = (y, T, g, C) => {
+      [y.el, y.anchor] = x(y.children, T, g, C, y.el, y.anchor);
+    },
+    N = ({ el: y, anchor: T }, g, C) => {
+      let I;
+      for (; y && y !== T;) ((I = v(y)), s(y, g, C), (y = I));
+      s(T, g, C);
+    },
+    z = ({ el: y, anchor: T }) => {
+      let g;
+      for (; y && y !== T;) ((g = v(y)), r(y), (y = g));
+      r(T);
+    },
+    Y = (y, T, g, C, I, O, M, U, H) => {
+      (T.type === "svg" ? (M = "svg") : T.type === "math" && (M = "mathml"),
+        y == null ? X(T, g, C, I, O, M, U, H) : m(y, T, I, O, M, U, H));
+    },
+    X = (y, T, g, C, I, O, M, U) => {
+      let H, J;
+      const { props: te, shapeFlag: ee, transition: oe, dirs: le } = y;
+      if (
+        ((H = y.el = o(y.type, O, te && te.is, te)),
+        ee & 8
+          ? d(H, y.children)
+          : ee & 16 &&
+            w(y.children, H, null, C, I, resolveChildrenNamespace(y, O), M, U),
+        le && invokeDirectiveHook(y, null, C, "created"),
+        K(H, y, y.scopeId, M, C),
+        te)
+      ) {
+        for (const ue in te)
+          ue !== "value" && !isReservedProp(ue) && i(H, ue, null, te[ue], O, C);
+        ("value" in te && i(H, "value", null, te.value, O),
+          (J = te.onVnodeBeforeMount) && invokeVNodeHook(J, C, y));
+      }
+      le && invokeDirectiveHook(y, null, C, "beforeMount");
+      const fe = needTransition(I, oe);
+      (fe && oe.beforeEnter(H),
+        s(H, T, g),
+        ((J = te && te.onVnodeMounted) || fe || le) &&
+          queuePostRenderEffect(() => {
+            (J && invokeVNodeHook(J, C, y),
+              fe && oe.enter(H),
+              le && invokeDirectiveHook(y, null, C, "mounted"));
+          }, I));
+    },
+    K = (y, T, g, C, I) => {
+      if ((g && E(y, g), C)) for (let O = 0; O < C.length; O++) E(y, C[O]);
+      if (I) {
+        let O = I.subTree;
+        if (
+          T === O ||
+          (isSuspense(O.type) && (O.ssContent === T || O.ssFallback === T))
+        ) {
+          const M = I.vnode;
+          K(y, M, M.scopeId, M.slotScopeIds, I.parent);
+        }
+      }
+    },
+    w = (y, T, g, C, I, O, M, U, H = 0) => {
+      for (let J = H; J < y.length; J++) {
+        const te = (y[J] = U ? cloneIfMounted(y[J]) : normalizeVNode(y[J]));
+        B(null, te, T, g, C, I, O, M, U);
+      }
+    },
+    m = (y, T, g, C, I, O, M) => {
+      const U = (T.el = y.el);
+      let { patchFlag: H, dynamicChildren: J, dirs: te } = T;
+      H |= y.patchFlag & 16;
+      const ee = y.props || EMPTY_OBJ,
+        oe = T.props || EMPTY_OBJ;
+      let le;
+      if (
+        (g && toggleRecurse(g, !1),
+        (le = oe.onVnodeBeforeUpdate) && invokeVNodeHook(le, g, T, y),
+        te && invokeDirectiveHook(T, y, g, "beforeUpdate"),
+        g && toggleRecurse(g, !0),
+        ((ee.innerHTML && oe.innerHTML == null) ||
+          (ee.textContent && oe.textContent == null)) &&
+          d(U, ""),
+        J
+          ? S(y.dynamicChildren, J, U, g, C, resolveChildrenNamespace(T, I), O)
+          : M || F(y, T, U, null, g, C, resolveChildrenNamespace(T, I), O, !1),
+        H > 0)
+      ) {
+        if (H & 16) $(U, ee, oe, g, I);
+        else if (
+          (H & 2 && ee.class !== oe.class && i(U, "class", null, oe.class, I),
+          H & 4 && i(U, "style", ee.style, oe.style, I),
+          H & 8)
+        ) {
+          const fe = T.dynamicProps;
+          for (let ue = 0; ue < fe.length; ue++) {
+            const de = fe[ue],
+              me = ee[de],
+              Se = oe[de];
+            (Se !== me || de === "value") && i(U, de, me, Se, I, g);
+          }
+        }
+        H & 1 && y.children !== T.children && d(U, T.children);
+      } else !M && J == null && $(U, ee, oe, g, I);
+      ((le = oe.onVnodeUpdated) || te) &&
+        queuePostRenderEffect(() => {
+          (le && invokeVNodeHook(le, g, T, y),
+            te && invokeDirectiveHook(T, y, g, "updated"));
+        }, C);
+    },
+    S = (y, T, g, C, I, O, M) => {
+      for (let U = 0; U < T.length; U++) {
+        const H = y[U],
+          J = T[U],
+          te =
+            H.el &&
+            (H.type === Fragment || !isSameVNodeType(H, J) || H.shapeFlag & 198)
+              ? c(H.el)
+              : g;
+        B(H, J, te, null, C, I, O, M, !0);
+      }
+    },
+    $ = (y, T, g, C, I) => {
+      if (T !== g) {
+        if (T !== EMPTY_OBJ)
+          for (const O in T)
+            !isReservedProp(O) && !(O in g) && i(y, O, T[O], null, I, C);
+        for (const O in g) {
+          if (isReservedProp(O)) continue;
+          const M = g[O],
+            U = T[O];
+          M !== U && O !== "value" && i(y, O, U, M, I, C);
+        }
+        "value" in g && i(y, "value", T.value, g.value, I);
+      }
+    },
+    R = (y, T, g, C, I, O, M, U, H) => {
+      const J = (T.el = y ? y.el : a("")),
+        te = (T.anchor = y ? y.anchor : a(""));
+      let { patchFlag: ee, dynamicChildren: oe, slotScopeIds: le } = T;
+      (le && (U = U ? U.concat(le) : le),
+        y == null
+          ? (s(J, g, C), s(te, g, C), w(T.children || [], g, te, I, O, M, U, H))
+          : ee > 0 && ee & 64 && oe && y.dynamicChildren
+            ? (S(y.dynamicChildren, oe, g, I, O, M, U),
+              (T.key != null || (I && T === I.subTree)) &&
+                traverseStaticChildren(y, T, !0))
+            : F(y, T, g, te, I, O, M, U, H));
+    },
+    P = (y, T, g, C, I, O, M, U, H) => {
+      ((T.slotScopeIds = U),
+        y == null
+          ? T.shapeFlag & 512
+            ? I.ctx.activate(T, g, C, M, H)
+            : W(T, g, C, I, O, M, H)
+          : D(y, T, H));
+    },
+    W = (y, T, g, C, I, O, M) => {
+      const U = (y.component = createComponentInstance(y, C, I));
+      if (
+        (isKeepAlive(y) && (U.ctx.renderer = A),
+        setupComponent(U, !1, M),
+        U.asyncDep)
+      ) {
+        if ((I && I.registerDep(U, k, M), !y.el)) {
+          const H = (U.subTree = createVNode(Comment));
+          q(null, H, T, g);
+        }
+      } else k(U, y, T, g, I, O, M);
+    },
+    D = (y, T, g) => {
+      const C = (T.component = y.component);
+      if (shouldUpdateComponent(y, T, g))
+        if (C.asyncDep && !C.asyncResolved) {
+          V(C, T, g);
+          return;
+        } else ((C.next = T), C.update());
+      else ((T.el = y.el), (C.vnode = T));
+    },
+    k = (y, T, g, C, I, O, M) => {
+      const U = () => {
+        if (y.isMounted) {
+          let { next: ee, bu: oe, u: le, parent: fe, vnode: ue } = y;
+          {
+            const Ee = locateNonHydratedAsyncRoot(y);
+            if (Ee) {
+              (ee && ((ee.el = ue.el), V(y, ee, M)),
+                Ee.asyncDep.then(() => {
+                  y.isUnmounted || U();
+                }));
+              return;
+            }
+          }
+          let de = ee,
+            me;
+          (toggleRecurse(y, !1),
+            ee ? ((ee.el = ue.el), V(y, ee, M)) : (ee = ue),
+            oe && invokeArrayFns(oe),
+            (me = ee.props && ee.props.onVnodeBeforeUpdate) &&
+              invokeVNodeHook(me, fe, ee, ue),
+            toggleRecurse(y, !0));
+          const Se = renderComponentRoot(y),
+            be = y.subTree;
+          ((y.subTree = Se),
+            B(be, Se, c(be.el), Q(be), y, I, O),
+            (ee.el = Se.el),
+            de === null && updateHOCHostEl(y, Se.el),
+            le && queuePostRenderEffect(le, I),
+            (me = ee.props && ee.props.onVnodeUpdated) &&
+              queuePostRenderEffect(() => invokeVNodeHook(me, fe, ee, ue), I));
+        } else {
+          let ee;
+          const { el: oe, props: le } = T,
+            { bm: fe, m: ue, parent: de, root: me, type: Se } = y,
+            be = isAsyncWrapper(T);
+          (toggleRecurse(y, !1),
+            fe && invokeArrayFns(fe),
+            !be &&
+              (ee = le && le.onVnodeBeforeMount) &&
+              invokeVNodeHook(ee, de, T),
+            toggleRecurse(y, !0));
+          {
+            me.ce &&
+              me.ce._def.shadowRoot !== !1 &&
+              me.ce._injectChildStyle(Se);
+            const Ee = (y.subTree = renderComponentRoot(y));
+            (B(null, Ee, g, C, y, I, O), (T.el = Ee.el));
+          }
+          if (
+            (ue && queuePostRenderEffect(ue, I),
+            !be && (ee = le && le.onVnodeMounted))
+          ) {
+            const Ee = T;
+            queuePostRenderEffect(() => invokeVNodeHook(ee, de, Ee), I);
+          }
+          ((T.shapeFlag & 256 ||
+            (de && isAsyncWrapper(de.vnode) && de.vnode.shapeFlag & 256)) &&
+            y.a &&
+            queuePostRenderEffect(y.a, I),
+            (y.isMounted = !0),
+            (T = g = C = null));
+        }
+      };
+      y.scope.on();
+      const H = (y.effect = new ReactiveEffect(U));
+      y.scope.off();
+      const J = (y.update = H.run.bind(H)),
+        te = (y.job = H.runIfDirty.bind(H));
+      ((te.i = y),
+        (te.id = y.uid),
+        (H.scheduler = () => queueJob(te)),
+        toggleRecurse(y, !0),
+        J());
+    },
+    V = (y, T, g) => {
+      T.component = y;
+      const C = y.vnode.props;
+      ((y.vnode = T),
+        (y.next = null),
+        updateProps(y, T.props, C, g),
+        updateSlots(y, T.children, g),
+        pauseTracking(),
+        flushPreFlushCbs(y),
+        resetTracking());
+    },
+    F = (y, T, g, C, I, O, M, U, H = !1) => {
+      const J = y && y.children,
+        te = y ? y.shapeFlag : 0,
+        ee = T.children,
+        { patchFlag: oe, shapeFlag: le } = T;
+      if (oe > 0) {
+        if (oe & 128) {
+          re(J, ee, g, C, I, O, M, U, H);
+          return;
+        } else if (oe & 256) {
+          Z(J, ee, g, C, I, O, M, U, H);
+          return;
+        }
+      }
+      le & 8
+        ? (te & 16 && he(J, I, O), ee !== J && d(g, ee))
+        : te & 16
+          ? le & 16
+            ? re(J, ee, g, C, I, O, M, U, H)
+            : he(J, I, O, !0)
+          : (te & 8 && d(g, ""), le & 16 && w(ee, g, C, I, O, M, U, H));
+    },
+    Z = (y, T, g, C, I, O, M, U, H) => {
+      ((y = y || EMPTY_ARR), (T = T || EMPTY_ARR));
+      const J = y.length,
+        te = T.length,
+        ee = Math.min(J, te);
+      let oe;
+      for (oe = 0; oe < ee; oe++) {
+        const le = (T[oe] = H ? cloneIfMounted(T[oe]) : normalizeVNode(T[oe]));
+        B(y[oe], le, g, null, I, O, M, U, H);
+      }
+      J > te ? he(y, I, O, !0, !1, ee) : w(T, g, C, I, O, M, U, H, ee);
+    },
+    re = (y, T, g, C, I, O, M, U, H) => {
+      let J = 0;
+      const te = T.length;
+      let ee = y.length - 1,
+        oe = te - 1;
+      for (; J <= ee && J <= oe;) {
+        const le = y[J],
+          fe = (T[J] = H ? cloneIfMounted(T[J]) : normalizeVNode(T[J]));
+        if (isSameVNodeType(le, fe)) B(le, fe, g, null, I, O, M, U, H);
+        else break;
+        J++;
+      }
+      for (; J <= ee && J <= oe;) {
+        const le = y[ee],
+          fe = (T[oe] = H ? cloneIfMounted(T[oe]) : normalizeVNode(T[oe]));
+        if (isSameVNodeType(le, fe)) B(le, fe, g, null, I, O, M, U, H);
+        else break;
+        (ee--, oe--);
+      }
+      if (J > ee) {
+        if (J <= oe) {
+          const le = oe + 1,
+            fe = le < te ? T[le].el : C;
+          for (; J <= oe;)
+            (B(
+              null,
+              (T[J] = H ? cloneIfMounted(T[J]) : normalizeVNode(T[J])),
+              g,
+              fe,
+              I,
+              O,
+              M,
+              U,
+              H,
+            ),
+              J++);
+        }
+      } else if (J > oe) for (; J <= ee;) (ce(y[J], I, O, !0), J++);
+      else {
+        const le = J,
+          fe = J,
+          ue = new Map();
+        for (J = fe; J <= oe; J++) {
+          const ve = (T[J] = H ? cloneIfMounted(T[J]) : normalizeVNode(T[J]));
+          ve.key != null && ue.set(ve.key, J);
+        }
+        let de,
+          me = 0;
+        const Se = oe - fe + 1;
+        let be = !1,
+          Ee = 0;
+        const _e = new Array(Se);
+        for (J = 0; J < Se; J++) _e[J] = 0;
+        for (J = le; J <= ee; J++) {
+          const ve = y[J];
+          if (me >= Se) {
+            ce(ve, I, O, !0);
+            continue;
+          }
+          let ye;
+          if (ve.key != null) ye = ue.get(ve.key);
+          else
+            for (de = fe; de <= oe; de++)
+              if (_e[de - fe] === 0 && isSameVNodeType(ve, T[de])) {
+                ye = de;
+                break;
+              }
+          ye === void 0
+            ? ce(ve, I, O, !0)
+            : ((_e[ye - fe] = J + 1),
+              ye >= Ee ? (Ee = ye) : (be = !0),
+              B(ve, T[ye], g, null, I, O, M, U, H),
+              me++);
+        }
+        const Ce = be ? getSequence(_e) : EMPTY_ARR;
+        for (de = Ce.length - 1, J = Se - 1; J >= 0; J--) {
+          const ve = fe + J,
+            ye = T[ve],
+            we = ve + 1 < te ? T[ve + 1].el : C;
+          _e[J] === 0
+            ? B(null, ye, g, we, I, O, M, U, H)
+            : be && (de < 0 || J !== Ce[de] ? ae(ye, g, we, 2) : de--);
+        }
+      }
+    },
+    ae = (y, T, g, C, I = null) => {
+      const { el: O, type: M, transition: U, children: H, shapeFlag: J } = y;
+      if (J & 6) {
+        ae(y.component.subTree, T, g, C);
+        return;
+      }
+      if (J & 128) {
+        y.suspense.move(T, g, C);
+        return;
+      }
+      if (J & 64) {
+        M.move(y, T, g, A);
+        return;
+      }
+      if (M === Fragment) {
+        s(O, T, g);
+        for (let ee = 0; ee < H.length; ee++) ae(H[ee], T, g, C);
+        s(y.anchor, T, g);
+        return;
+      }
+      if (M === Static) {
+        N(y, T, g);
+        return;
+      }
+      if (C !== 2 && J & 1 && U)
+        if (C === 0)
+          (U.beforeEnter(O),
+            s(O, T, g),
+            queuePostRenderEffect(() => U.enter(O), I));
+        else {
+          const { leave: ee, delayLeave: oe, afterLeave: le } = U,
+            fe = () => {
+              y.ctx.isUnmounted ? r(O) : s(O, T, g);
+            },
+            ue = () => {
+              ee(O, () => {
+                (fe(), le && le());
+              });
+            };
+          oe ? oe(O, fe, ue) : ue();
+        }
+      else s(O, T, g);
+    },
+    ce = (y, T, g, C = !1, I = !1) => {
+      const {
+        type: O,
+        props: M,
+        ref: U,
+        children: H,
+        dynamicChildren: J,
+        shapeFlag: te,
+        patchFlag: ee,
+        dirs: oe,
+        cacheIndex: le,
+      } = y;
+      if (
+        (ee === -2 && (I = !1),
+        U != null &&
+          (pauseTracking(), setRef(U, null, g, y, !0), resetTracking()),
+        le != null && (T.renderCache[le] = void 0),
+        te & 256)
+      ) {
+        T.ctx.deactivate(y);
+        return;
+      }
+      const fe = te & 1 && oe,
+        ue = !isAsyncWrapper(y);
+      let de;
+      if (
+        (ue && (de = M && M.onVnodeBeforeUnmount) && invokeVNodeHook(de, T, y),
+        te & 6)
+      )
+        pe(y.component, g, C);
+      else {
+        if (te & 128) {
+          y.suspense.unmount(g, C);
+          return;
+        }
+        (fe && invokeDirectiveHook(y, null, T, "beforeUnmount"),
+          te & 64
+            ? y.type.remove(y, T, g, A, C)
+            : J && !J.hasOnce && (O !== Fragment || (ee > 0 && ee & 64))
+              ? he(J, T, g, !1, !0)
+              : ((O === Fragment && ee & 384) || (!I && te & 16)) &&
+                he(H, T, g),
+          C && ge(y));
+      }
+      ((ue && (de = M && M.onVnodeUnmounted)) || fe) &&
+        queuePostRenderEffect(() => {
+          (de && invokeVNodeHook(de, T, y),
+            fe && invokeDirectiveHook(y, null, T, "unmounted"));
+        }, g);
+    },
+    ge = (y) => {
+      const { type: T, el: g, anchor: C, transition: I } = y;
+      if (T === Fragment) {
+        ne(g, C);
+        return;
+      }
+      if (T === Static) {
+        z(y);
+        return;
+      }
+      const O = () => {
+        (r(g), I && !I.persisted && I.afterLeave && I.afterLeave());
+      };
+      if (y.shapeFlag & 1 && I && !I.persisted) {
+        const { leave: M, delayLeave: U } = I,
+          H = () => M(g, O);
+        U ? U(y.el, O, H) : H();
+      } else O();
+    },
+    ne = (y, T) => {
+      let g;
+      for (; y !== T;) ((g = v(y)), r(y), (y = g));
+      r(T);
+    },
+    pe = (y, T, g) => {
+      const {
+        bum: C,
+        scope: I,
+        job: O,
+        subTree: M,
+        um: U,
+        m: H,
+        a: J,
+        parent: te,
+        slots: { __: ee },
+      } = y;
+      (invalidateMount(H),
+        invalidateMount(J),
+        C && invokeArrayFns(C),
+        te &&
+          isArray$2(ee) &&
+          ee.forEach((oe) => {
+            te.renderCache[oe] = void 0;
+          }),
+        I.stop(),
+        O && ((O.flags |= 8), ce(M, y, T, g)),
+        U && queuePostRenderEffect(U, T),
+        queuePostRenderEffect(() => {
+          y.isUnmounted = !0;
+        }, T),
+        T &&
+          T.pendingBranch &&
+          !T.isUnmounted &&
+          y.asyncDep &&
+          !y.asyncResolved &&
+          y.suspenseId === T.pendingId &&
+          (T.deps--, T.deps === 0 && T.resolve()));
+    },
+    he = (y, T, g, C = !1, I = !1, O = 0) => {
+      for (let M = O; M < y.length; M++) ce(y[M], T, g, C, I);
+    },
+    Q = (y) => {
+      if (y.shapeFlag & 6) return Q(y.component.subTree);
+      if (y.shapeFlag & 128) return y.suspense.next();
+      const T = v(y.anchor || y.el),
+        g = T && T[TeleportEndKey];
+      return g ? v(g) : T;
+    };
+  let ie = !1;
+  const se = (y, T, g) => {
+      (y == null
+        ? T._vnode && ce(T._vnode, null, null, !0)
+        : B(T._vnode || null, y, T, null, null, null, g),
+        (T._vnode = y),
+        ie || ((ie = !0), flushPreFlushCbs(), flushPostFlushCbs(), (ie = !1)));
+    },
+    A = { p: B, um: ce, m: ae, r: ge, mt: W, mc: w, pc: F, pbc: S, n: Q, o: e };
+  return { render: se, hydrate: void 0, createApp: createAppAPI(se) };
+}
+function resolveChildrenNamespace({ type: e, props: t }, n) {
+  return (n === "svg" && e === "foreignObject") ||
+    (n === "mathml" &&
+      e === "annotation-xml" &&
+      t &&
+      t.encoding &&
+      t.encoding.includes("html"))
+    ? void 0
+    : n;
+}
+function toggleRecurse({ effect: e, job: t }, n) {
+  n ? ((e.flags |= 32), (t.flags |= 4)) : ((e.flags &= -33), (t.flags &= -5));
+}
+function needTransition(e, t) {
+  return (!e || (e && !e.pendingBranch)) && t && !t.persisted;
+}
+function traverseStaticChildren(e, t, n = !1) {
+  const s = e.children,
+    r = t.children;
+  if (isArray$2(s) && isArray$2(r))
+    for (let i = 0; i < s.length; i++) {
+      const o = s[i];
+      let a = r[i];
+      (a.shapeFlag & 1 &&
+        !a.dynamicChildren &&
+        ((a.patchFlag <= 0 || a.patchFlag === 32) &&
+          ((a = r[i] = cloneIfMounted(r[i])), (a.el = o.el)),
+        !n && a.patchFlag !== -2 && traverseStaticChildren(o, a)),
+        a.type === Text && (a.el = o.el),
+        a.type === Comment && !a.el && (a.el = o.el));
+    }
+}
+function getSequence(e) {
+  const t = e.slice(),
+    n = [0];
+  let s, r, i, o, a;
+  const l = e.length;
+  for (s = 0; s < l; s++) {
+    const u = e[s];
+    if (u !== 0) {
+      if (((r = n[n.length - 1]), e[r] < u)) {
+        ((t[s] = r), n.push(s));
+        continue;
+      }
+      for (i = 0, o = n.length - 1; i < o;)
+        ((a = (i + o) >> 1), e[n[a]] < u ? (i = a + 1) : (o = a));
+      u < e[n[i]] && (i > 0 && (t[s] = n[i - 1]), (n[i] = s));
+    }
+  }
+  for (i = n.length, o = n[i - 1]; i-- > 0;) ((n[i] = o), (o = t[o]));
+  return n;
+}
+function locateNonHydratedAsyncRoot(e) {
+  const t = e.subTree.component;
+  if (t)
+    return t.asyncDep && !t.asyncResolved ? t : locateNonHydratedAsyncRoot(t);
+}
+function invalidateMount(e) {
+  if (e) for (let t = 0; t < e.length; t++) e[t].flags |= 8;
+}
+const ssrContextKey = Symbol.for("v-scx"),
+  useSSRContext = () => inject(ssrContextKey);
+function watch(e, t, n) {
+  return doWatch(e, t, n);
+}
+function doWatch(e, t, n = EMPTY_OBJ) {
+  const { immediate: s, deep: r, flush: i, once: o } = n,
+    a = extend$4({}, n),
+    l = (t && s) || (!t && i !== "post");
+  let u;
+  if (isInSSRComponentSetup) {
+    if (i === "sync") {
+      const E = useSSRContext();
+      u = E.__watcherHandles || (E.__watcherHandles = []);
+    } else if (!l) {
+      const E = () => {};
+      return ((E.stop = NOOP), (E.resume = NOOP), (E.pause = NOOP), E);
+    }
+  }
+  const d = currentInstance;
+  a.call = (E, x, B) => callWithAsyncErrorHandling(E, d, x, B);
+  let c = !1;
+  (i === "post"
+    ? (a.scheduler = (E) => {
+        queuePostRenderEffect(E, d && d.suspense);
+      })
+    : i !== "sync" &&
+      ((c = !0),
+      (a.scheduler = (E, x) => {
+        x ? E() : queueJob(E);
+      })),
+    (a.augmentJob = (E) => {
+      (t && (E.flags |= 4),
+        c && ((E.flags |= 2), d && ((E.id = d.uid), (E.i = d))));
+    }));
+  const v = watch$1(e, t, a);
+  return (isInSSRComponentSetup && (u ? u.push(v) : l && v()), v);
+}
+function instanceWatch(e, t, n) {
+  const s = this.proxy,
+    r = isString$1(e)
+      ? e.includes(".")
+        ? createPathGetter(s, e)
+        : () => s[e]
+      : e.bind(s, s);
+  let i;
+  isFunction$1(t) ? (i = t) : ((i = t.handler), (n = t));
+  const o = setCurrentInstance(this),
+    a = doWatch(r, i.bind(s), n);
+  return (o(), a);
+}
+function createPathGetter(e, t) {
+  const n = t.split(".");
+  return () => {
+    let s = e;
+    for (let r = 0; r < n.length && s; r++) s = s[n[r]];
+    return s;
+  };
+}
+const getModelModifiers = (e, t) =>
+  t === "modelValue" || t === "model-value"
+    ? e.modelModifiers
+    : e[`${t}Modifiers`] ||
+      e[`${camelize(t)}Modifiers`] ||
+      e[`${hyphenate(t)}Modifiers`];
+function emit(e, t, ...n) {
+  if (e.isUnmounted) return;
+  const s = e.vnode.props || EMPTY_OBJ;
+  let r = n;
+  const i = t.startsWith("update:"),
+    o = i && getModelModifiers(s, t.slice(7));
+  o &&
+    (o.trim && (r = n.map((d) => (isString$1(d) ? d.trim() : d))),
+    o.number && (r = n.map(looseToNumber)));
+  let a,
+    l = s[(a = toHandlerKey(t))] || s[(a = toHandlerKey(camelize(t)))];
+  (!l && i && (l = s[(a = toHandlerKey(hyphenate(t)))]),
+    l && callWithAsyncErrorHandling(l, e, 6, r));
+  const u = s[a + "Once"];
+  if (u) {
+    if (!e.emitted) e.emitted = {};
+    else if (e.emitted[a]) return;
+    ((e.emitted[a] = !0), callWithAsyncErrorHandling(u, e, 6, r));
+  }
+}
+function normalizeEmitsOptions(e, t, n = !1) {
+  const s = t.emitsCache,
+    r = s.get(e);
+  if (r !== void 0) return r;
+  const i = e.emits;
+  let o = {},
+    a = !1;
+  if (!isFunction$1(e)) {
+    const l = (u) => {
+      const d = normalizeEmitsOptions(u, t, !0);
+      d && ((a = !0), extend$4(o, d));
+    };
+    (!n && t.mixins.length && t.mixins.forEach(l),
+      e.extends && l(e.extends),
+      e.mixins && e.mixins.forEach(l));
+  }
+  return !i && !a
+    ? (isObject$4(e) && s.set(e, null), null)
+    : (isArray$2(i) ? i.forEach((l) => (o[l] = null)) : extend$4(o, i),
+      isObject$4(e) && s.set(e, o),
+      o);
+}
+function isEmitListener(e, t) {
+  return !e || !isOn(t)
+    ? !1
+    : ((t = t.slice(2).replace(/Once$/, "")),
+      hasOwn(e, t[0].toLowerCase() + t.slice(1)) ||
+        hasOwn(e, hyphenate(t)) ||
+        hasOwn(e, t));
+}
+function markAttrsAccessed() {}
+function renderComponentRoot(e) {
+  const {
+      type: t,
+      vnode: n,
+      proxy: s,
+      withProxy: r,
+      propsOptions: [i],
+      slots: o,
+      attrs: a,
+      emit: l,
+      render: u,
+      renderCache: d,
+      props: c,
+      data: v,
+      setupState: E,
+      ctx: x,
+      inheritAttrs: B,
+    } = e,
+    G = setCurrentRenderingInstance(e);
+  let q, b;
+  try {
+    if (n.shapeFlag & 4) {
+      const z = r || s,
+        Y = z;
+      ((q = normalizeVNode(u.call(Y, z, d, c, E, v, x))), (b = a));
+    } else {
+      const z = t;
+      ((q = normalizeVNode(
+        z.length > 1 ? z(c, { attrs: a, slots: o, emit: l }) : z(c, null),
+      )),
+        (b = t.props ? a : getFunctionalFallthrough(a)));
+    }
+  } catch (z) {
+    ((blockStack.length = 0),
+      handleError$1(z, e, 1),
+      (q = createVNode(Comment)));
+  }
+  let N = q;
+  if (b && B !== !1) {
+    const z = Object.keys(b),
+      { shapeFlag: Y } = N;
+    z.length &&
+      Y & 7 &&
+      (i && z.some(isModelListener) && (b = filterModelListeners(b, i)),
+      (N = cloneVNode(N, b, !1, !0)));
+  }
+  return (
+    n.dirs &&
+      ((N = cloneVNode(N, null, !1, !0)),
+      (N.dirs = N.dirs ? N.dirs.concat(n.dirs) : n.dirs)),
+    n.transition && setTransitionHooks(N, n.transition),
+    (q = N),
+    setCurrentRenderingInstance(G),
+    q
+  );
+}
+const getFunctionalFallthrough = (e) => {
+    let t;
+    for (const n in e)
+      (n === "class" || n === "style" || isOn(n)) &&
+        ((t || (t = {}))[n] = e[n]);
+    return t;
+  },
+  filterModelListeners = (e, t) => {
+    const n = {};
+    for (const s in e)
+      (!isModelListener(s) || !(s.slice(9) in t)) && (n[s] = e[s]);
+    return n;
+  };
+function shouldUpdateComponent(e, t, n) {
+  const { props: s, children: r, component: i } = e,
+    { props: o, children: a, patchFlag: l } = t,
+    u = i.emitsOptions;
+  if (t.dirs || t.transition) return !0;
+  if (n && l >= 0) {
+    if (l & 1024) return !0;
+    if (l & 16) return s ? hasPropsChanged(s, o, u) : !!o;
+    if (l & 8) {
+      const d = t.dynamicProps;
+      for (let c = 0; c < d.length; c++) {
+        const v = d[c];
+        if (o[v] !== s[v] && !isEmitListener(u, v)) return !0;
+      }
+    }
+  } else
+    return (r || a) && (!a || !a.$stable)
+      ? !0
+      : s === o
+        ? !1
+        : s
+          ? o
+            ? hasPropsChanged(s, o, u)
+            : !0
+          : !!o;
+  return !1;
+}
+function hasPropsChanged(e, t, n) {
+  const s = Object.keys(t);
+  if (s.length !== Object.keys(e).length) return !0;
+  for (let r = 0; r < s.length; r++) {
+    const i = s[r];
+    if (t[i] !== e[i] && !isEmitListener(n, i)) return !0;
+  }
+  return !1;
+}
+function updateHOCHostEl({ vnode: e, parent: t }, n) {
+  for (; t;) {
+    const s = t.subTree;
+    if ((s.suspense && s.suspense.activeBranch === e && (s.el = e.el), s === e))
+      (((e = t.vnode).el = n), (t = t.parent));
+    else break;
+  }
+}
+const isSuspense = (e) => e.__isSuspense;
+function queueEffectWithSuspense(e, t) {
+  t && t.pendingBranch
+    ? isArray$2(e)
+      ? t.effects.push(...e)
+      : t.effects.push(e)
+    : queuePostFlushCb(e);
+}
+const Fragment = Symbol.for("v-fgt"),
+  Text = Symbol.for("v-txt"),
+  Comment = Symbol.for("v-cmt"),
+  Static = Symbol.for("v-stc"),
+  blockStack = [];
+let currentBlock = null;
+function openBlock(e = !1) {
+  blockStack.push((currentBlock = e ? null : []));
+}
+function closeBlock() {
+  (blockStack.pop(),
+    (currentBlock = blockStack[blockStack.length - 1] || null));
+}
+let isBlockTreeEnabled = 1;
+function setBlockTracking(e, t = !1) {
+  ((isBlockTreeEnabled += e),
+    e < 0 && currentBlock && t && (currentBlock.hasOnce = !0));
+}
+function setupBlock(e) {
+  return (
+    (e.dynamicChildren =
+      isBlockTreeEnabled > 0 ? currentBlock || EMPTY_ARR : null),
+    closeBlock(),
+    isBlockTreeEnabled > 0 && currentBlock && currentBlock.push(e),
+    e
+  );
+}
+function createElementBlock(e, t, n, s, r, i) {
+  return setupBlock(createBaseVNode(e, t, n, s, r, i, !0));
+}
+function createBlock(e, t, n, s, r) {
+  return setupBlock(createVNode(e, t, n, s, r, !0));
+}
+function isVNode(e) {
+  return e ? e.__v_isVNode === !0 : !1;
+}
+function isSameVNodeType(e, t) {
+  return e.type === t.type && e.key === t.key;
+}
+const normalizeKey = ({ key: e }) => e ?? null,
+  normalizeRef = ({ ref: e, ref_key: t, ref_for: n }) => (
+    typeof e == "number" && (e = "" + e),
+    e != null
+      ? isString$1(e) || isRef(e) || isFunction$1(e)
+        ? { i: currentRenderingInstance, r: e, k: t, f: !!n }
+        : e
+      : null
+  );
+function createBaseVNode(
+  e,
+  t = null,
+  n = null,
+  s = 0,
+  r = null,
+  i = e === Fragment ? 0 : 1,
+  o = !1,
+  a = !1,
+) {
+  const l = {
+    __v_isVNode: !0,
+    __v_skip: !0,
+    type: e,
+    props: t,
+    key: t && normalizeKey(t),
+    ref: t && normalizeRef(t),
+    scopeId: currentScopeId,
+    slotScopeIds: null,
+    children: n,
+    component: null,
+    suspense: null,
+    ssContent: null,
+    ssFallback: null,
+    dirs: null,
+    transition: null,
+    el: null,
+    anchor: null,
+    target: null,
+    targetStart: null,
+    targetAnchor: null,
+    staticCount: 0,
+    shapeFlag: i,
+    patchFlag: s,
+    dynamicProps: r,
+    dynamicChildren: null,
+    appContext: null,
+    ctx: currentRenderingInstance,
+  };
+  return (
+    a
+      ? (normalizeChildren(l, n), i & 128 && e.normalize(l))
+      : n && (l.shapeFlag |= isString$1(n) ? 8 : 16),
+    isBlockTreeEnabled > 0 &&
+      !o &&
+      currentBlock &&
+      (l.patchFlag > 0 || i & 6) &&
+      l.patchFlag !== 32 &&
+      currentBlock.push(l),
+    l
+  );
+}
+const createVNode = _createVNode;
+function _createVNode(e, t = null, n = null, s = 0, r = null, i = !1) {
+  if (((!e || e === NULL_DYNAMIC_COMPONENT) && (e = Comment), isVNode(e))) {
+    const a = cloneVNode(e, t, !0);
+    return (
+      n && normalizeChildren(a, n),
+      isBlockTreeEnabled > 0 &&
+        !i &&
+        currentBlock &&
+        (a.shapeFlag & 6
+          ? (currentBlock[currentBlock.indexOf(e)] = a)
+          : currentBlock.push(a)),
+      (a.patchFlag = -2),
+      a
+    );
+  }
+  if ((isClassComponent(e) && (e = e.__vccOpts), t)) {
+    t = guardReactiveProps(t);
+    let { class: a, style: l } = t;
+    (a && !isString$1(a) && (t.class = normalizeClass(a)),
+      isObject$4(l) &&
+        (isProxy(l) && !isArray$2(l) && (l = extend$4({}, l)),
+        (t.style = normalizeStyle(l))));
+  }
+  const o = isString$1(e)
+    ? 1
+    : isSuspense(e)
+      ? 128
+      : isTeleport(e)
+        ? 64
+        : isObject$4(e)
+          ? 4
+          : isFunction$1(e)
+            ? 2
+            : 0;
+  return createBaseVNode(e, t, n, s, r, o, i, !0);
+}
+function guardReactiveProps(e) {
+  return e ? (isProxy(e) || isInternalObject(e) ? extend$4({}, e) : e) : null;
+}
+function cloneVNode(e, t, n = !1, s = !1) {
+  const { props: r, ref: i, patchFlag: o, children: a, transition: l } = e,
+    u = t ? mergeProps(r || {}, t) : r,
+    d = {
+      __v_isVNode: !0,
+      __v_skip: !0,
+      type: e.type,
+      props: u,
+      key: u && normalizeKey(u),
+      ref:
+        t && t.ref
+          ? n && i
+            ? isArray$2(i)
+              ? i.concat(normalizeRef(t))
+              : [i, normalizeRef(t)]
+            : normalizeRef(t)
+          : i,
+      scopeId: e.scopeId,
+      slotScopeIds: e.slotScopeIds,
+      children: a,
+      target: e.target,
+      targetStart: e.targetStart,
+      targetAnchor: e.targetAnchor,
+      staticCount: e.staticCount,
+      shapeFlag: e.shapeFlag,
+      patchFlag: t && e.type !== Fragment ? (o === -1 ? 16 : o | 16) : o,
+      dynamicProps: e.dynamicProps,
+      dynamicChildren: e.dynamicChildren,
+      appContext: e.appContext,
+      dirs: e.dirs,
+      transition: l,
+      component: e.component,
+      suspense: e.suspense,
+      ssContent: e.ssContent && cloneVNode(e.ssContent),
+      ssFallback: e.ssFallback && cloneVNode(e.ssFallback),
+      el: e.el,
+      anchor: e.anchor,
+      ctx: e.ctx,
+      ce: e.ce,
+    };
+  return (l && s && setTransitionHooks(d, l.clone(d)), d);
+}
+function createTextVNode(e = " ", t = 0) {
+  return createVNode(Text, null, e, t);
+}
+function createCommentVNode(e = "", t = !1) {
+  return t
+    ? (openBlock(), createBlock(Comment, null, e))
+    : createVNode(Comment, null, e);
+}
+function normalizeVNode(e) {
+  return e == null || typeof e == "boolean"
+    ? createVNode(Comment)
+    : isArray$2(e)
+      ? createVNode(Fragment, null, e.slice())
+      : isVNode(e)
+        ? cloneIfMounted(e)
+        : createVNode(Text, null, String(e));
+}
+function cloneIfMounted(e) {
+  return (e.el === null && e.patchFlag !== -1) || e.memo ? e : cloneVNode(e);
+}
+function normalizeChildren(e, t) {
+  let n = 0;
+  const { shapeFlag: s } = e;
+  if (t == null) t = null;
+  else if (isArray$2(t)) n = 16;
+  else if (typeof t == "object")
+    if (s & 65) {
+      const r = t.default;
+      r &&
+        (r._c && (r._d = !1), normalizeChildren(e, r()), r._c && (r._d = !0));
+      return;
+    } else {
+      n = 32;
+      const r = t._;
+      !r && !isInternalObject(t)
+        ? (t._ctx = currentRenderingInstance)
+        : r === 3 &&
+          currentRenderingInstance &&
+          (currentRenderingInstance.slots._ === 1
+            ? (t._ = 1)
+            : ((t._ = 2), (e.patchFlag |= 1024)));
+    }
+  else
+    isFunction$1(t)
+      ? ((t = { default: t, _ctx: currentRenderingInstance }), (n = 32))
+      : ((t = String(t)),
+        s & 64 ? ((n = 16), (t = [createTextVNode(t)])) : (n = 8));
+  ((e.children = t), (e.shapeFlag |= n));
+}
+function mergeProps(...e) {
+  const t = {};
+  for (let n = 0; n < e.length; n++) {
+    const s = e[n];
+    for (const r in s)
+      if (r === "class")
+        t.class !== s.class && (t.class = normalizeClass([t.class, s.class]));
+      else if (r === "style") t.style = normalizeStyle([t.style, s.style]);
+      else if (isOn(r)) {
+        const i = t[r],
+          o = s[r];
+        o &&
+          i !== o &&
+          !(isArray$2(i) && i.includes(o)) &&
+          (t[r] = i ? [].concat(i, o) : o);
+      } else r !== "" && (t[r] = s[r]);
+  }
+  return t;
+}
+function invokeVNodeHook(e, t, n, s = null) {
+  callWithAsyncErrorHandling(e, t, 7, [n, s]);
+}
+const emptyAppContext = createAppContext();
+let uid = 0;
+function createComponentInstance(e, t, n) {
+  const s = e.type,
+    r = (t ? t.appContext : e.appContext) || emptyAppContext,
+    i = {
+      uid: uid++,
+      vnode: e,
+      type: s,
+      parent: t,
+      appContext: r,
+      root: null,
+      next: null,
+      subTree: null,
+      effect: null,
+      update: null,
+      job: null,
+      scope: new EffectScope(!0),
+      render: null,
+      proxy: null,
+      exposed: null,
+      exposeProxy: null,
+      withProxy: null,
+      provides: t ? t.provides : Object.create(r.provides),
+      ids: t ? t.ids : ["", 0, 0],
+      accessCache: null,
+      renderCache: [],
+      components: null,
+      directives: null,
+      propsOptions: normalizePropsOptions(s, r),
+      emitsOptions: normalizeEmitsOptions(s, r),
+      emit: null,
+      emitted: null,
+      propsDefaults: EMPTY_OBJ,
+      inheritAttrs: s.inheritAttrs,
+      ctx: EMPTY_OBJ,
+      data: EMPTY_OBJ,
+      props: EMPTY_OBJ,
+      attrs: EMPTY_OBJ,
+      slots: EMPTY_OBJ,
+      refs: EMPTY_OBJ,
+      setupState: EMPTY_OBJ,
+      setupContext: null,
+      suspense: n,
+      suspenseId: n ? n.pendingId : 0,
+      asyncDep: null,
+      asyncResolved: !1,
+      isMounted: !1,
+      isUnmounted: !1,
+      isDeactivated: !1,
+      bc: null,
+      c: null,
+      bm: null,
+      m: null,
+      bu: null,
+      u: null,
+      um: null,
+      bum: null,
+      da: null,
+      a: null,
+      rtg: null,
+      rtc: null,
+      ec: null,
+      sp: null,
+    };
+  return (
+    (i.ctx = { _: i }),
+    (i.root = t ? t.root : i),
+    (i.emit = emit.bind(null, i)),
+    e.ce && e.ce(i),
+    i
+  );
+}
+let currentInstance = null;
+const getCurrentInstance = () => currentInstance || currentRenderingInstance;
+let internalSetCurrentInstance, setInSSRSetupState;
+{
+  const e = getGlobalThis(),
+    t = (n, s) => {
+      let r;
+      return (
+        (r = e[n]) || (r = e[n] = []),
+        r.push(s),
+        (i) => {
+          r.length > 1 ? r.forEach((o) => o(i)) : r[0](i);
+        }
+      );
+    };
+  ((internalSetCurrentInstance = t(
+    "__VUE_INSTANCE_SETTERS__",
+    (n) => (currentInstance = n),
+  )),
+    (setInSSRSetupState = t(
+      "__VUE_SSR_SETTERS__",
+      (n) => (isInSSRComponentSetup = n),
+    )));
+}
+const setCurrentInstance = (e) => {
+    const t = currentInstance;
+    return (
+      internalSetCurrentInstance(e),
+      e.scope.on(),
+      () => {
+        (e.scope.off(), internalSetCurrentInstance(t));
+      }
+    );
+  },
+  unsetCurrentInstance = () => {
+    (currentInstance && currentInstance.scope.off(),
+      internalSetCurrentInstance(null));
+  };
+function isStatefulComponent(e) {
+  return e.vnode.shapeFlag & 4;
+}
+let isInSSRComponentSetup = !1;
+function setupComponent(e, t = !1, n = !1) {
+  t && setInSSRSetupState(t);
+  const { props: s, children: r } = e.vnode,
+    i = isStatefulComponent(e);
+  (initProps(e, s, i, t), initSlots(e, r, n || t));
+  const o = i ? setupStatefulComponent(e, t) : void 0;
+  return (t && setInSSRSetupState(!1), o);
+}
+function setupStatefulComponent(e, t) {
+  const n = e.type;
+  ((e.accessCache = Object.create(null)),
+    (e.proxy = new Proxy(e.ctx, PublicInstanceProxyHandlers)));
+  const { setup: s } = n;
+  if (s) {
+    pauseTracking();
+    const r = (e.setupContext = s.length > 1 ? createSetupContext(e) : null),
+      i = setCurrentInstance(e),
+      o = callWithErrorHandling(s, e, 0, [e.props, r]),
+      a = isPromise(o);
+    if (
+      (resetTracking(),
+      i(),
+      (a || e.sp) && !isAsyncWrapper(e) && markAsyncBoundary(e),
+      a)
+    ) {
+      if ((o.then(unsetCurrentInstance, unsetCurrentInstance), t))
+        return o
+          .then((l) => {
+            handleSetupResult(e, l);
+          })
+          .catch((l) => {
+            handleError$1(l, e, 0);
+          });
+      e.asyncDep = o;
+    } else handleSetupResult(e, o);
+  } else finishComponentSetup(e);
+}
+function handleSetupResult(e, t, n) {
+  (isFunction$1(t)
+    ? e.type.__ssrInlineRender
+      ? (e.ssrRender = t)
+      : (e.render = t)
+    : isObject$4(t) && (e.setupState = proxyRefs(t)),
+    finishComponentSetup(e));
+}
+function finishComponentSetup(e, t, n) {
+  const s = e.type;
+  e.render || (e.render = s.render || NOOP);
+  {
+    const r = setCurrentInstance(e);
+    pauseTracking();
+    try {
+      applyOptions(e);
+    } finally {
+      (resetTracking(), r());
+    }
+  }
+}
+const attrsProxyHandlers = {
+  get(e, t) {
+    return (track(e, "get", ""), e[t]);
+  },
+};
+function createSetupContext(e) {
+  const t = (n) => {
+    e.exposed = n || {};
+  };
+  return {
+    attrs: new Proxy(e.attrs, attrsProxyHandlers),
+    slots: e.slots,
+    emit: e.emit,
+    expose: t,
+  };
+}
+function getComponentPublicInstance(e) {
+  return e.exposed
+    ? e.exposeProxy ||
+        (e.exposeProxy = new Proxy(proxyRefs(markRaw(e.exposed)), {
+          get(t, n) {
+            if (n in t) return t[n];
+            if (n in publicPropertiesMap) return publicPropertiesMap[n](e);
+          },
+          has(t, n) {
+            return n in t || n in publicPropertiesMap;
+          },
+        }))
+    : e.proxy;
+}
+const classifyRE = /(?:^|[-_])(\w)/g,
+  classify = (e) =>
+    e.replace(classifyRE, (t) => t.toUpperCase()).replace(/[-_]/g, "");
+function getComponentName(e, t = !0) {
+  return isFunction$1(e) ? e.displayName || e.name : e.name || (t && e.__name);
+}
+function formatComponentName(e, t, n = !1) {
+  let s = getComponentName(t);
+  if (!s && t.__file) {
+    const r = t.__file.match(/([^/\\]+)\.\w+$/);
+    r && (s = r[1]);
+  }
+  if (!s && e && e.parent) {
+    const r = (i) => {
+      for (const o in i) if (i[o] === t) return o;
+    };
+    s =
+      r(e.components || e.parent.type.components) || r(e.appContext.components);
+  }
+  return s ? classify(s) : n ? "App" : "Anonymous";
+}
+function isClassComponent(e) {
+  return isFunction$1(e) && "__vccOpts" in e;
+}
+const computed = (e, t) => computed$1(e, t, isInSSRComponentSetup);
+function h(e, t, n) {
+  const s = arguments.length;
+  return s === 2
+    ? isObject$4(t) && !isArray$2(t)
+      ? isVNode(t)
+        ? createVNode(e, null, [t])
+        : createVNode(e, t)
+      : createVNode(e, null, t)
+    : (s > 3
+        ? (n = Array.prototype.slice.call(arguments, 2))
+        : s === 3 && isVNode(n) && (n = [n]),
+      createVNode(e, t, n));
+}
+const version = "3.5.17";
+/**
+ * @vue/runtime-dom v3.5.17
+ * (c) 2018-present Yuxi (Evan) You and Vue contributors
+ * @license MIT
+ **/ let policy;
+const tt = typeof window < "u" && window.trustedTypes;
+if (tt)
+  try {
+    policy = tt.createPolicy("vue", { createHTML: (e) => e });
+  } catch {}
+const unsafeToTrustedHTML = policy ? (e) => policy.createHTML(e) : (e) => e,
+  svgNS = "http://www.w3.org/2000/svg",
+  mathmlNS = "http://www.w3.org/1998/Math/MathML",
+  doc = typeof document < "u" ? document : null,
+  templateContainer = doc && doc.createElement("template"),
+  nodeOps = {
+    insert: (e, t, n) => {
+      t.insertBefore(e, n || null);
+    },
+    remove: (e) => {
+      const t = e.parentNode;
+      t && t.removeChild(e);
+    },
+    createElement: (e, t, n, s) => {
+      const r =
+        t === "svg"
+          ? doc.createElementNS(svgNS, e)
+          : t === "mathml"
+            ? doc.createElementNS(mathmlNS, e)
+            : n
+              ? doc.createElement(e, { is: n })
+              : doc.createElement(e);
+      return (
+        e === "select" &&
+          s &&
+          s.multiple != null &&
+          r.setAttribute("multiple", s.multiple),
+        r
+      );
+    },
+    createText: (e) => doc.createTextNode(e),
+    createComment: (e) => doc.createComment(e),
+    setText: (e, t) => {
+      e.nodeValue = t;
+    },
+    setElementText: (e, t) => {
+      e.textContent = t;
+    },
+    parentNode: (e) => e.parentNode,
+    nextSibling: (e) => e.nextSibling,
+    querySelector: (e) => doc.querySelector(e),
+    setScopeId(e, t) {
+      e.setAttribute(t, "");
+    },
+    insertStaticContent(e, t, n, s, r, i) {
+      const o = n ? n.previousSibling : t.lastChild;
+      if (r && (r === i || r.nextSibling))
+        for (
+          ;
+          t.insertBefore(r.cloneNode(!0), n),
+            !(r === i || !(r = r.nextSibling));
+        );
+      else {
+        templateContainer.innerHTML = unsafeToTrustedHTML(
+          s === "svg"
+            ? `<svg>${e}</svg>`
+            : s === "mathml"
+              ? `<math>${e}</math>`
+              : e,
+        );
+        const a = templateContainer.content;
+        if (s === "svg" || s === "mathml") {
+          const l = a.firstChild;
+          for (; l.firstChild;) a.appendChild(l.firstChild);
+          a.removeChild(l);
+        }
+        t.insertBefore(a, n);
+      }
+      return [
+        o ? o.nextSibling : t.firstChild,
+        n ? n.previousSibling : t.lastChild,
+      ];
+    },
+  },
+  TRANSITION = "transition",
+  ANIMATION = "animation",
+  vtcKey = Symbol("_vtc"),
+  DOMTransitionPropsValidators = {
+    name: String,
+    type: String,
+    css: { type: Boolean, default: !0 },
+    duration: [String, Number, Object],
+    enterFromClass: String,
+    enterActiveClass: String,
+    enterToClass: String,
+    appearFromClass: String,
+    appearActiveClass: String,
+    appearToClass: String,
+    leaveFromClass: String,
+    leaveActiveClass: String,
+    leaveToClass: String,
+  },
+  TransitionPropsValidators = extend$4(
+    {},
+    BaseTransitionPropsValidators,
+    DOMTransitionPropsValidators,
+  ),
+  decorate$1 = (e) => (
+    (e.displayName = "Transition"),
+    (e.props = TransitionPropsValidators),
+    e
+  ),
+  Transition = decorate$1((e, { slots: t }) =>
+    h(BaseTransition, resolveTransitionProps(e), t),
+  ),
+  callHook = (e, t = []) => {
+    isArray$2(e) ? e.forEach((n) => n(...t)) : e && e(...t);
+  },
+  hasExplicitCallback = (e) =>
+    e ? (isArray$2(e) ? e.some((t) => t.length > 1) : e.length > 1) : !1;
+function resolveTransitionProps(e) {
+  const t = {};
+  for (const R in e) R in DOMTransitionPropsValidators || (t[R] = e[R]);
+  if (e.css === !1) return t;
+  const {
+      name: n = "v",
+      type: s,
+      duration: r,
+      enterFromClass: i = `${n}-enter-from`,
+      enterActiveClass: o = `${n}-enter-active`,
+      enterToClass: a = `${n}-enter-to`,
+      appearFromClass: l = i,
+      appearActiveClass: u = o,
+      appearToClass: d = a,
+      leaveFromClass: c = `${n}-leave-from`,
+      leaveActiveClass: v = `${n}-leave-active`,
+      leaveToClass: E = `${n}-leave-to`,
+    } = e,
+    x = normalizeDuration(r),
+    B = x && x[0],
+    G = x && x[1],
+    {
+      onBeforeEnter: q,
+      onEnter: b,
+      onEnterCancelled: N,
+      onLeave: z,
+      onLeaveCancelled: Y,
+      onBeforeAppear: X = q,
+      onAppear: K = b,
+      onAppearCancelled: w = N,
+    } = t,
+    m = (R, P, W, D) => {
+      ((R._enterCancelled = D),
+        removeTransitionClass(R, P ? d : a),
+        removeTransitionClass(R, P ? u : o),
+        W && W());
+    },
+    S = (R, P) => {
+      ((R._isLeaving = !1),
+        removeTransitionClass(R, c),
+        removeTransitionClass(R, E),
+        removeTransitionClass(R, v),
+        P && P());
+    },
+    $ = (R) => (P, W) => {
+      const D = R ? K : b,
+        k = () => m(P, R, W);
+      (callHook(D, [P, k]),
+        nextFrame(() => {
+          (removeTransitionClass(P, R ? l : i),
+            addTransitionClass(P, R ? d : a),
+            hasExplicitCallback(D) || whenTransitionEnds(P, s, B, k));
+        }));
+    };
+  return extend$4(t, {
+    onBeforeEnter(R) {
+      (callHook(q, [R]), addTransitionClass(R, i), addTransitionClass(R, o));
+    },
+    onBeforeAppear(R) {
+      (callHook(X, [R]), addTransitionClass(R, l), addTransitionClass(R, u));
+    },
+    onEnter: $(!1),
+    onAppear: $(!0),
+    onLeave(R, P) {
+      R._isLeaving = !0;
+      const W = () => S(R, P);
+      (addTransitionClass(R, c),
+        R._enterCancelled
+          ? (addTransitionClass(R, v), forceReflow())
+          : (forceReflow(), addTransitionClass(R, v)),
+        nextFrame(() => {
+          R._isLeaving &&
+            (removeTransitionClass(R, c),
+            addTransitionClass(R, E),
+            hasExplicitCallback(z) || whenTransitionEnds(R, s, G, W));
+        }),
+        callHook(z, [R, W]));
+    },
+    onEnterCancelled(R) {
+      (m(R, !1, void 0, !0), callHook(N, [R]));
+    },
+    onAppearCancelled(R) {
+      (m(R, !0, void 0, !0), callHook(w, [R]));
+    },
+    onLeaveCancelled(R) {
+      (S(R), callHook(Y, [R]));
+    },
+  });
+}
+function normalizeDuration(e) {
+  if (e == null) return null;
+  if (isObject$4(e)) return [NumberOf(e.enter), NumberOf(e.leave)];
+  {
+    const t = NumberOf(e);
+    return [t, t];
+  }
+}
+function NumberOf(e) {
+  return toNumber(e);
+}
+function addTransitionClass(e, t) {
+  (t.split(/\s+/).forEach((n) => n && e.classList.add(n)),
+    (e[vtcKey] || (e[vtcKey] = new Set())).add(t));
+}
+function removeTransitionClass(e, t) {
+  t.split(/\s+/).forEach((s) => s && e.classList.remove(s));
+  const n = e[vtcKey];
+  n && (n.delete(t), n.size || (e[vtcKey] = void 0));
+}
+function nextFrame(e) {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(e);
+  });
+}
+let endId = 0;
+function whenTransitionEnds(e, t, n, s) {
+  const r = (e._endId = ++endId),
+    i = () => {
+      r === e._endId && s();
+    };
+  if (n != null) return setTimeout(i, n);
+  const { type: o, timeout: a, propCount: l } = getTransitionInfo(e, t);
+  if (!o) return s();
+  const u = o + "end";
+  let d = 0;
+  const c = () => {
+      (e.removeEventListener(u, v), i());
+    },
+    v = (E) => {
+      E.target === e && ++d >= l && c();
+    };
+  (setTimeout(() => {
+    d < l && c();
+  }, a + 1),
+    e.addEventListener(u, v));
+}
+function getTransitionInfo(e, t) {
+  const n = window.getComputedStyle(e),
+    s = (x) => (n[x] || "").split(", "),
+    r = s(`${TRANSITION}Delay`),
+    i = s(`${TRANSITION}Duration`),
+    o = getTimeout(r, i),
+    a = s(`${ANIMATION}Delay`),
+    l = s(`${ANIMATION}Duration`),
+    u = getTimeout(a, l);
+  let d = null,
+    c = 0,
+    v = 0;
+  t === TRANSITION
+    ? o > 0 && ((d = TRANSITION), (c = o), (v = i.length))
+    : t === ANIMATION
+      ? u > 0 && ((d = ANIMATION), (c = u), (v = l.length))
+      : ((c = Math.max(o, u)),
+        (d = c > 0 ? (o > u ? TRANSITION : ANIMATION) : null),
+        (v = d ? (d === TRANSITION ? i.length : l.length) : 0));
+  const E =
+    d === TRANSITION &&
+    /\b(transform|all)(,|$)/.test(s(`${TRANSITION}Property`).toString());
+  return { type: d, timeout: c, propCount: v, hasTransform: E };
+}
+function getTimeout(e, t) {
+  for (; e.length < t.length;) e = e.concat(e);
+  return Math.max(...t.map((n, s) => toMs(n) + toMs(e[s])));
+}
+function toMs(e) {
+  return e === "auto" ? 0 : Number(e.slice(0, -1).replace(",", ".")) * 1e3;
+}
+function forceReflow() {
+  return document.body.offsetHeight;
+}
+function patchClass(e, t, n) {
+  const s = e[vtcKey];
+  (s && (t = (t ? [t, ...s] : [...s]).join(" ")),
+    t == null
+      ? e.removeAttribute("class")
+      : n
+        ? e.setAttribute("class", t)
+        : (e.className = t));
+}
+const vShowOriginalDisplay = Symbol("_vod"),
+  vShowHidden = Symbol("_vsh"),
+  vShow = {
+    beforeMount(e, { value: t }, { transition: n }) {
+      ((e[vShowOriginalDisplay] =
+        e.style.display === "none" ? "" : e.style.display),
+        n && t ? n.beforeEnter(e) : setDisplay(e, t));
+    },
+    mounted(e, { value: t }, { transition: n }) {
+      n && t && n.enter(e);
+    },
+    updated(e, { value: t, oldValue: n }, { transition: s }) {
+      !t != !n &&
+        (s
+          ? t
+            ? (s.beforeEnter(e), setDisplay(e, !0), s.enter(e))
+            : s.leave(e, () => {
+                setDisplay(e, !1);
+              })
+          : setDisplay(e, t));
+    },
+    beforeUnmount(e, { value: t }) {
+      setDisplay(e, t);
+    },
+  };
+function setDisplay(e, t) {
+  ((e.style.display = t ? e[vShowOriginalDisplay] : "none"),
+    (e[vShowHidden] = !t));
+}
+const CSS_VAR_TEXT = Symbol(""),
+  displayRE = /(^|;)\s*display\s*:/;
+function patchStyle(e, t, n) {
+  const s = e.style,
+    r = isString$1(n);
+  let i = !1;
+  if (n && !r) {
+    if (t)
+      if (isString$1(t))
+        for (const o of t.split(";")) {
+          const a = o.slice(0, o.indexOf(":")).trim();
+          n[a] == null && setStyle(s, a, "");
+        }
+      else for (const o in t) n[o] == null && setStyle(s, o, "");
+    for (const o in n) (o === "display" && (i = !0), setStyle(s, o, n[o]));
+  } else if (r) {
+    if (t !== n) {
+      const o = s[CSS_VAR_TEXT];
+      (o && (n += ";" + o), (s.cssText = n), (i = displayRE.test(n)));
+    }
+  } else t && e.removeAttribute("style");
+  vShowOriginalDisplay in e &&
+    ((e[vShowOriginalDisplay] = i ? s.display : ""),
+    e[vShowHidden] && (s.display = "none"));
+}
+const importantRE = /\s*!important$/;
+function setStyle(e, t, n) {
+  if (isArray$2(n)) n.forEach((s) => setStyle(e, t, s));
+  else if ((n == null && (n = ""), t.startsWith("--"))) e.setProperty(t, n);
+  else {
+    const s = autoPrefix(e, t);
+    importantRE.test(n)
+      ? e.setProperty(hyphenate(s), n.replace(importantRE, ""), "important")
+      : (e[s] = n);
+  }
+}
+const prefixes = ["Webkit", "Moz", "ms"],
+  prefixCache = {};
+function autoPrefix(e, t) {
+  const n = prefixCache[t];
+  if (n) return n;
+  let s = camelize(t);
+  if (s !== "filter" && s in e) return (prefixCache[t] = s);
+  s = capitalize(s);
+  for (let r = 0; r < prefixes.length; r++) {
+    const i = prefixes[r] + s;
+    if (i in e) return (prefixCache[t] = i);
+  }
+  return t;
+}
+const xlinkNS = "http://www.w3.org/1999/xlink";
+function patchAttr(e, t, n, s, r, i = isSpecialBooleanAttr(t)) {
+  s && t.startsWith("xlink:")
+    ? n == null
+      ? e.removeAttributeNS(xlinkNS, t.slice(6, t.length))
+      : e.setAttributeNS(xlinkNS, t, n)
+    : n == null || (i && !includeBooleanAttr(n))
+      ? e.removeAttribute(t)
+      : e.setAttribute(t, i ? "" : isSymbol(n) ? String(n) : n);
+}
+function patchDOMProp(e, t, n, s, r) {
+  if (t === "innerHTML" || t === "textContent") {
+    n != null && (e[t] = t === "innerHTML" ? unsafeToTrustedHTML(n) : n);
+    return;
+  }
+  const i = e.tagName;
+  if (t === "value" && i !== "PROGRESS" && !i.includes("-")) {
+    const a = i === "OPTION" ? e.getAttribute("value") || "" : e.value,
+      l = n == null ? (e.type === "checkbox" ? "on" : "") : String(n);
+    ((a !== l || !("_value" in e)) && (e.value = l),
+      n == null && e.removeAttribute(t),
+      (e._value = n));
+    return;
+  }
+  let o = !1;
+  if (n === "" || n == null) {
+    const a = typeof e[t];
+    a === "boolean"
+      ? (n = includeBooleanAttr(n))
+      : n == null && a === "string"
+        ? ((n = ""), (o = !0))
+        : a === "number" && ((n = 0), (o = !0));
+  }
+  try {
+    e[t] = n;
+  } catch {}
+  o && e.removeAttribute(r || t);
+}
+function addEventListener(e, t, n, s) {
+  e.addEventListener(t, n, s);
+}
+function removeEventListener(e, t, n, s) {
+  e.removeEventListener(t, n, s);
+}
+const veiKey = Symbol("_vei");
+function patchEvent(e, t, n, s, r = null) {
+  const i = e[veiKey] || (e[veiKey] = {}),
+    o = i[t];
+  if (s && o) o.value = s;
+  else {
+    const [a, l] = parseName(t);
+    if (s) {
+      const u = (i[t] = createInvoker(s, r));
+      addEventListener(e, a, u, l);
+    } else o && (removeEventListener(e, a, o, l), (i[t] = void 0));
+  }
+}
+const optionsModifierRE = /(?:Once|Passive|Capture)$/;
+function parseName(e) {
+  let t;
+  if (optionsModifierRE.test(e)) {
+    t = {};
+    let s;
+    for (; (s = e.match(optionsModifierRE));)
+      ((e = e.slice(0, e.length - s[0].length)), (t[s[0].toLowerCase()] = !0));
+  }
+  return [e[2] === ":" ? e.slice(3) : hyphenate(e.slice(2)), t];
+}
+let cachedNow = 0;
+const p = Promise.resolve(),
+  getNow = () =>
+    cachedNow || (p.then(() => (cachedNow = 0)), (cachedNow = Date.now()));
+function createInvoker(e, t) {
+  const n = (s) => {
+    if (!s._vts) s._vts = Date.now();
+    else if (s._vts <= n.attached) return;
+    callWithAsyncErrorHandling(
+      patchStopImmediatePropagation(s, n.value),
+      t,
+      5,
+      [s],
+    );
+  };
+  return ((n.value = e), (n.attached = getNow()), n);
+}
+function patchStopImmediatePropagation(e, t) {
+  if (isArray$2(t)) {
+    const n = e.stopImmediatePropagation;
+    return (
+      (e.stopImmediatePropagation = () => {
+        (n.call(e), (e._stopped = !0));
+      }),
+      t.map((s) => (r) => !r._stopped && s && s(r))
+    );
+  } else return t;
+}
+const isNativeOn = (e) =>
+    e.charCodeAt(0) === 111 &&
+    e.charCodeAt(1) === 110 &&
+    e.charCodeAt(2) > 96 &&
+    e.charCodeAt(2) < 123,
+  patchProp = (e, t, n, s, r, i) => {
+    const o = r === "svg";
+    t === "class"
+      ? patchClass(e, s, o)
+      : t === "style"
+        ? patchStyle(e, n, s)
+        : isOn(t)
+          ? isModelListener(t) || patchEvent(e, t, n, s, i)
+          : (
+                t[0] === "."
+                  ? ((t = t.slice(1)), !0)
+                  : t[0] === "^"
+                    ? ((t = t.slice(1)), !1)
+                    : shouldSetAsProp(e, t, s, o)
+              )
+            ? (patchDOMProp(e, t, s),
+              !e.tagName.includes("-") &&
+                (t === "value" || t === "checked" || t === "selected") &&
+                patchAttr(e, t, s, o, i, t !== "value"))
+            : e._isVueCE && (/[A-Z]/.test(t) || !isString$1(s))
+              ? patchDOMProp(e, camelize(t), s, i, t)
+              : (t === "true-value"
+                  ? (e._trueValue = s)
+                  : t === "false-value" && (e._falseValue = s),
+                patchAttr(e, t, s, o));
+  };
+function shouldSetAsProp(e, t, n, s) {
+  if (s)
+    return !!(
+      t === "innerHTML" ||
+      t === "textContent" ||
+      (t in e && isNativeOn(t) && isFunction$1(n))
+    );
+  if (
+    t === "spellcheck" ||
+    t === "draggable" ||
+    t === "translate" ||
+    t === "autocorrect" ||
+    t === "form" ||
+    (t === "list" && e.tagName === "INPUT") ||
+    (t === "type" && e.tagName === "TEXTAREA")
+  )
+    return !1;
+  if (t === "width" || t === "height") {
+    const r = e.tagName;
+    if (r === "IMG" || r === "VIDEO" || r === "CANVAS" || r === "SOURCE")
+      return !1;
+  }
+  return isNativeOn(t) && isString$1(n) ? !1 : t in e;
+}
+const getModelAssigner = (e) => {
+  const t = e.props["onUpdate:modelValue"] || !1;
+  return isArray$2(t) ? (n) => invokeArrayFns(t, n) : t;
+};
+function onCompositionStart(e) {
+  e.target.composing = !0;
+}
+function onCompositionEnd(e) {
+  const t = e.target;
+  t.composing && ((t.composing = !1), t.dispatchEvent(new Event("input")));
+}
+const assignKey = Symbol("_assign"),
+  vModelText = {
+    created(e, { modifiers: { lazy: t, trim: n, number: s } }, r) {
+      e[assignKey] = getModelAssigner(r);
+      const i = s || (r.props && r.props.type === "number");
+      (addEventListener(e, t ? "change" : "input", (o) => {
+        if (o.target.composing) return;
+        let a = e.value;
+        (n && (a = a.trim()), i && (a = looseToNumber(a)), e[assignKey](a));
+      }),
+        n &&
+          addEventListener(e, "change", () => {
+            e.value = e.value.trim();
+          }),
+        t ||
+          (addEventListener(e, "compositionstart", onCompositionStart),
+          addEventListener(e, "compositionend", onCompositionEnd),
+          addEventListener(e, "change", onCompositionEnd)));
+    },
+    mounted(e, { value: t }) {
+      e.value = t ?? "";
+    },
+    beforeUpdate(
+      e,
+      { value: t, oldValue: n, modifiers: { lazy: s, trim: r, number: i } },
+      o,
+    ) {
+      if (((e[assignKey] = getModelAssigner(o)), e.composing)) return;
+      const a =
+          (i || e.type === "number") && !/^0\d/.test(e.value)
+            ? looseToNumber(e.value)
+            : e.value,
+        l = t ?? "";
+      a !== l &&
+        ((document.activeElement === e &&
+          e.type !== "range" &&
+          ((s && t === n) || (r && e.value.trim() === l))) ||
+          (e.value = l));
+    },
+  },
+  systemModifiers = ["ctrl", "shift", "alt", "meta"],
+  modifierGuards = {
+    stop: (e) => e.stopPropagation(),
+    prevent: (e) => e.preventDefault(),
+    self: (e) => e.target !== e.currentTarget,
+    ctrl: (e) => !e.ctrlKey,
+    shift: (e) => !e.shiftKey,
+    alt: (e) => !e.altKey,
+    meta: (e) => !e.metaKey,
+    left: (e) => "button" in e && e.button !== 0,
+    middle: (e) => "button" in e && e.button !== 1,
+    right: (e) => "button" in e && e.button !== 2,
+    exact: (e, t) =>
+      systemModifiers.some((n) => e[`${n}Key`] && !t.includes(n)),
+  },
+  withModifiers = (e, t) => {
+    const n = e._withMods || (e._withMods = {}),
+      s = t.join(".");
+    return (
+      n[s] ||
+      (n[s] = (r, ...i) => {
+        for (let o = 0; o < t.length; o++) {
+          const a = modifierGuards[t[o]];
+          if (a && a(r, t)) return;
+        }
+        return e(r, ...i);
+      })
+    );
+  },
+  rendererOptions = extend$4({ patchProp }, nodeOps);
+let renderer;
+function ensureRenderer() {
+  return renderer || (renderer = createRenderer(rendererOptions));
+}
+const render = (...e) => {
+    ensureRenderer().render(...e);
+  },
+  createApp = (...e) => {
+    const t = ensureRenderer().createApp(...e),
+      { mount: n } = t;
+    return (
+      (t.mount = (s) => {
+        const r = normalizeContainer(s);
+        if (!r) return;
+        const i = t._component;
+        (!isFunction$1(i) &&
+          !i.render &&
+          !i.template &&
+          (i.template = r.innerHTML),
+          r.nodeType === 1 && (r.textContent = ""));
+        const o = n(r, !1, resolveRootNamespace(r));
+        return (
+          r instanceof Element &&
+            (r.removeAttribute("v-cloak"), r.setAttribute("data-v-app", "")),
+          o
+        );
+      }),
+      t
+    );
+  };
+function resolveRootNamespace(e) {
+  if (e instanceof SVGElement) return "svg";
+  if (typeof MathMLElement == "function" && e instanceof MathMLElement)
+    return "mathml";
+}
+function normalizeContainer(e) {
+  return isString$1(e) ? document.querySelector(e) : e;
+}
+const _hoisted_1$d = { id: "app" },
+  _sfc_main$e = {
+    __name: "App",
+    setup(e) {
+      return (
+        onMounted(() => {
+          window.LuminJsCall("page_loaded");
+        }),
+        (t, n) => {
+          const s = resolveComponent("router-view");
+          return (
+            openBlock(),
+            createElementBlock("div", _hoisted_1$d, [createVNode(s)])
+          );
+        }
+      );
+    },
+  },
+  _export_sfc = (e, t) => {
+    const n = e.__vccOpts || e;
+    for (const [s, r] of t) n[s] = r;
+    return n;
+  },
+  _sfc_main$d = defineComponent({
+    name: "Toast",
+    props: {
+      value: { type: String, default: "" },
+      duration: { type: Number, default: 1e3 },
+      background: { type: String, default: "#000" },
+      color: { type: String, default: "#fff" },
+    },
+  }),
+  _hoisted_1$c = { class: "toast-box" };
+function _sfc_render(e, t, n, s, r, i) {
+  return (
+    openBlock(),
+    createElementBlock("div", _hoisted_1$c, [
+      createBaseVNode(
+        "p",
+        {
+          class: "toast-value",
+          style: normalizeStyle({ background: e.background, color: e.color }),
+        },
+        toDisplayString(e.value),
+        5,
+      ),
+    ])
+  );
+}
+const toastTemplate = _export_sfc(_sfc_main$d, [["render", _sfc_render]]),
+  defaultOpt = { duration: 3e3 },
+  Toast = (e) => {
+    const t = document.createElement("div"),
+      n = { ...defaultOpt, ...e },
+      s = createVNode(toastTemplate, n);
+    (render(s, t), document.body.appendChild(t));
+    const r = () => {
+      var o;
+      const i = s.el;
+      if (i.querySelector(".toast-value")) {
+        (o = i.querySelector(".toast-value")) == null ||
+          o.classList.add("remove");
+        const a = setTimeout(() => {
+          (render(null, t), document.body.removeChild(t), clearTimeout(a));
+        }, 500);
+      }
+    };
+    if (n.duration) {
+      const i = setTimeout(() => {
+        (r(), clearTimeout(i));
+      }, n.duration);
+    }
+    return { destory: r };
+  };
+window.toast = Toast;
+var isNumeric = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i,
+  mathceil = Math.ceil,
+  mathfloor = Math.floor,
+  bignumberError = "[BigNumber Error] ",
+  tooManyDigits =
+    bignumberError + "Number primitive has more than 15 significant digits: ",
+  BASE = 1e14,
+  LOG_BASE = 14,
+  MAX_SAFE_INTEGER = 9007199254740991,
+  POWS_TEN = [
+    1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11, 1e12, 1e13,
+  ],
+  SQRT_BASE = 1e7,
+  MAX = 1e9;
+function clone(e) {
+  var t,
+    n,
+    s,
+    r = (b.prototype = { constructor: b, toString: null, valueOf: null }),
+    i = new b(1),
+    o = 20,
+    a = 4,
+    l = -7,
+    u = 21,
+    d = -1e7,
+    c = 1e7,
+    v = !1,
+    E = 1,
+    x = 0,
+    B = {
+      prefix: "",
+      groupSize: 3,
+      secondaryGroupSize: 0,
+      groupSeparator: ",",
+      decimalSeparator: ".",
+      fractionGroupSize: 0,
+      fractionGroupSeparator: " ",
+      suffix: "",
+    },
+    G = "0123456789abcdefghijklmnopqrstuvwxyz",
+    q = !0;
+  function b(w, m) {
+    var S,
+      $,
+      R,
+      P,
+      W,
+      D,
+      k,
+      V,
+      F = this;
+    if (!(F instanceof b)) return new b(w, m);
+    if (m == null) {
+      if (w && w._isBigNumber === !0) {
+        ((F.s = w.s),
+          !w.c || w.e > c
+            ? (F.c = F.e = null)
+            : w.e < d
+              ? (F.c = [(F.e = 0)])
+              : ((F.e = w.e), (F.c = w.c.slice())));
+        return;
+      }
+      if ((D = typeof w == "number") && w * 0 == 0) {
+        if (((F.s = 1 / w < 0 ? ((w = -w), -1) : 1), w === ~~w)) {
+          for (P = 0, W = w; W >= 10; W /= 10, P++);
+          P > c ? (F.c = F.e = null) : ((F.e = P), (F.c = [w]));
+          return;
+        }
+        V = String(w);
+      } else {
+        if (!isNumeric.test((V = String(w)))) return s(F, V, D);
+        F.s = V.charCodeAt(0) == 45 ? ((V = V.slice(1)), -1) : 1;
+      }
+      ((P = V.indexOf(".")) > -1 && (V = V.replace(".", "")),
+        (W = V.search(/e/i)) > 0
+          ? (P < 0 && (P = W), (P += +V.slice(W + 1)), (V = V.substring(0, W)))
+          : P < 0 && (P = V.length));
+    } else {
+      if ((intCheck(m, 2, G.length, "Base"), m == 10 && q))
+        return ((F = new b(w)), X(F, o + F.e + 1, a));
+      if (((V = String(w)), (D = typeof w == "number"))) {
+        if (w * 0 != 0) return s(F, V, D, m);
+        if (
+          ((F.s = 1 / w < 0 ? ((V = V.slice(1)), -1) : 1),
+          b.DEBUG && V.replace(/^0\.0*|\./, "").length > 15)
+        )
+          throw Error(tooManyDigits + w);
+      } else F.s = V.charCodeAt(0) === 45 ? ((V = V.slice(1)), -1) : 1;
+      for (S = G.slice(0, m), P = W = 0, k = V.length; W < k; W++)
+        if (S.indexOf(($ = V.charAt(W))) < 0) {
+          if ($ == ".") {
+            if (W > P) {
+              P = k;
+              continue;
+            }
+          } else if (
+            !R &&
+            ((V == V.toUpperCase() && (V = V.toLowerCase())) ||
+              (V == V.toLowerCase() && (V = V.toUpperCase())))
+          ) {
+            ((R = !0), (W = -1), (P = 0));
+            continue;
+          }
+          return s(F, String(w), D, m);
+        }
+      ((D = !1),
+        (V = n(V, m, 10, F.s)),
+        (P = V.indexOf(".")) > -1 ? (V = V.replace(".", "")) : (P = V.length));
+    }
+    for (W = 0; V.charCodeAt(W) === 48; W++);
+    for (k = V.length; V.charCodeAt(--k) === 48;);
+    if ((V = V.slice(W, ++k))) {
+      if (
+        ((k -= W),
+        D && b.DEBUG && k > 15 && (w > MAX_SAFE_INTEGER || w !== mathfloor(w)))
+      )
+        throw Error(tooManyDigits + F.s * w);
+      if ((P = P - W - 1) > c) F.c = F.e = null;
+      else if (P < d) F.c = [(F.e = 0)];
+      else {
+        if (
+          ((F.e = P),
+          (F.c = []),
+          (W = (P + 1) % LOG_BASE),
+          P < 0 && (W += LOG_BASE),
+          W < k)
+        ) {
+          for (W && F.c.push(+V.slice(0, W)), k -= LOG_BASE; W < k;)
+            F.c.push(+V.slice(W, (W += LOG_BASE)));
+          W = LOG_BASE - (V = V.slice(W)).length;
+        } else W -= k;
+        for (; W--; V += "0");
+        F.c.push(+V);
+      }
+    } else F.c = [(F.e = 0)];
+  }
+  ((b.clone = clone),
+    (b.ROUND_UP = 0),
+    (b.ROUND_DOWN = 1),
+    (b.ROUND_CEIL = 2),
+    (b.ROUND_FLOOR = 3),
+    (b.ROUND_HALF_UP = 4),
+    (b.ROUND_HALF_DOWN = 5),
+    (b.ROUND_HALF_EVEN = 6),
+    (b.ROUND_HALF_CEIL = 7),
+    (b.ROUND_HALF_FLOOR = 8),
+    (b.EUCLID = 9),
+    (b.config = b.set =
+      function (w) {
+        var m, S;
+        if (w != null)
+          if (typeof w == "object") {
+            if (
+              (w.hasOwnProperty((m = "DECIMAL_PLACES")) &&
+                ((S = w[m]), intCheck(S, 0, MAX, m), (o = S)),
+              w.hasOwnProperty((m = "ROUNDING_MODE")) &&
+                ((S = w[m]), intCheck(S, 0, 8, m), (a = S)),
+              w.hasOwnProperty((m = "EXPONENTIAL_AT")) &&
+                ((S = w[m]),
+                S && S.pop
+                  ? (intCheck(S[0], -MAX, 0, m),
+                    intCheck(S[1], 0, MAX, m),
+                    (l = S[0]),
+                    (u = S[1]))
+                  : (intCheck(S, -MAX, MAX, m), (l = -(u = S < 0 ? -S : S)))),
+              w.hasOwnProperty((m = "RANGE")))
+            )
+              if (((S = w[m]), S && S.pop))
+                (intCheck(S[0], -MAX, -1, m),
+                  intCheck(S[1], 1, MAX, m),
+                  (d = S[0]),
+                  (c = S[1]));
+              else if ((intCheck(S, -MAX, MAX, m), S))
+                d = -(c = S < 0 ? -S : S);
+              else throw Error(bignumberError + m + " cannot be zero: " + S);
+            if (w.hasOwnProperty((m = "CRYPTO")))
+              if (((S = w[m]), S === !!S))
+                if (S)
+                  if (
+                    typeof crypto < "u" &&
+                    crypto &&
+                    (crypto.getRandomValues || crypto.randomBytes)
+                  )
+                    v = S;
+                  else
+                    throw (
+                      (v = !S),
+                      Error(bignumberError + "crypto unavailable")
+                    );
+                else v = S;
+              else throw Error(bignumberError + m + " not true or false: " + S);
+            if (
+              (w.hasOwnProperty((m = "MODULO_MODE")) &&
+                ((S = w[m]), intCheck(S, 0, 9, m), (E = S)),
+              w.hasOwnProperty((m = "POW_PRECISION")) &&
+                ((S = w[m]), intCheck(S, 0, MAX, m), (x = S)),
+              w.hasOwnProperty((m = "FORMAT")))
+            )
+              if (((S = w[m]), typeof S == "object")) B = S;
+              else throw Error(bignumberError + m + " not an object: " + S);
+            if (w.hasOwnProperty((m = "ALPHABET")))
+              if (
+                ((S = w[m]),
+                typeof S == "string" && !/^.?$|[+\-.\s]|(.).*\1/.test(S))
+              )
+                ((q = S.slice(0, 10) == "0123456789"), (G = S));
+              else throw Error(bignumberError + m + " invalid: " + S);
+          } else throw Error(bignumberError + "Object expected: " + w);
+        return {
+          DECIMAL_PLACES: o,
+          ROUNDING_MODE: a,
+          EXPONENTIAL_AT: [l, u],
+          RANGE: [d, c],
+          CRYPTO: v,
+          MODULO_MODE: E,
+          POW_PRECISION: x,
+          FORMAT: B,
+          ALPHABET: G,
+        };
+      }),
+    (b.isBigNumber = function (w) {
+      if (!w || w._isBigNumber !== !0) return !1;
+      if (!b.DEBUG) return !0;
+      var m,
+        S,
+        $ = w.c,
+        R = w.e,
+        P = w.s;
+      e: if ({}.toString.call($) == "[object Array]") {
+        if (
+          (P === 1 || P === -1) &&
+          R >= -MAX &&
+          R <= MAX &&
+          R === mathfloor(R)
+        ) {
+          if ($[0] === 0) {
+            if (R === 0 && $.length === 1) return !0;
+            break e;
+          }
+          if (
+            ((m = (R + 1) % LOG_BASE),
+            m < 1 && (m += LOG_BASE),
+            String($[0]).length == m)
+          ) {
+            for (m = 0; m < $.length; m++)
+              if (((S = $[m]), S < 0 || S >= BASE || S !== mathfloor(S)))
+                break e;
+            if (S !== 0) return !0;
+          }
+        }
+      } else if (
+        $ === null &&
+        R === null &&
+        (P === null || P === 1 || P === -1)
+      )
+        return !0;
+      throw Error(bignumberError + "Invalid BigNumber: " + w);
+    }),
+    (b.maximum = b.max =
+      function () {
+        return z(arguments, -1);
+      }),
+    (b.minimum = b.min =
+      function () {
+        return z(arguments, 1);
+      }),
+    (b.random = (function () {
+      var w = 9007199254740992,
+        m =
+          (Math.random() * w) & 2097151
+            ? function () {
+                return mathfloor(Math.random() * w);
+              }
+            : function () {
+                return (
+                  ((Math.random() * 1073741824) | 0) * 8388608 +
+                  ((Math.random() * 8388608) | 0)
+                );
+              };
+      return function (S) {
+        var $,
+          R,
+          P,
+          W,
+          D,
+          k = 0,
+          V = [],
+          F = new b(i);
+        if (
+          (S == null ? (S = o) : intCheck(S, 0, MAX),
+          (W = mathceil(S / LOG_BASE)),
+          v)
+        )
+          if (crypto.getRandomValues) {
+            for ($ = crypto.getRandomValues(new Uint32Array((W *= 2))); k < W;)
+              ((D = $[k] * 131072 + ($[k + 1] >>> 11)),
+                D >= 9e15
+                  ? ((R = crypto.getRandomValues(new Uint32Array(2))),
+                    ($[k] = R[0]),
+                    ($[k + 1] = R[1]))
+                  : (V.push(D % 1e14), (k += 2)));
+            k = W / 2;
+          } else if (crypto.randomBytes) {
+            for ($ = crypto.randomBytes((W *= 7)); k < W;)
+              ((D =
+                ($[k] & 31) * 281474976710656 +
+                $[k + 1] * 1099511627776 +
+                $[k + 2] * 4294967296 +
+                $[k + 3] * 16777216 +
+                ($[k + 4] << 16) +
+                ($[k + 5] << 8) +
+                $[k + 6]),
+                D >= 9e15
+                  ? crypto.randomBytes(7).copy($, k)
+                  : (V.push(D % 1e14), (k += 7)));
+            k = W / 7;
+          } else throw ((v = !1), Error(bignumberError + "crypto unavailable"));
+        if (!v) for (; k < W;) ((D = m()), D < 9e15 && (V[k++] = D % 1e14));
+        for (
+          W = V[--k],
+            S %= LOG_BASE,
+            W &&
+              S &&
+              ((D = POWS_TEN[LOG_BASE - S]), (V[k] = mathfloor(W / D) * D));
+          V[k] === 0;
+          V.pop(), k--
+        );
+        if (k < 0) V = [(P = 0)];
+        else {
+          for (P = -1; V[0] === 0; V.splice(0, 1), P -= LOG_BASE);
+          for (k = 1, D = V[0]; D >= 10; D /= 10, k++);
+          k < LOG_BASE && (P -= LOG_BASE - k);
+        }
+        return ((F.e = P), (F.c = V), F);
+      };
+    })()),
+    (b.sum = function () {
+      for (var w = 1, m = arguments, S = new b(m[0]); w < m.length;)
+        S = S.plus(m[w++]);
+      return S;
+    }),
+    (n = (function () {
+      var w = "0123456789";
+      function m(S, $, R, P) {
+        for (var W, D = [0], k, V = 0, F = S.length; V < F;) {
+          for (k = D.length; k--; D[k] *= $);
+          for (D[0] += P.indexOf(S.charAt(V++)), W = 0; W < D.length; W++)
+            D[W] > R - 1 &&
+              (D[W + 1] == null && (D[W + 1] = 0),
+              (D[W + 1] += (D[W] / R) | 0),
+              (D[W] %= R));
+        }
+        return D.reverse();
+      }
+      return function (S, $, R, P, W) {
+        var D,
+          k,
+          V,
+          F,
+          Z,
+          re,
+          ae,
+          ce,
+          ge = S.indexOf("."),
+          ne = o,
+          pe = a;
+        for (
+          ge >= 0 &&
+            ((F = x),
+            (x = 0),
+            (S = S.replace(".", "")),
+            (ce = new b($)),
+            (re = ce.pow(S.length - ge)),
+            (x = F),
+            (ce.c = m(toFixedPoint(coeffToString(re.c), re.e, "0"), 10, R, w)),
+            (ce.e = ce.c.length)),
+            ae = m(S, $, R, W ? ((D = G), w) : ((D = w), G)),
+            V = F = ae.length;
+          ae[--F] == 0;
+          ae.pop()
+        );
+        if (!ae[0]) return D.charAt(0);
+        if (
+          (ge < 0
+            ? --V
+            : ((re.c = ae),
+              (re.e = V),
+              (re.s = P),
+              (re = t(re, ce, ne, pe, R)),
+              (ae = re.c),
+              (Z = re.r),
+              (V = re.e)),
+          (k = V + ne + 1),
+          (ge = ae[k]),
+          (F = R / 2),
+          (Z = Z || k < 0 || ae[k + 1] != null),
+          (Z =
+            pe < 4
+              ? (ge != null || Z) && (pe == 0 || pe == (re.s < 0 ? 3 : 2))
+              : ge > F ||
+                (ge == F &&
+                  (pe == 4 ||
+                    Z ||
+                    (pe == 6 && ae[k - 1] & 1) ||
+                    pe == (re.s < 0 ? 8 : 7)))),
+          k < 1 || !ae[0])
+        )
+          S = Z ? toFixedPoint(D.charAt(1), -ne, D.charAt(0)) : D.charAt(0);
+        else {
+          if (((ae.length = k), Z))
+            for (--R; ++ae[--k] > R;)
+              ((ae[k] = 0), k || (++V, (ae = [1].concat(ae))));
+          for (F = ae.length; !ae[--F];);
+          for (ge = 0, S = ""; ge <= F; S += D.charAt(ae[ge++]));
+          S = toFixedPoint(S, V, D.charAt(0));
+        }
+        return S;
+      };
+    })()),
+    (t = (function () {
+      function w($, R, P) {
+        var W,
+          D,
+          k,
+          V,
+          F = 0,
+          Z = $.length,
+          re = R % SQRT_BASE,
+          ae = (R / SQRT_BASE) | 0;
+        for ($ = $.slice(); Z--;)
+          ((k = $[Z] % SQRT_BASE),
+            (V = ($[Z] / SQRT_BASE) | 0),
+            (W = ae * k + V * re),
+            (D = re * k + (W % SQRT_BASE) * SQRT_BASE + F),
+            (F = ((D / P) | 0) + ((W / SQRT_BASE) | 0) + ae * V),
+            ($[Z] = D % P));
+        return (F && ($ = [F].concat($)), $);
+      }
+      function m($, R, P, W) {
+        var D, k;
+        if (P != W) k = P > W ? 1 : -1;
+        else
+          for (D = k = 0; D < P; D++)
+            if ($[D] != R[D]) {
+              k = $[D] > R[D] ? 1 : -1;
+              break;
+            }
+        return k;
+      }
+      function S($, R, P, W) {
+        for (var D = 0; P--;)
+          (($[P] -= D),
+            (D = $[P] < R[P] ? 1 : 0),
+            ($[P] = D * W + $[P] - R[P]));
+        for (; !$[0] && $.length > 1; $.splice(0, 1));
+      }
+      return function ($, R, P, W, D) {
+        var k,
+          V,
+          F,
+          Z,
+          re,
+          ae,
+          ce,
+          ge,
+          ne,
+          pe,
+          he,
+          Q,
+          ie,
+          se,
+          A,
+          L,
+          y,
+          T = $.s == R.s ? 1 : -1,
+          g = $.c,
+          C = R.c;
+        if (!g || !g[0] || !C || !C[0])
+          return new b(
+            !$.s || !R.s || (g ? C && g[0] == C[0] : !C)
+              ? NaN
+              : (g && g[0] == 0) || !C
+                ? T * 0
+                : T / 0,
+          );
+        for (
+          ge = new b(T),
+            ne = ge.c = [],
+            V = $.e - R.e,
+            T = P + V + 1,
+            D ||
+              ((D = BASE),
+              (V = bitFloor($.e / LOG_BASE) - bitFloor(R.e / LOG_BASE)),
+              (T = (T / LOG_BASE) | 0)),
+            F = 0;
+          C[F] == (g[F] || 0);
+          F++
+        );
+        if ((C[F] > (g[F] || 0) && V--, T < 0)) (ne.push(1), (Z = !0));
+        else {
+          for (
+            se = g.length,
+              L = C.length,
+              F = 0,
+              T += 2,
+              re = mathfloor(D / (C[0] + 1)),
+              re > 1 &&
+                ((C = w(C, re, D)),
+                (g = w(g, re, D)),
+                (L = C.length),
+                (se = g.length)),
+              ie = L,
+              pe = g.slice(0, L),
+              he = pe.length;
+            he < L;
+            pe[he++] = 0
+          );
+          ((y = C.slice()),
+            (y = [0].concat(y)),
+            (A = C[0]),
+            C[1] >= D / 2 && A++);
+          do {
+            if (((re = 0), (k = m(C, pe, L, he)), k < 0)) {
+              if (
+                ((Q = pe[0]),
+                L != he && (Q = Q * D + (pe[1] || 0)),
+                (re = mathfloor(Q / A)),
+                re > 1)
+              )
+                for (
+                  re >= D && (re = D - 1),
+                    ae = w(C, re, D),
+                    ce = ae.length,
+                    he = pe.length;
+                  m(ae, pe, ce, he) == 1;
+                )
+                  (re--,
+                    S(ae, L < ce ? y : C, ce, D),
+                    (ce = ae.length),
+                    (k = 1));
+              else
+                (re == 0 && (k = re = 1), (ae = C.slice()), (ce = ae.length));
+              if (
+                (ce < he && (ae = [0].concat(ae)),
+                S(pe, ae, he, D),
+                (he = pe.length),
+                k == -1)
+              )
+                for (; m(C, pe, L, he) < 1;)
+                  (re++, S(pe, L < he ? y : C, he, D), (he = pe.length));
+            } else k === 0 && (re++, (pe = [0]));
+            ((ne[F++] = re),
+              pe[0] ? (pe[he++] = g[ie] || 0) : ((pe = [g[ie]]), (he = 1)));
+          } while ((ie++ < se || pe[0] != null) && T--);
+          ((Z = pe[0] != null), ne[0] || ne.splice(0, 1));
+        }
+        if (D == BASE) {
+          for (F = 1, T = ne[0]; T >= 10; T /= 10, F++);
+          X(ge, P + (ge.e = F + V * LOG_BASE - 1) + 1, W, Z);
+        } else ((ge.e = V), (ge.r = +Z));
+        return ge;
+      };
+    })()));
+  function N(w, m, S, $) {
+    var R, P, W, D, k;
+    if ((S == null ? (S = a) : intCheck(S, 0, 8), !w.c)) return w.toString();
+    if (((R = w.c[0]), (W = w.e), m == null))
+      ((k = coeffToString(w.c)),
+        (k =
+          $ == 1 || ($ == 2 && (W <= l || W >= u))
+            ? toExponential(k, W)
+            : toFixedPoint(k, W, "0")));
+    else if (
+      ((w = X(new b(w), m, S)),
+      (P = w.e),
+      (k = coeffToString(w.c)),
+      (D = k.length),
+      $ == 1 || ($ == 2 && (m <= P || P <= l)))
+    ) {
+      for (; D < m; k += "0", D++);
+      k = toExponential(k, P);
+    } else if (((m -= W), (k = toFixedPoint(k, P, "0")), P + 1 > D)) {
+      if (--m > 0) for (k += "."; m--; k += "0");
+    } else if (((m += P - D), m > 0))
+      for (P + 1 == D && (k += "."); m--; k += "0");
+    return w.s < 0 && R ? "-" + k : k;
+  }
+  function z(w, m) {
+    for (var S, $, R = 1, P = new b(w[0]); R < w.length; R++)
+      (($ = new b(w[R])),
+        (!$.s || (S = compare(P, $)) === m || (S === 0 && P.s === m)) &&
+          (P = $));
+    return P;
+  }
+  function Y(w, m, S) {
+    for (var $ = 1, R = m.length; !m[--R]; m.pop());
+    for (R = m[0]; R >= 10; R /= 10, $++);
+    return (
+      (S = $ + S * LOG_BASE - 1) > c
+        ? (w.c = w.e = null)
+        : S < d
+          ? (w.c = [(w.e = 0)])
+          : ((w.e = S), (w.c = m)),
+      w
+    );
+  }
+  s = (function () {
+    var w = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
+      m = /^([^.]+)\.$/,
+      S = /^\.([^.]+)$/,
+      $ = /^-?(Infinity|NaN)$/,
+      R = /^\s*\+(?=[\w.])|^\s+|\s+$/g;
+    return function (P, W, D, k) {
+      var V,
+        F = D ? W : W.replace(R, "");
+      if ($.test(F)) P.s = isNaN(F) ? null : F < 0 ? -1 : 1;
+      else {
+        if (
+          !D &&
+          ((F = F.replace(w, function (Z, re, ae) {
+            return (
+              (V = (ae = ae.toLowerCase()) == "x" ? 16 : ae == "b" ? 2 : 8),
+              !k || k == V ? re : Z
+            );
+          })),
+          k && ((V = k), (F = F.replace(m, "$1").replace(S, "0.$1"))),
+          W != F)
+        )
+          return new b(F, V);
+        if (b.DEBUG)
+          throw Error(
+            bignumberError +
+              "Not a" +
+              (k ? " base " + k : "") +
+              " number: " +
+              W,
+          );
+        P.s = null;
+      }
+      P.c = P.e = null;
+    };
+  })();
+  function X(w, m, S, $) {
+    var R,
+      P,
+      W,
+      D,
+      k,
+      V,
+      F,
+      Z = w.c,
+      re = POWS_TEN;
+    if (Z) {
+      e: {
+        for (R = 1, D = Z[0]; D >= 10; D /= 10, R++);
+        if (((P = m - R), P < 0))
+          ((P += LOG_BASE),
+            (W = m),
+            (k = Z[(V = 0)]),
+            (F = mathfloor((k / re[R - W - 1]) % 10)));
+        else if (((V = mathceil((P + 1) / LOG_BASE)), V >= Z.length))
+          if ($) {
+            for (; Z.length <= V; Z.push(0));
+            ((k = F = 0), (R = 1), (P %= LOG_BASE), (W = P - LOG_BASE + 1));
+          } else break e;
+        else {
+          for (k = D = Z[V], R = 1; D >= 10; D /= 10, R++);
+          ((P %= LOG_BASE),
+            (W = P - LOG_BASE + R),
+            (F = W < 0 ? 0 : mathfloor((k / re[R - W - 1]) % 10)));
+        }
+        if (
+          (($ =
+            $ || m < 0 || Z[V + 1] != null || (W < 0 ? k : k % re[R - W - 1])),
+          ($ =
+            S < 4
+              ? (F || $) && (S == 0 || S == (w.s < 0 ? 3 : 2))
+              : F > 5 ||
+                (F == 5 &&
+                  (S == 4 ||
+                    $ ||
+                    (S == 6 &&
+                      ((P > 0 ? (W > 0 ? k / re[R - W] : 0) : Z[V - 1]) % 10) &
+                        1) ||
+                    S == (w.s < 0 ? 8 : 7)))),
+          m < 1 || !Z[0])
+        )
+          return (
+            (Z.length = 0),
+            $
+              ? ((m -= w.e + 1),
+                (Z[0] = re[(LOG_BASE - (m % LOG_BASE)) % LOG_BASE]),
+                (w.e = -m || 0))
+              : (Z[0] = w.e = 0),
+            w
+          );
+        if (
+          (P == 0
+            ? ((Z.length = V), (D = 1), V--)
+            : ((Z.length = V + 1),
+              (D = re[LOG_BASE - P]),
+              (Z[V] = W > 0 ? mathfloor((k / re[R - W]) % re[W]) * D : 0)),
+          $)
+        )
+          for (;;)
+            if (V == 0) {
+              for (P = 1, W = Z[0]; W >= 10; W /= 10, P++);
+              for (W = Z[0] += D, D = 1; W >= 10; W /= 10, D++);
+              P != D && (w.e++, Z[0] == BASE && (Z[0] = 1));
+              break;
+            } else {
+              if (((Z[V] += D), Z[V] != BASE)) break;
+              ((Z[V--] = 0), (D = 1));
+            }
+        for (P = Z.length; Z[--P] === 0; Z.pop());
+      }
+      w.e > c ? (w.c = w.e = null) : w.e < d && (w.c = [(w.e = 0)]);
+    }
+    return w;
+  }
+  function K(w) {
+    var m,
+      S = w.e;
+    return S === null
+      ? w.toString()
+      : ((m = coeffToString(w.c)),
+        (m = S <= l || S >= u ? toExponential(m, S) : toFixedPoint(m, S, "0")),
+        w.s < 0 ? "-" + m : m);
+  }
+  return (
+    (r.absoluteValue = r.abs =
+      function () {
+        var w = new b(this);
+        return (w.s < 0 && (w.s = 1), w);
+      }),
+    (r.comparedTo = function (w, m) {
+      return compare(this, new b(w, m));
+    }),
+    (r.decimalPlaces = r.dp =
+      function (w, m) {
+        var S,
+          $,
+          R,
+          P = this;
+        if (w != null)
+          return (
+            intCheck(w, 0, MAX),
+            m == null ? (m = a) : intCheck(m, 0, 8),
+            X(new b(P), w + P.e + 1, m)
+          );
+        if (!(S = P.c)) return null;
+        if (
+          (($ = ((R = S.length - 1) - bitFloor(this.e / LOG_BASE)) * LOG_BASE),
+          (R = S[R]))
+        )
+          for (; R % 10 == 0; R /= 10, $--);
+        return ($ < 0 && ($ = 0), $);
+      }),
+    (r.dividedBy = r.div =
+      function (w, m) {
+        return t(this, new b(w, m), o, a);
+      }),
+    (r.dividedToIntegerBy = r.idiv =
+      function (w, m) {
+        return t(this, new b(w, m), 0, 1);
+      }),
+    (r.exponentiatedBy = r.pow =
+      function (w, m) {
+        var S,
+          $,
+          R,
+          P,
+          W,
+          D,
+          k,
+          V,
+          F,
+          Z = this;
+        if (((w = new b(w)), w.c && !w.isInteger()))
+          throw Error(bignumberError + "Exponent not an integer: " + K(w));
+        if (
+          (m != null && (m = new b(m)),
+          (D = w.e > 14),
+          !Z.c ||
+            !Z.c[0] ||
+            (Z.c[0] == 1 && !Z.e && Z.c.length == 1) ||
+            !w.c ||
+            !w.c[0])
+        )
+          return (
+            (F = new b(Math.pow(+K(Z), D ? w.s * (2 - isOdd(w)) : +K(w)))),
+            m ? F.mod(m) : F
+          );
+        if (((k = w.s < 0), m)) {
+          if (m.c ? !m.c[0] : !m.s) return new b(NaN);
+          (($ = !k && Z.isInteger() && m.isInteger()), $ && (Z = Z.mod(m)));
+        } else {
+          if (
+            w.e > 9 &&
+            (Z.e > 0 ||
+              Z.e < -1 ||
+              (Z.e == 0
+                ? Z.c[0] > 1 || (D && Z.c[1] >= 24e7)
+                : Z.c[0] < 8e13 || (D && Z.c[0] <= 9999975e7)))
+          )
+            return (
+              (P = Z.s < 0 && isOdd(w) ? -0 : 0),
+              Z.e > -1 && (P = 1 / P),
+              new b(k ? 1 / P : P)
+            );
+          x && (P = mathceil(x / LOG_BASE + 2));
+        }
+        for (
+          D
+            ? ((S = new b(0.5)), k && (w.s = 1), (V = isOdd(w)))
+            : ((R = Math.abs(+K(w))), (V = R % 2)),
+            F = new b(i);
+          ;
+        ) {
+          if (V) {
+            if (((F = F.times(Z)), !F.c)) break;
+            P ? F.c.length > P && (F.c.length = P) : $ && (F = F.mod(m));
+          }
+          if (R) {
+            if (((R = mathfloor(R / 2)), R === 0)) break;
+            V = R % 2;
+          } else if (((w = w.times(S)), X(w, w.e + 1, 1), w.e > 14))
+            V = isOdd(w);
+          else {
+            if (((R = +K(w)), R === 0)) break;
+            V = R % 2;
+          }
+          ((Z = Z.times(Z)),
+            P
+              ? Z.c && Z.c.length > P && (Z.c.length = P)
+              : $ && (Z = Z.mod(m)));
+        }
+        return $
+          ? F
+          : (k && (F = i.div(F)), m ? F.mod(m) : P ? X(F, x, a, W) : F);
+      }),
+    (r.integerValue = function (w) {
+      var m = new b(this);
+      return (w == null ? (w = a) : intCheck(w, 0, 8), X(m, m.e + 1, w));
+    }),
+    (r.isEqualTo = r.eq =
+      function (w, m) {
+        return compare(this, new b(w, m)) === 0;
+      }),
+    (r.isFinite = function () {
+      return !!this.c;
+    }),
+    (r.isGreaterThan = r.gt =
+      function (w, m) {
+        return compare(this, new b(w, m)) > 0;
+      }),
+    (r.isGreaterThanOrEqualTo = r.gte =
+      function (w, m) {
+        return (m = compare(this, new b(w, m))) === 1 || m === 0;
+      }),
+    (r.isInteger = function () {
+      return !!this.c && bitFloor(this.e / LOG_BASE) > this.c.length - 2;
+    }),
+    (r.isLessThan = r.lt =
+      function (w, m) {
+        return compare(this, new b(w, m)) < 0;
+      }),
+    (r.isLessThanOrEqualTo = r.lte =
+      function (w, m) {
+        return (m = compare(this, new b(w, m))) === -1 || m === 0;
+      }),
+    (r.isNaN = function () {
+      return !this.s;
+    }),
+    (r.isNegative = function () {
+      return this.s < 0;
+    }),
+    (r.isPositive = function () {
+      return this.s > 0;
+    }),
+    (r.isZero = function () {
+      return !!this.c && this.c[0] == 0;
+    }),
+    (r.minus = function (w, m) {
+      var S,
+        $,
+        R,
+        P,
+        W = this,
+        D = W.s;
+      if (((w = new b(w, m)), (m = w.s), !D || !m)) return new b(NaN);
+      if (D != m) return ((w.s = -m), W.plus(w));
+      var k = W.e / LOG_BASE,
+        V = w.e / LOG_BASE,
+        F = W.c,
+        Z = w.c;
+      if (!k || !V) {
+        if (!F || !Z) return F ? ((w.s = -m), w) : new b(Z ? W : NaN);
+        if (!F[0] || !Z[0])
+          return Z[0] ? ((w.s = -m), w) : new b(F[0] ? W : a == 3 ? -0 : 0);
+      }
+      if (
+        ((k = bitFloor(k)), (V = bitFloor(V)), (F = F.slice()), (D = k - V))
+      ) {
+        for (
+          (P = D < 0) ? ((D = -D), (R = F)) : ((V = k), (R = Z)),
+            R.reverse(),
+            m = D;
+          m--;
+          R.push(0)
+        );
+        R.reverse();
+      } else
+        for (
+          $ = (P = (D = F.length) < (m = Z.length)) ? D : m, D = m = 0;
+          m < $;
+          m++
+        )
+          if (F[m] != Z[m]) {
+            P = F[m] < Z[m];
+            break;
+          }
+      if (
+        (P && ((R = F), (F = Z), (Z = R), (w.s = -w.s)),
+        (m = ($ = Z.length) - (S = F.length)),
+        m > 0)
+      )
+        for (; m--; F[S++] = 0);
+      for (m = BASE - 1; $ > D;) {
+        if (F[--$] < Z[$]) {
+          for (S = $; S && !F[--S]; F[S] = m);
+          (--F[S], (F[$] += BASE));
+        }
+        F[$] -= Z[$];
+      }
+      for (; F[0] == 0; F.splice(0, 1), --V);
+      return F[0]
+        ? Y(w, F, V)
+        : ((w.s = a == 3 ? -1 : 1), (w.c = [(w.e = 0)]), w);
+    }),
+    (r.modulo = r.mod =
+      function (w, m) {
+        var S,
+          $,
+          R = this;
+        return (
+          (w = new b(w, m)),
+          !R.c || !w.s || (w.c && !w.c[0])
+            ? new b(NaN)
+            : !w.c || (R.c && !R.c[0])
+              ? new b(R)
+              : (E == 9
+                  ? (($ = w.s),
+                    (w.s = 1),
+                    (S = t(R, w, 0, 3)),
+                    (w.s = $),
+                    (S.s *= $))
+                  : (S = t(R, w, 0, E)),
+                (w = R.minus(S.times(w))),
+                !w.c[0] && E == 1 && (w.s = R.s),
+                w)
+        );
+      }),
+    (r.multipliedBy = r.times =
+      function (w, m) {
+        var S,
+          $,
+          R,
+          P,
+          W,
+          D,
+          k,
+          V,
+          F,
+          Z,
+          re,
+          ae,
+          ce,
+          ge,
+          ne,
+          pe = this,
+          he = pe.c,
+          Q = (w = new b(w, m)).c;
+        if (!he || !Q || !he[0] || !Q[0])
+          return (
+            !pe.s || !w.s || (he && !he[0] && !Q) || (Q && !Q[0] && !he)
+              ? (w.c = w.e = w.s = null)
+              : ((w.s *= pe.s),
+                !he || !Q ? (w.c = w.e = null) : ((w.c = [0]), (w.e = 0))),
+            w
+          );
+        for (
+          $ = bitFloor(pe.e / LOG_BASE) + bitFloor(w.e / LOG_BASE),
+            w.s *= pe.s,
+            k = he.length,
+            Z = Q.length,
+            k < Z && ((ce = he), (he = Q), (Q = ce), (R = k), (k = Z), (Z = R)),
+            R = k + Z,
+            ce = [];
+          R--;
+          ce.push(0)
+        );
+        for (ge = BASE, ne = SQRT_BASE, R = Z; --R >= 0;) {
+          for (
+            S = 0, re = Q[R] % ne, ae = (Q[R] / ne) | 0, W = k, P = R + W;
+            P > R;
+          )
+            ((V = he[--W] % ne),
+              (F = (he[W] / ne) | 0),
+              (D = ae * V + F * re),
+              (V = re * V + (D % ne) * ne + ce[P] + S),
+              (S = ((V / ge) | 0) + ((D / ne) | 0) + ae * F),
+              (ce[P--] = V % ge));
+          ce[P] = S;
+        }
+        return (S ? ++$ : ce.splice(0, 1), Y(w, ce, $));
+      }),
+    (r.negated = function () {
+      var w = new b(this);
+      return ((w.s = -w.s || null), w);
+    }),
+    (r.plus = function (w, m) {
+      var S,
+        $ = this,
+        R = $.s;
+      if (((w = new b(w, m)), (m = w.s), !R || !m)) return new b(NaN);
+      if (R != m) return ((w.s = -m), $.minus(w));
+      var P = $.e / LOG_BASE,
+        W = w.e / LOG_BASE,
+        D = $.c,
+        k = w.c;
+      if (!P || !W) {
+        if (!D || !k) return new b(R / 0);
+        if (!D[0] || !k[0]) return k[0] ? w : new b(D[0] ? $ : R * 0);
+      }
+      if (
+        ((P = bitFloor(P)), (W = bitFloor(W)), (D = D.slice()), (R = P - W))
+      ) {
+        for (
+          R > 0 ? ((W = P), (S = k)) : ((R = -R), (S = D)), S.reverse();
+          R--;
+          S.push(0)
+        );
+        S.reverse();
+      }
+      for (
+        R = D.length,
+          m = k.length,
+          R - m < 0 && ((S = k), (k = D), (D = S), (m = R)),
+          R = 0;
+        m;
+      )
+        ((R = ((D[--m] = D[m] + k[m] + R) / BASE) | 0),
+          (D[m] = BASE === D[m] ? 0 : D[m] % BASE));
+      return (R && ((D = [R].concat(D)), ++W), Y(w, D, W));
+    }),
+    (r.precision = r.sd =
+      function (w, m) {
+        var S,
+          $,
+          R,
+          P = this;
+        if (w != null && w !== !!w)
+          return (
+            intCheck(w, 1, MAX),
+            m == null ? (m = a) : intCheck(m, 0, 8),
+            X(new b(P), w, m)
+          );
+        if (!(S = P.c)) return null;
+        if (((R = S.length - 1), ($ = R * LOG_BASE + 1), (R = S[R]))) {
+          for (; R % 10 == 0; R /= 10, $--);
+          for (R = S[0]; R >= 10; R /= 10, $++);
+        }
+        return (w && P.e + 1 > $ && ($ = P.e + 1), $);
+      }),
+    (r.shiftedBy = function (w) {
+      return (
+        intCheck(w, -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER),
+        this.times("1e" + w)
+      );
+    }),
+    (r.squareRoot = r.sqrt =
+      function () {
+        var w,
+          m,
+          S,
+          $,
+          R,
+          P = this,
+          W = P.c,
+          D = P.s,
+          k = P.e,
+          V = o + 4,
+          F = new b("0.5");
+        if (D !== 1 || !W || !W[0])
+          return new b(!D || (D < 0 && (!W || W[0])) ? NaN : W ? P : 1 / 0);
+        if (
+          ((D = Math.sqrt(+K(P))),
+          D == 0 || D == 1 / 0
+            ? ((m = coeffToString(W)),
+              (m.length + k) % 2 == 0 && (m += "0"),
+              (D = Math.sqrt(+m)),
+              (k = bitFloor((k + 1) / 2) - (k < 0 || k % 2)),
+              D == 1 / 0
+                ? (m = "5e" + k)
+                : ((m = D.toExponential()),
+                  (m = m.slice(0, m.indexOf("e") + 1) + k)),
+              (S = new b(m)))
+            : (S = new b(D + "")),
+          S.c[0])
+        ) {
+          for (k = S.e, D = k + V, D < 3 && (D = 0); ;)
+            if (
+              ((R = S),
+              (S = F.times(R.plus(t(P, R, V, 1)))),
+              coeffToString(R.c).slice(0, D) ===
+                (m = coeffToString(S.c)).slice(0, D))
+            )
+              if (
+                (S.e < k && --D,
+                (m = m.slice(D - 3, D + 1)),
+                m == "9999" || (!$ && m == "4999"))
+              ) {
+                if (!$ && (X(R, R.e + o + 2, 0), R.times(R).eq(P))) {
+                  S = R;
+                  break;
+                }
+                ((V += 4), (D += 4), ($ = 1));
+              } else {
+                (!+m || (!+m.slice(1) && m.charAt(0) == "5")) &&
+                  (X(S, S.e + o + 2, 1), (w = !S.times(S).eq(P)));
+                break;
+              }
+        }
+        return X(S, S.e + o + 1, a, w);
+      }),
+    (r.toExponential = function (w, m) {
+      return (w != null && (intCheck(w, 0, MAX), w++), N(this, w, m, 1));
+    }),
+    (r.toFixed = function (w, m) {
+      return (
+        w != null && (intCheck(w, 0, MAX), (w = w + this.e + 1)),
+        N(this, w, m)
+      );
+    }),
+    (r.toFormat = function (w, m, S) {
+      var $,
+        R = this;
+      if (S == null)
+        w != null && m && typeof m == "object"
+          ? ((S = m), (m = null))
+          : w && typeof w == "object"
+            ? ((S = w), (w = m = null))
+            : (S = B);
+      else if (typeof S != "object")
+        throw Error(bignumberError + "Argument not an object: " + S);
+      if ((($ = R.toFixed(w, m)), R.c)) {
+        var P,
+          W = $.split("."),
+          D = +S.groupSize,
+          k = +S.secondaryGroupSize,
+          V = S.groupSeparator || "",
+          F = W[0],
+          Z = W[1],
+          re = R.s < 0,
+          ae = re ? F.slice(1) : F,
+          ce = ae.length;
+        if ((k && ((P = D), (D = k), (k = P), (ce -= P)), D > 0 && ce > 0)) {
+          for (P = ce % D || D, F = ae.substr(0, P); P < ce; P += D)
+            F += V + ae.substr(P, D);
+          (k > 0 && (F += V + ae.slice(P)), re && (F = "-" + F));
+        }
+        $ = Z
+          ? F +
+            (S.decimalSeparator || "") +
+            ((k = +S.fractionGroupSize)
+              ? Z.replace(
+                  new RegExp("\\d{" + k + "}\\B", "g"),
+                  "$&" + (S.fractionGroupSeparator || ""),
+                )
+              : Z)
+          : F;
+      }
+      return (S.prefix || "") + $ + (S.suffix || "");
+    }),
+    (r.toFraction = function (w) {
+      var m,
+        S,
+        $,
+        R,
+        P,
+        W,
+        D,
+        k,
+        V,
+        F,
+        Z,
+        re,
+        ae = this,
+        ce = ae.c;
+      if (
+        w != null &&
+        ((D = new b(w)), (!D.isInteger() && (D.c || D.s !== 1)) || D.lt(i))
+      )
+        throw Error(
+          bignumberError +
+            "Argument " +
+            (D.isInteger() ? "out of range: " : "not an integer: ") +
+            K(D),
+        );
+      if (!ce) return new b(ae);
+      for (
+        m = new b(i),
+          V = S = new b(i),
+          $ = k = new b(i),
+          re = coeffToString(ce),
+          P = m.e = re.length - ae.e - 1,
+          m.c[0] = POWS_TEN[(W = P % LOG_BASE) < 0 ? LOG_BASE + W : W],
+          w = !w || D.comparedTo(m) > 0 ? (P > 0 ? m : V) : D,
+          W = c,
+          c = 1 / 0,
+          D = new b(re),
+          k.c[0] = 0;
+        (F = t(D, m, 0, 1)), (R = S.plus(F.times($))), R.comparedTo(w) != 1;
+      )
+        ((S = $),
+          ($ = R),
+          (V = k.plus(F.times((R = V)))),
+          (k = R),
+          (m = D.minus(F.times((R = m)))),
+          (D = R));
+      return (
+        (R = t(w.minus(S), $, 0, 1)),
+        (k = k.plus(R.times(V))),
+        (S = S.plus(R.times($))),
+        (k.s = V.s = ae.s),
+        (P = P * 2),
+        (Z =
+          t(V, $, P, a)
+            .minus(ae)
+            .abs()
+            .comparedTo(t(k, S, P, a).minus(ae).abs()) < 1
+            ? [V, $]
+            : [k, S]),
+        (c = W),
+        Z
+      );
+    }),
+    (r.toNumber = function () {
+      return +K(this);
+    }),
+    (r.toPrecision = function (w, m) {
+      return (w != null && intCheck(w, 1, MAX), N(this, w, m, 2));
+    }),
+    (r.toString = function (w) {
+      var m,
+        S = this,
+        $ = S.s,
+        R = S.e;
+      return (
+        R === null
+          ? $
+            ? ((m = "Infinity"), $ < 0 && (m = "-" + m))
+            : (m = "NaN")
+          : (w == null
+              ? (m =
+                  R <= l || R >= u
+                    ? toExponential(coeffToString(S.c), R)
+                    : toFixedPoint(coeffToString(S.c), R, "0"))
+              : w === 10 && q
+                ? ((S = X(new b(S), o + R + 1, a)),
+                  (m = toFixedPoint(coeffToString(S.c), S.e, "0")))
+                : (intCheck(w, 2, G.length, "Base"),
+                  (m = n(
+                    toFixedPoint(coeffToString(S.c), R, "0"),
+                    10,
+                    w,
+                    $,
+                    !0,
+                  ))),
+            $ < 0 && S.c[0] && (m = "-" + m)),
+        m
+      );
+    }),
+    (r.valueOf = r.toJSON =
+      function () {
+        return K(this);
+      }),
+    (r._isBigNumber = !0),
+    (r[Symbol.toStringTag] = "BigNumber"),
+    (r[Symbol.for("nodejs.util.inspect.custom")] = r.valueOf),
+    e != null && b.set(e),
+    b
+  );
+}
+function bitFloor(e) {
+  var t = e | 0;
+  return e > 0 || e === t ? t : t - 1;
+}
+function coeffToString(e) {
+  for (var t, n, s = 1, r = e.length, i = e[0] + ""; s < r;) {
+    for (t = e[s++] + "", n = LOG_BASE - t.length; n--; t = "0" + t);
+    i += t;
+  }
+  for (r = i.length; i.charCodeAt(--r) === 48;);
+  return i.slice(0, r + 1 || 1);
+}
+function compare(e, t) {
+  var n,
+    s,
+    r = e.c,
+    i = t.c,
+    o = e.s,
+    a = t.s,
+    l = e.e,
+    u = t.e;
+  if (!o || !a) return null;
+  if (((n = r && !r[0]), (s = i && !i[0]), n || s)) return n ? (s ? 0 : -a) : o;
+  if (o != a) return o;
+  if (((n = o < 0), (s = l == u), !r || !i)) return s ? 0 : !r ^ n ? 1 : -1;
+  if (!s) return (l > u) ^ n ? 1 : -1;
+  for (a = (l = r.length) < (u = i.length) ? l : u, o = 0; o < a; o++)
+    if (r[o] != i[o]) return (r[o] > i[o]) ^ n ? 1 : -1;
+  return l == u ? 0 : (l > u) ^ n ? 1 : -1;
+}
+function intCheck(e, t, n, s) {
+  if (e < t || e > n || e !== mathfloor(e))
+    throw Error(
+      bignumberError +
+        (s || "Argument") +
+        (typeof e == "number"
+          ? e < t || e > n
+            ? " out of range: "
+            : " not an integer: "
+          : " not a primitive number: ") +
+        String(e),
+    );
+}
+function isOdd(e) {
+  var t = e.c.length - 1;
+  return bitFloor(e.e / LOG_BASE) == t && e.c[t] % 2 != 0;
+}
+function toExponential(e, t) {
+  return (
+    (e.length > 1 ? e.charAt(0) + "." + e.slice(1) : e) +
+    (t < 0 ? "e" : "e+") +
+    t
+  );
+}
+function toFixedPoint(e, t, n) {
+  var s, r;
+  if (t < 0) {
+    for (r = n + "."; ++t; r += n);
+    e = r + e;
+  } else if (((s = e.length), ++t > s)) {
+    for (r = n, t -= s; --t; r += n);
+    e += r;
+  } else t < s && (e = e.slice(0, t) + "." + e.slice(t));
+  return e;
+}
+var BigNumber = clone();
+function formatFileSize$1(e) {
+  if (BigNumber.isBigNumber(e)) {
+    if (e.isEqualTo(0)) return "0.0 B";
+    const t = new BigNumber(1024),
+      n = ["B", "KB", "MB", "GB", "T"];
+    let s = 0,
+      r = e;
+    for (; r.isGreaterThanOrEqualTo(t) && s < n.length - 1;)
+      ((r = r.div(t)), s++);
+    const i = r.isGreaterThanOrEqualTo(100) ? 0 : 1;
+    return r.toNumber().toFixed(i) + " " + n[s];
+  } else {
+    if (e === 0) return "0.0 B";
+    const t = 1024,
+      n = ["B", "KB", "MB", "GB", "T"],
+      s = Math.floor(Math.log(e) / Math.log(t)),
+      r = e / Math.pow(t, s),
+      i = r >= 100 ? 0 : 1;
+    return r.toFixed(i) + " " + n[s];
+  }
+}
+function formatDownloadSpeed(e) {
+  let t = BigNumber.isBigNumber(e) ? e : new BigNumber((e || 0).toString());
+  (!t.isFinite() || t.isNegative()) && (t = new BigNumber(0));
+  const n = t.div(1024 * 1024),
+    s = n.isLessThan(0.1) ? new BigNumber(0.1) : n,
+    r = s.isGreaterThanOrEqualTo(100) ? 0 : 1;
+  return s.toFixed(r) + " MB/s";
+}
+function formatFileMB(e) {
+  if (BigNumber.isBigNumber(e)) {
+    if (e.isEqualTo(0)) return 0;
+    const t = e.div(1024 * 1024);
+    return Math.floor(t.toNumber());
+  } else {
+    if (e === 0) return 0;
+    const t = e / (1024 * 1024);
+    return Math.floor(t);
+  }
+}
+/*!
+ * pinia v3.0.3
+ * (c) 2025 Eduardo San Martin Morote
+ * @license MIT
+ */ let activePinia;
+const setActivePinia = (e) => (activePinia = e),
+  piniaSymbol = Symbol();
+function isPlainObject$1(e) {
+  return (
+    e &&
+    typeof e == "object" &&
+    Object.prototype.toString.call(e) === "[object Object]" &&
+    typeof e.toJSON != "function"
+  );
+}
+var MutationType;
+(function (e) {
+  ((e.direct = "direct"),
+    (e.patchObject = "patch object"),
+    (e.patchFunction = "patch function"));
+})(MutationType || (MutationType = {}));
+function createPinia() {
+  const e = effectScope(!0),
+    t = e.run(() => ref({}));
+  let n = [],
+    s = [];
+  const r = markRaw({
+    install(i) {
+      (setActivePinia(r),
+        (r._a = i),
+        i.provide(piniaSymbol, r),
+        (i.config.globalProperties.$pinia = r),
+        s.forEach((o) => n.push(o)),
+        (s = []));
+    },
+    use(i) {
+      return (this._a ? n.push(i) : s.push(i), this);
+    },
+    _p: n,
+    _a: null,
+    _e: e,
+    _s: new Map(),
+    state: t,
+  });
+  return r;
+}
+const noop$2 = () => {};
+function addSubscription(e, t, n, s = noop$2) {
+  e.push(t);
+  const r = () => {
+    const i = e.indexOf(t);
+    i > -1 && (e.splice(i, 1), s());
+  };
+  return (!n && getCurrentScope() && onScopeDispose(r), r);
+}
+function triggerSubscriptions(e, ...t) {
+  e.slice().forEach((n) => {
+    n(...t);
+  });
+}
+const fallbackRunWithContext = (e) => e(),
+  ACTION_MARKER = Symbol(),
+  ACTION_NAME = Symbol();
+function mergeReactiveObjects(e, t) {
+  e instanceof Map && t instanceof Map
+    ? t.forEach((n, s) => e.set(s, n))
+    : e instanceof Set && t instanceof Set && t.forEach(e.add, e);
+  for (const n in t) {
+    if (!t.hasOwnProperty(n)) continue;
+    const s = t[n],
+      r = e[n];
+    isPlainObject$1(r) &&
+    isPlainObject$1(s) &&
+    e.hasOwnProperty(n) &&
+    !isRef(s) &&
+    !isReactive(s)
+      ? (e[n] = mergeReactiveObjects(r, s))
+      : (e[n] = s);
+  }
+  return e;
+}
+const skipHydrateSymbol = Symbol();
+function shouldHydrate(e) {
+  return (
+    !isPlainObject$1(e) ||
+    !Object.prototype.hasOwnProperty.call(e, skipHydrateSymbol)
+  );
+}
+const { assign: assign$1 } = Object;
+function isComputed(e) {
+  return !!(isRef(e) && e.effect);
+}
+function createOptionsStore(e, t, n, s) {
+  const { state: r, actions: i, getters: o } = t,
+    a = n.state.value[e];
+  let l;
+  function u() {
+    a || (n.state.value[e] = r ? r() : {});
+    const d = toRefs(n.state.value[e]);
+    return assign$1(
+      d,
+      i,
+      Object.keys(o || {}).reduce(
+        (c, v) => (
+          (c[v] = markRaw(
+            computed(() => {
+              setActivePinia(n);
+              const E = n._s.get(e);
+              return o[v].call(E, E);
+            }),
+          )),
+          c
+        ),
+        {},
+      ),
+    );
+  }
+  return ((l = createSetupStore(e, u, t, n, s, !0)), l);
+}
+function createSetupStore(e, t, n = {}, s, r, i) {
+  let o;
+  const a = assign$1({ actions: {} }, n),
+    l = { deep: !0 };
+  let u,
+    d,
+    c = [],
+    v = [],
+    E;
+  const x = s.state.value[e];
+  (!i && !x && (s.state.value[e] = {}), ref({}));
+  let B;
+  function G(w) {
+    let m;
+    ((u = d = !1),
+      typeof w == "function"
+        ? (w(s.state.value[e]),
+          (m = { type: MutationType.patchFunction, storeId: e, events: E }))
+        : (mergeReactiveObjects(s.state.value[e], w),
+          (m = {
+            type: MutationType.patchObject,
+            payload: w,
+            storeId: e,
+            events: E,
+          })));
+    const S = (B = Symbol());
+    (nextTick$1().then(() => {
+      B === S && (u = !0);
+    }),
+      (d = !0),
+      triggerSubscriptions(c, m, s.state.value[e]));
+  }
+  const q = i
+    ? function () {
+        const { state: m } = n,
+          S = m ? m() : {};
+        this.$patch(($) => {
+          assign$1($, S);
+        });
+      }
+    : noop$2;
+  function b() {
+    (o.stop(), (c = []), (v = []), s._s.delete(e));
+  }
+  const N = (w, m = "") => {
+      if (ACTION_MARKER in w) return ((w[ACTION_NAME] = m), w);
+      const S = function () {
+        setActivePinia(s);
+        const $ = Array.from(arguments),
+          R = [],
+          P = [];
+        function W(V) {
+          R.push(V);
+        }
+        function D(V) {
+          P.push(V);
+        }
+        triggerSubscriptions(v, {
+          args: $,
+          name: S[ACTION_NAME],
+          store: Y,
+          after: W,
+          onError: D,
+        });
+        let k;
+        try {
+          k = w.apply(this && this.$id === e ? this : Y, $);
+        } catch (V) {
+          throw (triggerSubscriptions(P, V), V);
+        }
+        return k instanceof Promise
+          ? k
+              .then((V) => (triggerSubscriptions(R, V), V))
+              .catch((V) => (triggerSubscriptions(P, V), Promise.reject(V)))
+          : (triggerSubscriptions(R, k), k);
+      };
+      return ((S[ACTION_MARKER] = !0), (S[ACTION_NAME] = m), S);
+    },
+    z = {
+      _p: s,
+      $id: e,
+      $onAction: addSubscription.bind(null, v),
+      $patch: G,
+      $reset: q,
+      $subscribe(w, m = {}) {
+        const S = addSubscription(c, w, m.detached, () => $()),
+          $ = o.run(() =>
+            watch(
+              () => s.state.value[e],
+              (R) => {
+                (m.flush === "sync" ? d : u) &&
+                  w({ storeId: e, type: MutationType.direct, events: E }, R);
+              },
+              assign$1({}, l, m),
+            ),
+          );
+        return S;
+      },
+      $dispose: b,
+    },
+    Y = reactive(z);
+  s._s.set(e, Y);
+  const K = ((s._a && s._a.runWithContext) || fallbackRunWithContext)(() =>
+    s._e.run(() => (o = effectScope()).run(() => t({ action: N }))),
+  );
+  for (const w in K) {
+    const m = K[w];
+    if ((isRef(m) && !isComputed(m)) || isReactive(m))
+      i ||
+        (x &&
+          shouldHydrate(m) &&
+          (isRef(m) ? (m.value = x[w]) : mergeReactiveObjects(m, x[w])),
+        (s.state.value[e][w] = m));
+    else if (typeof m == "function") {
+      const S = N(m, w);
+      ((K[w] = S), (a.actions[w] = m));
+    }
+  }
+  return (
+    assign$1(Y, K),
+    assign$1(toRaw(Y), K),
+    Object.defineProperty(Y, "$state", {
+      get: () => s.state.value[e],
+      set: (w) => {
+        G((m) => {
+          assign$1(m, w);
+        });
+      },
+    }),
+    s._p.forEach((w) => {
+      assign$1(
+        Y,
+        o.run(() => w({ store: Y, app: s._a, pinia: s, options: a })),
+      );
+    }),
+    x && i && n.hydrate && n.hydrate(Y.$state, x),
+    (u = !0),
+    (d = !0),
+    Y
+  );
+}
+/*! #__NO_SIDE_EFFECTS__ */ function defineStore(e, t, n) {
+  let s;
+  const r = typeof t == "function";
+  s = r ? n : t;
+  function i(o, a) {
+    const l = hasInjectionContext();
+    return (
+      (o = o || (l ? inject(piniaSymbol, null) : null)),
+      o && setActivePinia(o),
+      (o = activePinia),
+      o._s.has(e) ||
+        (r ? createSetupStore(e, t, s, o) : createOptionsStore(e, s, o)),
+      o._s.get(e)
+    );
+  }
+  return ((i.$id = e), i);
+}
+let versionSyncTimer = null,
+  versionSyncResolve = null;
+const defaultUpdateInfo = () => ({
+    download_url: "",
+    client_version: "",
+    desc: "",
+  }),
+  defaultStarterStatus = () => ({
+    status: "default",
+    speed: 0,
+    current_size: 0,
+    total_size: 0,
+  }),
+  settleVersionSync = (e) => {
+    (versionSyncTimer &&
+      (clearTimeout(versionSyncTimer), (versionSyncTimer = null)),
+      versionSyncResolve &&
+        (versionSyncResolve(e), (versionSyncResolve = null)));
+  },
+  formatFileSize = (e) => formatFileSize$1(e),
+  useVersionStore = defineStore("version", {
+    state: () => ({
+      versionInfo: {
+        region: "CN",
+        launcher_env: "",
+        channel: "",
+        launcher_version: "",
+        device_id: "",
+        cps: "",
+      },
+      isDeprecated: !1,
+      loaded: !1,
+      updateInfo: defaultUpdateInfo(),
+      needUpdate: !1,
+      starterStatus: defaultStarterStatus(),
+    }),
+    getters: {
+      versionText: (e) => {
+        const {
+          version: t,
+          game_version: n,
+          launcher_env: s,
+          region: r,
+        } = e.versionInfo;
+        return t
+          ? `客户端: ${t} | 游戏: ${n} | 环境: ${s} | 地区: ${r}`
+          : "版本信息未获取";
+      },
+      progressPercent: (e) => {
+        const { current_size: t, total_size: n } = e.starterStatus;
+        return n > 0 ? Math.round((t / n) * 100) + "%" : "0%";
+      },
+      formattedCurrentSize: (e) => formatFileSize(e.starterStatus.current_size),
+      formattedTotalSize: (e) => formatFileSize(e.starterStatus.total_size),
+      formattedSpeed: (e) =>
+        e.starterStatus.status === "pause"
+          ? ""
+          : formatDownloadSpeed(e.starterStatus.speed),
+      updateButtonText: (e) => {
+        switch (e.starterStatus.status) {
+          case "downloading":
+            return "下载中...";
+          case "pause":
+            return "继续下载";
+          case "complete":
+            return "重新启动";
+          case "default":
+          default:
+            return "更新";
+        }
+      },
+      statusText: (e) => {
+        switch (e.starterStatus.status) {
+          case "downloading":
+            return `正在下载更新... 速度: ${formatDownloadSpeed(e.starterStatus.speed)}`;
+          case "pause":
+            return "下载已暂停";
+          case "default":
+          default:
+            return e.updateInfo.update_txt || "准备更新";
+        }
+      },
+    },
+    actions: {
+      async checkVersion(e) {
+        (console.log("init checkVersion", e),
+          this.updateVersionInfo(e),
+          this.checkLauncherUpdate());
+      },
+      updateVersionInfo(e) {
+        const t = {};
+        (e.launcher_version && (t.client_version = e.launcher_version),
+          e.channel && (t.channel = e.channel),
+          e.launcher_env && (t.launcher_env = e.launcher_env),
+          Object.keys(t).length > 0 && ta.setSuperProperties(t),
+          (this.versionInfo = { ...this.versionInfo, ...e }),
+          console.log("版本信息已更新:", this.versionInfo, this.needUpdate));
+      },
+      fetchVersion() {
+        window.LuminJsCall("version");
+      },
+      fetchVersionSync(e = 1500) {
+        return (
+          settleVersionSync(!1),
+          new Promise((t) => {
+            ((versionSyncResolve = t),
+              (versionSyncTimer = setTimeout(() => {
+                settleVersionSync(!1);
+              }, e)),
+              this.fetchVersion());
+          })
+        );
+      },
+      async refreshAndCheckLauncherUpdate(e = !1) {
+        return (await this.fetchVersionSync(), this.checkLauncherUpdate(e));
+      },
+      async checkLauncherUpdate(e = !1) {
+        const { launcher_version: t } = this.versionInfo;
+        if (!t) return (console.warn("版本信息不完整，无法检查更新"), !1);
+        let n = null;
+        try {
+          n = await launcherUpdate({ client_version: t });
+        } catch (s) {
+          return (console.error("检查启动器更新失败:", s), !1);
+        }
+        return n && typeof n.status < "u" && n.status === 8
+          ? ((this.isDeprecated = !0),
+            (this.needUpdate = !1),
+            (this.updateInfo = defaultUpdateInfo()),
+            (this.starterStatus = defaultStarterStatus()),
+            window.emitter.emit("version_deprecated"),
+            !0)
+          : n === null || typeof n.client_version > "u"
+            ? (console.log("已经是最新版本"),
+              (this.isDeprecated = !1),
+              (this.needUpdate = !1),
+              (this.updateInfo = defaultUpdateInfo()),
+              (this.starterStatus = defaultStarterStatus()),
+              e && window.toast({ value: "已经是最新版本" }),
+              !1)
+            : ((this.isDeprecated = !1),
+              n.download_url && n.client_version !== t
+                ? ((this.updateInfo = n),
+                  (this.needUpdate = !0),
+                  this.checkStarterStatus(),
+                  console.log("发现新版本:", n.client_version, n.download_url),
+                  !0)
+                : ((this.needUpdate = !1),
+                  (this.updateInfo = defaultUpdateInfo()),
+                  (this.starterStatus = defaultStarterStatus()),
+                  e && window.toast({ value: "已经是最新版本" }),
+                  !1));
+      },
+      checkStarterStatus() {
+        window.LuminJsCall("starter_init");
+      },
+      updateStarterStatus(e) {
+        ((this.starterStatus = { ...this.starterStatus, ...e }),
+          console.log("Starter状态已更新:", this.starterStatus));
+      },
+      initEventListener() {
+        window.emitter.on("luminEvent", (e) => {
+          if (e.event === "version")
+            (this.updateVersionInfo(e.data), settleVersionSync(!0));
+          else if (e.event === "starter") {
+            const t = e.data;
+            this.updateStarterStatus(t);
+          }
+        });
+      },
+    },
+  });
+function bind(e, t) {
+  return function () {
+    return e.apply(t, arguments);
+  };
+}
+const { toString } = Object.prototype,
+  { getPrototypeOf } = Object,
+  { iterator, toStringTag } = Symbol,
+  kindOf = ((e) => (t) => {
+    const n = toString.call(t);
+    return e[n] || (e[n] = n.slice(8, -1).toLowerCase());
+  })(Object.create(null)),
+  kindOfTest = (e) => ((e = e.toLowerCase()), (t) => kindOf(t) === e),
+  typeOfTest = (e) => (t) => typeof t === e,
+  { isArray: isArray$1 } = Array,
+  isUndefined = typeOfTest("undefined");
+function isBuffer(e) {
+  return (
+    e !== null &&
+    !isUndefined(e) &&
+    e.constructor !== null &&
+    !isUndefined(e.constructor) &&
+    isFunction(e.constructor.isBuffer) &&
+    e.constructor.isBuffer(e)
+  );
+}
+const isArrayBuffer = kindOfTest("ArrayBuffer");
+function isArrayBufferView(e) {
+  let t;
+  return (
+    typeof ArrayBuffer < "u" && ArrayBuffer.isView
+      ? (t = ArrayBuffer.isView(e))
+      : (t = e && e.buffer && isArrayBuffer(e.buffer)),
+    t
+  );
+}
+const isString = typeOfTest("string"),
+  isFunction = typeOfTest("function"),
+  isNumber = typeOfTest("number"),
+  isObject$3 = (e) => e !== null && typeof e == "object",
+  isBoolean = (e) => e === !0 || e === !1,
+  isPlainObject = (e) => {
+    if (kindOf(e) !== "object") return !1;
+    const t = getPrototypeOf(e);
+    return (
+      (t === null ||
+        t === Object.prototype ||
+        Object.getPrototypeOf(t) === null) &&
+      !(toStringTag in e) &&
+      !(iterator in e)
+    );
+  },
+  isDate = kindOfTest("Date"),
+  isFile = kindOfTest("File"),
+  isBlob = kindOfTest("Blob"),
+  isFileList = kindOfTest("FileList"),
+  isStream = (e) => isObject$3(e) && isFunction(e.pipe),
+  isFormData = (e) => {
+    let t;
+    return (
+      e &&
+      ((typeof FormData == "function" && e instanceof FormData) ||
+        (isFunction(e.append) &&
+          ((t = kindOf(e)) === "formdata" ||
+            (t === "object" &&
+              isFunction(e.toString) &&
+              e.toString() === "[object FormData]"))))
+    );
+  },
+  isURLSearchParams = kindOfTest("URLSearchParams"),
+  [isReadableStream, isRequest, isResponse, isHeaders] = [
+    "ReadableStream",
+    "Request",
+    "Response",
+    "Headers",
+  ].map(kindOfTest),
+  trim = (e) =>
+    e.trim ? e.trim() : e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
+function forEach(e, t, { allOwnKeys: n = !1 } = {}) {
+  if (e === null || typeof e > "u") return;
+  let s, r;
+  if ((typeof e != "object" && (e = [e]), isArray$1(e)))
+    for (s = 0, r = e.length; s < r; s++) t.call(null, e[s], s, e);
+  else {
+    const i = n ? Object.getOwnPropertyNames(e) : Object.keys(e),
+      o = i.length;
+    let a;
+    for (s = 0; s < o; s++) ((a = i[s]), t.call(null, e[a], a, e));
+  }
+}
+function findKey(e, t) {
+  t = t.toLowerCase();
+  const n = Object.keys(e);
+  let s = n.length,
+    r;
+  for (; s-- > 0;) if (((r = n[s]), t === r.toLowerCase())) return r;
+  return null;
+}
+const _global =
+    typeof globalThis < "u"
+      ? globalThis
+      : typeof self < "u"
+        ? self
+        : typeof window < "u"
+          ? window
+          : global,
+  isContextDefined = (e) => !isUndefined(e) && e !== _global;
+function merge() {
+  const { caseless: e } = (isContextDefined(this) && this) || {},
+    t = {},
+    n = (s, r) => {
+      const i = (e && findKey(t, r)) || r;
+      isPlainObject(t[i]) && isPlainObject(s)
+        ? (t[i] = merge(t[i], s))
+        : isPlainObject(s)
+          ? (t[i] = merge({}, s))
+          : isArray$1(s)
+            ? (t[i] = s.slice())
+            : (t[i] = s);
+    };
+  for (let s = 0, r = arguments.length; s < r; s++)
+    arguments[s] && forEach(arguments[s], n);
+  return t;
+}
+const extend$3 = (e, t, n, { allOwnKeys: s } = {}) => (
+    forEach(
+      t,
+      (r, i) => {
+        n && isFunction(r) ? (e[i] = bind(r, n)) : (e[i] = r);
+      },
+      { allOwnKeys: s },
+    ),
+    e
+  ),
+  stripBOM = (e) => (e.charCodeAt(0) === 65279 && (e = e.slice(1)), e),
+  inherits = (e, t, n, s) => {
+    ((e.prototype = Object.create(t.prototype, s)),
+      (e.prototype.constructor = e),
+      Object.defineProperty(e, "super", { value: t.prototype }),
+      n && Object.assign(e.prototype, n));
+  },
+  toFlatObject = (e, t, n, s) => {
+    let r, i, o;
+    const a = {};
+    if (((t = t || {}), e == null)) return t;
+    do {
+      for (r = Object.getOwnPropertyNames(e), i = r.length; i-- > 0;)
+        ((o = r[i]),
+          (!s || s(o, e, t)) && !a[o] && ((t[o] = e[o]), (a[o] = !0)));
+      e = n !== !1 && getPrototypeOf(e);
+    } while (e && (!n || n(e, t)) && e !== Object.prototype);
+    return t;
+  },
+  endsWith = (e, t, n) => {
+    ((e = String(e)),
+      (n === void 0 || n > e.length) && (n = e.length),
+      (n -= t.length));
+    const s = e.indexOf(t, n);
+    return s !== -1 && s === n;
+  },
+  toArray = (e) => {
+    if (!e) return null;
+    if (isArray$1(e)) return e;
+    let t = e.length;
+    if (!isNumber(t)) return null;
+    const n = new Array(t);
+    for (; t-- > 0;) n[t] = e[t];
+    return n;
+  },
+  isTypedArray = (
+    (e) => (t) =>
+      e && t instanceof e
+  )(typeof Uint8Array < "u" && getPrototypeOf(Uint8Array)),
+  forEachEntry = (e, t) => {
+    const s = (e && e[iterator]).call(e);
+    let r;
+    for (; (r = s.next()) && !r.done;) {
+      const i = r.value;
+      t.call(e, i[0], i[1]);
+    }
+  },
+  matchAll = (e, t) => {
+    let n;
+    const s = [];
+    for (; (n = e.exec(t)) !== null;) s.push(n);
+    return s;
+  },
+  isHTMLForm = kindOfTest("HTMLFormElement"),
+  toCamelCase = (e) =>
+    e.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g, function (n, s, r) {
+      return s.toUpperCase() + r;
+    }),
+  hasOwnProperty = (
+    ({ hasOwnProperty: e }) =>
+    (t, n) =>
+      e.call(t, n)
+  )(Object.prototype),
+  isRegExp = kindOfTest("RegExp"),
+  reduceDescriptors = (e, t) => {
+    const n = Object.getOwnPropertyDescriptors(e),
+      s = {};
+    (forEach(n, (r, i) => {
+      let o;
+      (o = t(r, i, e)) !== !1 && (s[i] = o || r);
+    }),
+      Object.defineProperties(e, s));
+  },
+  freezeMethods = (e) => {
+    reduceDescriptors(e, (t, n) => {
+      if (isFunction(e) && ["arguments", "caller", "callee"].indexOf(n) !== -1)
+        return !1;
+      const s = e[n];
+      if (isFunction(s)) {
+        if (((t.enumerable = !1), "writable" in t)) {
+          t.writable = !1;
+          return;
+        }
+        t.set ||
+          (t.set = () => {
+            throw Error("Can not rewrite read-only method '" + n + "'");
+          });
+      }
+    });
+  },
+  toObjectSet = (e, t) => {
+    const n = {},
+      s = (r) => {
+        r.forEach((i) => {
+          n[i] = !0;
+        });
+      };
+    return (isArray$1(e) ? s(e) : s(String(e).split(t)), n);
+  },
+  noop$1 = () => {},
+  toFiniteNumber = (e, t) => (e != null && Number.isFinite((e = +e)) ? e : t);
+function isSpecCompliantForm(e) {
+  return !!(
+    e &&
+    isFunction(e.append) &&
+    e[toStringTag] === "FormData" &&
+    e[iterator]
+  );
+}
+const toJSONObject = (e) => {
+    const t = new Array(10),
+      n = (s, r) => {
+        if (isObject$3(s)) {
+          if (t.indexOf(s) >= 0) return;
+          if (!("toJSON" in s)) {
+            t[r] = s;
+            const i = isArray$1(s) ? [] : {};
+            return (
+              forEach(s, (o, a) => {
+                const l = n(o, r + 1);
+                !isUndefined(l) && (i[a] = l);
+              }),
+              (t[r] = void 0),
+              i
+            );
+          }
+        }
+        return s;
+      };
+    return n(e, 0);
+  },
+  isAsyncFn = kindOfTest("AsyncFunction"),
+  isThenable = (e) =>
+    e &&
+    (isObject$3(e) || isFunction(e)) &&
+    isFunction(e.then) &&
+    isFunction(e.catch),
+  _setImmediate = ((e, t) =>
+    e
+      ? setImmediate
+      : t
+        ? ((n, s) => (
+            _global.addEventListener(
+              "message",
+              ({ source: r, data: i }) => {
+                r === _global && i === n && s.length && s.shift()();
+              },
+              !1,
+            ),
+            (r) => {
+              (s.push(r), _global.postMessage(n, "*"));
+            }
+          ))(`axios@${Math.random()}`, [])
+        : (n) => setTimeout(n))(
+    typeof setImmediate == "function",
+    isFunction(_global.postMessage),
+  ),
+  asap =
+    typeof queueMicrotask < "u"
+      ? queueMicrotask.bind(_global)
+      : (typeof process < "u" && process.nextTick) || _setImmediate,
+  isIterable = (e) => e != null && isFunction(e[iterator]),
+  utils$1 = {
+    isArray: isArray$1,
+    isArrayBuffer,
+    isBuffer,
+    isFormData,
+    isArrayBufferView,
+    isString,
+    isNumber,
+    isBoolean,
+    isObject: isObject$3,
+    isPlainObject,
+    isReadableStream,
+    isRequest,
+    isResponse,
+    isHeaders,
+    isUndefined,
+    isDate,
+    isFile,
+    isBlob,
+    isRegExp,
+    isFunction,
+    isStream,
+    isURLSearchParams,
+    isTypedArray,
+    isFileList,
+    forEach,
+    merge,
+    extend: extend$3,
+    trim,
+    stripBOM,
+    inherits,
+    toFlatObject,
+    kindOf,
+    kindOfTest,
+    endsWith,
+    toArray,
+    forEachEntry,
+    matchAll,
+    isHTMLForm,
+    hasOwnProperty,
+    hasOwnProp: hasOwnProperty,
+    reduceDescriptors,
+    freezeMethods,
+    toObjectSet,
+    toCamelCase,
+    noop: noop$1,
+    toFiniteNumber,
+    findKey,
+    global: _global,
+    isContextDefined,
+    isSpecCompliantForm,
+    toJSONObject,
+    isAsyncFn,
+    isThenable,
+    setImmediate: _setImmediate,
+    asap,
+    isIterable,
+  };
+function AxiosError$1(e, t, n, s, r) {
+  (Error.call(this),
+    Error.captureStackTrace
+      ? Error.captureStackTrace(this, this.constructor)
+      : (this.stack = new Error().stack),
+    (this.message = e),
+    (this.name = "AxiosError"),
+    t && (this.code = t),
+    n && (this.config = n),
+    s && (this.request = s),
+    r && ((this.response = r), (this.status = r.status ? r.status : null)));
+}
+utils$1.inherits(AxiosError$1, Error, {
+  toJSON: function e() {
+    return {
+      message: this.message,
+      name: this.name,
+      description: this.description,
+      number: this.number,
+      fileName: this.fileName,
+      lineNumber: this.lineNumber,
+      columnNumber: this.columnNumber,
+      stack: this.stack,
+      config: utils$1.toJSONObject(this.config),
+      code: this.code,
+      status: this.status,
+    };
+  },
+});
+const prototype$1 = AxiosError$1.prototype,
+  descriptors = {};
+[
+  "ERR_BAD_OPTION_VALUE",
+  "ERR_BAD_OPTION",
+  "ECONNABORTED",
+  "ETIMEDOUT",
+  "ERR_NETWORK",
+  "ERR_FR_TOO_MANY_REDIRECTS",
+  "ERR_DEPRECATED",
+  "ERR_BAD_RESPONSE",
+  "ERR_BAD_REQUEST",
+  "ERR_CANCELED",
+  "ERR_NOT_SUPPORT",
+  "ERR_INVALID_URL",
+].forEach((e) => {
+  descriptors[e] = { value: e };
+});
+Object.defineProperties(AxiosError$1, descriptors);
+Object.defineProperty(prototype$1, "isAxiosError", { value: !0 });
+AxiosError$1.from = (e, t, n, s, r, i) => {
+  const o = Object.create(prototype$1);
+  return (
+    utils$1.toFlatObject(
+      e,
+      o,
+      function (l) {
+        return l !== Error.prototype;
+      },
+      (a) => a !== "isAxiosError",
+    ),
+    AxiosError$1.call(o, e.message, t, n, s, r),
+    (o.cause = e),
+    (o.name = e.name),
+    i && Object.assign(o, i),
+    o
+  );
+};
+const httpAdapter = null;
+function isVisitable(e) {
+  return utils$1.isPlainObject(e) || utils$1.isArray(e);
+}
+function removeBrackets(e) {
+  return utils$1.endsWith(e, "[]") ? e.slice(0, -2) : e;
+}
+function renderKey(e, t, n) {
+  return e
+    ? e
+        .concat(t)
+        .map(function (r, i) {
+          return ((r = removeBrackets(r)), !n && i ? "[" + r + "]" : r);
+        })
+        .join(n ? "." : "")
+    : t;
+}
+function isFlatArray(e) {
+  return utils$1.isArray(e) && !e.some(isVisitable);
+}
+const predicates = utils$1.toFlatObject(utils$1, {}, null, function e(t) {
+  return /^is[A-Z]/.test(t);
+});
+function toFormData$1(e, t, n) {
+  if (!utils$1.isObject(e)) throw new TypeError("target must be an object");
+  ((t = t || new FormData()),
+    (n = utils$1.toFlatObject(
+      n,
+      { metaTokens: !0, dots: !1, indexes: !1 },
+      !1,
+      function (B, G) {
+        return !utils$1.isUndefined(G[B]);
+      },
+    )));
+  const s = n.metaTokens,
+    r = n.visitor || d,
+    i = n.dots,
+    o = n.indexes,
+    l =
+      (n.Blob || (typeof Blob < "u" && Blob)) && utils$1.isSpecCompliantForm(t);
+  if (!utils$1.isFunction(r)) throw new TypeError("visitor must be a function");
+  function u(x) {
+    if (x === null) return "";
+    if (utils$1.isDate(x)) return x.toISOString();
+    if (utils$1.isBoolean(x)) return x.toString();
+    if (!l && utils$1.isBlob(x))
+      throw new AxiosError$1("Blob is not supported. Use a Buffer instead.");
+    return utils$1.isArrayBuffer(x) || utils$1.isTypedArray(x)
+      ? l && typeof Blob == "function"
+        ? new Blob([x])
+        : Buffer.from(x)
+      : x;
+  }
+  function d(x, B, G) {
+    let q = x;
+    if (x && !G && typeof x == "object") {
+      if (utils$1.endsWith(B, "{}"))
+        ((B = s ? B : B.slice(0, -2)), (x = JSON.stringify(x)));
+      else if (
+        (utils$1.isArray(x) && isFlatArray(x)) ||
+        ((utils$1.isFileList(x) || utils$1.endsWith(B, "[]")) &&
+          (q = utils$1.toArray(x)))
+      )
+        return (
+          (B = removeBrackets(B)),
+          q.forEach(function (N, z) {
+            !(utils$1.isUndefined(N) || N === null) &&
+              t.append(
+                o === !0 ? renderKey([B], z, i) : o === null ? B : B + "[]",
+                u(N),
+              );
+          }),
+          !1
+        );
+    }
+    return isVisitable(x) ? !0 : (t.append(renderKey(G, B, i), u(x)), !1);
+  }
+  const c = [],
+    v = Object.assign(predicates, {
+      defaultVisitor: d,
+      convertValue: u,
+      isVisitable,
+    });
+  function E(x, B) {
+    if (!utils$1.isUndefined(x)) {
+      if (c.indexOf(x) !== -1)
+        throw Error("Circular reference detected in " + B.join("."));
+      (c.push(x),
+        utils$1.forEach(x, function (q, b) {
+          (!(utils$1.isUndefined(q) || q === null) &&
+            r.call(t, q, utils$1.isString(b) ? b.trim() : b, B, v)) === !0 &&
+            E(q, B ? B.concat(b) : [b]);
+        }),
+        c.pop());
+    }
+  }
+  if (!utils$1.isObject(e)) throw new TypeError("data must be an object");
+  return (E(e), t);
+}
+function encode$1(e) {
+  const t = {
+    "!": "%21",
+    "'": "%27",
+    "(": "%28",
+    ")": "%29",
+    "~": "%7E",
+    "%20": "+",
+    "%00": "\0",
+  };
+  return encodeURIComponent(e).replace(/[!'()~]|%20|%00/g, function (s) {
+    return t[s];
+  });
+}
+function AxiosURLSearchParams(e, t) {
+  ((this._pairs = []), e && toFormData$1(e, this, t));
+}
+const prototype = AxiosURLSearchParams.prototype;
+prototype.append = function e(t, n) {
+  this._pairs.push([t, n]);
+};
+prototype.toString = function e(t) {
+  const n = t
+    ? function (s) {
+        return t.call(this, s, encode$1);
+      }
+    : encode$1;
+  return this._pairs
+    .map(function (r) {
+      return n(r[0]) + "=" + n(r[1]);
+    }, "")
+    .join("&");
+};
+function encode(e) {
+  return encodeURIComponent(e)
+    .replace(/%3A/gi, ":")
+    .replace(/%24/g, "$")
+    .replace(/%2C/gi, ",")
+    .replace(/%20/g, "+")
+    .replace(/%5B/gi, "[")
+    .replace(/%5D/gi, "]");
+}
+function buildURL(e, t, n) {
+  if (!t) return e;
+  const s = (n && n.encode) || encode;
+  utils$1.isFunction(n) && (n = { serialize: n });
+  const r = n && n.serialize;
+  let i;
+  if (
+    (r
+      ? (i = r(t, n))
+      : (i = utils$1.isURLSearchParams(t)
+          ? t.toString()
+          : new AxiosURLSearchParams(t, n).toString(s)),
+    i)
+  ) {
+    const o = e.indexOf("#");
+    (o !== -1 && (e = e.slice(0, o)),
+      (e += (e.indexOf("?") === -1 ? "?" : "&") + i));
+  }
+  return e;
+}
+class InterceptorManager {
+  constructor() {
+    this.handlers = [];
+  }
+  use(t, n, s) {
+    return (
+      this.handlers.push({
+        fulfilled: t,
+        rejected: n,
+        synchronous: s ? s.synchronous : !1,
+        runWhen: s ? s.runWhen : null,
+      }),
+      this.handlers.length - 1
+    );
+  }
+  eject(t) {
+    this.handlers[t] && (this.handlers[t] = null);
+  }
+  clear() {
+    this.handlers && (this.handlers = []);
+  }
+  forEach(t) {
+    utils$1.forEach(this.handlers, function (s) {
+      s !== null && t(s);
+    });
+  }
+}
+const transitionalDefaults = {
+    silentJSONParsing: !0,
+    forcedJSONParsing: !0,
+    clarifyTimeoutError: !1,
+  },
+  URLSearchParams$1 =
+    typeof URLSearchParams < "u" ? URLSearchParams : AxiosURLSearchParams,
+  FormData$1 = typeof FormData < "u" ? FormData : null,
+  Blob$1 = typeof Blob < "u" ? Blob : null,
+  platform$1 = {
+    isBrowser: !0,
+    classes: {
+      URLSearchParams: URLSearchParams$1,
+      FormData: FormData$1,
+      Blob: Blob$1,
+    },
+    protocols: ["http", "https", "file", "blob", "url", "data"],
+  },
+  hasBrowserEnv = typeof window < "u" && typeof document < "u",
+  _navigator = (typeof navigator == "object" && navigator) || void 0,
+  hasStandardBrowserEnv =
+    hasBrowserEnv &&
+    (!_navigator ||
+      ["ReactNative", "NativeScript", "NS"].indexOf(_navigator.product) < 0),
+  hasStandardBrowserWebWorkerEnv =
+    typeof WorkerGlobalScope < "u" &&
+    self instanceof WorkerGlobalScope &&
+    typeof self.importScripts == "function",
+  origin = (hasBrowserEnv && window.location.href) || "http://localhost",
+  utils = Object.freeze(
+    Object.defineProperty(
+      {
+        __proto__: null,
+        hasBrowserEnv,
+        hasStandardBrowserEnv,
+        hasStandardBrowserWebWorkerEnv,
+        navigator: _navigator,
+        origin,
+      },
+      Symbol.toStringTag,
+      { value: "Module" },
+    ),
+  ),
+  platform = { ...utils, ...platform$1 };
+function toURLEncodedForm(e, t) {
+  return toFormData$1(
+    e,
+    new platform.classes.URLSearchParams(),
+    Object.assign(
+      {
+        visitor: function (n, s, r, i) {
+          return platform.isNode && utils$1.isBuffer(n)
+            ? (this.append(s, n.toString("base64")), !1)
+            : i.defaultVisitor.apply(this, arguments);
+        },
+      },
+      t,
+    ),
+  );
+}
+function parsePropPath(e) {
+  return utils$1
+    .matchAll(/\w+|\[(\w*)]/g, e)
+    .map((t) => (t[0] === "[]" ? "" : t[1] || t[0]));
+}
+function arrayToObject(e) {
+  const t = {},
+    n = Object.keys(e);
+  let s;
+  const r = n.length;
+  let i;
+  for (s = 0; s < r; s++) ((i = n[s]), (t[i] = e[i]));
+  return t;
+}
+function formDataToJSON(e) {
+  function t(n, s, r, i) {
+    let o = n[i++];
+    if (o === "__proto__") return !0;
+    const a = Number.isFinite(+o),
+      l = i >= n.length;
+    return (
+      (o = !o && utils$1.isArray(r) ? r.length : o),
+      l
+        ? (utils$1.hasOwnProp(r, o) ? (r[o] = [r[o], s]) : (r[o] = s), !a)
+        : ((!r[o] || !utils$1.isObject(r[o])) && (r[o] = []),
+          t(n, s, r[o], i) &&
+            utils$1.isArray(r[o]) &&
+            (r[o] = arrayToObject(r[o])),
+          !a)
+    );
+  }
+  if (utils$1.isFormData(e) && utils$1.isFunction(e.entries)) {
+    const n = {};
+    return (
+      utils$1.forEachEntry(e, (s, r) => {
+        t(parsePropPath(s), r, n, 0);
+      }),
+      n
+    );
+  }
+  return null;
+}
+function stringifySafely(e, t, n) {
+  if (utils$1.isString(e))
+    try {
+      return ((t || JSON.parse)(e), utils$1.trim(e));
+    } catch (s) {
+      if (s.name !== "SyntaxError") throw s;
+    }
+  return (n || JSON.stringify)(e);
+}
+const defaults$1 = {
+  transitional: transitionalDefaults,
+  adapter: ["xhr", "http", "fetch"],
+  transformRequest: [
+    function e(t, n) {
+      const s = n.getContentType() || "",
+        r = s.indexOf("application/json") > -1,
+        i = utils$1.isObject(t);
+      if (
+        (i && utils$1.isHTMLForm(t) && (t = new FormData(t)),
+        utils$1.isFormData(t))
+      )
+        return r ? JSON.stringify(formDataToJSON(t)) : t;
+      if (
+        utils$1.isArrayBuffer(t) ||
+        utils$1.isBuffer(t) ||
+        utils$1.isStream(t) ||
+        utils$1.isFile(t) ||
+        utils$1.isBlob(t) ||
+        utils$1.isReadableStream(t)
+      )
+        return t;
+      if (utils$1.isArrayBufferView(t)) return t.buffer;
+      if (utils$1.isURLSearchParams(t))
+        return (
+          n.setContentType(
+            "application/x-www-form-urlencoded;charset=utf-8",
+            !1,
+          ),
+          t.toString()
+        );
+      let a;
+      if (i) {
+        if (s.indexOf("application/x-www-form-urlencoded") > -1)
+          return toURLEncodedForm(t, this.formSerializer).toString();
+        if (
+          (a = utils$1.isFileList(t)) ||
+          s.indexOf("multipart/form-data") > -1
+        ) {
+          const l = this.env && this.env.FormData;
+          return toFormData$1(
+            a ? { "files[]": t } : t,
+            l && new l(),
+            this.formSerializer,
+          );
+        }
+      }
+      return i || r
+        ? (n.setContentType("application/json", !1), stringifySafely(t))
+        : t;
+    },
+  ],
+  transformResponse: [
+    function e(t) {
+      const n = this.transitional || defaults$1.transitional,
+        s = n && n.forcedJSONParsing,
+        r = this.responseType === "json";
+      if (utils$1.isResponse(t) || utils$1.isReadableStream(t)) return t;
+      if (t && utils$1.isString(t) && ((s && !this.responseType) || r)) {
+        const o = !(n && n.silentJSONParsing) && r;
+        try {
+          return JSON.parse(t);
+        } catch (a) {
+          if (o)
+            throw a.name === "SyntaxError"
+              ? AxiosError$1.from(
+                  a,
+                  AxiosError$1.ERR_BAD_RESPONSE,
+                  this,
+                  null,
+                  this.response,
+                )
+              : a;
+        }
+      }
+      return t;
+    },
+  ],
+  timeout: 0,
+  xsrfCookieName: "XSRF-TOKEN",
+  xsrfHeaderName: "X-XSRF-TOKEN",
+  maxContentLength: -1,
+  maxBodyLength: -1,
+  env: { FormData: platform.classes.FormData, Blob: platform.classes.Blob },
+  validateStatus: function e(t) {
+    return t >= 200 && t < 300;
+  },
+  headers: {
+    common: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": void 0,
+    },
+  },
+};
+utils$1.forEach(["delete", "get", "head", "post", "put", "patch"], (e) => {
+  defaults$1.headers[e] = {};
+});
+const ignoreDuplicateOf = utils$1.toObjectSet([
+    "age",
+    "authorization",
+    "content-length",
+    "content-type",
+    "etag",
+    "expires",
+    "from",
+    "host",
+    "if-modified-since",
+    "if-unmodified-since",
+    "last-modified",
+    "location",
+    "max-forwards",
+    "proxy-authorization",
+    "referer",
+    "retry-after",
+    "user-agent",
+  ]),
+  parseHeaders = (e) => {
+    const t = {};
+    let n, s, r;
+    return (
+      e &&
+        e
+          .split(
+            `
+`,
+          )
+          .forEach(function (o) {
+            ((r = o.indexOf(":")),
+              (n = o.substring(0, r).trim().toLowerCase()),
+              (s = o.substring(r + 1).trim()),
+              !(!n || (t[n] && ignoreDuplicateOf[n])) &&
+                (n === "set-cookie"
+                  ? t[n]
+                    ? t[n].push(s)
+                    : (t[n] = [s])
+                  : (t[n] = t[n] ? t[n] + ", " + s : s)));
+          }),
+      t
+    );
+  },
+  $internals = Symbol("internals");
+function normalizeHeader(e) {
+  return e && String(e).trim().toLowerCase();
+}
+function normalizeValue(e) {
+  return e === !1 || e == null
+    ? e
+    : utils$1.isArray(e)
+      ? e.map(normalizeValue)
+      : String(e);
+}
+function parseTokens(e) {
+  const t = Object.create(null),
+    n = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+  let s;
+  for (; (s = n.exec(e));) t[s[1]] = s[2];
+  return t;
+}
+const isValidHeaderName = (e) =>
+  /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(e.trim());
+function matchHeaderValue(e, t, n, s, r) {
+  if (utils$1.isFunction(s)) return s.call(this, t, n);
+  if ((r && (t = n), !!utils$1.isString(t))) {
+    if (utils$1.isString(s)) return t.indexOf(s) !== -1;
+    if (utils$1.isRegExp(s)) return s.test(t);
+  }
+}
+function formatHeader(e) {
+  return e
+    .trim()
+    .toLowerCase()
+    .replace(/([a-z\d])(\w*)/g, (t, n, s) => n.toUpperCase() + s);
+}
+function buildAccessors(e, t) {
+  const n = utils$1.toCamelCase(" " + t);
+  ["get", "set", "has"].forEach((s) => {
+    Object.defineProperty(e, s + n, {
+      value: function (r, i, o) {
+        return this[s].call(this, t, r, i, o);
+      },
+      configurable: !0,
+    });
+  });
+}
+let AxiosHeaders$1 = class {
+  constructor(t) {
+    t && this.set(t);
+  }
+  set(t, n, s) {
+    const r = this;
+    function i(a, l, u) {
+      const d = normalizeHeader(l);
+      if (!d) throw new Error("header name must be a non-empty string");
+      const c = utils$1.findKey(r, d);
+      (!c || r[c] === void 0 || u === !0 || (u === void 0 && r[c] !== !1)) &&
+        (r[c || l] = normalizeValue(a));
+    }
+    const o = (a, l) => utils$1.forEach(a, (u, d) => i(u, d, l));
+    if (utils$1.isPlainObject(t) || t instanceof this.constructor) o(t, n);
+    else if (utils$1.isString(t) && (t = t.trim()) && !isValidHeaderName(t))
+      o(parseHeaders(t), n);
+    else if (utils$1.isObject(t) && utils$1.isIterable(t)) {
+      let a = {},
+        l,
+        u;
+      for (const d of t) {
+        if (!utils$1.isArray(d))
+          throw TypeError("Object iterator must return a key-value pair");
+        a[(u = d[0])] = (l = a[u])
+          ? utils$1.isArray(l)
+            ? [...l, d[1]]
+            : [l, d[1]]
+          : d[1];
+      }
+      o(a, n);
+    } else t != null && i(n, t, s);
+    return this;
+  }
+  get(t, n) {
+    if (((t = normalizeHeader(t)), t)) {
+      const s = utils$1.findKey(this, t);
+      if (s) {
+        const r = this[s];
+        if (!n) return r;
+        if (n === !0) return parseTokens(r);
+        if (utils$1.isFunction(n)) return n.call(this, r, s);
+        if (utils$1.isRegExp(n)) return n.exec(r);
+        throw new TypeError("parser must be boolean|regexp|function");
+      }
+    }
+  }
+  has(t, n) {
+    if (((t = normalizeHeader(t)), t)) {
+      const s = utils$1.findKey(this, t);
+      return !!(
+        s &&
+        this[s] !== void 0 &&
+        (!n || matchHeaderValue(this, this[s], s, n))
+      );
+    }
+    return !1;
+  }
+  delete(t, n) {
+    const s = this;
+    let r = !1;
+    function i(o) {
+      if (((o = normalizeHeader(o)), o)) {
+        const a = utils$1.findKey(s, o);
+        a && (!n || matchHeaderValue(s, s[a], a, n)) && (delete s[a], (r = !0));
+      }
+    }
+    return (utils$1.isArray(t) ? t.forEach(i) : i(t), r);
+  }
+  clear(t) {
+    const n = Object.keys(this);
+    let s = n.length,
+      r = !1;
+    for (; s--;) {
+      const i = n[s];
+      (!t || matchHeaderValue(this, this[i], i, t, !0)) &&
+        (delete this[i], (r = !0));
+    }
+    return r;
+  }
+  normalize(t) {
+    const n = this,
+      s = {};
+    return (
+      utils$1.forEach(this, (r, i) => {
+        const o = utils$1.findKey(s, i);
+        if (o) {
+          ((n[o] = normalizeValue(r)), delete n[i]);
+          return;
+        }
+        const a = t ? formatHeader(i) : String(i).trim();
+        (a !== i && delete n[i], (n[a] = normalizeValue(r)), (s[a] = !0));
+      }),
+      this
+    );
+  }
+  concat(...t) {
+    return this.constructor.concat(this, ...t);
+  }
+  toJSON(t) {
+    const n = Object.create(null);
+    return (
+      utils$1.forEach(this, (s, r) => {
+        s != null &&
+          s !== !1 &&
+          (n[r] = t && utils$1.isArray(s) ? s.join(", ") : s);
+      }),
+      n
+    );
+  }
+  [Symbol.iterator]() {
+    return Object.entries(this.toJSON())[Symbol.iterator]();
+  }
+  toString() {
+    return Object.entries(this.toJSON()).map(([t, n]) => t + ": " + n).join(`
+`);
+  }
+  getSetCookie() {
+    return this.get("set-cookie") || [];
+  }
+  get [Symbol.toStringTag]() {
+    return "AxiosHeaders";
+  }
+  static from(t) {
+    return t instanceof this ? t : new this(t);
+  }
+  static concat(t, ...n) {
+    const s = new this(t);
+    return (n.forEach((r) => s.set(r)), s);
+  }
+  static accessor(t) {
+    const s = (this[$internals] = this[$internals] = { accessors: {} })
+        .accessors,
+      r = this.prototype;
+    function i(o) {
+      const a = normalizeHeader(o);
+      s[a] || (buildAccessors(r, o), (s[a] = !0));
+    }
+    return (utils$1.isArray(t) ? t.forEach(i) : i(t), this);
+  }
+};
+AxiosHeaders$1.accessor([
+  "Content-Type",
+  "Content-Length",
+  "Accept",
+  "Accept-Encoding",
+  "User-Agent",
+  "Authorization",
+]);
+utils$1.reduceDescriptors(AxiosHeaders$1.prototype, ({ value: e }, t) => {
+  let n = t[0].toUpperCase() + t.slice(1);
+  return {
+    get: () => e,
+    set(s) {
+      this[n] = s;
+    },
+  };
+});
+utils$1.freezeMethods(AxiosHeaders$1);
+function transformData(e, t) {
+  const n = this || defaults$1,
+    s = t || n,
+    r = AxiosHeaders$1.from(s.headers);
+  let i = s.data;
+  return (
+    utils$1.forEach(e, function (a) {
+      i = a.call(n, i, r.normalize(), t ? t.status : void 0);
+    }),
+    r.normalize(),
+    i
+  );
+}
+function isCancel$1(e) {
+  return !!(e && e.__CANCEL__);
+}
+function CanceledError$1(e, t, n) {
+  (AxiosError$1.call(this, e ?? "canceled", AxiosError$1.ERR_CANCELED, t, n),
+    (this.name = "CanceledError"));
+}
+utils$1.inherits(CanceledError$1, AxiosError$1, { __CANCEL__: !0 });
+function settle(e, t, n) {
+  const s = n.config.validateStatus;
+  !n.status || !s || s(n.status)
+    ? e(n)
+    : t(
+        new AxiosError$1(
+          "Request failed with status code " + n.status,
+          [AxiosError$1.ERR_BAD_REQUEST, AxiosError$1.ERR_BAD_RESPONSE][
+            Math.floor(n.status / 100) - 4
+          ],
+          n.config,
+          n.request,
+          n,
+        ),
+      );
+}
+function parseProtocol(e) {
+  const t = /^([-+\w]{1,25})(:?\/\/|:)/.exec(e);
+  return (t && t[1]) || "";
+}
+function speedometer(e, t) {
+  e = e || 10;
+  const n = new Array(e),
+    s = new Array(e);
+  let r = 0,
+    i = 0,
+    o;
+  return (
+    (t = t !== void 0 ? t : 1e3),
+    function (l) {
+      const u = Date.now(),
+        d = s[i];
+      (o || (o = u), (n[r] = l), (s[r] = u));
+      let c = i,
+        v = 0;
+      for (; c !== r;) ((v += n[c++]), (c = c % e));
+      if (((r = (r + 1) % e), r === i && (i = (i + 1) % e), u - o < t)) return;
+      const E = d && u - d;
+      return E ? Math.round((v * 1e3) / E) : void 0;
+    }
+  );
+}
+function throttle(e, t) {
+  let n = 0,
+    s = 1e3 / t,
+    r,
+    i;
+  const o = (u, d = Date.now()) => {
+    ((n = d), (r = null), i && (clearTimeout(i), (i = null)), e.apply(null, u));
+  };
+  return [
+    (...u) => {
+      const d = Date.now(),
+        c = d - n;
+      c >= s
+        ? o(u, d)
+        : ((r = u),
+          i ||
+            (i = setTimeout(() => {
+              ((i = null), o(r));
+            }, s - c)));
+    },
+    () => r && o(r),
+  ];
+}
+const progressEventReducer = (e, t, n = 3) => {
+    let s = 0;
+    const r = speedometer(50, 250);
+    return throttle((i) => {
+      const o = i.loaded,
+        a = i.lengthComputable ? i.total : void 0,
+        l = o - s,
+        u = r(l),
+        d = o <= a;
+      s = o;
+      const c = {
+        loaded: o,
+        total: a,
+        progress: a ? o / a : void 0,
+        bytes: l,
+        rate: u || void 0,
+        estimated: u && a && d ? (a - o) / u : void 0,
+        event: i,
+        lengthComputable: a != null,
+        [t ? "download" : "upload"]: !0,
+      };
+      e(c);
+    }, n);
+  },
+  progressEventDecorator = (e, t) => {
+    const n = e != null;
+    return [(s) => t[0]({ lengthComputable: n, total: e, loaded: s }), t[1]];
+  },
+  asyncDecorator =
+    (e) =>
+    (...t) =>
+      utils$1.asap(() => e(...t)),
+  isURLSameOrigin = platform.hasStandardBrowserEnv
+    ? ((e, t) => (n) => (
+        (n = new URL(n, platform.origin)),
+        e.protocol === n.protocol &&
+          e.host === n.host &&
+          (t || e.port === n.port)
+      ))(
+        new URL(platform.origin),
+        platform.navigator &&
+          /(msie|trident)/i.test(platform.navigator.userAgent),
+      )
+    : () => !0,
+  cookies = platform.hasStandardBrowserEnv
+    ? {
+        write(e, t, n, s, r, i) {
+          const o = [e + "=" + encodeURIComponent(t)];
+          (utils$1.isNumber(n) &&
+            o.push("expires=" + new Date(n).toGMTString()),
+            utils$1.isString(s) && o.push("path=" + s),
+            utils$1.isString(r) && o.push("domain=" + r),
+            i === !0 && o.push("secure"),
+            (document.cookie = o.join("; ")));
+        },
+        read(e) {
+          const t = document.cookie.match(
+            new RegExp("(^|;\\s*)(" + e + ")=([^;]*)"),
+          );
+          return t ? decodeURIComponent(t[3]) : null;
+        },
+        remove(e) {
+          this.write(e, "", Date.now() - 864e5);
+        },
+      }
+    : {
+        write() {},
+        read() {
+          return null;
+        },
+        remove() {},
+      };
+function isAbsoluteURL(e) {
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(e);
+}
+function combineURLs(e, t) {
+  return t ? e.replace(/\/?\/$/, "") + "/" + t.replace(/^\/+/, "") : e;
+}
+function buildFullPath(e, t, n) {
+  let s = !isAbsoluteURL(t);
+  return e && (s || n == !1) ? combineURLs(e, t) : t;
+}
+const headersToObject = (e) => (e instanceof AxiosHeaders$1 ? { ...e } : e);
+function mergeConfig$1(e, t) {
+  t = t || {};
+  const n = {};
+  function s(u, d, c, v) {
+    return utils$1.isPlainObject(u) && utils$1.isPlainObject(d)
+      ? utils$1.merge.call({ caseless: v }, u, d)
+      : utils$1.isPlainObject(d)
+        ? utils$1.merge({}, d)
+        : utils$1.isArray(d)
+          ? d.slice()
+          : d;
+  }
+  function r(u, d, c, v) {
+    if (utils$1.isUndefined(d)) {
+      if (!utils$1.isUndefined(u)) return s(void 0, u, c, v);
+    } else return s(u, d, c, v);
+  }
+  function i(u, d) {
+    if (!utils$1.isUndefined(d)) return s(void 0, d);
+  }
+  function o(u, d) {
+    if (utils$1.isUndefined(d)) {
+      if (!utils$1.isUndefined(u)) return s(void 0, u);
+    } else return s(void 0, d);
+  }
+  function a(u, d, c) {
+    if (c in t) return s(u, d);
+    if (c in e) return s(void 0, u);
+  }
+  const l = {
+    url: i,
+    method: i,
+    data: i,
+    baseURL: o,
+    transformRequest: o,
+    transformResponse: o,
+    paramsSerializer: o,
+    timeout: o,
+    timeoutMessage: o,
+    withCredentials: o,
+    withXSRFToken: o,
+    adapter: o,
+    responseType: o,
+    xsrfCookieName: o,
+    xsrfHeaderName: o,
+    onUploadProgress: o,
+    onDownloadProgress: o,
+    decompress: o,
+    maxContentLength: o,
+    maxBodyLength: o,
+    beforeRedirect: o,
+    transport: o,
+    httpAgent: o,
+    httpsAgent: o,
+    cancelToken: o,
+    socketPath: o,
+    responseEncoding: o,
+    validateStatus: a,
+    headers: (u, d, c) => r(headersToObject(u), headersToObject(d), c, !0),
+  };
+  return (
+    utils$1.forEach(Object.keys(Object.assign({}, e, t)), function (d) {
+      const c = l[d] || r,
+        v = c(e[d], t[d], d);
+      (utils$1.isUndefined(v) && c !== a) || (n[d] = v);
+    }),
+    n
+  );
+}
+const resolveConfig = (e) => {
+    const t = mergeConfig$1({}, e);
+    let {
+      data: n,
+      withXSRFToken: s,
+      xsrfHeaderName: r,
+      xsrfCookieName: i,
+      headers: o,
+      auth: a,
+    } = t;
+    ((t.headers = o = AxiosHeaders$1.from(o)),
+      (t.url = buildURL(
+        buildFullPath(t.baseURL, t.url, t.allowAbsoluteUrls),
+        e.params,
+        e.paramsSerializer,
+      )),
+      a &&
+        o.set(
+          "Authorization",
+          "Basic " +
+            btoa(
+              (a.username || "") +
+                ":" +
+                (a.password ? unescape(encodeURIComponent(a.password)) : ""),
+            ),
+        ));
+    let l;
+    if (utils$1.isFormData(n)) {
+      if (
+        platform.hasStandardBrowserEnv ||
+        platform.hasStandardBrowserWebWorkerEnv
+      )
+        o.setContentType(void 0);
+      else if ((l = o.getContentType()) !== !1) {
+        const [u, ...d] = l
+          ? l
+              .split(";")
+              .map((c) => c.trim())
+              .filter(Boolean)
+          : [];
+        o.setContentType([u || "multipart/form-data", ...d].join("; "));
+      }
+    }
+    if (
+      platform.hasStandardBrowserEnv &&
+      (s && utils$1.isFunction(s) && (s = s(t)),
+      s || (s !== !1 && isURLSameOrigin(t.url)))
+    ) {
+      const u = r && i && cookies.read(i);
+      u && o.set(r, u);
+    }
+    return t;
+  },
+  isXHRAdapterSupported = typeof XMLHttpRequest < "u",
+  xhrAdapter =
+    isXHRAdapterSupported &&
+    function (e) {
+      return new Promise(function (n, s) {
+        const r = resolveConfig(e);
+        let i = r.data;
+        const o = AxiosHeaders$1.from(r.headers).normalize();
+        let { responseType: a, onUploadProgress: l, onDownloadProgress: u } = r,
+          d,
+          c,
+          v,
+          E,
+          x;
+        function B() {
+          (E && E(),
+            x && x(),
+            r.cancelToken && r.cancelToken.unsubscribe(d),
+            r.signal && r.signal.removeEventListener("abort", d));
+        }
+        let G = new XMLHttpRequest();
+        (G.open(r.method.toUpperCase(), r.url, !0), (G.timeout = r.timeout));
+        function q() {
+          if (!G) return;
+          const N = AxiosHeaders$1.from(
+              "getAllResponseHeaders" in G && G.getAllResponseHeaders(),
+            ),
+            Y = {
+              data:
+                !a || a === "text" || a === "json"
+                  ? G.responseText
+                  : G.response,
+              status: G.status,
+              statusText: G.statusText,
+              headers: N,
+              config: e,
+              request: G,
+            };
+          (settle(
+            function (K) {
+              (n(K), B());
+            },
+            function (K) {
+              (s(K), B());
+            },
+            Y,
+          ),
+            (G = null));
+        }
+        ("onloadend" in G
+          ? (G.onloadend = q)
+          : (G.onreadystatechange = function () {
+              !G ||
+                G.readyState !== 4 ||
+                (G.status === 0 &&
+                  !(G.responseURL && G.responseURL.indexOf("file:") === 0)) ||
+                setTimeout(q);
+            }),
+          (G.onabort = function () {
+            G &&
+              (s(
+                new AxiosError$1(
+                  "Request aborted",
+                  AxiosError$1.ECONNABORTED,
+                  e,
+                  G,
+                ),
+              ),
+              (G = null));
+          }),
+          (G.onerror = function () {
+            (s(
+              new AxiosError$1("Network Error", AxiosError$1.ERR_NETWORK, e, G),
+            ),
+              (G = null));
+          }),
+          (G.ontimeout = function () {
+            let z = r.timeout
+              ? "timeout of " + r.timeout + "ms exceeded"
+              : "timeout exceeded";
+            const Y = r.transitional || transitionalDefaults;
+            (r.timeoutErrorMessage && (z = r.timeoutErrorMessage),
+              s(
+                new AxiosError$1(
+                  z,
+                  Y.clarifyTimeoutError
+                    ? AxiosError$1.ETIMEDOUT
+                    : AxiosError$1.ECONNABORTED,
+                  e,
+                  G,
+                ),
+              ),
+              (G = null));
+          }),
+          i === void 0 && o.setContentType(null),
+          "setRequestHeader" in G &&
+            utils$1.forEach(o.toJSON(), function (z, Y) {
+              G.setRequestHeader(Y, z);
+            }),
+          utils$1.isUndefined(r.withCredentials) ||
+            (G.withCredentials = !!r.withCredentials),
+          a && a !== "json" && (G.responseType = r.responseType),
+          u &&
+            (([v, x] = progressEventReducer(u, !0)),
+            G.addEventListener("progress", v)),
+          l &&
+            G.upload &&
+            (([c, E] = progressEventReducer(l)),
+            G.upload.addEventListener("progress", c),
+            G.upload.addEventListener("loadend", E)),
+          (r.cancelToken || r.signal) &&
+            ((d = (N) => {
+              G &&
+                (s(!N || N.type ? new CanceledError$1(null, e, G) : N),
+                G.abort(),
+                (G = null));
+            }),
+            r.cancelToken && r.cancelToken.subscribe(d),
+            r.signal &&
+              (r.signal.aborted
+                ? d()
+                : r.signal.addEventListener("abort", d))));
+        const b = parseProtocol(r.url);
+        if (b && platform.protocols.indexOf(b) === -1) {
+          s(
+            new AxiosError$1(
+              "Unsupported protocol " + b + ":",
+              AxiosError$1.ERR_BAD_REQUEST,
+              e,
+            ),
+          );
+          return;
+        }
+        G.send(i || null);
+      });
+    },
+  composeSignals = (e, t) => {
+    const { length: n } = (e = e ? e.filter(Boolean) : []);
+    if (t || n) {
+      let s = new AbortController(),
+        r;
+      const i = function (u) {
+        if (!r) {
+          ((r = !0), a());
+          const d = u instanceof Error ? u : this.reason;
+          s.abort(
+            d instanceof AxiosError$1
+              ? d
+              : new CanceledError$1(d instanceof Error ? d.message : d),
+          );
+        }
+      };
+      let o =
+        t &&
+        setTimeout(() => {
+          ((o = null),
+            i(
+              new AxiosError$1(
+                `timeout ${t} of ms exceeded`,
+                AxiosError$1.ETIMEDOUT,
+              ),
+            ));
+        }, t);
+      const a = () => {
+        e &&
+          (o && clearTimeout(o),
+          (o = null),
+          e.forEach((u) => {
+            u.unsubscribe
+              ? u.unsubscribe(i)
+              : u.removeEventListener("abort", i);
+          }),
+          (e = null));
+      };
+      e.forEach((u) => u.addEventListener("abort", i));
+      const { signal: l } = s;
+      return ((l.unsubscribe = () => utils$1.asap(a)), l);
+    }
+  },
+  streamChunk = function* (e, t) {
+    let n = e.byteLength;
+    if (n < t) {
+      yield e;
+      return;
+    }
+    let s = 0,
+      r;
+    for (; s < n;) ((r = s + t), yield e.slice(s, r), (s = r));
+  },
+  readBytes = async function* (e, t) {
+    for await (const n of readStream(e)) yield* streamChunk(n, t);
+  },
+  readStream = async function* (e) {
+    if (e[Symbol.asyncIterator]) {
+      yield* e;
+      return;
+    }
+    const t = e.getReader();
+    try {
+      for (;;) {
+        const { done: n, value: s } = await t.read();
+        if (n) break;
+        yield s;
+      }
+    } finally {
+      await t.cancel();
+    }
+  },
+  trackStream = (e, t, n, s) => {
+    const r = readBytes(e, t);
+    let i = 0,
+      o,
+      a = (l) => {
+        o || ((o = !0), s && s(l));
+      };
+    return new ReadableStream(
+      {
+        async pull(l) {
+          try {
+            const { done: u, value: d } = await r.next();
+            if (u) {
+              (a(), l.close());
+              return;
+            }
+            let c = d.byteLength;
+            if (n) {
+              let v = (i += c);
+              n(v);
+            }
+            l.enqueue(new Uint8Array(d));
+          } catch (u) {
+            throw (a(u), u);
+          }
+        },
+        cancel(l) {
+          return (a(l), r.return());
+        },
+      },
+      { highWaterMark: 2 },
+    );
+  },
+  isFetchSupported =
+    typeof fetch == "function" &&
+    typeof Request == "function" &&
+    typeof Response == "function",
+  isReadableStreamSupported =
+    isFetchSupported && typeof ReadableStream == "function",
+  encodeText =
+    isFetchSupported &&
+    (typeof TextEncoder == "function"
+      ? (
+          (e) => (t) =>
+            e.encode(t)
+        )(new TextEncoder())
+      : async (e) => new Uint8Array(await new Response(e).arrayBuffer())),
+  test = (e, ...t) => {
+    try {
+      return !!e(...t);
+    } catch {
+      return !1;
+    }
+  },
+  supportsRequestStream =
+    isReadableStreamSupported &&
+    test(() => {
+      let e = !1;
+      const t = new Request(platform.origin, {
+        body: new ReadableStream(),
+        method: "POST",
+        get duplex() {
+          return ((e = !0), "half");
+        },
+      }).headers.has("Content-Type");
+      return e && !t;
+    }),
+  DEFAULT_CHUNK_SIZE = 64 * 1024,
+  supportsResponseStream =
+    isReadableStreamSupported &&
+    test(() => utils$1.isReadableStream(new Response("").body)),
+  resolvers = { stream: supportsResponseStream && ((e) => e.body) };
+isFetchSupported &&
+  ((e) => {
+    ["text", "arrayBuffer", "blob", "formData", "stream"].forEach((t) => {
+      !resolvers[t] &&
+        (resolvers[t] = utils$1.isFunction(e[t])
+          ? (n) => n[t]()
+          : (n, s) => {
+              throw new AxiosError$1(
+                `Response type '${t}' is not supported`,
+                AxiosError$1.ERR_NOT_SUPPORT,
+                s,
+              );
+            });
+    });
+  })(new Response());
+const getBodyLength = async (e) => {
+    if (e == null) return 0;
+    if (utils$1.isBlob(e)) return e.size;
+    if (utils$1.isSpecCompliantForm(e))
+      return (
+        await new Request(platform.origin, {
+          method: "POST",
+          body: e,
+        }).arrayBuffer()
+      ).byteLength;
+    if (utils$1.isArrayBufferView(e) || utils$1.isArrayBuffer(e))
+      return e.byteLength;
+    if ((utils$1.isURLSearchParams(e) && (e = e + ""), utils$1.isString(e)))
+      return (await encodeText(e)).byteLength;
+  },
+  resolveBodyLength = async (e, t) => {
+    const n = utils$1.toFiniteNumber(e.getContentLength());
+    return n ?? getBodyLength(t);
+  },
+  fetchAdapter =
+    isFetchSupported &&
+    (async (e) => {
+      let {
+        url: t,
+        method: n,
+        data: s,
+        signal: r,
+        cancelToken: i,
+        timeout: o,
+        onDownloadProgress: a,
+        onUploadProgress: l,
+        responseType: u,
+        headers: d,
+        withCredentials: c = "same-origin",
+        fetchOptions: v,
+      } = resolveConfig(e);
+      u = u ? (u + "").toLowerCase() : "text";
+      let E = composeSignals([r, i && i.toAbortSignal()], o),
+        x;
+      const B =
+        E &&
+        E.unsubscribe &&
+        (() => {
+          E.unsubscribe();
+        });
+      let G;
+      try {
+        if (
+          l &&
+          supportsRequestStream &&
+          n !== "get" &&
+          n !== "head" &&
+          (G = await resolveBodyLength(d, s)) !== 0
+        ) {
+          let Y = new Request(t, { method: "POST", body: s, duplex: "half" }),
+            X;
+          if (
+            (utils$1.isFormData(s) &&
+              (X = Y.headers.get("content-type")) &&
+              d.setContentType(X),
+            Y.body)
+          ) {
+            const [K, w] = progressEventDecorator(
+              G,
+              progressEventReducer(asyncDecorator(l)),
+            );
+            s = trackStream(Y.body, DEFAULT_CHUNK_SIZE, K, w);
+          }
+        }
+        utils$1.isString(c) || (c = c ? "include" : "omit");
+        const q = "credentials" in Request.prototype;
+        x = new Request(t, {
+          ...v,
+          signal: E,
+          method: n.toUpperCase(),
+          headers: d.normalize().toJSON(),
+          body: s,
+          duplex: "half",
+          credentials: q ? c : void 0,
+        });
+        let b = await fetch(x, v);
+        const N =
+          supportsResponseStream && (u === "stream" || u === "response");
+        if (supportsResponseStream && (a || (N && B))) {
+          const Y = {};
+          ["status", "statusText", "headers"].forEach((m) => {
+            Y[m] = b[m];
+          });
+          const X = utils$1.toFiniteNumber(b.headers.get("content-length")),
+            [K, w] =
+              (a &&
+                progressEventDecorator(
+                  X,
+                  progressEventReducer(asyncDecorator(a), !0),
+                )) ||
+              [];
+          b = new Response(
+            trackStream(b.body, DEFAULT_CHUNK_SIZE, K, () => {
+              (w && w(), B && B());
+            }),
+            Y,
+          );
+        }
+        u = u || "text";
+        let z = await resolvers[utils$1.findKey(resolvers, u) || "text"](b, e);
+        return (
+          !N && B && B(),
+          await new Promise((Y, X) => {
+            settle(Y, X, {
+              data: z,
+              headers: AxiosHeaders$1.from(b.headers),
+              status: b.status,
+              statusText: b.statusText,
+              config: e,
+              request: x,
+            });
+          })
+        );
+      } catch (q) {
+        throw (
+          B && B(),
+          q && q.name === "TypeError" && /Load failed|fetch/i.test(q.message)
+            ? Object.assign(
+                new AxiosError$1(
+                  "Network Error",
+                  AxiosError$1.ERR_NETWORK,
+                  e,
+                  x,
+                ),
+                { cause: q.cause || q },
+              )
+            : AxiosError$1.from(q, q && q.code, e, x)
+        );
+      }
+    }),
+  knownAdapters = { http: httpAdapter, xhr: xhrAdapter, fetch: fetchAdapter };
+utils$1.forEach(knownAdapters, (e, t) => {
+  if (e) {
+    try {
+      Object.defineProperty(e, "name", { value: t });
+    } catch {}
+    Object.defineProperty(e, "adapterName", { value: t });
+  }
+});
+const renderReason = (e) => `- ${e}`,
+  isResolvedHandle = (e) => utils$1.isFunction(e) || e === null || e === !1,
+  adapters = {
+    getAdapter: (e) => {
+      e = utils$1.isArray(e) ? e : [e];
+      const { length: t } = e;
+      let n, s;
+      const r = {};
+      for (let i = 0; i < t; i++) {
+        n = e[i];
+        let o;
+        if (
+          ((s = n),
+          !isResolvedHandle(n) &&
+            ((s = knownAdapters[(o = String(n)).toLowerCase()]), s === void 0))
+        )
+          throw new AxiosError$1(`Unknown adapter '${o}'`);
+        if (s) break;
+        r[o || "#" + i] = s;
+      }
+      if (!s) {
+        const i = Object.entries(r).map(
+          ([a, l]) =>
+            `adapter ${a} ` +
+            (l === !1
+              ? "is not supported by the environment"
+              : "is not available in the build"),
+        );
+        let o = t
+          ? i.length > 1
+            ? `since :
+` +
+              i.map(renderReason).join(`
+`)
+            : " " + renderReason(i[0])
+          : "as no adapter specified";
+        throw new AxiosError$1(
+          "There is no suitable adapter to dispatch the request " + o,
+          "ERR_NOT_SUPPORT",
+        );
+      }
+      return s;
+    },
+    adapters: knownAdapters,
+  };
+function throwIfCancellationRequested(e) {
+  if (
+    (e.cancelToken && e.cancelToken.throwIfRequested(),
+    e.signal && e.signal.aborted)
+  )
+    throw new CanceledError$1(null, e);
+}
+function dispatchRequest(e) {
+  return (
+    throwIfCancellationRequested(e),
+    (e.headers = AxiosHeaders$1.from(e.headers)),
+    (e.data = transformData.call(e, e.transformRequest)),
+    ["post", "put", "patch"].indexOf(e.method) !== -1 &&
+      e.headers.setContentType("application/x-www-form-urlencoded", !1),
+    adapters
+      .getAdapter(e.adapter || defaults$1.adapter)(e)
+      .then(
+        function (s) {
+          return (
+            throwIfCancellationRequested(e),
+            (s.data = transformData.call(e, e.transformResponse, s)),
+            (s.headers = AxiosHeaders$1.from(s.headers)),
+            s
+          );
+        },
+        function (s) {
+          return (
+            isCancel$1(s) ||
+              (throwIfCancellationRequested(e),
+              s &&
+                s.response &&
+                ((s.response.data = transformData.call(
+                  e,
+                  e.transformResponse,
+                  s.response,
+                )),
+                (s.response.headers = AxiosHeaders$1.from(
+                  s.response.headers,
+                )))),
+            Promise.reject(s)
+          );
+        },
+      )
+  );
+}
+const VERSION$1 = "1.10.0",
+  validators$1 = {};
+["object", "boolean", "number", "function", "string", "symbol"].forEach(
+  (e, t) => {
+    validators$1[e] = function (s) {
+      return typeof s === e || "a" + (t < 1 ? "n " : " ") + e;
+    };
+  },
+);
+const deprecatedWarnings = {};
+validators$1.transitional = function e(t, n, s) {
+  function r(i, o) {
+    return (
+      "[Axios v" +
+      VERSION$1 +
+      "] Transitional option '" +
+      i +
+      "'" +
+      o +
+      (s ? ". " + s : "")
+    );
+  }
+  return (i, o, a) => {
+    if (t === !1)
+      throw new AxiosError$1(
+        r(o, " has been removed" + (n ? " in " + n : "")),
+        AxiosError$1.ERR_DEPRECATED,
+      );
+    return (
+      n &&
+        !deprecatedWarnings[o] &&
+        ((deprecatedWarnings[o] = !0),
+        console.warn(
+          r(
+            o,
+            " has been deprecated since v" +
+              n +
+              " and will be removed in the near future",
+          ),
+        )),
+      t ? t(i, o, a) : !0
+    );
+  };
+};
+validators$1.spelling = function e(t) {
+  return (n, s) => (console.warn(`${s} is likely a misspelling of ${t}`), !0);
+};
+function assertOptions(e, t, n) {
+  if (typeof e != "object")
+    throw new AxiosError$1(
+      "options must be an object",
+      AxiosError$1.ERR_BAD_OPTION_VALUE,
+    );
+  const s = Object.keys(e);
+  let r = s.length;
+  for (; r-- > 0;) {
+    const i = s[r],
+      o = t[i];
+    if (o) {
+      const a = e[i],
+        l = a === void 0 || o(a, i, e);
+      if (l !== !0)
+        throw new AxiosError$1(
+          "option " + i + " must be " + l,
+          AxiosError$1.ERR_BAD_OPTION_VALUE,
+        );
+      continue;
+    }
+    if (n !== !0)
+      throw new AxiosError$1(
+        "Unknown option " + i,
+        AxiosError$1.ERR_BAD_OPTION,
+      );
+  }
+}
+const validator = { assertOptions, validators: validators$1 },
+  validators = validator.validators;
+let Axios$1 = class {
+  constructor(t) {
+    ((this.defaults = t || {}),
+      (this.interceptors = {
+        request: new InterceptorManager(),
+        response: new InterceptorManager(),
+      }));
+  }
+  async request(t, n) {
+    try {
+      return await this._request(t, n);
+    } catch (s) {
+      if (s instanceof Error) {
+        let r = {};
+        Error.captureStackTrace
+          ? Error.captureStackTrace(r)
+          : (r = new Error());
+        const i = r.stack ? r.stack.replace(/^.+\n/, "") : "";
+        try {
+          s.stack
+            ? i &&
+              !String(s.stack).endsWith(i.replace(/^.+\n.+\n/, "")) &&
+              (s.stack +=
+                `
+` + i)
+            : (s.stack = i);
+        } catch {}
+      }
+      throw s;
+    }
+  }
+  _request(t, n) {
+    (typeof t == "string" ? ((n = n || {}), (n.url = t)) : (n = t || {}),
+      (n = mergeConfig$1(this.defaults, n)));
+    const { transitional: s, paramsSerializer: r, headers: i } = n;
+    (s !== void 0 &&
+      validator.assertOptions(
+        s,
+        {
+          silentJSONParsing: validators.transitional(validators.boolean),
+          forcedJSONParsing: validators.transitional(validators.boolean),
+          clarifyTimeoutError: validators.transitional(validators.boolean),
+        },
+        !1,
+      ),
+      r != null &&
+        (utils$1.isFunction(r)
+          ? (n.paramsSerializer = { serialize: r })
+          : validator.assertOptions(
+              r,
+              { encode: validators.function, serialize: validators.function },
+              !0,
+            )),
+      n.allowAbsoluteUrls !== void 0 ||
+        (this.defaults.allowAbsoluteUrls !== void 0
+          ? (n.allowAbsoluteUrls = this.defaults.allowAbsoluteUrls)
+          : (n.allowAbsoluteUrls = !0)),
+      validator.assertOptions(
+        n,
+        {
+          baseUrl: validators.spelling("baseURL"),
+          withXsrfToken: validators.spelling("withXSRFToken"),
+        },
+        !0,
+      ),
+      (n.method = (n.method || this.defaults.method || "get").toLowerCase()));
+    let o = i && utils$1.merge(i.common, i[n.method]);
+    (i &&
+      utils$1.forEach(
+        ["delete", "get", "head", "post", "put", "patch", "common"],
+        (x) => {
+          delete i[x];
+        },
+      ),
+      (n.headers = AxiosHeaders$1.concat(o, i)));
+    const a = [];
+    let l = !0;
+    this.interceptors.request.forEach(function (B) {
+      (typeof B.runWhen == "function" && B.runWhen(n) === !1) ||
+        ((l = l && B.synchronous), a.unshift(B.fulfilled, B.rejected));
+    });
+    const u = [];
+    this.interceptors.response.forEach(function (B) {
+      u.push(B.fulfilled, B.rejected);
+    });
+    let d,
+      c = 0,
+      v;
+    if (!l) {
+      const x = [dispatchRequest.bind(this), void 0];
+      for (
+        x.unshift.apply(x, a),
+          x.push.apply(x, u),
+          v = x.length,
+          d = Promise.resolve(n);
+        c < v;
+      )
+        d = d.then(x[c++], x[c++]);
+      return d;
+    }
+    v = a.length;
+    let E = n;
+    for (c = 0; c < v;) {
+      const x = a[c++],
+        B = a[c++];
+      try {
+        E = x(E);
+      } catch (G) {
+        B.call(this, G);
+        break;
+      }
+    }
+    try {
+      d = dispatchRequest.call(this, E);
+    } catch (x) {
+      return Promise.reject(x);
+    }
+    for (c = 0, v = u.length; c < v;) d = d.then(u[c++], u[c++]);
+    return d;
+  }
+  getUri(t) {
+    t = mergeConfig$1(this.defaults, t);
+    const n = buildFullPath(t.baseURL, t.url, t.allowAbsoluteUrls);
+    return buildURL(n, t.params, t.paramsSerializer);
+  }
+};
+utils$1.forEach(["delete", "get", "head", "options"], function e(t) {
+  Axios$1.prototype[t] = function (n, s) {
+    return this.request(
+      mergeConfig$1(s || {}, { method: t, url: n, data: (s || {}).data }),
+    );
+  };
+});
+utils$1.forEach(["post", "put", "patch"], function e(t) {
+  function n(s) {
+    return function (i, o, a) {
+      return this.request(
+        mergeConfig$1(a || {}, {
+          method: t,
+          headers: s ? { "Content-Type": "multipart/form-data" } : {},
+          url: i,
+          data: o,
+        }),
+      );
+    };
+  }
+  ((Axios$1.prototype[t] = n()), (Axios$1.prototype[t + "Form"] = n(!0)));
+});
+let CancelToken$1 = class xe {
+  constructor(t) {
+    if (typeof t != "function")
+      throw new TypeError("executor must be a function.");
+    let n;
+    this.promise = new Promise(function (i) {
+      n = i;
+    });
+    const s = this;
+    (this.promise.then((r) => {
+      if (!s._listeners) return;
+      let i = s._listeners.length;
+      for (; i-- > 0;) s._listeners[i](r);
+      s._listeners = null;
+    }),
+      (this.promise.then = (r) => {
+        let i;
+        const o = new Promise((a) => {
+          (s.subscribe(a), (i = a));
+        }).then(r);
+        return (
+          (o.cancel = function () {
+            s.unsubscribe(i);
+          }),
+          o
+        );
+      }),
+      t(function (i, o, a) {
+        s.reason || ((s.reason = new CanceledError$1(i, o, a)), n(s.reason));
+      }));
+  }
+  throwIfRequested() {
+    if (this.reason) throw this.reason;
+  }
+  subscribe(t) {
+    if (this.reason) {
+      t(this.reason);
+      return;
+    }
+    this._listeners ? this._listeners.push(t) : (this._listeners = [t]);
+  }
+  unsubscribe(t) {
+    if (!this._listeners) return;
+    const n = this._listeners.indexOf(t);
+    n !== -1 && this._listeners.splice(n, 1);
+  }
+  toAbortSignal() {
+    const t = new AbortController(),
+      n = (s) => {
+        t.abort(s);
+      };
+    return (
+      this.subscribe(n),
+      (t.signal.unsubscribe = () => this.unsubscribe(n)),
+      t.signal
+    );
+  }
+  static source() {
+    let t;
+    return {
+      token: new xe(function (r) {
+        t = r;
+      }),
+      cancel: t,
+    };
+  }
+};
+function spread$1(e) {
+  return function (n) {
+    return e.apply(null, n);
+  };
+}
+function isAxiosError$1(e) {
+  return utils$1.isObject(e) && e.isAxiosError === !0;
+}
+const HttpStatusCode$1 = {
+  Continue: 100,
+  SwitchingProtocols: 101,
+  Processing: 102,
+  EarlyHints: 103,
+  Ok: 200,
+  Created: 201,
+  Accepted: 202,
+  NonAuthoritativeInformation: 203,
+  NoContent: 204,
+  ResetContent: 205,
+  PartialContent: 206,
+  MultiStatus: 207,
+  AlreadyReported: 208,
+  ImUsed: 226,
+  MultipleChoices: 300,
+  MovedPermanently: 301,
+  Found: 302,
+  SeeOther: 303,
+  NotModified: 304,
+  UseProxy: 305,
+  Unused: 306,
+  TemporaryRedirect: 307,
+  PermanentRedirect: 308,
+  BadRequest: 400,
+  Unauthorized: 401,
+  PaymentRequired: 402,
+  Forbidden: 403,
+  NotFound: 404,
+  MethodNotAllowed: 405,
+  NotAcceptable: 406,
+  ProxyAuthenticationRequired: 407,
+  RequestTimeout: 408,
+  Conflict: 409,
+  Gone: 410,
+  LengthRequired: 411,
+  PreconditionFailed: 412,
+  PayloadTooLarge: 413,
+  UriTooLong: 414,
+  UnsupportedMediaType: 415,
+  RangeNotSatisfiable: 416,
+  ExpectationFailed: 417,
+  ImATeapot: 418,
+  MisdirectedRequest: 421,
+  UnprocessableEntity: 422,
+  Locked: 423,
+  FailedDependency: 424,
+  TooEarly: 425,
+  UpgradeRequired: 426,
+  PreconditionRequired: 428,
+  TooManyRequests: 429,
+  RequestHeaderFieldsTooLarge: 431,
+  UnavailableForLegalReasons: 451,
+  InternalServerError: 500,
+  NotImplemented: 501,
+  BadGateway: 502,
+  ServiceUnavailable: 503,
+  GatewayTimeout: 504,
+  HttpVersionNotSupported: 505,
+  VariantAlsoNegotiates: 506,
+  InsufficientStorage: 507,
+  LoopDetected: 508,
+  NotExtended: 510,
+  NetworkAuthenticationRequired: 511,
+};
+Object.entries(HttpStatusCode$1).forEach(([e, t]) => {
+  HttpStatusCode$1[t] = e;
+});
+function createInstance(e) {
+  const t = new Axios$1(e),
+    n = bind(Axios$1.prototype.request, t);
+  return (
+    utils$1.extend(n, Axios$1.prototype, t, { allOwnKeys: !0 }),
+    utils$1.extend(n, t, null, { allOwnKeys: !0 }),
+    (n.create = function (r) {
+      return createInstance(mergeConfig$1(e, r));
+    }),
+    n
+  );
+}
+const axios = createInstance(defaults$1);
+axios.Axios = Axios$1;
+axios.CanceledError = CanceledError$1;
+axios.CancelToken = CancelToken$1;
+axios.isCancel = isCancel$1;
+axios.VERSION = VERSION$1;
+axios.toFormData = toFormData$1;
+axios.AxiosError = AxiosError$1;
+axios.Cancel = axios.CanceledError;
+axios.all = function e(t) {
+  return Promise.all(t);
+};
+axios.spread = spread$1;
+axios.isAxiosError = isAxiosError$1;
+axios.mergeConfig = mergeConfig$1;
+axios.AxiosHeaders = AxiosHeaders$1;
+axios.formToJSON = (e) =>
+  formDataToJSON(utils$1.isHTMLForm(e) ? new FormData(e) : e);
+axios.getAdapter = adapters.getAdapter;
+axios.HttpStatusCode = HttpStatusCode$1;
+axios.default = axios;
+const {
+  Axios,
+  AxiosError,
+  CanceledError,
+  isCancel,
+  CancelToken,
+  VERSION,
+  all,
+  Cancel,
+  isAxiosError,
+  spread,
+  toFormData,
+  AxiosHeaders,
+  HttpStatusCode,
+  formToJSON,
+  getAdapter,
+  mergeConfig,
+} = axios;
+var jsonBigint = { exports: {} },
+  stringify = { exports: {} },
+  bignumber$1 = { exports: {} },
+  bignumber = bignumber$1.exports,
+  hasRequiredBignumber;
+function requireBignumber() {
+  return (
+    hasRequiredBignumber ||
+      ((hasRequiredBignumber = 1),
+      (function (e) {
+        (function (t) {
+          var n,
+            s = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i,
+            r = Math.ceil,
+            i = Math.floor,
+            o = "[BigNumber Error] ",
+            a = o + "Number primitive has more than 15 significant digits: ",
+            l = 1e14,
+            u = 14,
+            d = 9007199254740991,
+            c = [
+              1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11, 1e12,
+              1e13,
+            ],
+            v = 1e7,
+            E = 1e9;
+          function x(X) {
+            var K,
+              w,
+              m,
+              S = (ne.prototype = {
+                constructor: ne,
+                toString: null,
+                valueOf: null,
+              }),
+              $ = new ne(1),
+              R = 20,
+              P = 4,
+              W = -7,
+              D = 21,
+              k = -1e7,
+              V = 1e7,
+              F = !1,
+              Z = 1,
+              re = 0,
+              ae = {
+                prefix: "",
+                groupSize: 3,
+                secondaryGroupSize: 0,
+                groupSeparator: ",",
+                decimalSeparator: ".",
+                fractionGroupSize: 0,
+                fractionGroupSeparator: " ",
+                suffix: "",
+              },
+              ce = "0123456789abcdefghijklmnopqrstuvwxyz",
+              ge = !0;
+            function ne(A, L) {
+              var y,
+                T,
+                g,
+                C,
+                I,
+                O,
+                M,
+                U,
+                H = this;
+              if (!(H instanceof ne)) return new ne(A, L);
+              if (L == null) {
+                if (A && A._isBigNumber === !0) {
+                  ((H.s = A.s),
+                    !A.c || A.e > V
+                      ? (H.c = H.e = null)
+                      : A.e < k
+                        ? (H.c = [(H.e = 0)])
+                        : ((H.e = A.e), (H.c = A.c.slice())));
+                  return;
+                }
+                if ((O = typeof A == "number") && A * 0 == 0) {
+                  if (((H.s = 1 / A < 0 ? ((A = -A), -1) : 1), A === ~~A)) {
+                    for (C = 0, I = A; I >= 10; I /= 10, C++);
+                    C > V ? (H.c = H.e = null) : ((H.e = C), (H.c = [A]));
+                    return;
+                  }
+                  U = String(A);
+                } else {
+                  if (!s.test((U = String(A)))) return m(H, U, O);
+                  H.s = U.charCodeAt(0) == 45 ? ((U = U.slice(1)), -1) : 1;
+                }
+                ((C = U.indexOf(".")) > -1 && (U = U.replace(".", "")),
+                  (I = U.search(/e/i)) > 0
+                    ? (C < 0 && (C = I),
+                      (C += +U.slice(I + 1)),
+                      (U = U.substring(0, I)))
+                    : C < 0 && (C = U.length));
+              } else {
+                if ((b(L, 2, ce.length, "Base"), L == 10 && ge))
+                  return ((H = new ne(A)), ie(H, R + H.e + 1, P));
+                if (((U = String(A)), (O = typeof A == "number"))) {
+                  if (A * 0 != 0) return m(H, U, O, L);
+                  if (
+                    ((H.s = 1 / A < 0 ? ((U = U.slice(1)), -1) : 1),
+                    ne.DEBUG && U.replace(/^0\.0*|\./, "").length > 15)
+                  )
+                    throw Error(a + A);
+                } else
+                  H.s = U.charCodeAt(0) === 45 ? ((U = U.slice(1)), -1) : 1;
+                for (y = ce.slice(0, L), C = I = 0, M = U.length; I < M; I++)
+                  if (y.indexOf((T = U.charAt(I))) < 0) {
+                    if (T == ".") {
+                      if (I > C) {
+                        C = M;
+                        continue;
+                      }
+                    } else if (
+                      !g &&
+                      ((U == U.toUpperCase() && (U = U.toLowerCase())) ||
+                        (U == U.toLowerCase() && (U = U.toUpperCase())))
+                    ) {
+                      ((g = !0), (I = -1), (C = 0));
+                      continue;
+                    }
+                    return m(H, String(A), O, L);
+                  }
+                ((O = !1),
+                  (U = w(U, L, 10, H.s)),
+                  (C = U.indexOf(".")) > -1
+                    ? (U = U.replace(".", ""))
+                    : (C = U.length));
+              }
+              for (I = 0; U.charCodeAt(I) === 48; I++);
+              for (M = U.length; U.charCodeAt(--M) === 48;);
+              if ((U = U.slice(I, ++M))) {
+                if (
+                  ((M -= I), O && ne.DEBUG && M > 15 && (A > d || A !== i(A)))
+                )
+                  throw Error(a + H.s * A);
+                if ((C = C - I - 1) > V) H.c = H.e = null;
+                else if (C < k) H.c = [(H.e = 0)];
+                else {
+                  if (
+                    ((H.e = C),
+                    (H.c = []),
+                    (I = (C + 1) % u),
+                    C < 0 && (I += u),
+                    I < M)
+                  ) {
+                    for (I && H.c.push(+U.slice(0, I)), M -= u; I < M;)
+                      H.c.push(+U.slice(I, (I += u)));
+                    I = u - (U = U.slice(I)).length;
+                  } else I -= M;
+                  for (; I--; U += "0");
+                  H.c.push(+U);
+                }
+              } else H.c = [(H.e = 0)];
+            }
+            ((ne.clone = x),
+              (ne.ROUND_UP = 0),
+              (ne.ROUND_DOWN = 1),
+              (ne.ROUND_CEIL = 2),
+              (ne.ROUND_FLOOR = 3),
+              (ne.ROUND_HALF_UP = 4),
+              (ne.ROUND_HALF_DOWN = 5),
+              (ne.ROUND_HALF_EVEN = 6),
+              (ne.ROUND_HALF_CEIL = 7),
+              (ne.ROUND_HALF_FLOOR = 8),
+              (ne.EUCLID = 9),
+              (ne.config = ne.set =
+                function (A) {
+                  var L, y;
+                  if (A != null)
+                    if (typeof A == "object") {
+                      if (
+                        (A.hasOwnProperty((L = "DECIMAL_PLACES")) &&
+                          ((y = A[L]), b(y, 0, E, L), (R = y)),
+                        A.hasOwnProperty((L = "ROUNDING_MODE")) &&
+                          ((y = A[L]), b(y, 0, 8, L), (P = y)),
+                        A.hasOwnProperty((L = "EXPONENTIAL_AT")) &&
+                          ((y = A[L]),
+                          y && y.pop
+                            ? (b(y[0], -E, 0, L),
+                              b(y[1], 0, E, L),
+                              (W = y[0]),
+                              (D = y[1]))
+                            : (b(y, -E, E, L), (W = -(D = y < 0 ? -y : y)))),
+                        A.hasOwnProperty((L = "RANGE")))
+                      )
+                        if (((y = A[L]), y && y.pop))
+                          (b(y[0], -E, -1, L),
+                            b(y[1], 1, E, L),
+                            (k = y[0]),
+                            (V = y[1]));
+                        else if ((b(y, -E, E, L), y)) k = -(V = y < 0 ? -y : y);
+                        else throw Error(o + L + " cannot be zero: " + y);
+                      if (A.hasOwnProperty((L = "CRYPTO")))
+                        if (((y = A[L]), y === !!y))
+                          if (y)
+                            if (
+                              typeof crypto < "u" &&
+                              crypto &&
+                              (crypto.getRandomValues || crypto.randomBytes)
+                            )
+                              F = y;
+                            else
+                              throw ((F = !y), Error(o + "crypto unavailable"));
+                          else F = y;
+                        else throw Error(o + L + " not true or false: " + y);
+                      if (
+                        (A.hasOwnProperty((L = "MODULO_MODE")) &&
+                          ((y = A[L]), b(y, 0, 9, L), (Z = y)),
+                        A.hasOwnProperty((L = "POW_PRECISION")) &&
+                          ((y = A[L]), b(y, 0, E, L), (re = y)),
+                        A.hasOwnProperty((L = "FORMAT")))
+                      )
+                        if (((y = A[L]), typeof y == "object")) ae = y;
+                        else throw Error(o + L + " not an object: " + y);
+                      if (A.hasOwnProperty((L = "ALPHABET")))
+                        if (
+                          ((y = A[L]),
+                          typeof y == "string" &&
+                            !/^.?$|[+\-.\s]|(.).*\1/.test(y))
+                        )
+                          ((ge = y.slice(0, 10) == "0123456789"), (ce = y));
+                        else throw Error(o + L + " invalid: " + y);
+                    } else throw Error(o + "Object expected: " + A);
+                  return {
+                    DECIMAL_PLACES: R,
+                    ROUNDING_MODE: P,
+                    EXPONENTIAL_AT: [W, D],
+                    RANGE: [k, V],
+                    CRYPTO: F,
+                    MODULO_MODE: Z,
+                    POW_PRECISION: re,
+                    FORMAT: ae,
+                    ALPHABET: ce,
+                  };
+                }),
+              (ne.isBigNumber = function (A) {
+                if (!A || A._isBigNumber !== !0) return !1;
+                if (!ne.DEBUG) return !0;
+                var L,
+                  y,
+                  T = A.c,
+                  g = A.e,
+                  C = A.s;
+                e: if ({}.toString.call(T) == "[object Array]") {
+                  if (
+                    (C === 1 || C === -1) &&
+                    g >= -E &&
+                    g <= E &&
+                    g === i(g)
+                  ) {
+                    if (T[0] === 0) {
+                      if (g === 0 && T.length === 1) return !0;
+                      break e;
+                    }
+                    if (
+                      ((L = (g + 1) % u),
+                      L < 1 && (L += u),
+                      String(T[0]).length == L)
+                    ) {
+                      for (L = 0; L < T.length; L++)
+                        if (((y = T[L]), y < 0 || y >= l || y !== i(y)))
+                          break e;
+                      if (y !== 0) return !0;
+                    }
+                  }
+                } else if (
+                  T === null &&
+                  g === null &&
+                  (C === null || C === 1 || C === -1)
+                )
+                  return !0;
+                throw Error(o + "Invalid BigNumber: " + A);
+              }),
+              (ne.maximum = ne.max =
+                function () {
+                  return he(arguments, -1);
+                }),
+              (ne.minimum = ne.min =
+                function () {
+                  return he(arguments, 1);
+                }),
+              (ne.random = (function () {
+                var A = 9007199254740992,
+                  L =
+                    (Math.random() * A) & 2097151
+                      ? function () {
+                          return i(Math.random() * A);
+                        }
+                      : function () {
+                          return (
+                            ((Math.random() * 1073741824) | 0) * 8388608 +
+                            ((Math.random() * 8388608) | 0)
+                          );
+                        };
+                return function (y) {
+                  var T,
+                    g,
+                    C,
+                    I,
+                    O,
+                    M = 0,
+                    U = [],
+                    H = new ne($);
+                  if ((y == null ? (y = R) : b(y, 0, E), (I = r(y / u)), F))
+                    if (crypto.getRandomValues) {
+                      for (
+                        T = crypto.getRandomValues(new Uint32Array((I *= 2)));
+                        M < I;
+                      )
+                        ((O = T[M] * 131072 + (T[M + 1] >>> 11)),
+                          O >= 9e15
+                            ? ((g = crypto.getRandomValues(new Uint32Array(2))),
+                              (T[M] = g[0]),
+                              (T[M + 1] = g[1]))
+                            : (U.push(O % 1e14), (M += 2)));
+                      M = I / 2;
+                    } else if (crypto.randomBytes) {
+                      for (T = crypto.randomBytes((I *= 7)); M < I;)
+                        ((O =
+                          (T[M] & 31) * 281474976710656 +
+                          T[M + 1] * 1099511627776 +
+                          T[M + 2] * 4294967296 +
+                          T[M + 3] * 16777216 +
+                          (T[M + 4] << 16) +
+                          (T[M + 5] << 8) +
+                          T[M + 6]),
+                          O >= 9e15
+                            ? crypto.randomBytes(7).copy(T, M)
+                            : (U.push(O % 1e14), (M += 7)));
+                      M = I / 7;
+                    } else throw ((F = !1), Error(o + "crypto unavailable"));
+                  if (!F)
+                    for (; M < I;) ((O = L()), O < 9e15 && (U[M++] = O % 1e14));
+                  for (
+                    I = U[--M],
+                      y %= u,
+                      I && y && ((O = c[u - y]), (U[M] = i(I / O) * O));
+                    U[M] === 0;
+                    U.pop(), M--
+                  );
+                  if (M < 0) U = [(C = 0)];
+                  else {
+                    for (C = -1; U[0] === 0; U.splice(0, 1), C -= u);
+                    for (M = 1, O = U[0]; O >= 10; O /= 10, M++);
+                    M < u && (C -= u - M);
+                  }
+                  return ((H.e = C), (H.c = U), H);
+                };
+              })()),
+              (ne.sum = function () {
+                for (var A = 1, L = arguments, y = new ne(L[0]); A < L.length;)
+                  y = y.plus(L[A++]);
+                return y;
+              }),
+              (w = (function () {
+                var A = "0123456789";
+                function L(y, T, g, C) {
+                  for (var I, O = [0], M, U = 0, H = y.length; U < H;) {
+                    for (M = O.length; M--; O[M] *= T);
+                    for (
+                      O[0] += C.indexOf(y.charAt(U++)), I = 0;
+                      I < O.length;
+                      I++
+                    )
+                      O[I] > g - 1 &&
+                        (O[I + 1] == null && (O[I + 1] = 0),
+                        (O[I + 1] += (O[I] / g) | 0),
+                        (O[I] %= g));
+                  }
+                  return O.reverse();
+                }
+                return function (y, T, g, C, I) {
+                  var O,
+                    M,
+                    U,
+                    H,
+                    J,
+                    te,
+                    ee,
+                    oe,
+                    le = y.indexOf("."),
+                    fe = R,
+                    ue = P;
+                  for (
+                    le >= 0 &&
+                      ((H = re),
+                      (re = 0),
+                      (y = y.replace(".", "")),
+                      (oe = new ne(T)),
+                      (te = oe.pow(y.length - le)),
+                      (re = H),
+                      (oe.c = L(Y(G(te.c), te.e, "0"), 10, g, A)),
+                      (oe.e = oe.c.length)),
+                      ee = L(y, T, g, I ? ((O = ce), A) : ((O = A), ce)),
+                      U = H = ee.length;
+                    ee[--H] == 0;
+                    ee.pop()
+                  );
+                  if (!ee[0]) return O.charAt(0);
+                  if (
+                    (le < 0
+                      ? --U
+                      : ((te.c = ee),
+                        (te.e = U),
+                        (te.s = C),
+                        (te = K(te, oe, fe, ue, g)),
+                        (ee = te.c),
+                        (J = te.r),
+                        (U = te.e)),
+                    (M = U + fe + 1),
+                    (le = ee[M]),
+                    (H = g / 2),
+                    (J = J || M < 0 || ee[M + 1] != null),
+                    (J =
+                      ue < 4
+                        ? (le != null || J) &&
+                          (ue == 0 || ue == (te.s < 0 ? 3 : 2))
+                        : le > H ||
+                          (le == H &&
+                            (ue == 4 ||
+                              J ||
+                              (ue == 6 && ee[M - 1] & 1) ||
+                              ue == (te.s < 0 ? 8 : 7)))),
+                    M < 1 || !ee[0])
+                  )
+                    y = J ? Y(O.charAt(1), -fe, O.charAt(0)) : O.charAt(0);
+                  else {
+                    if (((ee.length = M), J))
+                      for (--g; ++ee[--M] > g;)
+                        ((ee[M] = 0), M || (++U, (ee = [1].concat(ee))));
+                    for (H = ee.length; !ee[--H];);
+                    for (le = 0, y = ""; le <= H; y += O.charAt(ee[le++]));
+                    y = Y(y, U, O.charAt(0));
+                  }
+                  return y;
+                };
+              })()),
+              (K = (function () {
+                function A(T, g, C) {
+                  var I,
+                    O,
+                    M,
+                    U,
+                    H = 0,
+                    J = T.length,
+                    te = g % v,
+                    ee = (g / v) | 0;
+                  for (T = T.slice(); J--;)
+                    ((M = T[J] % v),
+                      (U = (T[J] / v) | 0),
+                      (I = ee * M + U * te),
+                      (O = te * M + (I % v) * v + H),
+                      (H = ((O / C) | 0) + ((I / v) | 0) + ee * U),
+                      (T[J] = O % C));
+                  return (H && (T = [H].concat(T)), T);
+                }
+                function L(T, g, C, I) {
+                  var O, M;
+                  if (C != I) M = C > I ? 1 : -1;
+                  else
+                    for (O = M = 0; O < C; O++)
+                      if (T[O] != g[O]) {
+                        M = T[O] > g[O] ? 1 : -1;
+                        break;
+                      }
+                  return M;
+                }
+                function y(T, g, C, I) {
+                  for (var O = 0; C--;)
+                    ((T[C] -= O),
+                      (O = T[C] < g[C] ? 1 : 0),
+                      (T[C] = O * I + T[C] - g[C]));
+                  for (; !T[0] && T.length > 1; T.splice(0, 1));
+                }
+                return function (T, g, C, I, O) {
+                  var M,
+                    U,
+                    H,
+                    J,
+                    te,
+                    ee,
+                    oe,
+                    le,
+                    fe,
+                    ue,
+                    de,
+                    me,
+                    Se,
+                    be,
+                    Ee,
+                    _e,
+                    Ce,
+                    ve = T.s == g.s ? 1 : -1,
+                    ye = T.c,
+                    we = g.c;
+                  if (!ye || !ye[0] || !we || !we[0])
+                    return new ne(
+                      !T.s || !g.s || (ye ? we && ye[0] == we[0] : !we)
+                        ? NaN
+                        : (ye && ye[0] == 0) || !we
+                          ? ve * 0
+                          : ve / 0,
+                    );
+                  for (
+                    le = new ne(ve),
+                      fe = le.c = [],
+                      U = T.e - g.e,
+                      ve = C + U + 1,
+                      O ||
+                        ((O = l),
+                        (U = B(T.e / u) - B(g.e / u)),
+                        (ve = (ve / u) | 0)),
+                      H = 0;
+                    we[H] == (ye[H] || 0);
+                    H++
+                  );
+                  if ((we[H] > (ye[H] || 0) && U--, ve < 0))
+                    (fe.push(1), (J = !0));
+                  else {
+                    for (
+                      be = ye.length,
+                        _e = we.length,
+                        H = 0,
+                        ve += 2,
+                        te = i(O / (we[0] + 1)),
+                        te > 1 &&
+                          ((we = A(we, te, O)),
+                          (ye = A(ye, te, O)),
+                          (_e = we.length),
+                          (be = ye.length)),
+                        Se = _e,
+                        ue = ye.slice(0, _e),
+                        de = ue.length;
+                      de < _e;
+                      ue[de++] = 0
+                    );
+                    ((Ce = we.slice()),
+                      (Ce = [0].concat(Ce)),
+                      (Ee = we[0]),
+                      we[1] >= O / 2 && Ee++);
+                    do {
+                      if (((te = 0), (M = L(we, ue, _e, de)), M < 0)) {
+                        if (
+                          ((me = ue[0]),
+                          _e != de && (me = me * O + (ue[1] || 0)),
+                          (te = i(me / Ee)),
+                          te > 1)
+                        )
+                          for (
+                            te >= O && (te = O - 1),
+                              ee = A(we, te, O),
+                              oe = ee.length,
+                              de = ue.length;
+                            L(ee, ue, oe, de) == 1;
+                          )
+                            (te--,
+                              y(ee, _e < oe ? Ce : we, oe, O),
+                              (oe = ee.length),
+                              (M = 1));
+                        else
+                          (te == 0 && (M = te = 1),
+                            (ee = we.slice()),
+                            (oe = ee.length));
+                        if (
+                          (oe < de && (ee = [0].concat(ee)),
+                          y(ue, ee, de, O),
+                          (de = ue.length),
+                          M == -1)
+                        )
+                          for (; L(we, ue, _e, de) < 1;)
+                            (te++,
+                              y(ue, _e < de ? Ce : we, de, O),
+                              (de = ue.length));
+                      } else M === 0 && (te++, (ue = [0]));
+                      ((fe[H++] = te),
+                        ue[0]
+                          ? (ue[de++] = ye[Se] || 0)
+                          : ((ue = [ye[Se]]), (de = 1)));
+                    } while ((Se++ < be || ue[0] != null) && ve--);
+                    ((J = ue[0] != null), fe[0] || fe.splice(0, 1));
+                  }
+                  if (O == l) {
+                    for (H = 1, ve = fe[0]; ve >= 10; ve /= 10, H++);
+                    ie(le, C + (le.e = H + U * u - 1) + 1, I, J);
+                  } else ((le.e = U), (le.r = +J));
+                  return le;
+                };
+              })()));
+            function pe(A, L, y, T) {
+              var g, C, I, O, M;
+              if ((y == null ? (y = P) : b(y, 0, 8), !A.c)) return A.toString();
+              if (((g = A.c[0]), (I = A.e), L == null))
+                ((M = G(A.c)),
+                  (M =
+                    T == 1 || (T == 2 && (I <= W || I >= D))
+                      ? z(M, I)
+                      : Y(M, I, "0")));
+              else if (
+                ((A = ie(new ne(A), L, y)),
+                (C = A.e),
+                (M = G(A.c)),
+                (O = M.length),
+                T == 1 || (T == 2 && (L <= C || C <= W)))
+              ) {
+                for (; O < L; M += "0", O++);
+                M = z(M, C);
+              } else if (((L -= I), (M = Y(M, C, "0")), C + 1 > O)) {
+                if (--L > 0) for (M += "."; L--; M += "0");
+              } else if (((L += C - O), L > 0))
+                for (C + 1 == O && (M += "."); L--; M += "0");
+              return A.s < 0 && g ? "-" + M : M;
+            }
+            function he(A, L) {
+              for (var y, T, g = 1, C = new ne(A[0]); g < A.length; g++)
+                ((T = new ne(A[g])),
+                  (!T.s || (y = q(C, T)) === L || (y === 0 && C.s === L)) &&
+                    (C = T));
+              return C;
+            }
+            function Q(A, L, y) {
+              for (var T = 1, g = L.length; !L[--g]; L.pop());
+              for (g = L[0]; g >= 10; g /= 10, T++);
+              return (
+                (y = T + y * u - 1) > V
+                  ? (A.c = A.e = null)
+                  : y < k
+                    ? (A.c = [(A.e = 0)])
+                    : ((A.e = y), (A.c = L)),
+                A
+              );
+            }
+            m = (function () {
+              var A = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
+                L = /^([^.]+)\.$/,
+                y = /^\.([^.]+)$/,
+                T = /^-?(Infinity|NaN)$/,
+                g = /^\s*\+(?=[\w.])|^\s+|\s+$/g;
+              return function (C, I, O, M) {
+                var U,
+                  H = O ? I : I.replace(g, "");
+                if (T.test(H)) C.s = isNaN(H) ? null : H < 0 ? -1 : 1;
+                else {
+                  if (
+                    !O &&
+                    ((H = H.replace(A, function (J, te, ee) {
+                      return (
+                        (U =
+                          (ee = ee.toLowerCase()) == "x"
+                            ? 16
+                            : ee == "b"
+                              ? 2
+                              : 8),
+                        !M || M == U ? te : J
+                      );
+                    })),
+                    M && ((U = M), (H = H.replace(L, "$1").replace(y, "0.$1"))),
+                    I != H)
+                  )
+                    return new ne(H, U);
+                  if (ne.DEBUG)
+                    throw Error(
+                      o + "Not a" + (M ? " base " + M : "") + " number: " + I,
+                    );
+                  C.s = null;
+                }
+                C.c = C.e = null;
+              };
+            })();
+            function ie(A, L, y, T) {
+              var g,
+                C,
+                I,
+                O,
+                M,
+                U,
+                H,
+                J = A.c,
+                te = c;
+              if (J) {
+                e: {
+                  for (g = 1, O = J[0]; O >= 10; O /= 10, g++);
+                  if (((C = L - g), C < 0))
+                    ((C += u),
+                      (I = L),
+                      (M = J[(U = 0)]),
+                      (H = i((M / te[g - I - 1]) % 10)));
+                  else if (((U = r((C + 1) / u)), U >= J.length))
+                    if (T) {
+                      for (; J.length <= U; J.push(0));
+                      ((M = H = 0), (g = 1), (C %= u), (I = C - u + 1));
+                    } else break e;
+                  else {
+                    for (M = O = J[U], g = 1; O >= 10; O /= 10, g++);
+                    ((C %= u),
+                      (I = C - u + g),
+                      (H = I < 0 ? 0 : i((M / te[g - I - 1]) % 10)));
+                  }
+                  if (
+                    ((T =
+                      T ||
+                      L < 0 ||
+                      J[U + 1] != null ||
+                      (I < 0 ? M : M % te[g - I - 1])),
+                    (T =
+                      y < 4
+                        ? (H || T) && (y == 0 || y == (A.s < 0 ? 3 : 2))
+                        : H > 5 ||
+                          (H == 5 &&
+                            (y == 4 ||
+                              T ||
+                              (y == 6 &&
+                                ((C > 0
+                                  ? I > 0
+                                    ? M / te[g - I]
+                                    : 0
+                                  : J[U - 1]) %
+                                  10) &
+                                  1) ||
+                              y == (A.s < 0 ? 8 : 7)))),
+                    L < 1 || !J[0])
+                  )
+                    return (
+                      (J.length = 0),
+                      T
+                        ? ((L -= A.e + 1),
+                          (J[0] = te[(u - (L % u)) % u]),
+                          (A.e = -L || 0))
+                        : (J[0] = A.e = 0),
+                      A
+                    );
+                  if (
+                    (C == 0
+                      ? ((J.length = U), (O = 1), U--)
+                      : ((J.length = U + 1),
+                        (O = te[u - C]),
+                        (J[U] = I > 0 ? i((M / te[g - I]) % te[I]) * O : 0)),
+                    T)
+                  )
+                    for (;;)
+                      if (U == 0) {
+                        for (C = 1, I = J[0]; I >= 10; I /= 10, C++);
+                        for (I = J[0] += O, O = 1; I >= 10; I /= 10, O++);
+                        C != O && (A.e++, J[0] == l && (J[0] = 1));
+                        break;
+                      } else {
+                        if (((J[U] += O), J[U] != l)) break;
+                        ((J[U--] = 0), (O = 1));
+                      }
+                  for (C = J.length; J[--C] === 0; J.pop());
+                }
+                A.e > V ? (A.c = A.e = null) : A.e < k && (A.c = [(A.e = 0)]);
+              }
+              return A;
+            }
+            function se(A) {
+              var L,
+                y = A.e;
+              return y === null
+                ? A.toString()
+                : ((L = G(A.c)),
+                  (L = y <= W || y >= D ? z(L, y) : Y(L, y, "0")),
+                  A.s < 0 ? "-" + L : L);
+            }
+            return (
+              (S.absoluteValue = S.abs =
+                function () {
+                  var A = new ne(this);
+                  return (A.s < 0 && (A.s = 1), A);
+                }),
+              (S.comparedTo = function (A, L) {
+                return q(this, new ne(A, L));
+              }),
+              (S.decimalPlaces = S.dp =
+                function (A, L) {
+                  var y,
+                    T,
+                    g,
+                    C = this;
+                  if (A != null)
+                    return (
+                      b(A, 0, E),
+                      L == null ? (L = P) : b(L, 0, 8),
+                      ie(new ne(C), A + C.e + 1, L)
+                    );
+                  if (!(y = C.c)) return null;
+                  if (
+                    ((T = ((g = y.length - 1) - B(this.e / u)) * u), (g = y[g]))
+                  )
+                    for (; g % 10 == 0; g /= 10, T--);
+                  return (T < 0 && (T = 0), T);
+                }),
+              (S.dividedBy = S.div =
+                function (A, L) {
+                  return K(this, new ne(A, L), R, P);
+                }),
+              (S.dividedToIntegerBy = S.idiv =
+                function (A, L) {
+                  return K(this, new ne(A, L), 0, 1);
+                }),
+              (S.exponentiatedBy = S.pow =
+                function (A, L) {
+                  var y,
+                    T,
+                    g,
+                    C,
+                    I,
+                    O,
+                    M,
+                    U,
+                    H,
+                    J = this;
+                  if (((A = new ne(A)), A.c && !A.isInteger()))
+                    throw Error(o + "Exponent not an integer: " + se(A));
+                  if (
+                    (L != null && (L = new ne(L)),
+                    (O = A.e > 14),
+                    !J.c ||
+                      !J.c[0] ||
+                      (J.c[0] == 1 && !J.e && J.c.length == 1) ||
+                      !A.c ||
+                      !A.c[0])
+                  )
+                    return (
+                      (H = new ne(
+                        Math.pow(+se(J), O ? A.s * (2 - N(A)) : +se(A)),
+                      )),
+                      L ? H.mod(L) : H
+                    );
+                  if (((M = A.s < 0), L)) {
+                    if (L.c ? !L.c[0] : !L.s) return new ne(NaN);
+                    ((T = !M && J.isInteger() && L.isInteger()),
+                      T && (J = J.mod(L)));
+                  } else {
+                    if (
+                      A.e > 9 &&
+                      (J.e > 0 ||
+                        J.e < -1 ||
+                        (J.e == 0
+                          ? J.c[0] > 1 || (O && J.c[1] >= 24e7)
+                          : J.c[0] < 8e13 || (O && J.c[0] <= 9999975e7)))
+                    )
+                      return (
+                        (C = J.s < 0 && N(A) ? -0 : 0),
+                        J.e > -1 && (C = 1 / C),
+                        new ne(M ? 1 / C : C)
+                      );
+                    re && (C = r(re / u + 2));
+                  }
+                  for (
+                    O
+                      ? ((y = new ne(0.5)), M && (A.s = 1), (U = N(A)))
+                      : ((g = Math.abs(+se(A))), (U = g % 2)),
+                      H = new ne($);
+                    ;
+                  ) {
+                    if (U) {
+                      if (((H = H.times(J)), !H.c)) break;
+                      C
+                        ? H.c.length > C && (H.c.length = C)
+                        : T && (H = H.mod(L));
+                    }
+                    if (g) {
+                      if (((g = i(g / 2)), g === 0)) break;
+                      U = g % 2;
+                    } else if (((A = A.times(y)), ie(A, A.e + 1, 1), A.e > 14))
+                      U = N(A);
+                    else {
+                      if (((g = +se(A)), g === 0)) break;
+                      U = g % 2;
+                    }
+                    ((J = J.times(J)),
+                      C
+                        ? J.c && J.c.length > C && (J.c.length = C)
+                        : T && (J = J.mod(L)));
+                  }
+                  return T
+                    ? H
+                    : (M && (H = $.div(H)),
+                      L ? H.mod(L) : C ? ie(H, re, P, I) : H);
+                }),
+              (S.integerValue = function (A) {
+                var L = new ne(this);
+                return (A == null ? (A = P) : b(A, 0, 8), ie(L, L.e + 1, A));
+              }),
+              (S.isEqualTo = S.eq =
+                function (A, L) {
+                  return q(this, new ne(A, L)) === 0;
+                }),
+              (S.isFinite = function () {
+                return !!this.c;
+              }),
+              (S.isGreaterThan = S.gt =
+                function (A, L) {
+                  return q(this, new ne(A, L)) > 0;
+                }),
+              (S.isGreaterThanOrEqualTo = S.gte =
+                function (A, L) {
+                  return (L = q(this, new ne(A, L))) === 1 || L === 0;
+                }),
+              (S.isInteger = function () {
+                return !!this.c && B(this.e / u) > this.c.length - 2;
+              }),
+              (S.isLessThan = S.lt =
+                function (A, L) {
+                  return q(this, new ne(A, L)) < 0;
+                }),
+              (S.isLessThanOrEqualTo = S.lte =
+                function (A, L) {
+                  return (L = q(this, new ne(A, L))) === -1 || L === 0;
+                }),
+              (S.isNaN = function () {
+                return !this.s;
+              }),
+              (S.isNegative = function () {
+                return this.s < 0;
+              }),
+              (S.isPositive = function () {
+                return this.s > 0;
+              }),
+              (S.isZero = function () {
+                return !!this.c && this.c[0] == 0;
+              }),
+              (S.minus = function (A, L) {
+                var y,
+                  T,
+                  g,
+                  C,
+                  I = this,
+                  O = I.s;
+                if (((A = new ne(A, L)), (L = A.s), !O || !L))
+                  return new ne(NaN);
+                if (O != L) return ((A.s = -L), I.plus(A));
+                var M = I.e / u,
+                  U = A.e / u,
+                  H = I.c,
+                  J = A.c;
+                if (!M || !U) {
+                  if (!H || !J)
+                    return H ? ((A.s = -L), A) : new ne(J ? I : NaN);
+                  if (!H[0] || !J[0])
+                    return J[0]
+                      ? ((A.s = -L), A)
+                      : new ne(H[0] ? I : P == 3 ? -0 : 0);
+                }
+                if (((M = B(M)), (U = B(U)), (H = H.slice()), (O = M - U))) {
+                  for (
+                    (C = O < 0) ? ((O = -O), (g = H)) : ((U = M), (g = J)),
+                      g.reverse(),
+                      L = O;
+                    L--;
+                    g.push(0)
+                  );
+                  g.reverse();
+                } else
+                  for (
+                    T = (C = (O = H.length) < (L = J.length)) ? O : L,
+                      O = L = 0;
+                    L < T;
+                    L++
+                  )
+                    if (H[L] != J[L]) {
+                      C = H[L] < J[L];
+                      break;
+                    }
+                if (
+                  (C && ((g = H), (H = J), (J = g), (A.s = -A.s)),
+                  (L = (T = J.length) - (y = H.length)),
+                  L > 0)
+                )
+                  for (; L--; H[y++] = 0);
+                for (L = l - 1; T > O;) {
+                  if (H[--T] < J[T]) {
+                    for (y = T; y && !H[--y]; H[y] = L);
+                    (--H[y], (H[T] += l));
+                  }
+                  H[T] -= J[T];
+                }
+                for (; H[0] == 0; H.splice(0, 1), --U);
+                return H[0]
+                  ? Q(A, H, U)
+                  : ((A.s = P == 3 ? -1 : 1), (A.c = [(A.e = 0)]), A);
+              }),
+              (S.modulo = S.mod =
+                function (A, L) {
+                  var y,
+                    T,
+                    g = this;
+                  return (
+                    (A = new ne(A, L)),
+                    !g.c || !A.s || (A.c && !A.c[0])
+                      ? new ne(NaN)
+                      : !A.c || (g.c && !g.c[0])
+                        ? new ne(g)
+                        : (Z == 9
+                            ? ((T = A.s),
+                              (A.s = 1),
+                              (y = K(g, A, 0, 3)),
+                              (A.s = T),
+                              (y.s *= T))
+                            : (y = K(g, A, 0, Z)),
+                          (A = g.minus(y.times(A))),
+                          !A.c[0] && Z == 1 && (A.s = g.s),
+                          A)
+                  );
+                }),
+              (S.multipliedBy = S.times =
+                function (A, L) {
+                  var y,
+                    T,
+                    g,
+                    C,
+                    I,
+                    O,
+                    M,
+                    U,
+                    H,
+                    J,
+                    te,
+                    ee,
+                    oe,
+                    le,
+                    fe,
+                    ue = this,
+                    de = ue.c,
+                    me = (A = new ne(A, L)).c;
+                  if (!de || !me || !de[0] || !me[0])
+                    return (
+                      !ue.s ||
+                      !A.s ||
+                      (de && !de[0] && !me) ||
+                      (me && !me[0] && !de)
+                        ? (A.c = A.e = A.s = null)
+                        : ((A.s *= ue.s),
+                          !de || !me
+                            ? (A.c = A.e = null)
+                            : ((A.c = [0]), (A.e = 0))),
+                      A
+                    );
+                  for (
+                    T = B(ue.e / u) + B(A.e / u),
+                      A.s *= ue.s,
+                      M = de.length,
+                      J = me.length,
+                      M < J &&
+                        ((oe = de),
+                        (de = me),
+                        (me = oe),
+                        (g = M),
+                        (M = J),
+                        (J = g)),
+                      g = M + J,
+                      oe = [];
+                    g--;
+                    oe.push(0)
+                  );
+                  for (le = l, fe = v, g = J; --g >= 0;) {
+                    for (
+                      y = 0,
+                        te = me[g] % fe,
+                        ee = (me[g] / fe) | 0,
+                        I = M,
+                        C = g + I;
+                      C > g;
+                    )
+                      ((U = de[--I] % fe),
+                        (H = (de[I] / fe) | 0),
+                        (O = ee * U + H * te),
+                        (U = te * U + (O % fe) * fe + oe[C] + y),
+                        (y = ((U / le) | 0) + ((O / fe) | 0) + ee * H),
+                        (oe[C--] = U % le));
+                    oe[C] = y;
+                  }
+                  return (y ? ++T : oe.splice(0, 1), Q(A, oe, T));
+                }),
+              (S.negated = function () {
+                var A = new ne(this);
+                return ((A.s = -A.s || null), A);
+              }),
+              (S.plus = function (A, L) {
+                var y,
+                  T = this,
+                  g = T.s;
+                if (((A = new ne(A, L)), (L = A.s), !g || !L))
+                  return new ne(NaN);
+                if (g != L) return ((A.s = -L), T.minus(A));
+                var C = T.e / u,
+                  I = A.e / u,
+                  O = T.c,
+                  M = A.c;
+                if (!C || !I) {
+                  if (!O || !M) return new ne(g / 0);
+                  if (!O[0] || !M[0])
+                    return M[0] ? A : new ne(O[0] ? T : g * 0);
+                }
+                if (((C = B(C)), (I = B(I)), (O = O.slice()), (g = C - I))) {
+                  for (
+                    g > 0 ? ((I = C), (y = M)) : ((g = -g), (y = O)),
+                      y.reverse();
+                    g--;
+                    y.push(0)
+                  );
+                  y.reverse();
+                }
+                for (
+                  g = O.length,
+                    L = M.length,
+                    g - L < 0 && ((y = M), (M = O), (O = y), (L = g)),
+                    g = 0;
+                  L;
+                )
+                  ((g = ((O[--L] = O[L] + M[L] + g) / l) | 0),
+                    (O[L] = l === O[L] ? 0 : O[L] % l));
+                return (g && ((O = [g].concat(O)), ++I), Q(A, O, I));
+              }),
+              (S.precision = S.sd =
+                function (A, L) {
+                  var y,
+                    T,
+                    g,
+                    C = this;
+                  if (A != null && A !== !!A)
+                    return (
+                      b(A, 1, E),
+                      L == null ? (L = P) : b(L, 0, 8),
+                      ie(new ne(C), A, L)
+                    );
+                  if (!(y = C.c)) return null;
+                  if (((g = y.length - 1), (T = g * u + 1), (g = y[g]))) {
+                    for (; g % 10 == 0; g /= 10, T--);
+                    for (g = y[0]; g >= 10; g /= 10, T++);
+                  }
+                  return (A && C.e + 1 > T && (T = C.e + 1), T);
+                }),
+              (S.shiftedBy = function (A) {
+                return (b(A, -d, d), this.times("1e" + A));
+              }),
+              (S.squareRoot = S.sqrt =
+                function () {
+                  var A,
+                    L,
+                    y,
+                    T,
+                    g,
+                    C = this,
+                    I = C.c,
+                    O = C.s,
+                    M = C.e,
+                    U = R + 4,
+                    H = new ne("0.5");
+                  if (O !== 1 || !I || !I[0])
+                    return new ne(
+                      !O || (O < 0 && (!I || I[0])) ? NaN : I ? C : 1 / 0,
+                    );
+                  if (
+                    ((O = Math.sqrt(+se(C))),
+                    O == 0 || O == 1 / 0
+                      ? ((L = G(I)),
+                        (L.length + M) % 2 == 0 && (L += "0"),
+                        (O = Math.sqrt(+L)),
+                        (M = B((M + 1) / 2) - (M < 0 || M % 2)),
+                        O == 1 / 0
+                          ? (L = "5e" + M)
+                          : ((L = O.toExponential()),
+                            (L = L.slice(0, L.indexOf("e") + 1) + M)),
+                        (y = new ne(L)))
+                      : (y = new ne(O + "")),
+                    y.c[0])
+                  ) {
+                    for (M = y.e, O = M + U, O < 3 && (O = 0); ;)
+                      if (
+                        ((g = y),
+                        (y = H.times(g.plus(K(C, g, U, 1)))),
+                        G(g.c).slice(0, O) === (L = G(y.c)).slice(0, O))
+                      )
+                        if (
+                          (y.e < M && --O,
+                          (L = L.slice(O - 3, O + 1)),
+                          L == "9999" || (!T && L == "4999"))
+                        ) {
+                          if (!T && (ie(g, g.e + R + 2, 0), g.times(g).eq(C))) {
+                            y = g;
+                            break;
+                          }
+                          ((U += 4), (O += 4), (T = 1));
+                        } else {
+                          (!+L || (!+L.slice(1) && L.charAt(0) == "5")) &&
+                            (ie(y, y.e + R + 2, 1), (A = !y.times(y).eq(C)));
+                          break;
+                        }
+                  }
+                  return ie(y, y.e + R + 1, P, A);
+                }),
+              (S.toExponential = function (A, L) {
+                return (A != null && (b(A, 0, E), A++), pe(this, A, L, 1));
+              }),
+              (S.toFixed = function (A, L) {
+                return (
+                  A != null && (b(A, 0, E), (A = A + this.e + 1)),
+                  pe(this, A, L)
+                );
+              }),
+              (S.toFormat = function (A, L, y) {
+                var T,
+                  g = this;
+                if (y == null)
+                  A != null && L && typeof L == "object"
+                    ? ((y = L), (L = null))
+                    : A && typeof A == "object"
+                      ? ((y = A), (A = L = null))
+                      : (y = ae);
+                else if (typeof y != "object")
+                  throw Error(o + "Argument not an object: " + y);
+                if (((T = g.toFixed(A, L)), g.c)) {
+                  var C,
+                    I = T.split("."),
+                    O = +y.groupSize,
+                    M = +y.secondaryGroupSize,
+                    U = y.groupSeparator || "",
+                    H = I[0],
+                    J = I[1],
+                    te = g.s < 0,
+                    ee = te ? H.slice(1) : H,
+                    oe = ee.length;
+                  if (
+                    (M && ((C = O), (O = M), (M = C), (oe -= C)),
+                    O > 0 && oe > 0)
+                  ) {
+                    for (C = oe % O || O, H = ee.substr(0, C); C < oe; C += O)
+                      H += U + ee.substr(C, O);
+                    (M > 0 && (H += U + ee.slice(C)), te && (H = "-" + H));
+                  }
+                  T = J
+                    ? H +
+                      (y.decimalSeparator || "") +
+                      ((M = +y.fractionGroupSize)
+                        ? J.replace(
+                            new RegExp("\\d{" + M + "}\\B", "g"),
+                            "$&" + (y.fractionGroupSeparator || ""),
+                          )
+                        : J)
+                    : H;
+                }
+                return (y.prefix || "") + T + (y.suffix || "");
+              }),
+              (S.toFraction = function (A) {
+                var L,
+                  y,
+                  T,
+                  g,
+                  C,
+                  I,
+                  O,
+                  M,
+                  U,
+                  H,
+                  J,
+                  te,
+                  ee = this,
+                  oe = ee.c;
+                if (
+                  A != null &&
+                  ((O = new ne(A)),
+                  (!O.isInteger() && (O.c || O.s !== 1)) || O.lt($))
+                )
+                  throw Error(
+                    o +
+                      "Argument " +
+                      (O.isInteger() ? "out of range: " : "not an integer: ") +
+                      se(O),
+                  );
+                if (!oe) return new ne(ee);
+                for (
+                  L = new ne($),
+                    U = y = new ne($),
+                    T = M = new ne($),
+                    te = G(oe),
+                    C = L.e = te.length - ee.e - 1,
+                    L.c[0] = c[(I = C % u) < 0 ? u + I : I],
+                    A = !A || O.comparedTo(L) > 0 ? (C > 0 ? L : U) : O,
+                    I = V,
+                    V = 1 / 0,
+                    O = new ne(te),
+                    M.c[0] = 0;
+                  (H = K(O, L, 0, 1)),
+                    (g = y.plus(H.times(T))),
+                    g.comparedTo(A) != 1;
+                )
+                  ((y = T),
+                    (T = g),
+                    (U = M.plus(H.times((g = U)))),
+                    (M = g),
+                    (L = O.minus(H.times((g = L)))),
+                    (O = g));
+                return (
+                  (g = K(A.minus(y), T, 0, 1)),
+                  (M = M.plus(g.times(U))),
+                  (y = y.plus(g.times(T))),
+                  (M.s = U.s = ee.s),
+                  (C = C * 2),
+                  (J =
+                    K(U, T, C, P)
+                      .minus(ee)
+                      .abs()
+                      .comparedTo(K(M, y, C, P).minus(ee).abs()) < 1
+                      ? [U, T]
+                      : [M, y]),
+                  (V = I),
+                  J
+                );
+              }),
+              (S.toNumber = function () {
+                return +se(this);
+              }),
+              (S.toPrecision = function (A, L) {
+                return (A != null && b(A, 1, E), pe(this, A, L, 2));
+              }),
+              (S.toString = function (A) {
+                var L,
+                  y = this,
+                  T = y.s,
+                  g = y.e;
+                return (
+                  g === null
+                    ? T
+                      ? ((L = "Infinity"), T < 0 && (L = "-" + L))
+                      : (L = "NaN")
+                    : (A == null
+                        ? (L =
+                            g <= W || g >= D ? z(G(y.c), g) : Y(G(y.c), g, "0"))
+                        : A === 10 && ge
+                          ? ((y = ie(new ne(y), R + g + 1, P)),
+                            (L = Y(G(y.c), y.e, "0")))
+                          : (b(A, 2, ce.length, "Base"),
+                            (L = w(Y(G(y.c), g, "0"), 10, A, T, !0))),
+                      T < 0 && y.c[0] && (L = "-" + L)),
+                  L
+                );
+              }),
+              (S.valueOf = S.toJSON =
+                function () {
+                  return se(this);
+                }),
+              (S._isBigNumber = !0),
+              X != null && ne.set(X),
+              ne
+            );
+          }
+          function B(X) {
+            var K = X | 0;
+            return X > 0 || X === K ? K : K - 1;
+          }
+          function G(X) {
+            for (var K, w, m = 1, S = X.length, $ = X[0] + ""; m < S;) {
+              for (K = X[m++] + "", w = u - K.length; w--; K = "0" + K);
+              $ += K;
+            }
+            for (S = $.length; $.charCodeAt(--S) === 48;);
+            return $.slice(0, S + 1 || 1);
+          }
+          function q(X, K) {
+            var w,
+              m,
+              S = X.c,
+              $ = K.c,
+              R = X.s,
+              P = K.s,
+              W = X.e,
+              D = K.e;
+            if (!R || !P) return null;
+            if (((w = S && !S[0]), (m = $ && !$[0]), w || m))
+              return w ? (m ? 0 : -P) : R;
+            if (R != P) return R;
+            if (((w = R < 0), (m = W == D), !S || !$))
+              return m ? 0 : !S ^ w ? 1 : -1;
+            if (!m) return (W > D) ^ w ? 1 : -1;
+            for (P = (W = S.length) < (D = $.length) ? W : D, R = 0; R < P; R++)
+              if (S[R] != $[R]) return (S[R] > $[R]) ^ w ? 1 : -1;
+            return W == D ? 0 : (W > D) ^ w ? 1 : -1;
+          }
+          function b(X, K, w, m) {
+            if (X < K || X > w || X !== i(X))
+              throw Error(
+                o +
+                  (m || "Argument") +
+                  (typeof X == "number"
+                    ? X < K || X > w
+                      ? " out of range: "
+                      : " not an integer: "
+                    : " not a primitive number: ") +
+                  String(X),
+              );
+          }
+          function N(X) {
+            var K = X.c.length - 1;
+            return B(X.e / u) == K && X.c[K] % 2 != 0;
+          }
+          function z(X, K) {
+            return (
+              (X.length > 1 ? X.charAt(0) + "." + X.slice(1) : X) +
+              (K < 0 ? "e" : "e+") +
+              K
+            );
+          }
+          function Y(X, K, w) {
+            var m, S;
+            if (K < 0) {
+              for (S = w + "."; ++K; S += w);
+              X = S + X;
+            } else if (((m = X.length), ++K > m)) {
+              for (S = w, K -= m; --K; S += w);
+              X += S;
+            } else K < m && (X = X.slice(0, K) + "." + X.slice(K));
+            return X;
+          }
+          ((n = x()),
+            (n.default = n.BigNumber = n),
+            e.exports
+              ? (e.exports = n)
+              : (t || (t = typeof self < "u" && self ? self : window),
+                (t.BigNumber = n)));
+        })(bignumber);
+      })(bignumber$1)),
+    bignumber$1.exports
+  );
+}
+var hasRequiredStringify;
+function requireStringify() {
+  return (
+    hasRequiredStringify ||
+      ((hasRequiredStringify = 1),
+      (function (e) {
+        var t = requireBignumber(),
+          n = e.exports;
+        (function () {
+          var s =
+              /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+            r,
+            i,
+            o = {
+              "\b": "\\b",
+              "	": "\\t",
+              "\n": "\\n",
+              "\f": "\\f",
+              "\r": "\\r",
+              '"': '\\"',
+              "\\": "\\\\",
+            },
+            a;
+          function l(d) {
+            return (
+              (s.lastIndex = 0),
+              s.test(d)
+                ? '"' +
+                  d.replace(s, function (c) {
+                    var v = o[c];
+                    return typeof v == "string"
+                      ? v
+                      : "\\u" +
+                          ("0000" + c.charCodeAt(0).toString(16)).slice(-4);
+                  }) +
+                  '"'
+                : '"' + d + '"'
+            );
+          }
+          function u(d, c) {
+            var v,
+              E,
+              x,
+              B,
+              G = r,
+              q,
+              b = c[d],
+              N = b != null && (b instanceof t || t.isBigNumber(b));
+            switch (
+              (b &&
+                typeof b == "object" &&
+                typeof b.toJSON == "function" &&
+                (b = b.toJSON(d)),
+              typeof a == "function" && (b = a.call(c, d, b)),
+              typeof b)
+            ) {
+              case "string":
+                return N ? b : l(b);
+              case "number":
+                return isFinite(b) ? String(b) : "null";
+              case "boolean":
+              case "null":
+              case "bigint":
+                return String(b);
+              case "object":
+                if (!b) return "null";
+                if (
+                  ((r += i),
+                  (q = []),
+                  Object.prototype.toString.apply(b) === "[object Array]")
+                ) {
+                  for (B = b.length, v = 0; v < B; v += 1)
+                    q[v] = u(v, b) || "null";
+                  return (
+                    (x =
+                      q.length === 0
+                        ? "[]"
+                        : r
+                          ? `[
+` +
+                            r +
+                            q.join(
+                              `,
+` + r,
+                            ) +
+                            `
+` +
+                            G +
+                            "]"
+                          : "[" + q.join(",") + "]"),
+                    (r = G),
+                    x
+                  );
+                }
+                if (a && typeof a == "object")
+                  for (B = a.length, v = 0; v < B; v += 1)
+                    typeof a[v] == "string" &&
+                      ((E = a[v]),
+                      (x = u(E, b)),
+                      x && q.push(l(E) + (r ? ": " : ":") + x));
+                else
+                  Object.keys(b).forEach(function (z) {
+                    var Y = u(z, b);
+                    Y && q.push(l(z) + (r ? ": " : ":") + Y);
+                  });
+                return (
+                  (x =
+                    q.length === 0
+                      ? "{}"
+                      : r
+                        ? `{
+` +
+                          r +
+                          q.join(
+                            `,
+` + r,
+                          ) +
+                          `
+` +
+                          G +
+                          "}"
+                        : "{" + q.join(",") + "}"),
+                  (r = G),
+                  x
+                );
+            }
+          }
+          typeof n.stringify != "function" &&
+            (n.stringify = function (d, c, v) {
+              var E;
+              if (((r = ""), (i = ""), typeof v == "number"))
+                for (E = 0; E < v; E += 1) i += " ";
+              else typeof v == "string" && (i = v);
+              if (
+                ((a = c),
+                c &&
+                  typeof c != "function" &&
+                  (typeof c != "object" || typeof c.length != "number"))
+              )
+                throw new Error("JSON.stringify");
+              return u("", { "": d });
+            });
+        })();
+      })(stringify)),
+    stringify.exports
+  );
+}
+var parse, hasRequiredParse;
+function requireParse() {
+  if (hasRequiredParse) return parse;
+  hasRequiredParse = 1;
+  var e = null;
+  const t =
+      /(?:_|\\u005[Ff])(?:_|\\u005[Ff])(?:p|\\u0070)(?:r|\\u0072)(?:o|\\u006[Ff])(?:t|\\u0074)(?:o|\\u006[Ff])(?:_|\\u005[Ff])(?:_|\\u005[Ff])/,
+    n =
+      /(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)/;
+  var s = function (r) {
+    var i = {
+      strict: !1,
+      storeAsString: !1,
+      alwaysParseAsBig: !1,
+      useNativeBigInt: !1,
+      protoAction: "error",
+      constructorAction: "error",
+    };
+    if (r != null) {
+      if (
+        (r.strict === !0 && (i.strict = !0),
+        r.storeAsString === !0 && (i.storeAsString = !0),
+        (i.alwaysParseAsBig =
+          r.alwaysParseAsBig === !0 ? r.alwaysParseAsBig : !1),
+        (i.useNativeBigInt = r.useNativeBigInt === !0 ? r.useNativeBigInt : !1),
+        typeof r.constructorAction < "u")
+      )
+        if (
+          r.constructorAction === "error" ||
+          r.constructorAction === "ignore" ||
+          r.constructorAction === "preserve"
+        )
+          i.constructorAction = r.constructorAction;
+        else
+          throw new Error(
+            `Incorrect value for constructorAction option, must be "error", "ignore" or undefined but passed ${r.constructorAction}`,
+          );
+      if (typeof r.protoAction < "u")
+        if (
+          r.protoAction === "error" ||
+          r.protoAction === "ignore" ||
+          r.protoAction === "preserve"
+        )
+          i.protoAction = r.protoAction;
+        else
+          throw new Error(
+            `Incorrect value for protoAction option, must be "error", "ignore" or undefined but passed ${r.protoAction}`,
+          );
+    }
+    var o,
+      a,
+      l = {
+        '"': '"',
+        "\\": "\\",
+        "/": "/",
+        b: "\b",
+        f: "\f",
+        n: `
+`,
+        r: "\r",
+        t: "	",
+      },
+      u,
+      d = function (N) {
+        throw { name: "SyntaxError", message: N, at: o, text: u };
+      },
+      c = function (N) {
+        return (
+          N && N !== a && d("Expected '" + N + "' instead of '" + a + "'"),
+          (a = u.charAt(o)),
+          (o += 1),
+          a
+        );
+      },
+      v = function () {
+        var N,
+          z = "";
+        for (a === "-" && ((z = "-"), c("-")); a >= "0" && a <= "9";)
+          ((z += a), c());
+        if (a === ".") for (z += "."; c() && a >= "0" && a <= "9";) z += a;
+        if (a === "e" || a === "E")
+          for (
+            z += a, c(), (a === "-" || a === "+") && ((z += a), c());
+            a >= "0" && a <= "9";
+          )
+            ((z += a), c());
+        if (((N = +z), !isFinite(N))) d("Bad number");
+        else
+          return (
+            e == null && (e = requireBignumber()),
+            z.length > 15
+              ? i.storeAsString
+                ? z
+                : i.useNativeBigInt
+                  ? BigInt(z)
+                  : new e(z)
+              : i.alwaysParseAsBig
+                ? i.useNativeBigInt
+                  ? BigInt(N)
+                  : new e(N)
+                : N
+          );
+      },
+      E = function () {
+        var N,
+          z,
+          Y = "",
+          X;
+        if (a === '"')
+          for (var K = o; c();) {
+            if (a === '"')
+              return (o - 1 > K && (Y += u.substring(K, o - 1)), c(), Y);
+            if (a === "\\") {
+              if ((o - 1 > K && (Y += u.substring(K, o - 1)), c(), a === "u")) {
+                for (
+                  X = 0, z = 0;
+                  z < 4 && ((N = parseInt(c(), 16)), !!isFinite(N));
+                  z += 1
+                )
+                  X = X * 16 + N;
+                Y += String.fromCharCode(X);
+              } else if (typeof l[a] == "string") Y += l[a];
+              else break;
+              K = o;
+            }
+          }
+        d("Bad string");
+      },
+      x = function () {
+        for (; a && a <= " ";) c();
+      },
+      B = function () {
+        switch (a) {
+          case "t":
+            return (c("t"), c("r"), c("u"), c("e"), !0);
+          case "f":
+            return (c("f"), c("a"), c("l"), c("s"), c("e"), !1);
+          case "n":
+            return (c("n"), c("u"), c("l"), c("l"), null);
+        }
+        d("Unexpected '" + a + "'");
+      },
+      G,
+      q = function () {
+        var N = [];
+        if (a === "[") {
+          if ((c("["), x(), a === "]")) return (c("]"), N);
+          for (; a;) {
+            if ((N.push(G()), x(), a === "]")) return (c("]"), N);
+            (c(","), x());
+          }
+        }
+        d("Bad array");
+      },
+      b = function () {
+        var N,
+          z = Object.create(null);
+        if (a === "{") {
+          if ((c("{"), x(), a === "}")) return (c("}"), z);
+          for (; a;) {
+            if (
+              ((N = E()),
+              x(),
+              c(":"),
+              i.strict === !0 &&
+                Object.hasOwnProperty.call(z, N) &&
+                d('Duplicate key "' + N + '"'),
+              t.test(N) === !0
+                ? i.protoAction === "error"
+                  ? d("Object contains forbidden prototype property")
+                  : i.protoAction === "ignore"
+                    ? G()
+                    : (z[N] = G())
+                : n.test(N) === !0
+                  ? i.constructorAction === "error"
+                    ? d("Object contains forbidden constructor property")
+                    : i.constructorAction === "ignore"
+                      ? G()
+                      : (z[N] = G())
+                  : (z[N] = G()),
+              x(),
+              a === "}")
+            )
+              return (c("}"), z);
+            (c(","), x());
+          }
+        }
+        d("Bad object");
+      };
+    return (
+      (G = function () {
+        switch ((x(), a)) {
+          case "{":
+            return b();
+          case "[":
+            return q();
+          case '"':
+            return E();
+          case "-":
+            return v();
+          default:
+            return a >= "0" && a <= "9" ? v() : B();
+        }
+      }),
+      function (N, z) {
+        var Y;
+        return (
+          (u = N + ""),
+          (o = 0),
+          (a = " "),
+          (Y = G()),
+          x(),
+          a && d("Syntax error"),
+          typeof z == "function"
+            ? (function X(K, w) {
+                var m,
+                  S = K[w];
+                return (
+                  S &&
+                    typeof S == "object" &&
+                    Object.keys(S).forEach(function ($) {
+                      ((m = X(S, $)), m !== void 0 ? (S[$] = m) : delete S[$]);
+                    }),
+                  z.call(K, w, S)
+                );
+              })({ "": Y }, "")
+            : Y
+        );
+      }
+    );
+  };
+  return ((parse = s), parse);
+}
+var hasRequiredJsonBigint;
+function requireJsonBigint() {
+  if (hasRequiredJsonBigint) return jsonBigint.exports;
+  hasRequiredJsonBigint = 1;
+  var e = requireStringify().stringify,
+    t = requireParse();
+  return (
+    (jsonBigint.exports = function (n) {
+      return { parse: t(n), stringify: e };
+    }),
+    (jsonBigint.exports.parse = t()),
+    (jsonBigint.exports.stringify = e),
+    jsonBigint.exports
+  );
+}
+var jsonBigintExports = requireJsonBigint();
+const JSONbig = getDefaultExportFromCjs(jsonBigintExports);
+/*! noble-ciphers - MIT License (c) 2023 Paul Miller (paulmillr.com) */ function isBytes$1(
+  e,
+) {
+  return (
+    e instanceof Uint8Array ||
+    (ArrayBuffer.isView(e) && e.constructor.name === "Uint8Array")
+  );
+}
+function abytes$1(e, ...t) {
+  if (!isBytes$1(e)) throw new Error("Uint8Array expected");
+  if (t.length > 0 && !t.includes(e.length))
+    throw new Error(
+      "Uint8Array expected of length " + t + ", got length=" + e.length,
+    );
+}
+function aexists$1(e, t = !0) {
+  if (e.destroyed) throw new Error("Hash instance has been destroyed");
+  if (t && e.finished) throw new Error("Hash#digest() has already been called");
+}
+function aoutput$1(e, t) {
+  abytes$1(e);
+  const n = t.outputLen;
+  if (e.length < n)
+    throw new Error(
+      "digestInto() expects output buffer of length at least " + n,
+    );
+}
+function u8(e) {
+  return new Uint8Array(e.buffer, e.byteOffset, e.byteLength);
+}
+function u32(e) {
+  return new Uint32Array(e.buffer, e.byteOffset, Math.floor(e.byteLength / 4));
+}
+function clean$1(...e) {
+  for (let t = 0; t < e.length; t++) e[t].fill(0);
+}
+function createView$1(e) {
+  return new DataView(e.buffer, e.byteOffset, e.byteLength);
+}
+const isLE = new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68;
+function utf8ToBytes$1(e) {
+  if (typeof e != "string") throw new Error("string expected");
+  return new Uint8Array(new TextEncoder().encode(e));
+}
+function toBytes$1(e) {
+  if (typeof e == "string") e = utf8ToBytes$1(e);
+  else if (isBytes$1(e)) e = copyBytes(e);
+  else throw new Error("Uint8Array expected, got " + typeof e);
+  return e;
+}
+function equalBytes(e, t) {
+  if (e.length !== t.length) return !1;
+  let n = 0;
+  for (let s = 0; s < e.length; s++) n |= e[s] ^ t[s];
+  return n === 0;
+}
+const wrapCipher = (e, t) => {
+  function n(s, ...r) {
+    if ((abytes$1(s), !isLE))
+      throw new Error("Non little-endian hardware is not yet supported");
+    if (e.nonceLength !== void 0) {
+      const d = r[0];
+      if (!d) throw new Error("nonce / iv required");
+      e.varSizeNonce ? abytes$1(d) : abytes$1(d, e.nonceLength);
+    }
+    const i = e.tagLength;
+    i && r[1] !== void 0 && abytes$1(r[1]);
+    const o = t(s, ...r),
+      a = (d, c) => {
+        if (c !== void 0) {
+          if (d !== 2) throw new Error("cipher output not supported");
+          abytes$1(c);
+        }
+      };
+    let l = !1;
+    return {
+      encrypt(d, c) {
+        if (l) throw new Error("cannot encrypt() twice with same key + nonce");
+        return ((l = !0), abytes$1(d), a(o.encrypt.length, c), o.encrypt(d, c));
+      },
+      decrypt(d, c) {
+        if ((abytes$1(d), i && d.length < i))
+          throw new Error(
+            "invalid ciphertext length: smaller than tagLength=" + i,
+          );
+        return (a(o.decrypt.length, c), o.decrypt(d, c));
+      },
+    };
+  }
+  return (Object.assign(n, e), n);
+};
+function getOutput(e, t, n = !0) {
+  if (t === void 0) return new Uint8Array(e);
+  if (t.length !== e)
+    throw new Error(
+      "invalid output length, expected " + e + ", got: " + t.length,
+    );
+  if (n && !isAligned32(t)) throw new Error("invalid output, must be aligned");
+  return t;
+}
+function setBigUint64$1(e, t, n, s) {
+  if (typeof e.setBigUint64 == "function") return e.setBigUint64(t, n, s);
+  const r = BigInt(32),
+    i = BigInt(4294967295),
+    o = Number((n >> r) & i),
+    a = Number(n & i),
+    l = 0,
+    u = 4;
+  (e.setUint32(t + l, o, s), e.setUint32(t + u, a, s));
+}
+function u64Lengths(e, t, n) {
+  const s = new Uint8Array(16),
+    r = createView$1(s);
+  return (
+    setBigUint64$1(r, 0, BigInt(t), n),
+    setBigUint64$1(r, 8, BigInt(e), n),
+    s
+  );
+}
+function isAligned32(e) {
+  return e.byteOffset % 4 === 0;
+}
+function copyBytes(e) {
+  return Uint8Array.from(e);
+}
+const BLOCK_SIZE$1 = 16,
+  ZEROS16 = new Uint8Array(16),
+  ZEROS32 = u32(ZEROS16),
+  POLY$1 = 225,
+  mul2$1 = (e, t, n, s) => {
+    const r = s & 1;
+    return {
+      s3: (n << 31) | (s >>> 1),
+      s2: (t << 31) | (n >>> 1),
+      s1: (e << 31) | (t >>> 1),
+      s0: (e >>> 1) ^ ((POLY$1 << 24) & -(r & 1)),
+    };
+  },
+  swapLE = (e) =>
+    (((e >>> 0) & 255) << 24) |
+    (((e >>> 8) & 255) << 16) |
+    (((e >>> 16) & 255) << 8) |
+    ((e >>> 24) & 255) |
+    0;
+function _toGHASHKey(e) {
+  e.reverse();
+  const t = e[15] & 1;
+  let n = 0;
+  for (let s = 0; s < e.length; s++) {
+    const r = e[s];
+    ((e[s] = (r >>> 1) | n), (n = (r & 1) << 7));
+  }
+  return ((e[0] ^= -t & 225), e);
+}
+const estimateWindow = (e) => (e > 64 * 1024 ? 8 : e > 1024 ? 4 : 2);
+class GHASH {
+  constructor(t, n) {
+    ((this.blockLen = BLOCK_SIZE$1),
+      (this.outputLen = BLOCK_SIZE$1),
+      (this.s0 = 0),
+      (this.s1 = 0),
+      (this.s2 = 0),
+      (this.s3 = 0),
+      (this.finished = !1),
+      (t = toBytes$1(t)),
+      abytes$1(t, 16));
+    const s = createView$1(t);
+    let r = s.getUint32(0, !1),
+      i = s.getUint32(4, !1),
+      o = s.getUint32(8, !1),
+      a = s.getUint32(12, !1);
+    const l = [];
+    for (let x = 0; x < 128; x++)
+      (l.push({ s0: swapLE(r), s1: swapLE(i), s2: swapLE(o), s3: swapLE(a) }),
+        ({ s0: r, s1: i, s2: o, s3: a } = mul2$1(r, i, o, a)));
+    const u = estimateWindow(n || 1024);
+    if (![1, 2, 4, 8].includes(u))
+      throw new Error("ghash: invalid window size, expected 2, 4 or 8");
+    this.W = u;
+    const c = 128 / u,
+      v = (this.windowSize = 2 ** u),
+      E = [];
+    for (let x = 0; x < c; x++)
+      for (let B = 0; B < v; B++) {
+        let G = 0,
+          q = 0,
+          b = 0,
+          N = 0;
+        for (let z = 0; z < u; z++) {
+          if (!((B >>> (u - z - 1)) & 1)) continue;
+          const { s0: X, s1: K, s2: w, s3: m } = l[u * x + z];
+          ((G ^= X), (q ^= K), (b ^= w), (N ^= m));
+        }
+        E.push({ s0: G, s1: q, s2: b, s3: N });
+      }
+    this.t = E;
+  }
+  _updateBlock(t, n, s, r) {
+    ((t ^= this.s0), (n ^= this.s1), (s ^= this.s2), (r ^= this.s3));
+    const { W: i, t: o, windowSize: a } = this;
+    let l = 0,
+      u = 0,
+      d = 0,
+      c = 0;
+    const v = (1 << i) - 1;
+    let E = 0;
+    for (const x of [t, n, s, r])
+      for (let B = 0; B < 4; B++) {
+        const G = (x >>> (8 * B)) & 255;
+        for (let q = 8 / i - 1; q >= 0; q--) {
+          const b = (G >>> (i * q)) & v,
+            { s0: N, s1: z, s2: Y, s3: X } = o[E * a + b];
+          ((l ^= N), (u ^= z), (d ^= Y), (c ^= X), (E += 1));
+        }
+      }
+    ((this.s0 = l), (this.s1 = u), (this.s2 = d), (this.s3 = c));
+  }
+  update(t) {
+    (aexists$1(this), (t = toBytes$1(t)), abytes$1(t));
+    const n = u32(t),
+      s = Math.floor(t.length / BLOCK_SIZE$1),
+      r = t.length % BLOCK_SIZE$1;
+    for (let i = 0; i < s; i++)
+      this._updateBlock(n[i * 4 + 0], n[i * 4 + 1], n[i * 4 + 2], n[i * 4 + 3]);
+    return (
+      r &&
+        (ZEROS16.set(t.subarray(s * BLOCK_SIZE$1)),
+        this._updateBlock(ZEROS32[0], ZEROS32[1], ZEROS32[2], ZEROS32[3]),
+        clean$1(ZEROS32)),
+      this
+    );
+  }
+  destroy() {
+    const { t } = this;
+    for (const n of t) ((n.s0 = 0), (n.s1 = 0), (n.s2 = 0), (n.s3 = 0));
+  }
+  digestInto(t) {
+    (aexists$1(this), aoutput$1(t, this), (this.finished = !0));
+    const { s0: n, s1: s, s2: r, s3: i } = this,
+      o = u32(t);
+    return ((o[0] = n), (o[1] = s), (o[2] = r), (o[3] = i), t);
+  }
+  digest() {
+    const t = new Uint8Array(BLOCK_SIZE$1);
+    return (this.digestInto(t), this.destroy(), t);
+  }
+}
+class Polyval extends GHASH {
+  constructor(t, n) {
+    ((t = toBytes$1(t)), abytes$1(t));
+    const s = _toGHASHKey(copyBytes(t));
+    (super(s, n), clean$1(s));
+  }
+  update(t) {
+    ((t = toBytes$1(t)), aexists$1(this));
+    const n = u32(t),
+      s = t.length % BLOCK_SIZE$1,
+      r = Math.floor(t.length / BLOCK_SIZE$1);
+    for (let i = 0; i < r; i++)
+      this._updateBlock(
+        swapLE(n[i * 4 + 3]),
+        swapLE(n[i * 4 + 2]),
+        swapLE(n[i * 4 + 1]),
+        swapLE(n[i * 4 + 0]),
+      );
+    return (
+      s &&
+        (ZEROS16.set(t.subarray(r * BLOCK_SIZE$1)),
+        this._updateBlock(
+          swapLE(ZEROS32[3]),
+          swapLE(ZEROS32[2]),
+          swapLE(ZEROS32[1]),
+          swapLE(ZEROS32[0]),
+        ),
+        clean$1(ZEROS32)),
+      this
+    );
+  }
+  digestInto(t) {
+    (aexists$1(this), aoutput$1(t, this), (this.finished = !0));
+    const { s0: n, s1: s, s2: r, s3: i } = this,
+      o = u32(t);
+    return ((o[0] = n), (o[1] = s), (o[2] = r), (o[3] = i), t.reverse());
+  }
+}
+function wrapConstructorWithKey(e) {
+  const t = (s, r) => e(r, s.length).update(toBytes$1(s)).digest(),
+    n = e(new Uint8Array(16), 0);
+  return (
+    (t.outputLen = n.outputLen),
+    (t.blockLen = n.blockLen),
+    (t.create = (s, r) => e(s, r)),
+    t
+  );
+}
+const ghash = wrapConstructorWithKey((e, t) => new GHASH(e, t));
+wrapConstructorWithKey((e, t) => new Polyval(e, t));
+const BLOCK_SIZE = 16,
+  BLOCK_SIZE32 = 4,
+  EMPTY_BLOCK = new Uint8Array(BLOCK_SIZE),
+  POLY = 283;
+function mul2(e) {
+  return (e << 1) ^ (POLY & -(e >> 7));
+}
+function mul(e, t) {
+  let n = 0;
+  for (; t > 0; t >>= 1) ((n ^= e & -(t & 1)), (e = mul2(e)));
+  return n;
+}
+const sbox = (() => {
+    const e = new Uint8Array(256);
+    for (let n = 0, s = 1; n < 256; n++, s ^= mul2(s)) e[n] = s;
+    const t = new Uint8Array(256);
+    t[0] = 99;
+    for (let n = 0; n < 255; n++) {
+      let s = e[255 - n];
+      ((s |= s << 8),
+        (t[e[n]] = (s ^ (s >> 4) ^ (s >> 5) ^ (s >> 6) ^ (s >> 7) ^ 99) & 255));
+    }
+    return (clean$1(e), t);
+  })(),
+  rotr32_8 = (e) => (e << 24) | (e >>> 8),
+  rotl32_8 = (e) => (e << 8) | (e >>> 24);
+function genTtable(e, t) {
+  if (e.length !== 256) throw new Error("Wrong sbox length");
+  const n = new Uint32Array(256).map((u, d) => t(e[d])),
+    s = n.map(rotl32_8),
+    r = s.map(rotl32_8),
+    i = r.map(rotl32_8),
+    o = new Uint32Array(256 * 256),
+    a = new Uint32Array(256 * 256),
+    l = new Uint16Array(256 * 256);
+  for (let u = 0; u < 256; u++)
+    for (let d = 0; d < 256; d++) {
+      const c = u * 256 + d;
+      ((o[c] = n[u] ^ s[d]), (a[c] = r[u] ^ i[d]), (l[c] = (e[u] << 8) | e[d]));
+    }
+  return { sbox: e, sbox2: l, T0: n, T1: s, T2: r, T3: i, T01: o, T23: a };
+}
+const tableEncoding = genTtable(
+    sbox,
+    (e) => (mul(e, 3) << 24) | (e << 16) | (e << 8) | mul(e, 2),
+  ),
+  xPowers = (() => {
+    const e = new Uint8Array(16);
+    for (let t = 0, n = 1; t < 16; t++, n = mul2(n)) e[t] = n;
+    return e;
+  })();
+function expandKeyLE(e) {
+  abytes$1(e);
+  const t = e.length;
+  if (![16, 24, 32].includes(t))
+    throw new Error("aes: invalid key size, should be 16, 24 or 32, got " + t);
+  const { sbox2: n } = tableEncoding,
+    s = [];
+  isAligned32(e) || s.push((e = copyBytes(e)));
+  const r = u32(e),
+    i = r.length,
+    o = (l) => applySbox(n, l, l, l, l),
+    a = new Uint32Array(t + 28);
+  a.set(r);
+  for (let l = i; l < a.length; l++) {
+    let u = a[l - 1];
+    (l % i === 0
+      ? (u = o(rotr32_8(u)) ^ xPowers[l / i - 1])
+      : i > 6 && l % i === 4 && (u = o(u)),
+      (a[l] = a[l - i] ^ u));
+  }
+  return (clean$1(...s), a);
+}
+function apply0123(e, t, n, s, r, i) {
+  return (
+    e[((n << 8) & 65280) | ((s >>> 8) & 255)] ^
+    t[((r >>> 8) & 65280) | ((i >>> 24) & 255)]
+  );
+}
+function applySbox(e, t, n, s, r) {
+  return (
+    e[(t & 255) | (n & 65280)] |
+    (e[((s >>> 16) & 255) | ((r >>> 16) & 65280)] << 16)
+  );
+}
+function encrypt(e, t, n, s, r) {
+  const { sbox2: i, T01: o, T23: a } = tableEncoding;
+  let l = 0;
+  ((t ^= e[l++]), (n ^= e[l++]), (s ^= e[l++]), (r ^= e[l++]));
+  const u = e.length / 4 - 2;
+  for (let x = 0; x < u; x++) {
+    const B = e[l++] ^ apply0123(o, a, t, n, s, r),
+      G = e[l++] ^ apply0123(o, a, n, s, r, t),
+      q = e[l++] ^ apply0123(o, a, s, r, t, n),
+      b = e[l++] ^ apply0123(o, a, r, t, n, s);
+    ((t = B), (n = G), (s = q), (r = b));
+  }
+  const d = e[l++] ^ applySbox(i, t, n, s, r),
+    c = e[l++] ^ applySbox(i, n, s, r, t),
+    v = e[l++] ^ applySbox(i, s, r, t, n),
+    E = e[l++] ^ applySbox(i, r, t, n, s);
+  return { s0: d, s1: c, s2: v, s3: E };
+}
+function ctr32(e, t, n, s, r) {
+  (abytes$1(n, BLOCK_SIZE), abytes$1(s), (r = getOutput(s.length, r)));
+  const i = n,
+    o = u32(i),
+    a = createView$1(i),
+    l = u32(s),
+    u = u32(r),
+    d = t ? 0 : 12,
+    c = s.length;
+  let v = a.getUint32(d, t),
+    { s0: E, s1: x, s2: B, s3: G } = encrypt(e, o[0], o[1], o[2], o[3]);
+  for (let b = 0; b + 4 <= l.length; b += 4)
+    ((u[b + 0] = l[b + 0] ^ E),
+      (u[b + 1] = l[b + 1] ^ x),
+      (u[b + 2] = l[b + 2] ^ B),
+      (u[b + 3] = l[b + 3] ^ G),
+      (v = (v + 1) >>> 0),
+      a.setUint32(d, v, t),
+      ({ s0: E, s1: x, s2: B, s3: G } = encrypt(e, o[0], o[1], o[2], o[3])));
+  const q = BLOCK_SIZE * Math.floor(l.length / BLOCK_SIZE32);
+  if (q < c) {
+    const b = new Uint32Array([E, x, B, G]),
+      N = u8(b);
+    for (let z = q, Y = 0; z < c; z++, Y++) r[z] = s[z] ^ N[Y];
+    clean$1(b);
+  }
+  return r;
+}
+function computeTag(e, t, n, s, r) {
+  const i = r ? r.length : 0,
+    o = e.create(n, s.length + i);
+  r && o.update(r);
+  const a = u64Lengths(8 * s.length, 8 * i, t);
+  (o.update(s), o.update(a));
+  const l = o.digest();
+  return (clean$1(a), l);
+}
+const gcm = wrapCipher(
+  { blockSize: 16, nonceLength: 12, tagLength: 16, varSizeNonce: !0 },
+  function e(t, n, s) {
+    if (n.length < 8) throw new Error("aes/gcm: invalid nonce length");
+    const r = 16;
+    function i(a, l, u) {
+      const d = computeTag(ghash, !1, a, u, s);
+      for (let c = 0; c < l.length; c++) d[c] ^= l[c];
+      return d;
+    }
+    function o() {
+      const a = expandKeyLE(t),
+        l = EMPTY_BLOCK.slice(),
+        u = EMPTY_BLOCK.slice();
+      if ((ctr32(a, !1, u, u, l), n.length === 12)) u.set(n);
+      else {
+        const c = EMPTY_BLOCK.slice(),
+          v = createView$1(c);
+        setBigUint64$1(v, 8, BigInt(n.length * 8), !1);
+        const E = ghash.create(l).update(n).update(c);
+        (E.digestInto(u), E.destroy());
+      }
+      const d = ctr32(a, !1, u, EMPTY_BLOCK);
+      return { xk: a, authKey: l, counter: u, tagMask: d };
+    }
+    return {
+      encrypt(a) {
+        const { xk: l, authKey: u, counter: d, tagMask: c } = o(),
+          v = new Uint8Array(a.length + r),
+          E = [l, u, d, c];
+        (isAligned32(a) || E.push((a = copyBytes(a))),
+          ctr32(l, !1, d, a, v.subarray(0, a.length)));
+        const x = i(u, c, v.subarray(0, v.length - r));
+        return (E.push(x), v.set(x, a.length), clean$1(...E), v);
+      },
+      decrypt(a) {
+        const { xk: l, authKey: u, counter: d, tagMask: c } = o(),
+          v = [l, u, c, d];
+        isAligned32(a) || v.push((a = copyBytes(a)));
+        const E = a.subarray(0, -r),
+          x = a.subarray(-r),
+          B = i(u, c, E);
+        if ((v.push(B), !equalBytes(B, x)))
+          throw new Error("aes/gcm: invalid ghash tag");
+        const G = ctr32(l, !1, d, E);
+        return (clean$1(...v), G);
+      },
+    };
+  },
+);
+/*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) */ function isBytes(
+  e,
+) {
+  return (
+    e instanceof Uint8Array ||
+    (ArrayBuffer.isView(e) && e.constructor.name === "Uint8Array")
+  );
+}
+function anumber(e) {
+  if (!Number.isSafeInteger(e) || e < 0)
+    throw new Error("positive integer expected, got " + e);
+}
+function abytes(e, ...t) {
+  if (!isBytes(e)) throw new Error("Uint8Array expected");
+  if (t.length > 0 && !t.includes(e.length))
+    throw new Error(
+      "Uint8Array expected of length " + t + ", got length=" + e.length,
+    );
+}
+function ahash(e) {
+  if (typeof e != "function" || typeof e.create != "function")
+    throw new Error("Hash should be wrapped by utils.createHasher");
+  (anumber(e.outputLen), anumber(e.blockLen));
+}
+function aexists(e, t = !0) {
+  if (e.destroyed) throw new Error("Hash instance has been destroyed");
+  if (t && e.finished) throw new Error("Hash#digest() has already been called");
+}
+function aoutput(e, t) {
+  abytes(e);
+  const n = t.outputLen;
+  if (e.length < n)
+    throw new Error(
+      "digestInto() expects output buffer of length at least " + n,
+    );
+}
+function clean(...e) {
+  for (let t = 0; t < e.length; t++) e[t].fill(0);
+}
+function createView(e) {
+  return new DataView(e.buffer, e.byteOffset, e.byteLength);
+}
+function rotr(e, t) {
+  return (e << (32 - t)) | (e >>> t);
+}
+const hasHexBuiltin =
+    typeof Uint8Array.from([]).toHex == "function" &&
+    typeof Uint8Array.fromHex == "function",
+  hexes = Array.from({ length: 256 }, (e, t) =>
+    t.toString(16).padStart(2, "0"),
+  );
+function bytesToHex(e) {
+  if ((abytes(e), hasHexBuiltin)) return e.toHex();
+  let t = "";
+  for (let n = 0; n < e.length; n++) t += hexes[e[n]];
+  return t;
+}
+function utf8ToBytes(e) {
+  if (typeof e != "string") throw new Error("string expected");
+  return new Uint8Array(new TextEncoder().encode(e));
+}
+function toBytes(e) {
+  return (typeof e == "string" && (e = utf8ToBytes(e)), abytes(e), e);
+}
+function concatBytes(...e) {
+  let t = 0;
+  for (let s = 0; s < e.length; s++) {
+    const r = e[s];
+    (abytes(r), (t += r.length));
+  }
+  const n = new Uint8Array(t);
+  for (let s = 0, r = 0; s < e.length; s++) {
+    const i = e[s];
+    (n.set(i, r), (r += i.length));
+  }
+  return n;
+}
+class Hash {}
+function createHasher(e) {
+  const t = (s) => e().update(toBytes(s)).digest(),
+    n = e();
+  return (
+    (t.outputLen = n.outputLen),
+    (t.blockLen = n.blockLen),
+    (t.create = () => e()),
+    t
+  );
+}
+class HMAC extends Hash {
+  constructor(t, n) {
+    (super(), (this.finished = !1), (this.destroyed = !1), ahash(t));
+    const s = toBytes(n);
+    if (((this.iHash = t.create()), typeof this.iHash.update != "function"))
+      throw new Error("Expected instance of class which extends utils.Hash");
+    ((this.blockLen = this.iHash.blockLen),
+      (this.outputLen = this.iHash.outputLen));
+    const r = this.blockLen,
+      i = new Uint8Array(r);
+    i.set(s.length > r ? t.create().update(s).digest() : s);
+    for (let o = 0; o < i.length; o++) i[o] ^= 54;
+    (this.iHash.update(i), (this.oHash = t.create()));
+    for (let o = 0; o < i.length; o++) i[o] ^= 106;
+    (this.oHash.update(i), clean(i));
+  }
+  update(t) {
+    return (aexists(this), this.iHash.update(t), this);
+  }
+  digestInto(t) {
+    (aexists(this),
+      abytes(t, this.outputLen),
+      (this.finished = !0),
+      this.iHash.digestInto(t),
+      this.oHash.update(t),
+      this.oHash.digestInto(t),
+      this.destroy());
+  }
+  digest() {
+    const t = new Uint8Array(this.oHash.outputLen);
+    return (this.digestInto(t), t);
+  }
+  _cloneInto(t) {
+    t || (t = Object.create(Object.getPrototypeOf(this), {}));
+    const {
+      oHash: n,
+      iHash: s,
+      finished: r,
+      destroyed: i,
+      blockLen: o,
+      outputLen: a,
+    } = this;
+    return (
+      (t = t),
+      (t.finished = r),
+      (t.destroyed = i),
+      (t.blockLen = o),
+      (t.outputLen = a),
+      (t.oHash = n._cloneInto(t.oHash)),
+      (t.iHash = s._cloneInto(t.iHash)),
+      t
+    );
+  }
+  clone() {
+    return this._cloneInto();
+  }
+  destroy() {
+    ((this.destroyed = !0), this.oHash.destroy(), this.iHash.destroy());
+  }
+}
+const hmac = (e, t, n) => new HMAC(e, t).update(n).digest();
+hmac.create = (e, t) => new HMAC(e, t);
+function setBigUint64(e, t, n, s) {
+  if (typeof e.setBigUint64 == "function") return e.setBigUint64(t, n, s);
+  const r = BigInt(32),
+    i = BigInt(4294967295),
+    o = Number((n >> r) & i),
+    a = Number(n & i),
+    l = s ? 4 : 0,
+    u = s ? 0 : 4;
+  (e.setUint32(t + l, o, s), e.setUint32(t + u, a, s));
+}
+function Chi(e, t, n) {
+  return (e & t) ^ (~e & n);
+}
+function Maj(e, t, n) {
+  return (e & t) ^ (e & n) ^ (t & n);
+}
+class HashMD extends Hash {
+  constructor(t, n, s, r) {
+    (super(),
+      (this.finished = !1),
+      (this.length = 0),
+      (this.pos = 0),
+      (this.destroyed = !1),
+      (this.blockLen = t),
+      (this.outputLen = n),
+      (this.padOffset = s),
+      (this.isLE = r),
+      (this.buffer = new Uint8Array(t)),
+      (this.view = createView(this.buffer)));
+  }
+  update(t) {
+    (aexists(this), (t = toBytes(t)), abytes(t));
+    const { view: n, buffer: s, blockLen: r } = this,
+      i = t.length;
+    for (let o = 0; o < i;) {
+      const a = Math.min(r - this.pos, i - o);
+      if (a === r) {
+        const l = createView(t);
+        for (; r <= i - o; o += r) this.process(l, o);
+        continue;
+      }
+      (s.set(t.subarray(o, o + a), this.pos),
+        (this.pos += a),
+        (o += a),
+        this.pos === r && (this.process(n, 0), (this.pos = 0)));
+    }
+    return ((this.length += t.length), this.roundClean(), this);
+  }
+  digestInto(t) {
+    (aexists(this), aoutput(t, this), (this.finished = !0));
+    const { buffer: n, view: s, blockLen: r, isLE: i } = this;
+    let { pos: o } = this;
+    ((n[o++] = 128),
+      clean(this.buffer.subarray(o)),
+      this.padOffset > r - o && (this.process(s, 0), (o = 0)));
+    for (let c = o; c < r; c++) n[c] = 0;
+    (setBigUint64(s, r - 8, BigInt(this.length * 8), i), this.process(s, 0));
+    const a = createView(t),
+      l = this.outputLen;
+    if (l % 4) throw new Error("_sha2: outputLen should be aligned to 32bit");
+    const u = l / 4,
+      d = this.get();
+    if (u > d.length) throw new Error("_sha2: outputLen bigger than state");
+    for (let c = 0; c < u; c++) a.setUint32(4 * c, d[c], i);
+  }
+  digest() {
+    const { buffer: t, outputLen: n } = this;
+    this.digestInto(t);
+    const s = t.slice(0, n);
+    return (this.destroy(), s);
+  }
+  _cloneInto(t) {
+    (t || (t = new this.constructor()), t.set(...this.get()));
+    const {
+      blockLen: n,
+      buffer: s,
+      length: r,
+      finished: i,
+      destroyed: o,
+      pos: a,
+    } = this;
+    return (
+      (t.destroyed = o),
+      (t.finished = i),
+      (t.length = r),
+      (t.pos = a),
+      r % n && t.buffer.set(s),
+      t
+    );
+  }
+  clone() {
+    return this._cloneInto();
+  }
+}
+const SHA256_IV = Uint32Array.from([
+    1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924,
+    528734635, 1541459225,
+  ]),
+  SHA256_K = Uint32Array.from([
+    1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993,
+    2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987,
+    1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774,
+    264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986,
+    2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711,
+    113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291,
+    1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411,
+    3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344,
+    430227734, 506948616, 659060556, 883997877, 958139571, 1322822218,
+    1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424,
+    2428436474, 2756734187, 3204031479, 3329325298,
+  ]),
+  SHA256_W = new Uint32Array(64);
+class SHA256 extends HashMD {
+  constructor(t = 32) {
+    (super(64, t, 8, !1),
+      (this.A = SHA256_IV[0] | 0),
+      (this.B = SHA256_IV[1] | 0),
+      (this.C = SHA256_IV[2] | 0),
+      (this.D = SHA256_IV[3] | 0),
+      (this.E = SHA256_IV[4] | 0),
+      (this.F = SHA256_IV[5] | 0),
+      (this.G = SHA256_IV[6] | 0),
+      (this.H = SHA256_IV[7] | 0));
+  }
+  get() {
+    const { A: t, B: n, C: s, D: r, E: i, F: o, G: a, H: l } = this;
+    return [t, n, s, r, i, o, a, l];
+  }
+  set(t, n, s, r, i, o, a, l) {
+    ((this.A = t | 0),
+      (this.B = n | 0),
+      (this.C = s | 0),
+      (this.D = r | 0),
+      (this.E = i | 0),
+      (this.F = o | 0),
+      (this.G = a | 0),
+      (this.H = l | 0));
+  }
+  process(t, n) {
+    for (let c = 0; c < 16; c++, n += 4) SHA256_W[c] = t.getUint32(n, !1);
+    for (let c = 16; c < 64; c++) {
+      const v = SHA256_W[c - 15],
+        E = SHA256_W[c - 2],
+        x = rotr(v, 7) ^ rotr(v, 18) ^ (v >>> 3),
+        B = rotr(E, 17) ^ rotr(E, 19) ^ (E >>> 10);
+      SHA256_W[c] = (B + SHA256_W[c - 7] + x + SHA256_W[c - 16]) | 0;
+    }
+    let { A: s, B: r, C: i, D: o, E: a, F: l, G: u, H: d } = this;
+    for (let c = 0; c < 64; c++) {
+      const v = rotr(a, 6) ^ rotr(a, 11) ^ rotr(a, 25),
+        E = (d + v + Chi(a, l, u) + SHA256_K[c] + SHA256_W[c]) | 0,
+        B = ((rotr(s, 2) ^ rotr(s, 13) ^ rotr(s, 22)) + Maj(s, r, i)) | 0;
+      ((d = u),
+        (u = l),
+        (l = a),
+        (a = (o + E) | 0),
+        (o = i),
+        (i = r),
+        (r = s),
+        (s = (E + B) | 0));
+    }
+    ((s = (s + this.A) | 0),
+      (r = (r + this.B) | 0),
+      (i = (i + this.C) | 0),
+      (o = (o + this.D) | 0),
+      (a = (a + this.E) | 0),
+      (l = (l + this.F) | 0),
+      (u = (u + this.G) | 0),
+      (d = (d + this.H) | 0),
+      this.set(s, r, i, o, a, l, u, d));
+  }
+  roundClean() {
+    clean(SHA256_W);
+  }
+  destroy() {
+    (this.set(0, 0, 0, 0, 0, 0, 0, 0), clean(this.buffer));
+  }
+}
+const sha256 = createHasher(() => new SHA256()),
+  SIGNATURE_SECRET = "57e5177a6752ef98e3a7c9b6c9f06e35",
+  SIGNATURE_PLATFORM = "Web",
+  NONCE_CHARS =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+  getRandomBytes = (e) => {
+    const t = new Uint8Array(e),
+      n = globalThis.crypto;
+    if (!(n != null && n.getRandomValues))
+      throw new Error("Secure random generator is not available");
+    return (n.getRandomValues(t), t);
+  },
+  createNonce = (e = 32) => {
+    const t = getRandomBytes(e);
+    let n = "";
+    for (const s of t) n += NONCE_CHARS[s % NONCE_CHARS.length];
+    return n;
+  },
+  bytesToBase64 = (e) => {
+    let t = "";
+    for (let r = 0; r < e.length; r += 32768) {
+      const i = e.subarray(r, r + 32768);
+      t += String.fromCharCode(...i);
+    }
+    if (typeof btoa == "function") return btoa(t);
+    const s = globalThis.Buffer;
+    if (s) return s.from(e).toString("base64");
+    throw new Error("Base64 encoder is not available");
+  },
+  percentEncode = (e) =>
+    encodeURIComponent(e).replace(
+      /[!'()*]/g,
+      (t) => `%${t.charCodeAt(0).toString(16).toUpperCase()}`,
+    ),
+  buildSignaturePayload = (e, t, n) => {
+    const s = Object.keys(e).sort();
+    let r = `${percentEncode(t.toUpperCase())}${percentEncode(n)}&`;
+    for (const i of s) r += `${i}=${e[i] ?? ""}&`;
+    return `${r}key=${SIGNATURE_SECRET}`;
+  },
+  createSignatureHeaders = ({ appId: e, deviceId: t, method: n, path: s }) => {
+    const r = Math.floor(Date.now() / 1e3).toString(),
+      i = {
+        x_app_id: e,
+        x_device_id: t,
+        x_nonce: createNonce(),
+        x_platform: SIGNATURE_PLATFORM,
+        x_timestamp: r,
+      },
+      o = buildSignaturePayload(i, n || "GET", s),
+      a = bytesToHex(
+        hmac(sha256, utf8ToBytes(SIGNATURE_SECRET), utf8ToBytes(o)),
+      ),
+      l = sha256(utf8ToBytes(`${SIGNATURE_SECRET}_aes`)),
+      u = getRandomBytes(12),
+      d = gcm(l, u).encrypt(utf8ToBytes(a));
+    return { ...i, x_signature: bytesToBase64(concatBytes(u, d)) };
+  },
+  TokenKey = "Access-Token",
+  getSignatureAppId = () => "1038",
+  getRequestDeviceId = (e) => {
+    const t = e.data;
+    if (
+      (typeof URLSearchParams < "u" && t instanceof URLSearchParams) ||
+      (typeof FormData < "u" && t instanceof FormData)
+    )
+      return String(t.get("device_id") || "").trim();
+    if (t && typeof t == "object") return String(t.device_id ?? "").trim();
+    if (typeof t == "string")
+      try {
+        const n = JSON.parse(t);
+        return String((n == null ? void 0 : n.device_id) ?? "").trim();
+      } catch {
+        return "";
+      }
+    return "";
+  },
+  getRequestPath = (e) => {
+    const t = e.baseURL || window.location.origin;
+    return new URL(e.url || "/", t).pathname || "/";
+  },
+  addSignatureHeaders = (e) => {
+    var n;
+    const t = createSignatureHeaders({
+      appId: getSignatureAppId(),
+      deviceId: getRequestDeviceId(e),
+      method: String(e.method || "GET").toUpperCase(),
+      path: getRequestPath(e),
+    });
+    return (
+      (n = e.headers) != null && n.set
+        ? Object.entries(t).forEach(([s, r]) => {
+            e.headers.set(s, r);
+          })
+        : (e.headers = { ...(e.headers || {}), ...t }),
+      e
+    );
+  },
+  getToken = () => localStorage.getItem(TokenKey),
+  removeToken = () => localStorage.removeItem(TokenKey),
+  handleError = (e) => {
+    const t = e.message || e.msg || "请求失败";
+    console.error("API Error:", t);
+  },
+  post = (e, t = {}, n = {}) => {
+    const s = useVersionStore(),
+      r = {
+        ...t,
+        region: s.versionInfo.region,
+        launcher_env: s.versionInfo.launcher_env,
+        channel: s.versionInfo.channel,
+        device_id: s.versionInfo.device_id,
+      };
+    return service({ method: "post", url: e, data: r, ...n });
+  },
+  postWithDataPriority = (e, t = {}, n = {}) => {
+    const s = useVersionStore(),
+      r = {
+        region: s.versionInfo.region,
+        launcher_env: s.versionInfo.launcher_env,
+        channel: s.versionInfo.channel,
+        device_id: s.versionInfo.device_id,
+        ...t,
+      };
+    return service({ method: "post", url: e, data: r, ...n });
+  },
+  createService = (e = !1) => {
+    const t = {
+      baseURL: "https://lmapi.zhuziplay.com",
+      timeout: 15e3,
+      headers: { "Content-Type": "application/json;charset=UTF-8" },
+    };
+    e &&
+      (t.transformResponse = [
+        function (s) {
+          if ((console.log("big", s), typeof s == "string"))
+            try {
+              return JSONbig.parse(s);
+            } catch {
+              return s;
+            }
+          return s;
+        },
+      ]);
+    const n = axios.create(t);
+    return (
+      n.interceptors.request.use(
+        (s) => {
+          const r = getToken();
+          return (
+            r && (s.headers.Authorization = `Bearer ${r}`),
+            addSignatureHeaders(s)
+          );
+        },
+        (s) => (console.error("请求错误：", s), Promise.reject(s)),
+      ),
+      n.interceptors.response.use(
+        (s) => {
+          const r = s.data;
+          return s.status === 200
+            ? r.code === 0
+              ? Promise.resolve(r.data)
+              : (console.error("接口错误：", r.message || "请求失败"),
+                handleError(r),
+                Promise.reject(r))
+            : Promise.reject(s);
+        },
+        (s) => {
+          if ((console.error("响应错误：", s), s.response))
+            switch (s.response.status) {
+              case 401:
+                (removeToken(), console.error("未授权，请重新登录"));
+                break;
+              case 403:
+                console.error("拒绝访问");
+                break;
+              case 404:
+                console.error("请求地址出错");
+                break;
+              case 408:
+                console.error("请求超时");
+                break;
+              case 500:
+                console.error("服务器内部错误");
+                break;
+              case 501:
+                console.error("服务未实现");
+                break;
+              case 502:
+                console.error("网关错误");
+                break;
+              case 503:
+                console.error("服务不可用");
+                break;
+              case 504:
+                console.error("网关超时");
+                break;
+              case 505:
+                console.error("HTTP版本不受支持");
+                break;
+              default:
+                console.error("请求失败");
+            }
+          return Promise.reject(s);
+        },
+      ),
+      n
+    );
+  },
+  service = createService(!1),
+  bigIntService = createService(!0),
+  bigPost = (e, t = {}, n = {}) => {
+    const s = useVersionStore(),
+      r = {
+        ...t,
+        region: s.versionInfo.region,
+        launcher_env: s.versionInfo.launcher_env,
+        channel: s.versionInfo.channel,
+        device_id: s.versionInfo.device_id,
+      };
+    return bigIntService({ method: "post", url: e, data: r, ...n });
+  },
+  launcherApp = (e = {}, t = {}) => bigPost("/launcher/app", e, t),
+  launcherUpdate = (e = {}, t = {}) => post("/launcher/update", e, t),
+  updateLauncherBg = (e = {}, t = {}) => post("/launcher/bg", e, t),
+  updateLauncherBanner = (e = {}, t = {}) => post("/launcher/banner", e, t),
+  updateLauncherAnnouncement = (e = {}, t = {}) =>
+    post("/launcher/announcement", e, t),
+  updateLauncherShield = (e = {}, t = {}) => post("/launcher/shield", e, t),
+  getGameNativeBuildId = (e = {}, t = {}) => post("/native/buildId", e, t),
+  getRemoteConfig = (e = {}, t = {}) =>
+    postWithDataPriority("/remote/config", e, t),
+  jsonParser = JSONbig({ storeAsString: !0 }),
+  PLAYER_LOG_PREFIX$1 = "[PlayerInfo]",
+  describeTicketPayload = (e) =>
+    typeof e == "string"
+      ? { type: "string", length: e.length }
+      : e && typeof e == "object"
+        ? { type: "object", keys: Object.keys(e) }
+        : { type: typeof e },
+  trimTrailingSlash = (e = "") => e.replace(/\/+$/, ""),
+  getDevelopmentLoginTicket = () => "",
+  hasNativeBridge = () => {
+    var e, t;
+    return !!(
+      (t = (e = window.chrome) == null ? void 0 : e.webview) != null &&
+      t.hostObjects &&
+      typeof window.LuminJsCall == "function" &&
+      window.emitter
+    );
+  },
+  parseLoginTicket = (e) => {
+    let t = e;
+    if (typeof t == "string") {
+      const n = t.trim();
+      if (!n) return "";
+      try {
+        t = JSON.parse(n);
+      } catch {
+        return n;
+      }
+    }
+    return !t || typeof t != "object"
+      ? ""
+      : String(t.ticket || t.loginTicket || "").trim();
+  };
+let pendingTicketRequest = null;
+const requestNativeLoginTicket = () => {
+    const e = hasNativeBridge();
+    return (
+      console.log(`${PLAYER_LOG_PREFIX$1} 检查原生 Ticket 桥接`, {
+        bridgeAvailable: e,
+        isDevelopment: !1,
+      }),
+      e
+        ? pendingTicketRequest
+          ? (console.log(`${PLAYER_LOG_PREFIX$1} 复用进行中的原生 Ticket 请求`),
+            pendingTicketRequest)
+          : ((pendingTicketRequest = new Promise((t) => {
+              let n;
+              const s = (i = "", o = "unknown") => {
+                  (window.emitter.off("luminEvent", r),
+                    clearTimeout(n),
+                    console.log(`${PLAYER_LOG_PREFIX$1} 原生 Ticket 请求结束`, {
+                      reason: o,
+                      present: !!i,
+                      length: String(i).length,
+                    }),
+                    t(i));
+                },
+                r = (i) => {
+                  (i == null ? void 0 : i.event) === "ticket" &&
+                    (console.log(
+                      `${PLAYER_LOG_PREFIX$1} 收到原生 Ticket 回调`,
+                      describeTicketPayload(i.data),
+                    ),
+                    s(parseLoginTicket(i.data), "callback"));
+                };
+              (window.emitter.on("luminEvent", r),
+                (n = window.setTimeout(() => s("", "timeout"), 5e3)));
+              try {
+                (console.log(`${PLAYER_LOG_PREFIX$1} 调用 LuminJsCall(ticket)`),
+                  window.LuminJsCall("ticket"));
+              } catch (i) {
+                (console.error(
+                  `${PLAYER_LOG_PREFIX$1} 调用原生 Ticket 失败:`,
+                  i,
+                ),
+                  s("", "bridge-error"));
+              }
+            }).finally(() => {
+              pendingTicketRequest = null;
+            })),
+            pendingTicketRequest)
+        : (console.warn(
+            `${PLAYER_LOG_PREFIX$1} 未检测到原生桥接，跳过原生 Ticket 请求`,
+          ),
+          Promise.resolve(""))
+    );
+  },
+  getLoginTicket = async () => {
+    const e = await requestNativeLoginTicket();
+    if (e) return (console.log(`${PLAYER_LOG_PREFIX$1} 使用原生 Ticket`), e);
+    const t = getDevelopmentLoginTicket();
+    return (
+      console.log(
+        `${PLAYER_LOG_PREFIX$1} 原生 Ticket 不可用，开发 Ticket 结果`,
+        { present: !!t },
+      ),
+      t
+    );
+  },
+  getPlayerApiBaseUrl = (e) => {
+    const t = trimTrailingSlash(e || "");
+    return (
+      console.log(`${PLAYER_LOG_PREFIX$1} 使用 loginServerUrl`, {
+        loginServerUrl: t || "(empty)",
+      }),
+      t
+    );
+  },
+  getPlayerInfo = async (e, t) => {
+    var u;
+    console.log(`${PLAYER_LOG_PREFIX$1} 开始获取用户信息`, {
+      loginServerUrl: e || "(empty)",
+      explicitTicket: !!t,
+    });
+    const n = getPlayerApiBaseUrl(e);
+    if (!n)
+      return (
+        console.warn(
+          `${PLAYER_LOG_PREFIX$1} 未获取到 login 服务地址，不发送请求`,
+        ),
+        null
+      );
+    const s = await getLoginTicket();
+    if (!s)
+      return (
+        console.warn(`${PLAYER_LOG_PREFIX$1} 未获取到 loginTicket，不发送请求`),
+        null
+      );
+    const r = new URLSearchParams({ loginTicket: s }),
+      i = `${n}/api/player`;
+    console.log(`${PLAYER_LOG_PREFIX$1} 发送用户信息请求`, {
+      requestUrl: i,
+      ticketPresent: !0,
+      ticketLength: String(s).length,
+    });
+    let o;
+    try {
+      o = await axios.post(i, r.toString(), {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        responseType: "text",
+        timeout: 15e3,
+        transformResponse: [(d) => d],
+      });
+    } catch (d) {
+      throw (
+        console.error(`${PLAYER_LOG_PREFIX$1} 用户信息 HTTP 请求失败`, {
+          requestUrl: i,
+          message: (d == null ? void 0 : d.message) || "unknown error",
+          code: d == null ? void 0 : d.code,
+          status:
+            (u = d == null ? void 0 : d.response) == null ? void 0 : u.status,
+        }),
+        d
+      );
+    }
+    const a = String(o.data || "").trim();
+    if (
+      (console.log(`${PLAYER_LOG_PREFIX$1} 收到用户信息响应`, {
+        status: o.status,
+        responseType: typeof o.data,
+        responseLength: a.length,
+        responseMarker:
+          a === "fail" || a === "rate limit" ? a : "json-or-other",
+      }),
+      !a || a === "fail" || a === "rate limit")
+    )
+      throw new Error(`获取玩家信息失败：${a || "返回为空"}`);
+    let l;
+    try {
+      l = jsonParser.parse(a);
+    } catch (d) {
+      throw (
+        console.error(`${PLAYER_LOG_PREFIX$1} 用户信息 JSON 解析失败`, {
+          message: (d == null ? void 0 : d.message) || "unknown error",
+          responseLength: a.length,
+        }),
+        d
+      );
+    }
+    return !l || typeof l != "object"
+      ? (console.warn(`${PLAYER_LOG_PREFIX$1} 用户信息响应不是对象`, {
+          valueType: typeof l,
+        }),
+        null)
+      : (console.log(`${PLAYER_LOG_PREFIX$1} 用户信息解析成功`, {
+          keys: Object.keys(l),
+        }),
+        l);
+  },
+  SPACE_REQUEST_TIMEOUT = 3e3,
+  pendingSpaceRequests = new Map(),
+  toAvailableSpace = (e) => {
+    try {
+      const t = new BigNumber((e ?? 0).toString());
+      return t.isFinite() ? t : new BigNumber(0);
+    } catch {
+      return new BigNumber(0);
+    }
+  },
+  useSettingStore = defineStore("setting", {
+    state: () => ({
+      setting: {
+        language: "zh-cn",
+        auto_start: !1,
+        close_action: 1,
+        speed_limit: 0,
+        game_path: "",
+        available_space: new BigNumber(0),
+      },
+      loaded: !1,
+      hasShowInstallPath: !1,
+      hasSaveChoose: !1,
+    }),
+    actions: {
+      updateSetting(e) {
+        ((this.setting = { ...this.setting, ...e }),
+          console.log("设置信息已更新:", this.setting));
+      },
+      setInstallPathStatus(e) {
+        ((this.hasShowInstallPath = e),
+          localStorage.setItem("hasShowInstallPath", e ? "1" : "0"));
+      },
+      loadInstallPathStatus() {
+        const e = localStorage.getItem("hasShowInstallPath");
+        this.hasShowInstallPath = e === "1";
+      },
+      setSaveChoose(e) {
+        (e === 1 ? (this.hasSaveChoose = !0) : (this.hasSaveChoose = !1),
+          localStorage.setItem("hasSaveChoose", e === 1 ? "1" : "0"));
+      },
+      loadSaveChoose() {
+        const e = localStorage.getItem("hasSaveChoose");
+        this.hasSaveChoose = e === "1";
+      },
+      fetchSetting() {
+        window.LuminJsCall("setting");
+      },
+      refreshAvailableSpace(e = SPACE_REQUEST_TIMEOUT) {
+        const t = this.setting.game_path,
+          n = toAvailableSpace(this.setting.available_space);
+        if (!t || typeof window.LuminJsCall != "function" || !window.emitter)
+          return Promise.resolve(n);
+        const s = pendingSpaceRequests.get(t);
+        if (s) return s;
+        let r = !1,
+          i = 0,
+          o = () => {};
+        const a = new Promise((d) => {
+          o = d;
+        });
+        pendingSpaceRequests.set(t, a);
+        const l = (d, c) => {
+            r ||
+              ((r = !0),
+              window.emitter.off("luminEvent", u),
+              window.clearTimeout(i),
+              c !== "callback" &&
+                console.warn("获取可用空间未收到回包，使用当前缓存", {
+                  gamePath: t,
+                  reason: c,
+                }),
+              o(d));
+          },
+          u = (d) => {
+            var v, E;
+            if ((d == null ? void 0 : d.event) !== "get_game_path") return;
+            const c = (v = d.data) == null ? void 0 : v.path;
+            (c && c !== t) ||
+              l(
+                toAvailableSpace(
+                  (E = d.data) == null ? void 0 : E.available_space,
+                ),
+                "callback",
+              );
+          };
+        (window.emitter.on("luminEvent", u),
+          (i = window.setTimeout(
+            () => l(toAvailableSpace(this.setting.available_space), "timeout"),
+            e,
+          )),
+          a.finally(() => {
+            pendingSpaceRequests.get(t) === a && pendingSpaceRequests.delete(t);
+          }));
+        try {
+          window.LuminJsCall("get_game_path", { path: t });
+        } catch (d) {
+          (console.error("请求可用空间失败:", d), l(n, "bridge-error"));
+        }
+        return a;
+      },
+      resetSetting() {
+        this.setting = {
+          language: "zh-cn",
+          auto_start: !1,
+          close_action: 1,
+          speed_limit: 0,
+          game_path: "",
+          save_choose: 0,
+        };
+      },
+      saveSetting() {
+        (ta.track("pclauncher_settinginfo", { setting_info: this.setting }),
+          window.LuminJsCall("setting_edit", this.setting));
+      },
+      updateSettingItem(e, t) {
+        typeof this.setting[e] < "u" &&
+          ((this.setting[e] = t), this.saveSetting());
+      },
+      initEventListener() {
+        (this.loadInstallPathStatus(),
+          this.loadSaveChoose(),
+          window.emitter.on("luminEvent", (e) => {
+            e.event === "setting"
+              ? (this.loaded ||
+                  ((this.loaded = !0),
+                  console.log("设置信息首次加载:", e.data)),
+                typeof e.data.game_path < "u" &&
+                  ((e.data.available_space = new BigNumber(0)),
+                  window.LuminJsCall("get_game_path", {
+                    path: e.data.game_path,
+                  })),
+                this.updateSetting(e.data))
+              : e.event === "choose_game_path"
+                ? (e.data.path.endsWith("\\")
+                    ? (this.setting.game_path = e.data.path + "Lumin")
+                    : (this.setting.game_path = e.data.path + "\\Lumin"),
+                  (this.setting.available_space = new BigNumber(
+                    e.data.available_space.toString(),
+                  )),
+                  this.saveSetting())
+                : e.event === "locate_game_path"
+                  ? (ta.track("pclauncher_locate_game_end", {
+                      game_version: e.data.game_version,
+                    }),
+                    (this.setting.game_path = e.data.path),
+                    (this.setting.available_space = new BigNumber(
+                      e.data.available_space.toString(),
+                    )),
+                    useGameStore().locateGameUpdate(e.data))
+                  : e.event === "get_game_path"
+                    ? ((this.setting.game_path = e.data.path),
+                      (this.setting.available_space = new BigNumber(
+                        e.data.available_space.toString(),
+                      )))
+                    : e.event === "upload_launcher_log" &&
+                      window.toast({ value: "上传成功" });
+          }),
+          console.log("init settingStore"),
+          this.fetchSetting());
+      },
+    },
+  }),
+  PRE_DOWNLOAD_BUFFER_SIZE = new BigNumber(1024).times(1024 * 1024),
+  PRE_DOWNLOAD_EVENT = "pclauncher_resource_pre_download";
+let preDownloadStartToken = 0;
+const resourceDefinitions = [
+    { name: "assets", versionKey: "assets_version", zipKey: "assets_zip" },
+    {
+      name: "client_static",
+      versionKey: "client_static_version",
+      zipKey: "client_static_zip",
+    },
+    { name: "dll", versionKey: "dll_version", zipKey: "dll_zip" },
+    {
+      name: "raw_file",
+      versionKey: "raw_file_version",
+      zipKey: "raw_file_zip",
+    },
+  ],
+  defaultDownloadInfo$1 = () => ({
+    assets_version: 0,
+    client_static_version: 0,
+    dll_version: 0,
+    raw_file_version: 0,
+    assets_zip: [],
+    client_static_zip: [],
+    dll_zip: [],
+    raw_file_zip: [],
+  }),
+  defaultLocalVersions = () => ({
+    assets_version: null,
+    client_static_version: null,
+    dll_version: null,
+    raw_file_version: null,
+  }),
+  defaultPreDownloadStatus = () => ({
+    status: "idle",
+    speed: new BigNumber(0),
+    current_size: new BigNumber(0),
+    total_size: new BigNumber(0),
+  }),
+  isNotEmptyArray$2 = (e) => Array.isArray(e) && e.length > 0,
+  joinCdnUrl$1 = (e, t) =>
+    !t || /^https?:\/\//i.test(t) || !e
+      ? t
+      : `${e.replace(/\/+$/, "")}/${t.replace(/^\/+/, "")}`,
+  withCdnUrl$1 = (e, t) =>
+    isNotEmptyArray$2(e)
+      ? e.map((n) => ({ ...n, url: joinCdnUrl$1(t, n.url) }))
+      : [],
+  buildPreDownloadInfo = (e) => {
+    const t = defaultDownloadInfo$1();
+    return (
+      resourceDefinitions.forEach(({ name: n, versionKey: s, zipKey: r }) => {
+        const i = e == null ? void 0 : e[n],
+          o = i == null ? void 0 : i.pre_download,
+          a = withCdnUrl$1(
+            o == null ? void 0 : o.full,
+            i == null ? void 0 : i.cdn,
+          ),
+          l = withCdnUrl$1(
+            o == null ? void 0 : o.diff,
+            i == null ? void 0 : i.cdn,
+          ),
+          u = a.concat(l);
+        Number(o == null ? void 0 : o.version) > 0 &&
+          isNotEmptyArray$2(u) &&
+          ((t[s] = Number(o.version)), (t[r] = u));
+      }),
+      t
+    );
+  },
+  areNormalResourcesCurrent = (e, t) =>
+    resourceDefinitions.every(({ name: n, versionKey: s }) => {
+      var l, u;
+      const r =
+          (u = (l = e == null ? void 0 : e[n]) == null ? void 0 : l.normal) ==
+          null
+            ? void 0
+            : u.version,
+        i = t == null ? void 0 : t[s];
+      if (typeof r > "u" || r === null || typeof i > "u" || i === null)
+        return !1;
+      const o = parseInt(r),
+        a = parseInt(i);
+      return !Number.isNaN(o) && !Number.isNaN(a) && o === a;
+    }),
+  sumZipSize$2 = (e) =>
+    isNotEmptyArray$2(e)
+      ? e.reduce((t, n) => {
+          const s = new BigNumber((n.size || 0).toString());
+          return s.isFinite() ? t.plus(s) : t;
+        }, new BigNumber(0))
+      : new BigNumber(0),
+  calculateDownloadSize = (e) =>
+    resourceDefinitions.reduce(
+      (t, { zipKey: n }) => t.plus(sumZipSize$2(e[n])),
+      new BigNumber(0),
+    ),
+  filterOutCurrentResources = (e, t) => {
+    const n = { ...e };
+    return (
+      resourceDefinitions.forEach(({ versionKey: s, zipKey: r }) => {
+        const i = Number(e[s]),
+          o = Number(t == null ? void 0 : t[s]);
+        (Number.isFinite(i) && i > 0 && (!Number.isFinite(o) || o < i)) ||
+          (n[r] = []);
+      }),
+      n
+    );
+  },
+  getTargetSignature = (e) =>
+    resourceDefinitions.map(({ versionKey: t }) => e[t]).join(":"),
+  toBigNumber$1 = (e) => {
+    const t = new BigNumber((e || 0).toString());
+    return t.isFinite() ? t : new BigNumber(0);
+  },
+  readResourceVersion = (e) => {
+    if (typeof e > "u" || e === null || e === "") return null;
+    const t = Number(e);
+    return !Number.isFinite(t) || t < 0 ? null : t;
+  },
+  getIssuedPreDownloadVersion = (e, t) => {
+    var s, r;
+    const n = Number(
+      (r = (s = e == null ? void 0 : e[t]) == null ? void 0 : s.pre_download) ==
+        null
+        ? void 0
+        : r.version,
+    );
+    return !Number.isFinite(n) || n <= 0 ? 0 : n;
+  },
+  hasIssuedPreDownload = (e) =>
+    resourceDefinitions.some(
+      ({ name: t }) => getIssuedPreDownloadVersion(e, t) > 0,
+    ),
+  matchesIssuedPreDownload = (e, t) => {
+    const n = resourceDefinitions.filter(
+      ({ name: s }) => getIssuedPreDownloadVersion(e, s) > 0,
+    );
+    return n.length === 0
+      ? !1
+      : n.every(({ name: s, versionKey: r }) => {
+          const i = Number(t == null ? void 0 : t[r]);
+          return Number.isFinite(i) && i === getIssuedPreDownloadVersion(e, s);
+        });
+  },
+  usePreDownloadStore = defineStore("preDownload", {
+    state: () => ({
+      available: !1,
+      configured: !1,
+      targetSignature: "",
+      lastUpdateTime: 0,
+      localStatusReady: !1,
+      localVersionsLoaded: !1,
+      localVersions: defaultLocalVersions(),
+      preDownloadStatus: defaultPreDownloadStatus(),
+      downloadInfo: defaultDownloadInfo$1(),
+      skipGameResourceCheck: !1,
+      statusWaiters: [],
+    }),
+    getters: {
+      hasPreDownload: (e) => e.available,
+      hasCompletedLocalPreDownload: (e) =>
+        ["downloading", "pause", "installed"].includes(
+          e.preDownloadStatus.status,
+        )
+          ? !1
+          : e.preDownloadStatus.status === "ready" && e.localVersionsLoaded,
+      isPredownloadInstalled: (e) => e.preDownloadStatus.status === "installed",
+      isPredownloadReady: (e) =>
+        e.preDownloadStatus.status === "ready" && e.localVersionsLoaded,
+      downloadSize: (e) => calculateDownloadSize(e.downloadInfo),
+      requiredSize: (e) => {
+        const t = calculateDownloadSize(e.downloadInfo);
+        return t.isGreaterThan(0) ? t.plus(PRE_DOWNLOAD_BUFFER_SIZE) : t;
+      },
+      formattedCurrentSize: (e) =>
+        formatFileSize$1(e.preDownloadStatus.current_size),
+      formattedTotalSize: (e) =>
+        formatFileSize$1(e.preDownloadStatus.total_size),
+      formattedSpeed: (e) =>
+        e.preDownloadStatus.status === "pause"
+          ? ""
+          : formatDownloadSpeed(e.preDownloadStatus.speed),
+      speedSize() {
+        return this.formattedSpeed
+          ? `${this.formattedSpeed}(${this.formattedCurrentSize}/${this.formattedTotalSize})`
+          : `${this.formattedCurrentSize}/${this.formattedTotalSize}`;
+      },
+      downloadProgress: (e) => {
+        if (e.preDownloadStatus.total_size.isEqualTo(0)) return 0;
+        const t = e.preDownloadStatus.current_size
+          .div(e.preDownloadStatus.total_size)
+          .times(100)
+          .toNumber();
+        return Math.min(100, Math.max(0, Math.round(t * 10) / 10));
+      },
+      remainingTime: (e) => {
+        const {
+          status: t,
+          speed: n,
+          current_size: s,
+          total_size: r,
+        } = e.preDownloadStatus;
+        if (t === "pause") return "";
+        if (t !== "downloading" || n.isLessThanOrEqualTo(0)) return "--:--:--";
+        const i = r.minus(s);
+        if (i.isLessThanOrEqualTo(0)) return "00:00:00";
+        const o = Math.ceil(i.div(n).toNumber()),
+          a = Math.min(o, 24 * 60 * 60),
+          l = Math.floor(a / 3600),
+          u = Math.floor((a % 3600) / 60),
+          d = a % 60;
+        return `${l.toString().padStart(2, "0")}:${u.toString().padStart(2, "0")}:${d.toString().padStart(2, "0")}`;
+      },
+    },
+    actions: {
+      applyRemoteConfig(e, t) {
+        this.isPredownloadInstalled && this.discardInstalledPreDownload();
+        const n = buildPreDownloadInfo(e),
+          s = calculateDownloadSize(n),
+          r = getTargetSignature(n),
+          i = this.localVersionsLoaded
+            ? filterOutCurrentResources(n, this.localVersions)
+            : n,
+          o = calculateDownloadSize(i),
+          a = areNormalResourcesCurrent(e, t),
+          l = this.targetSignature !== "" && this.targetSignature !== r,
+          u = ["downloading", "pause"].includes(this.preDownloadStatus.status);
+        if (
+          ((this.available = a && s.isGreaterThan(0)),
+          (this.configured = s.isGreaterThan(0)),
+          (this.downloadInfo = i),
+          (this.targetSignature = r),
+          this.preDownloadStatus.status === "ready" &&
+            hasIssuedPreDownload(e) &&
+            !matchesIssuedPreDownload(e, this.localVersions) &&
+            (console.log(
+              "[PreDownload] ready 与下发的 pre_download 版本不一致，按未完成处理",
+            ),
+            (this.preDownloadStatus = defaultPreDownloadStatus())),
+          !this.available)
+        ) {
+          const d = ["downloading", "pause", "ready"].includes(
+            this.preDownloadStatus.status,
+          );
+          !u &&
+            !d &&
+            !this.localVersionsLoaded &&
+            (this.preDownloadStatus = defaultPreDownloadStatus());
+          return;
+        }
+        (l && !u && (this.preDownloadStatus = defaultPreDownloadStatus()),
+          !u &&
+            this.preDownloadStatus.total_size.isEqualTo(0) &&
+            (this.preDownloadStatus.total_size = o));
+      },
+      fetchLocalPreDownload() {
+        window.LuminJsCall &&
+          window.LuminJsCall("game_resource_pre_download_init");
+      },
+      waitForLocalStatus(e = 2e3) {
+        return this.localStatusReady
+          ? Promise.resolve()
+          : (this.fetchLocalPreDownload(),
+            new Promise((t) => {
+              let n = !1;
+              const s = () => {
+                  n || ((n = !0), t());
+                },
+                r = setTimeout(() => {
+                  ((this.localStatusReady = !0), s());
+                }, e);
+              this.statusWaiters.push(() => {
+                (clearTimeout(r), s());
+              });
+            }));
+      },
+      flushStatusWaiters() {
+        this.statusWaiters.splice(0).forEach((t) => t());
+      },
+      captureLocalVersions(e, t = {}) {
+        const n = t.fillMissingWithZero === !0,
+          s = {};
+        let r = !1;
+        for (const { versionKey: i } of resourceDefinitions) {
+          if (typeof (e == null ? void 0 : e[i]) > "u") continue;
+          r = !0;
+          const o = readResourceVersion(e[i]);
+          if (o === null) return !1;
+          s[i] = o;
+        }
+        return r
+          ? (resourceDefinitions.forEach(({ versionKey: i }) => {
+              if (Object.prototype.hasOwnProperty.call(s, i)) {
+                this.localVersions[i] = s[i];
+                return;
+              }
+              n &&
+                this.localVersions[i] === null &&
+                (this.localVersions[i] = 0);
+            }),
+            (this.localVersionsLoaded = resourceDefinitions.every(
+              ({ versionKey: i }) => {
+                const o = this.localVersions[i];
+                return typeof o == "number" && Number.isFinite(o);
+              },
+            )),
+            !0)
+          : !1;
+      },
+      hasLocalPreDownloadVersions() {
+        return this.localVersionsLoaded;
+      },
+      isPredownloadCacheReady() {
+        return this.isPredownloadReady && this.hasLocalPreDownloadVersions();
+      },
+      areAllResourceVersionsAtMostOfficial(e) {
+        return this.hasLocalPreDownloadVersions()
+          ? resourceDefinitions.every(({ name: t, versionKey: n }) => {
+              var i, o;
+              if (getIssuedPreDownloadVersion(e, t) <= 0) return !0;
+              const s = parseInt(
+                (o =
+                  (i = e == null ? void 0 : e[t]) == null
+                    ? void 0
+                    : i.normal) == null
+                  ? void 0
+                  : o.version,
+              );
+              if (!Number.isFinite(s) || s <= 0) return !0;
+              const r = parseInt(this.localVersions[n]);
+              return Number.isFinite(r) && r > 0 && r <= s;
+            })
+          : !1;
+      },
+      canSkipResourceUpdate(e) {
+        return this.isPredownloadInstalled ||
+          !this.isPredownloadReady ||
+          !matchesIssuedPreDownload(e, this.localVersions)
+          ? !1
+          : this.areAllResourceVersionsAtMostOfficial(e);
+      },
+      resetLocalPreDownload() {
+        ((this.localVersionsLoaded = !1),
+          (this.localVersions = defaultLocalVersions()),
+          (this.preDownloadStatus = defaultPreDownloadStatus()),
+          (this.skipGameResourceCheck = !1),
+          (this.localStatusReady = !0),
+          this.flushStatusWaiters());
+      },
+      discardInstalledPreDownload() {
+        this.resetLocalPreDownload();
+      },
+      discardUntrustedPreDownload() {
+        this.resetLocalPreDownload();
+      },
+      setSkipGameResourceCheck(e) {
+        this.skipGameResourceCheck = !!e;
+      },
+      refreshLocalPreDownloadStatus() {
+        return this.configured
+          ? ((this.localStatusReady = !1),
+            (this.localVersionsLoaded = !1),
+            (this.localVersions = defaultLocalVersions()),
+            (this.preDownloadStatus = defaultPreDownloadStatus()),
+            (this.skipGameResourceCheck = !1),
+            this.fetchLocalPreDownload(),
+            !0)
+          : !1;
+      },
+      disableForEmptyGame() {
+        ((this.available = !1),
+          (this.localStatusReady = !0),
+          (this.localVersionsLoaded = !1),
+          (this.localVersions = defaultLocalVersions()),
+          (this.preDownloadStatus = defaultPreDownloadStatus()),
+          (this.skipGameResourceCheck = !1),
+          this.flushStatusWaiters());
+      },
+      updatePreDownloadStatus(e) {
+        const t = Date.now(),
+          n = this.preDownloadStatus.status,
+          s = e.status;
+        if (s === "installed") {
+          this.discardInstalledPreDownload();
+          return;
+        }
+        if (
+          s === "ready" &&
+          (this.captureLocalVersions(e, { fillMissingWithZero: !0 }),
+          !this.localVersionsLoaded)
+        ) {
+          (console.log("[PreDownload] ready 缺少资源版本，按无效预下载处理"),
+            this.discardUntrustedPreDownload());
+          return;
+        }
+        const r =
+            s === "downloading" ||
+            (this.preDownloadStatus.status === "downloading" && !e.status),
+          i =
+            typeof e.current_size < "u" ||
+            typeof e.total_size < "u" ||
+            typeof e.speed < "u";
+        if (r && i && t - this.lastUpdateTime < 150) {
+          const { current_size: o, total_size: a, speed: l, ...u } = e;
+          Object.keys(u).length > 0 &&
+            (this.preDownloadStatus = { ...this.preDownloadStatus, ...u });
+          return;
+        }
+        if (
+          (r && i && (this.lastUpdateTime = t),
+          typeof e.current_size < "u" &&
+            (this.preDownloadStatus.current_size = toBigNumber$1(
+              e.current_size,
+            )),
+          typeof e.total_size < "u" &&
+            (this.preDownloadStatus.total_size = toBigNumber$1(e.total_size)),
+          typeof e.speed < "u" &&
+            (this.preDownloadStatus.speed = toBigNumber$1(e.speed)),
+          this.captureLocalVersions(e),
+          s === "ready" && this.localVersionsLoaded)
+        ) {
+          this.downloadInfo = filterOutCurrentResources(
+            this.downloadInfo,
+            this.localVersions,
+          );
+          const o = calculateDownloadSize(this.downloadInfo);
+          ((this.preDownloadStatus.current_size = new BigNumber(0)),
+            (this.preDownloadStatus.total_size = o));
+        }
+        (typeof e.status < "u" && (this.preDownloadStatus.status = s),
+          ["ready", "pause"].includes(s) &&
+            (this.preDownloadStatus.speed = new BigNumber(0)),
+          s === "ready" &&
+            ["downloading", "pause"].includes(n) &&
+            this.trackPreDownload("download_complete"),
+          (this.localStatusReady = !0),
+          this.flushStatusWaiters());
+      },
+      async startPreDownload() {
+        var n;
+        if (!this.hasPreDownload || !window.LuminJsCall) return !1;
+        const e = ++preDownloadStartToken;
+        if (this.requiredSize.isGreaterThan(0)) {
+          const s = await useSettingStore().refreshAvailableSpace();
+          if (
+            e !== preDownloadStartToken ||
+            !this.hasPreDownload ||
+            !window.LuminJsCall
+          )
+            return !1;
+          if (this.requiredSize.isGreaterThan(s))
+            return (
+              (n = window.emitter) == null ||
+                n.emit("luminEvent", {
+                  event: "common_error",
+                  data: {
+                    msg: `硬盘空间不足，请清理磁盘空间后重试<br />所需空间：${formatFileSize$1(this.requiredSize)}<br />可用空间：${formatFileSize$1(s)}`,
+                  },
+                }),
+              !1
+            );
+        }
+        return e !== preDownloadStartToken
+          ? !1
+          : ((this.preDownloadStatus = {
+              ...this.preDownloadStatus,
+              status: "downloading",
+              total_size: this.downloadSize,
+            }),
+            this.trackPreDownload("download"),
+            window.LuminJsCall(
+              "game_resource_pre_download_download",
+              this.downloadInfo,
+            ),
+            !0);
+      },
+      pausePreDownload() {
+        window.LuminJsCall &&
+          ((this.preDownloadStatus.status = "pause"),
+          (this.preDownloadStatus.speed = new BigNumber(0)),
+          this.trackPreDownload("pause"),
+          window.LuminJsCall("game_resource_pre_download_pause"));
+      },
+      resumePreDownload() {
+        window.LuminJsCall &&
+          ((this.preDownloadStatus.status = "downloading"),
+          this.trackPreDownload("resume"),
+          window.LuminJsCall("game_resource_pre_download_resume"));
+      },
+      trackPreDownload(e) {
+        var n;
+        const t = useSettingStore();
+        (n = window.ta) == null ||
+          n.track(PRE_DOWNLOAD_EVENT, {
+            action: e,
+            size: formatFileMB(this.downloadSize),
+            speed_limit: t.setting.speed_limit,
+            target_versions: this.targetSignature,
+          });
+      },
+      initEventListener() {
+        window.emitter &&
+          (window.emitter.on("luminEvent", (e) => {
+            e.event === "game_resource_pre_download" &&
+              this.updatePreDownloadStatus(e.data || {});
+          }),
+          this.fetchLocalPreDownload());
+      },
+    },
+  }),
+  isNotEmptyArray$1 = (e) => Array.isArray(e) && e.length > 0,
+  normalizeRemoteConfig$1 = (e) =>
+    e && typeof e.code < "u" && typeof e.data < "u" ? e.data : e || {},
+  joinCdnUrl = (e, t) =>
+    !t || /^https?:\/\//i.test(t) || !e
+      ? t
+      : `${e.replace(/\/+$/, "")}/${t.replace(/^\/+/, "")}`,
+  withCdnUrl = (e, t) =>
+    isNotEmptyArray$1(e)
+      ? e.map((n) => ({ ...n, url: joinCdnUrl(t, n.url) }))
+      : [],
+  RESOURCE_DEFINITIONS = [
+    { name: "assets", versionKey: "assets_version", zipKey: "assets_zip" },
+    {
+      name: "client_static",
+      versionKey: "client_static_version",
+      zipKey: "client_static_zip",
+    },
+    { name: "dll", versionKey: "dll_version", zipKey: "dll_zip" },
+    {
+      name: "raw_file",
+      versionKey: "raw_file_version",
+      zipKey: "raw_file_zip",
+    },
+  ],
+  selectZipList = (e, t, n) =>
+    isNotEmptyArray$1(t) ? withCdnUrl(t, n) : withCdnUrl(e, n),
+  getNormalResource = (e, t) => {
+    const n = (e == null ? void 0 : e[t]) || {},
+      s = n.normal || {};
+    return {
+      version: s.version,
+      zipList: selectZipList(s.full, s.diff, n.cdn),
+    };
+  },
+  isVersionChanged = (e, t) =>
+    typeof e > "u" || e === null ? !1 : parseInt(e) !== parseInt(t),
+  sumZipSize$1 = (e) =>
+    isNotEmptyArray$1(e)
+      ? e.reduce(
+          (t, n) => t.plus(new BigNumber((n.size || 0).toString())),
+          new BigNumber(0),
+        )
+      : new BigNumber(0),
+  defaultDownloadInfo = () => {
+    const e = {};
+    return (
+      RESOURCE_DEFINITIONS.forEach(({ versionKey: t, zipKey: n }) => {
+        ((e[t] = 0), (e[n] = []));
+      }),
+      e
+    );
+  },
+  snapshotDownloadInfo = (e = {}) => {
+    const t = {};
+    return (
+      RESOURCE_DEFINITIONS.forEach(({ versionKey: n, zipKey: s }) => {
+        ((t[n] = e[n] ?? 0), (t[s] = [...(e[s] || [])]));
+      }),
+      t
+    );
+  },
+  RESOURCE_DOWNLOAD_BUFFER_SIZE$1 = new BigNumber(1024).times(1024 * 1024),
+  calculateResourceDownloadSize = (e) =>
+    RESOURCE_DEFINITIONS.reduce(
+      (t, { zipKey: n }) => t.plus(sumZipSize$1(e[n])),
+      new BigNumber(0),
+    ),
+  calculateResourceRequiredSize = (e) => {
+    const t = calculateResourceDownloadSize(e);
+    return t.isGreaterThan(0) ? t.plus(RESOURCE_DOWNLOAD_BUFFER_SIZE$1) : t;
+  },
+  assignResourceUpdate = (e, { versionKey: t, zipKey: n }, s, r) =>
+    isVersionChanged(s.version, r)
+      ? ((e[t] = s.version),
+        isNotEmptyArray$1(s.zipList)
+          ? ((e[n] = [...s.zipList]), !0)
+          : ((e[n] = []), !1))
+      : ((e[t] = r), (e[n] = []), !1),
+  buildResourceDownloadPayload = (e, t) => {
+    const n = defaultDownloadInfo();
+    let s = !1;
+    return (
+      RESOURCE_DEFINITIONS.forEach((r) => {
+        assignResourceUpdate(
+          n,
+          r,
+          getNormalResource(e, r.name),
+          t[r.versionKey],
+        ) && (s = !0);
+      }),
+      { needUpdate: s, params: n }
+    );
+  },
+  RESOURCE_DOWNLOAD_EVENT = "pclauncher_resource_download";
+let resourceDownloadStartToken = 0;
+const showDiskSpaceInsufficient = (e, t) => {
+    const n = `硬盘空间不足，请清理磁盘空间后重试<br />所需空间：${formatFileSize$1(e)}<br />可用空间：${formatFileSize$1(t)}`;
+    window.emitter
+      ? window.emitter.emit("luminEvent", {
+          event: "common_error",
+          data: { msg: n },
+        })
+      : window.toast && window.toast({ value: "硬盘空间不足" });
+  },
+  useResStore = defineStore("res", {
+    state: () => ({
+      resStatus: {
+        status: "ready",
+        speed: new BigNumber(0),
+        current_size: new BigNumber(0),
+        total_size: new BigNumber(0),
+        assets_version: 0,
+        client_static_version: 0,
+        dll_version: 0,
+        raw_file_version: 0,
+      },
+      loaded: !1,
+      lastUpdateTime: 0,
+      statusMap: {
+        wait_update: "需要更新",
+        downloading: "下载中",
+        pause: "暂停中",
+        installing: "安装中",
+        ready: "进入游戏",
+      },
+      downloadInfo: defaultDownloadInfo(),
+      checkRequestId: 0,
+      callback: null,
+    }),
+    getters: {
+      statusText: (e) => e.statusMap[e.resStatus.status] || "未知状态",
+      downloadProgress: (e) =>
+        e.resStatus.total_size.isEqualTo(0)
+          ? 0
+          : Math.round(
+              e.resStatus.current_size.div(e.resStatus.total_size).toNumber() *
+                100,
+            ),
+      speedSize: (e) =>
+        e.formattedSpeed
+          ? e.formattedSpeed +
+            "(" +
+            e.formattedCurrentSize +
+            "/" +
+            e.formattedTotalSize +
+            ")"
+          : e.formattedCurrentSize + "/" + e.formattedTotalSize,
+      formattedCurrentSize: (e) => formatFileSize$1(e.resStatus.current_size),
+      formattedTotalSize: (e) => formatFileSize$1(e.resStatus.total_size),
+      formattedSpeed: (e) =>
+        e.resStatus.status === "pause"
+          ? ""
+          : formatDownloadSpeed(e.resStatus.speed),
+      canUpdate: (e) => e.resStatus.status === "wait_update",
+      canDownload: (e) => ["wait_update", "pause"].includes(e.resStatus.status),
+      canPause: (e) => e.resStatus.status === "downloading",
+      canResume: (e) => e.resStatus.status === "pause",
+      canEnter: (e) => e.resStatus.status === "ready",
+      remainingTime: (e) => {
+        if (e.resStatus.status !== "downloading" || e.resStatus.speed === 0)
+          return "--:--:--";
+        const t = e.resStatus.total_size.minus(e.resStatus.current_size);
+        if (t.isLessThanOrEqualTo(0)) return "00:00:00";
+        const n = Math.ceil(t.div(e.resStatus.speed).toNumber()),
+          s = 24 * 60 * 60,
+          r = Math.min(n, s),
+          i = Math.floor(r / 3600),
+          o = Math.floor((r % 3600) / 60),
+          a = r % 60;
+        return `${i.toString().padStart(2, "0")}:${o.toString().padStart(2, "0")}:${a.toString().padStart(2, "0")}`;
+      },
+    },
+    actions: {
+      resetResourceState() {
+        ((this.resStatus = {
+          status: "empty",
+          speed: new BigNumber(0),
+          current_size: new BigNumber(0),
+          total_size: new BigNumber(0),
+          assets_version: 0,
+          client_static_version: 0,
+          dll_version: 0,
+          raw_file_version: 0,
+        }),
+          (this.downloadInfo = defaultDownloadInfo()),
+          (this.checkRequestId += 1),
+          (this.loaded = !1),
+          (this.lastUpdateTime = 0),
+          (this.callback = null));
+      },
+      fetchLocalResource(e) {
+        (window.LuminJsCall("game_resource_init"),
+          typeof e == "function" && (this.callback = e));
+      },
+      async beginReadyCheck(e) {
+        typeof e == "function" && (this.callback = e);
+        const t = usePreDownloadStore();
+        if ((await t.waitForLocalStatus(), t.isPredownloadInstalled)) {
+          (console.log(
+            "[RemoteConfig] 预下载已释放，按未下载预下载处理，继续检查游戏资源",
+          ),
+            t.discardInstalledPreDownload(),
+            this.fetchLocalResource(this.callback));
+          return;
+        }
+        if (t.isPredownloadCacheReady()) {
+          await this.checkResRemoteVersion({ preferSkipNativeInit: !0 });
+          return;
+        }
+        (t.setSkipGameResourceCheck(!1),
+          this.fetchLocalResource(this.callback));
+      },
+      updateResStatus(e) {
+        const t = Date.now(),
+          n = this.resStatus.status,
+          s =
+            e.status === "downloading" ||
+            (this.resStatus.status === "downloading" && !e.status),
+          r =
+            typeof e.current_size < "u" ||
+            typeof e.total_size < "u" ||
+            typeof e.speed < "u";
+        if (s && r) {
+          if (t - this.lastUpdateTime < 150) {
+            const { current_size: i, total_size: o, speed: a, ...l } = e;
+            Object.keys(l).length > 0 &&
+              (this.resStatus = { ...this.resStatus, ...l });
+            return;
+          }
+          this.lastUpdateTime = t;
+        }
+        (typeof e.current_size < "u" &&
+          (this.resStatus.current_size = new BigNumber(
+            e.current_size.toString(),
+          )),
+          typeof e.total_size < "u" &&
+            (this.resStatus.total_size = new BigNumber(
+              e.total_size.toString(),
+            )),
+          typeof e.speed < "u" &&
+            (this.resStatus.speed = new BigNumber(e.speed.toString())),
+          typeof e.status < "u" && (this.resStatus.status = e.status),
+          typeof e.assets_current < "u" &&
+            e.assets_current !== null &&
+            (this.resStatus.assets_version = parseInt(e.assets_current)),
+          typeof e.client_static_current < "u" &&
+            e.client_static_current !== null &&
+            (this.resStatus.client_static_version = parseInt(
+              e.client_static_current,
+            )),
+          typeof e.dll_current < "u" &&
+            e.dll_current !== null &&
+            (this.resStatus.dll_version = parseInt(e.dll_current)),
+          typeof e.raw_file_current < "u" &&
+            e.raw_file_current !== null &&
+            (this.resStatus.raw_file_version = parseInt(e.raw_file_current)),
+          e.status === "ready" &&
+            !["ready", "empty"].includes(n) &&
+            this.trackResourceDownload("download_complete"));
+      },
+      canStartResourceDownload() {
+        return ["ready", "empty", "wait_update"].includes(
+          this.resStatus.status,
+        );
+      },
+      statusToWaitUpdate(e) {
+        this.canStartResourceDownload() &&
+          (this.updateResStatus({ status: "wait_update" }),
+          this.startResourceDownload(e));
+      },
+      async startResourceDownload(e) {
+        const t = snapshotDownloadInfo(e);
+        this.downloadInfo = t;
+        const n = ++resourceDownloadStartToken;
+        if (!window.LuminJsCall) return;
+        const s = calculateResourceRequiredSize(t);
+        if (s.isGreaterThan(0)) {
+          const r = await useSettingStore().refreshAvailableSpace();
+          if (
+            n !== resourceDownloadStartToken ||
+            !this.canStartResourceDownload()
+          )
+            return;
+          if (s.isGreaterThan(r)) {
+            showDiskSpaceInsufficient(s, r);
+            return;
+          }
+        }
+        n === resourceDownloadStartToken &&
+          (this.trackResourceDownload("download"),
+          ta.track("game_resource_download", { info: JSON.stringify(t) }),
+          window.LuminJsCall("game_resource_download", t));
+      },
+      resUpdate() {
+        this.checkResRemoteVersion();
+      },
+      resPause() {
+        window.LuminJsCall &&
+          (this.trackResourceDownload("pause"),
+          window.LuminJsCall("game_resource_pause"));
+      },
+      resResume() {
+        window.LuminJsCall &&
+          (this.trackResourceDownload("resume"),
+          window.LuminJsCall("game_resource_resume"));
+      },
+      trackResourceDownload(e) {
+        const t = useGameStore(),
+          n = useSettingStore();
+        ta.track(RESOURCE_DOWNLOAD_EVENT, {
+          action: e,
+          game_version: t.gameStatus.game_version,
+          speed_limit: n.setting.speed_limit,
+          size: formatFileMB(calculateResourceDownloadSize(this.downloadInfo)),
+        });
+      },
+      finishWithoutResourceUpdate() {
+        ((this.downloadInfo = defaultDownloadInfo()),
+          this.resStatus.status === "empty" &&
+            this.updateResStatus({ status: "ready" }),
+          typeof this.callback == "function" &&
+            (this.callback(), (this.callback = null)));
+      },
+      async checkResRemoteVersion(e = {}) {
+        const t = e.preferSkipNativeInit === !0,
+          n = useGameStore(),
+          s = n.gameStatus,
+          r = ++this.checkRequestId,
+          i = usePreDownloadStore();
+        try {
+          if ((await i.waitForLocalStatus(), r !== this.checkRequestId)) return;
+          const { game_env: a, game_version: l, game_build_id: u } = s;
+          var o = {};
+          if (!l || !a) {
+            console.warn("游戏版本信息不完整，无法检查更新");
+            return;
+          }
+          ((o.env = a),
+            (o.client_version = l),
+            (o.assets_version = this.resStatus.assets_version),
+            (o.client_static_version = this.resStatus.client_static_version),
+            (o.dll_version = this.resStatus.dll_version),
+            (o.raw_file_version = this.resStatus.raw_file_version),
+            (o.target_platform = "Win64"),
+            (o.build_id = parseInt(u)));
+          let d = normalizeRemoteConfig$1(await getRemoteConfig(o));
+          if (r !== this.checkRequestId) return;
+          (console.log("remote_config", JSON.stringify(d)),
+            n.updateRemoteConfig(d));
+          const c = i.isPredownloadReady,
+            v = i.isPredownloadInstalled;
+          i.applyRemoteConfig(d, {
+            assets_version: this.resStatus.assets_version,
+            client_static_version: this.resStatus.client_static_version,
+            dll_version: this.resStatus.dll_version,
+            raw_file_version: this.resStatus.raw_file_version,
+          });
+          const E = c && !v && i.canSkipResourceUpdate(d);
+          if ((i.setSkipGameResourceCheck(E), E)) {
+            (console.log(
+              "[RemoteConfig] 预下载版本与下发配置一致且不超过正式版本，跳过游戏资源检查",
+            ),
+              this.finishWithoutResourceUpdate());
+            return;
+          }
+          if (t) {
+            this.fetchLocalResource(this.callback);
+            return;
+          }
+          if (!n.needLoadResource) {
+            this.finishWithoutResourceUpdate();
+            return;
+          }
+          d.update_type === 1 && console.log("todo update_type =1");
+          const { needUpdate: x, params: B } = buildResourceDownloadPayload(
+            d,
+            this.resStatus,
+          );
+          x ? this.statusToWaitUpdate(B) : this.finishWithoutResourceUpdate();
+        } catch (a) {
+          console.error("检查游戏资源失败:", a);
+        }
+      },
+      initEventListener() {
+        window.emitter &&
+          window.emitter.on("luminEvent", (e) => {
+            e.event === "game_resource" &&
+              (this.updateResStatus(e.data),
+              (this.resStatus.status === "ready" ||
+                this.resStatus.status === "empty") &&
+                this.checkResRemoteVersion());
+          });
+      },
+    },
+  }),
+  RESOURCE_DOWNLOAD_BUFFER_SIZE = new BigNumber(1024).times(1024 * 1024),
+  isNotEmptyArray = (e) => Array.isArray(e) && e.length > 0,
+  normalizeRemoteConfig = (e) =>
+    e && typeof e.code < "u" && typeof e.data < "u" ? e.data : e || {},
+  toBigNumber = (e) => new BigNumber((e || 0).toString()),
+  sumZipSize = (e) =>
+    isNotEmptyArray(e)
+      ? e.reduce((t, n) => t.plus(toBigNumber(n.size)), new BigNumber(0))
+      : new BigNumber(0),
+  getFullResourceZipLists = (e) => {
+    var r;
+    const t = ["assets", "client_static", "dll", "raw_file"];
+    if (t.some((i) => e[i]))
+      return t.map((i) => {
+        var o, a;
+        return (
+          ((a = (o = e[i]) == null ? void 0 : o.normal) == null
+            ? void 0
+            : a.full) || []
+        );
+      });
+    const n = [
+      e.full_assets,
+      e.full_client_static,
+      e.full_dll,
+      e.full_raw_file,
+    ];
+    if (n.some(isNotEmptyArray)) return n;
+    const s =
+      e.full ||
+      e.full_resource ||
+      ((r = e.resource_download) == null ? void 0 : r.full);
+    return s
+      ? [
+          s.assets_zip || s.assets,
+          s.client_static_zip || s.client_static,
+          s.dll_zip || s.dll,
+          s.raw_file_zip || s.raw_file,
+        ]
+      : [];
+  },
+  calculateFullResourceSize = (e) =>
+    getFullResourceZipLists(e).reduce(
+      (t, n) => t.plus(sumZipSize(n)),
+      new BigNumber(0),
+    ),
+  calculateMaxFullResourceZipSize = (e) =>
+    getFullResourceZipLists(e).reduce(
+      (t, n) =>
+        isNotEmptyArray(n)
+          ? n.reduce((s, r) => {
+              const i = toBigNumber(r.size);
+              return i.isFinite() && i.isGreaterThan(s) ? i : s;
+            }, t)
+          : t,
+      new BigNumber(0),
+    ),
+  calculateFirstDownloadExtraSize = (e, t) =>
+    toBigNumber(e)
+      .plus(toBigNumber(t).times(2))
+      .plus(RESOURCE_DOWNLOAD_BUFFER_SIZE),
+  preserveOnBackStatuses = [
+    "downloading",
+    "pause",
+    "download_complete",
+    "installing",
+    "verifying",
+    "verification_complete",
+    "playing",
+    "uninstalling",
+  ],
+  shouldPreserveStatusOnBack = (e) => preserveOnBackStatuses.includes(e),
+  useGameStore = defineStore("game", {
+    state: () => ({
+      gameStatus: {
+        status: "wait_download",
+        speed: new BigNumber(0),
+        current_size: new BigNumber(0),
+        total_size: new BigNumber(0),
+        game_build_id: "0",
+        game_version: "",
+        game_env: "",
+      },
+      needLoadResource: !0,
+      loaded: !1,
+      lastUpdateTime: 0,
+      statusMap: {
+        wait_download: "需要下载游戏",
+        wait_update: "需要更新",
+        downloading: "下载中",
+        download_complete: "下载完成",
+        pause: "暂停中",
+        ready: "可以进入游戏",
+        installing: "安装中",
+        verifying: "校验中",
+        verification_complete: "校验完成",
+        playing: "游戏中",
+        empty: "检测中",
+      },
+      downloadInfo: {
+        download_url: "",
+        client_version: "",
+        zip_size: new BigNumber(0),
+        game_size: new BigNumber(0),
+        resource_size: new BigNumber(0),
+        max_resource_zip_size: new BigNumber(0),
+      },
+      remoteApp: { env: "", channel: "" },
+      loginServerUrl: "",
+    }),
+    getters: {
+      statusText: (e) => e.statusMap[e.gameStatus.status] || "未知状态",
+      downloadProgress: (e) =>
+        e.gameStatus.total_size.isEqualTo(0)
+          ? 0
+          : Math.round(
+              e.gameStatus.current_size
+                .div(e.gameStatus.total_size)
+                .toNumber() * 100,
+            ),
+      speedSize: (e) =>
+        e.formattedSpeed
+          ? e.formattedSpeed +
+            "(" +
+            e.formattedCurrentSize +
+            "/" +
+            e.formattedTotalSize +
+            ")"
+          : e.formattedCurrentSize + "/" + e.formattedTotalSize,
+      formattedCurrentSize: (e) => formatFileSize$1(e.gameStatus.current_size),
+      formattedTotalSize: (e) => formatFileSize$1(e.gameStatus.total_size),
+      formattedSpeed: (e) =>
+        e.gameStatus.status === "pause"
+          ? ""
+          : formatDownloadSpeed(e.gameStatus.speed),
+      canDownload: (e) =>
+        ["wait_download", "pause"].includes(e.gameStatus.status),
+      canPause: (e) => e.gameStatus.status === "downloading",
+      canResume: (e) => e.gameStatus.status === "pause",
+      canEnter: (e) => e.gameStatus.status === "ready",
+      canUpdate: (e) => e.gameStatus.status === "wait_update",
+      remainingTime: (e) => {
+        if (e.gameStatus.status !== "downloading" || e.gameStatus.speed === 0)
+          return "--:--:--";
+        const t = e.gameStatus.total_size.minus(e.gameStatus.current_size);
+        if (t.isLessThanOrEqualTo(0)) return "00:00:00";
+        const n = Math.ceil(t.div(e.gameStatus.speed).toNumber()),
+          s = 24 * 60 * 60,
+          r = Math.min(n, s),
+          i = Math.floor(r / 3600),
+          o = Math.floor((r % 3600) / 60),
+          a = r % 60;
+        return `${i.toString().padStart(2, "0")}:${o.toString().padStart(2, "0")}:${a.toString().padStart(2, "0")}`;
+      },
+    },
+    actions: {
+      updateGameUninstall() {
+        this.gameStatus.status = "uninstalling";
+      },
+      fetchGameVersion() {
+        window.LuminJsCall("game_init");
+      },
+      async enterCheck(e) {
+        this.checkGameRemoteVersion(e);
+      },
+      locateGameUpdate(e) {
+        (console.log("locateGameUpdate", e),
+          this.updateGameStatus({
+            game_build_id: e.game_build_id,
+            game_version: e.game_version,
+            game_env: e.game_env,
+            status: "ready",
+          }),
+          console.log(this.gameStatus),
+          this.checkGameRemoteVersion());
+      },
+      updateGameStatus(e) {
+        const t = Date.now(),
+          n = this.gameStatus.status,
+          s =
+            e.status === "downloading" ||
+            (this.gameStatus.status === "downloading" && !e.status),
+          r =
+            typeof e.current_size < "u" ||
+            typeof e.total_size < "u" ||
+            typeof e.speed < "u";
+        if (s && r) {
+          if (t - this.lastUpdateTime < 150) {
+            const { current_size: i, total_size: o, speed: a, ...l } = e;
+            Object.keys(l).length > 0 &&
+              (this.gameStatus = { ...this.gameStatus, ...l });
+            return;
+          }
+          this.lastUpdateTime = t;
+        }
+        (typeof e.current_size < "u" &&
+          (e.current_size = new BigNumber(e.current_size.toString())),
+          typeof e.total_size < "u" &&
+            (e.total_size = new BigNumber(e.total_size.toString())),
+          e.status === "download_complete" &&
+            (this.trackGameDownload("download_complete"),
+            this.trackGameDownload("install"),
+            window.LuminJsCall("game_install")),
+          (this.gameStatus = { ...this.gameStatus, ...e }),
+          e.status === "empty" &&
+            n !== "empty" &&
+            this.refreshPreDownloadStatusForEmptyGame());
+      },
+      refreshPreDownloadStatusForEmptyGame() {
+        const e = useResStore(),
+          t = usePreDownloadStore();
+        (e.resetResourceState(),
+          t.disableForEmptyGame(),
+          t.refreshLocalPreDownloadStatus());
+      },
+      updateRemote(e) {
+        this.remoteApp = { ...this.remoteApp, ...e };
+      },
+      updateRemoteConfig(e) {
+        const t = this.loginServerUrl,
+          n =
+            typeof (e == null ? void 0 : e.server_url) == "string"
+              ? e.server_url.trim().replace(/\/+$/, "")
+              : "";
+        ((this.loginServerUrl = n),
+          console.log("[RemoteConfig] 更新 loginServerUrl", {
+            previous: t || "(empty)",
+            next: n || "(empty)",
+            hasServerUrl: !!n,
+            configKeys: e && typeof e == "object" ? Object.keys(e) : [],
+          }));
+      },
+      gameDownload() {
+        window.LuminJsCall &&
+          (this.trackGameDownload("download"),
+          window.LuminJsCall("game_download", {
+            url: this.downloadInfo.download_url,
+            version: this.downloadInfo.client_version,
+          }));
+      },
+      trackGameDownload(e) {
+        const t = useSettingStore();
+        ta.track("pclauncher_download_game", {
+          action: e,
+          game_version: this.downloadInfo.client_version,
+          size: formatFileMB(this.downloadInfo.zip_size),
+          speed_limit: t.setting.speed_limit,
+        });
+      },
+      gameEnter(e = {}) {
+        console.log("gameEnter", this.gameStatus.game_env, this.remoteApp.env);
+        const t = {};
+        e.forceD3d11 && (t.force_d3d11 = !0);
+        const n = () => window.LuminJsCall("game_enter", t);
+        this.gameStatus.game_env !== this.remoteApp.env
+          ? (window.toast({
+              value: "当前游戏与配置不一致，请卸载重装。",
+              duration: 2e3,
+            }),
+            setTimeout(n, 2e3))
+          : n();
+      },
+      gameUpdate() {
+        window.LuminJsCall && window.LuminJsCall("game_update");
+      },
+      gamePause() {
+        window.LuminJsCall && window.LuminJsCall("game_pause");
+      },
+      gameResume() {
+        window.LuminJsCall && window.LuminJsCall("game_resume");
+      },
+      async fetchAppRemoteConfig(e) {
+        var n;
+        const t = e.build_id || e.game_build_id;
+        if (
+          (console.log("[RemoteConfig] 准备获取 remote config", {
+            buildId: t || "(empty)",
+            clientVersion: e.client_version || "(empty)",
+            env: e.env || "(empty)",
+            channel: e.channel || "(empty)",
+          }),
+          !t || !e.client_version || !e.env || !e.channel)
+        )
+          return (
+            console.warn("[RemoteConfig] 参数不完整，跳过 remote config 请求", {
+              hasBuildId: !!t,
+              hasClientVersion: !!e.client_version,
+              hasEnv: !!e.env,
+              hasChannel: !!e.channel,
+            }),
+            null
+          );
+        try {
+          console.log("[RemoteConfig] 发送 remote config 请求");
+          const s = normalizeRemoteConfig(
+            await getRemoteConfig({
+              build_id: parseInt(t.toString()),
+              client_version: e.client_version,
+              env: e.env,
+              channel: e.channel,
+              target_platform: "Win64",
+              assets_version: 0,
+              client_static_version: 0,
+              dll_version: 0,
+              raw_file_version: 0,
+            }),
+          );
+          return (
+            console.log("[RemoteConfig] remote config 请求成功", {
+              serverUrl: (s == null ? void 0 : s.server_url) || "(empty)",
+              configKeys: s && typeof s == "object" ? Object.keys(s) : [],
+            }),
+            this.updateRemoteConfig(s),
+            s
+          );
+        } catch (s) {
+          return (
+            console.error("[RemoteConfig] 获取 remote config 失败", {
+              message: (s == null ? void 0 : s.message) || "未知错误",
+              code: s == null ? void 0 : s.code,
+              status:
+                (n = s == null ? void 0 : s.response) == null
+                  ? void 0
+                  : n.status,
+            }),
+            null
+          );
+        }
+      },
+      async fetchFirstDownloadResourceSize(e) {
+        const { resourceSize: t } =
+          await this.fetchFirstDownloadResourceInfo(e);
+        return t;
+      },
+      async fetchFirstDownloadResourceInfo(e) {
+        const t = await this.fetchAppRemoteConfig(e);
+        return t
+          ? {
+              resourceSize: calculateFullResourceSize(t),
+              maxResourceZipSize: calculateMaxFullResourceZipSize(t),
+            }
+          : {
+              resourceSize: new BigNumber(0),
+              maxResourceZipSize: new BigNumber(0),
+            };
+      },
+      async checkGameRemoteVersion(e, t) {
+        try {
+          console.log("[RemoteConfig] 开始检查游戏远程版本", {
+            gameStatus: this.gameStatus.status,
+            gameBuildId: this.gameStatus.game_build_id || "(empty)",
+            gameVersion: this.gameStatus.game_version || "(empty)",
+            gameEnv: this.gameStatus.game_env || "(empty)",
+            loginServerUrl: this.loginServerUrl || "(empty)",
+            isBack: !!t,
+          });
+          var n = {};
+          this.gameStatus.game_version != "" &&
+            ((n.env = this.gameStatus.game_env),
+            (n.client_version = this.gameStatus.game_version));
+          let s = await launcherApp(n);
+          if (
+            (console.log("[RemoteConfig] launcherApp 返回", {
+              responseKeys: s && typeof s == "object" ? Object.keys(s) : [],
+              buildId:
+                (s == null ? void 0 : s.build_id) ||
+                (s == null ? void 0 : s.game_build_id) ||
+                "(empty)",
+              clientVersion:
+                (s == null ? void 0 : s.client_version) || "(empty)",
+              env: (s == null ? void 0 : s.env) || "(empty)",
+              channel: (s == null ? void 0 : s.channel) || "(empty)",
+              hasDownloadUrl: !!(s != null && s.download_url),
+            }),
+            (this.needLoadResource = s.resource_download_status !== 1),
+            s.env && this.updateRemote({ env: s.env, channel: s.channel }),
+            t && shouldPreserveStatusOnBack(this.gameStatus.status))
+          ) {
+            console.log(
+              "[RemoteConfig] 返回后台状态保留，跳过后续版本检查分支",
+            );
+            return;
+          }
+          if (this.gameStatus.game_version == "")
+            if (
+              (console.log(
+                "[RemoteConfig] 当前没有已记录的游戏版本，进入首次下载分支",
+              ),
+              s.download_url)
+            ) {
+              const { resourceSize: r, maxResourceZipSize: i } =
+                await this.fetchFirstDownloadResourceInfo(s);
+              (Object.assign(this.downloadInfo, {
+                download_url: s.download_url,
+                client_version: s.client_version,
+                zip_size: new BigNumber(s.zip_size.toString()),
+                game_size: new BigNumber(s.game_size.toString()),
+                resource_size: r,
+                max_resource_zip_size: i,
+              }),
+                this.updateGameStatus({ status: "wait_download" }));
+            } else
+              (console.warn(
+                "[RemoteConfig] launcherApp 没有下载地址，未触发首次下载 remote config",
+              ),
+                this.updateGameStatus({ status: "empty" }));
+          else
+            s.update.client_version != "" &&
+            s.update.client_version != this.gameStatus.game_version
+              ? (this.fetchAppRemoteConfig(s),
+                Object.assign(this.downloadInfo, {
+                  download_url: s.update.download_url,
+                  client_version: s.update.client_version,
+                  zip_size: new BigNumber(s.update.zip_size.toString()),
+                  game_size: new BigNumber(s.update.game_size.toString()),
+                }),
+                this.updateGameStatus({ status: "wait_update" }))
+              : (console.warn(
+                  "[RemoteConfig] 当前版本已是最新，进入 ready 分支；此路径不会调用 fetchAppRemoteConfig",
+                ),
+                this.updateToReady(e));
+        } catch (s) {
+          (console.error("检查游戏版本失败:", s), console.log(this.gameStatus));
+        }
+      },
+      updateToReady(e) {
+        (this.updateGameStatus({ status: "ready" }),
+          console.log("local version == remote version game to ready"),
+          useResStore().beginReadyCheck(e));
+      },
+      initEventListener() {
+        window.emitter &&
+          window.emitter.on("luminEvent", (e) => {
+            var t, n, s, r;
+            if (e.event === "game")
+              if (
+                (console.log("[RemoteConfig] 收到 game 事件", {
+                  status:
+                    ((t = e.data) == null ? void 0 : t.status) || "(empty)",
+                  gameBuildId:
+                    ((n = e.data) == null ? void 0 : n.game_build_id) ||
+                    "(empty)",
+                  gameVersion:
+                    ((s = e.data) == null ? void 0 : s.game_version) ||
+                    "(empty)",
+                  gameEnv:
+                    ((r = e.data) == null ? void 0 : r.game_env) || "(empty)",
+                  dataKeys:
+                    e.data && typeof e.data == "object"
+                      ? Object.keys(e.data)
+                      : [],
+                }),
+                e.data.status === "ready" || e.data.status === "empty")
+              ) {
+                const i =
+                  e.data.status === "empty" &&
+                  this.gameStatus.status === "empty";
+                (this.updateGameStatus(e.data),
+                  i && this.refreshPreDownloadStatusForEmptyGame(),
+                  this.checkGameRemoteVersion());
+              } else this.updateGameStatus(e.data);
+            else
+              e.event === "uninstall_game_completed" &&
+                (this.updateGameStatus(e.data), this.checkGameRemoteVersion());
+          });
+      },
+    },
+  });
+class StorageUtil {
+  constructor() {
+    this.isAvailable = this.checkAvailability();
+  }
+  checkAvailability() {
+    try {
+      if (typeof window > "u") return !1;
+      const t = "__storage_test__";
+      return (
+        window.localStorage.setItem(t, t),
+        window.localStorage.removeItem(t),
+        !0
+      );
+    } catch (t) {
+      return (console.warn("localStorage checkAvailability error:", t), !1);
+    }
+  }
+  getItem(t, n = null) {
+    if (!this.isAvailable) return n;
+    try {
+      return window.localStorage.getItem(t) || n;
+    } catch (s) {
+      return (console.warn("localStorage getItem error:", s), n);
+    }
+  }
+  setItem(t, n) {
+    if (!this.isAvailable)
+      return (console.warn("localStorage is not available"), !1);
+    try {
+      return (window.localStorage.setItem(t, n), !0);
+    } catch (s) {
+      return (console.warn("localStorage setItem error:", s), !1);
+    }
+  }
+  removeItem(t) {
+    if (!this.isAvailable) return !1;
+    try {
+      return (window.localStorage.removeItem(t), !0);
+    } catch (n) {
+      return (console.warn("localStorage removeItem error:", n), !1);
+    }
+  }
+  clear() {
+    if (!this.isAvailable) return !1;
+    try {
+      return (window.localStorage.clear(), !0);
+    } catch (t) {
+      return (console.warn("localStorage clear error:", t), !1);
+    }
+  }
+  getAllKeys() {
+    if (!this.isAvailable) return [];
+    try {
+      const t = [];
+      for (let n = 0; n < window.localStorage.length; n++)
+        t.push(window.localStorage.key(n));
+      return t;
+    } catch (t) {
+      return (console.warn("localStorage getAllKeys error:", t), []);
+    }
+  }
+  getSize() {
+    if (!this.isAvailable) return 0;
+    try {
+      let t = 0;
+      for (let n in window.localStorage)
+        typeof window.localStorage[n] < "u" &&
+          (t += window.localStorage[n].length + n.length);
+      return t;
+    } catch (t) {
+      return (console.warn("localStorage getSize error:", t), 0);
+    }
+  }
+}
+const storage = new StorageUtil(),
+  _hoisted_1$b = { class: "dialog-header" },
+  _hoisted_2$b = { class: "dialog-title bold lm-font-serif" },
+  _hoisted_3$b = { class: "dialog-content" },
+  _sfc_main$c = {
+    __name: "Dialog",
+    props: {
+      modelValue: { type: Boolean, default: !1 },
+      isTop: { type: Boolean, default: !1 },
+      isHighest: { type: Boolean, default: !1 },
+      className: { type: String, default: "" },
+      title: { type: String, default: "" },
+      showClose: { type: Boolean, default: !0 },
+      closeOnEsc: { type: Boolean, default: !0 },
+      closeOnOverlay: { type: Boolean, default: !1 },
+    },
+    emits: ["update:modelValue", "close", "success"],
+    setup(e, { expose: t, emit: n }) {
+      const s = e,
+        r = n;
+      watch(
+        () => s.modelValue,
+        (a) => {
+          a && console.log(a);
+        },
+      );
+      const i = () => {
+          (r("update:modelValue", !1), r("close"));
+        },
+        o = () => {
+          s.closeOnOverlay && i();
+        };
+      return (
+        onMounted(() => {}),
+        onUnmounted(() => {}),
+        t({ close: i }),
+        (a, l) => (
+          openBlock(),
+          createBlock(Teleport, { to: "body" }, [
+            createVNode(
+              Transition,
+              { name: "dialog-fade" },
+              {
+                default: withCtx(() => [
+                  e.modelValue
+                    ? (openBlock(),
+                      createElementBlock(
+                        "div",
+                        {
+                          key: 0,
+                          class: normalizeClass([
+                            "dialog-overlay",
+                            [
+                              e.isTop ? "top-div" : "",
+                              e.isHighest ? "highest-div" : "",
+                            ],
+                          ]),
+                          onClick: o,
+                        },
+                        [
+                          createBaseVNode(
+                            "div",
+                            {
+                              class: "dialog-wrapper flex flex-center",
+                              onClick:
+                                l[0] ||
+                                (l[0] = withModifiers(() => {}, ["stop"])),
+                            },
+                            [
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: normalizeClass([
+                                    "dialog-bg",
+                                    s.className,
+                                  ]),
+                                },
+                                [
+                                  s.showClose
+                                    ? (openBlock(),
+                                      createElementBlock("div", {
+                                        key: 0,
+                                        class:
+                                          "icon icon-dialog-close icon-ani",
+                                        onClick: i,
+                                      }))
+                                    : createCommentVNode("", !0),
+                                  createBaseVNode("div", _hoisted_1$b, [
+                                    l[1] ||
+                                      (l[1] = createBaseVNode(
+                                        "div",
+                                        { class: "icon icon-dialog-badge" },
+                                        null,
+                                        -1,
+                                      )),
+                                    createBaseVNode(
+                                      "div",
+                                      _hoisted_2$b,
+                                      toDisplayString(s.title),
+                                      1,
+                                    ),
+                                  ]),
+                                  createBaseVNode("div", _hoisted_3$b, [
+                                    renderSlot(a.$slots, "default"),
+                                  ]),
+                                ],
+                                2,
+                              ),
+                            ],
+                          ),
+                        ],
+                        2,
+                      ))
+                    : createCommentVNode("", !0),
+                ]),
+                _: 3,
+              },
+            ),
+          ])
+        )
+      );
+    },
+  },
+  _hoisted_1$a = { class: "dialog-tips-content" },
+  _hoisted_2$a = { class: "dialog-tips-body" },
+  _hoisted_3$a = { class: "dialog-tips-text" },
+  _hoisted_4$9 = { key: 0, class: "dialog-progress-wrapper" },
+  _hoisted_5$8 = { class: "right-txt" },
+  _hoisted_6$8 = { class: "dialog-btns" },
+  _sfc_main$b = {
+    __name: "CheckVersion",
+    props: { modelValue: { type: Boolean, default: !1 } },
+    emits: ["update:modelValue", "close", "success"],
+    setup(e, { expose: t, emit: n }) {
+      const s = e,
+        r = n,
+        i = useVersionStore(),
+        o = reactive({ isShowDialog: s.modelValue });
+      watch(
+        () => s.modelValue,
+        (d) => {
+          o.isShowDialog = d;
+        },
+      );
+      const a = () => {
+          (r("update:modelValue", !1), r("close"));
+        },
+        l = () => {
+          (ta.track("pclauncher_update_client_version", {
+            target_version: i.updateInfo.client_version,
+            result: 2,
+          }),
+            window.LuminJsCall("starter_exit"));
+        },
+        u = () => {
+          switch (i.starterStatus.status) {
+            case "downloading":
+              return;
+            case "pause":
+              return;
+            case "complete":
+              (ta.track("pclauncher_update_end", {
+                target_version: i.updateInfo.client_version,
+                result: 1,
+              }),
+                window.LuminJsCall("starter_restart"));
+              return;
+            case "default":
+              i.updateInfo.download_url &&
+                (ta.track("pclauncher_update_client_version", {
+                  target_version: i.updateInfo.client_version,
+                  result: 1,
+                }),
+                ta.timeEvent("pclauncher_update_end"),
+                window.LuminJsCall("starter_download", {
+                  url: i.updateInfo.download_url,
+                  version: i.updateInfo.client_version,
+                }));
+              break;
+          }
+        };
+      return (
+        onMounted(() => {}),
+        onUnmounted(() => {}),
+        t({ close: a }),
+        (d, c) => (
+          openBlock(),
+          createBlock(
+            _sfc_main$c,
+            {
+              modelValue: o.isShowDialog,
+              "onUpdate:modelValue":
+                c[0] || (c[0] = (v) => (o.isShowDialog = v)),
+              className: "dialog-close-confirm",
+              isTop: !0,
+              title: "启动器版本更新",
+              onClose: a,
+              showClose: !1,
+            },
+            {
+              default: withCtx(() => [
+                createBaseVNode("div", _hoisted_1$a, [
+                  createBaseVNode("div", _hoisted_2$a, [
+                    createBaseVNode(
+                      "div",
+                      _hoisted_3$a,
+                      toDisplayString(unref(i).updateInfo.desc),
+                      1,
+                    ),
+                    unref(i).starterStatus.status !== "default"
+                      ? (openBlock(),
+                        createElementBlock("div", _hoisted_4$9, [
+                          createBaseVNode(
+                            "div",
+                            {
+                              class: normalizeClass([
+                                "dialog-progress",
+                                unref(i).progressPercent === "100%"
+                                  ? "full"
+                                  : "",
+                              ]),
+                              style: normalizeStyle({
+                                width: unref(i).progressPercent,
+                              }),
+                            },
+                            toDisplayString(unref(i).progressPercent),
+                            7,
+                          ),
+                          createBaseVNode(
+                            "div",
+                            _hoisted_5$8,
+                            toDisplayString(
+                              unref(i).formattedCurrentSize +
+                                "/" +
+                                unref(i).formattedTotalSize,
+                            ),
+                            1,
+                          ),
+                        ]))
+                      : createCommentVNode("", !0),
+                  ]),
+                  createBaseVNode("div", _hoisted_6$8, [
+                    createBaseVNode(
+                      "div",
+                      {
+                        class: "dialog-btn bg-btn-grey bold flex flex-center",
+                        onClick: l,
+                      },
+                      " 退出 ",
+                    ),
+                    createBaseVNode(
+                      "div",
+                      {
+                        class: "dialog-btn bg-btn-common bold flex flex-center",
+                        onClick: u,
+                      },
+                      toDisplayString(unref(i).updateButtonText),
+                      1,
+                    ),
+                  ]),
+                ]),
+              ]),
+              _: 1,
+            },
+            8,
+            ["modelValue"],
+          )
+        )
+      );
+    },
+  },
+  CheckVersion = _export_sfc(_sfc_main$b, [["__scopeId", "data-v-3cf2e10d"]]),
+  _hoisted_1$9 = { class: "dialog-tips-content" },
+  _hoisted_2$9 = { class: "module-page" },
+  _hoisted_3$9 = { class: "module-form" },
+  _sfc_main$a = {
+    __name: "CloseConfirm",
+    props: { modelValue: { type: Boolean, default: !1 } },
+    emits: ["update:modelValue", "close", "success"],
+    setup(e, { expose: t, emit: n }) {
+      const s = useSettingStore(),
+        r = e,
+        i = n,
+        o = reactive({ isShowDialog: r.modelValue, activeIndex: 0 });
+      watch(
+        () => r.modelValue,
+        (c) => {
+          o.isShowDialog = c;
+        },
+      );
+      const a = (c) => {
+          s.updateSettingItem("close_action", c);
+        },
+        l = () => {
+          (d(),
+            setTimeout(() => {
+              s.setting.close_action === 1
+                ? window.LuminJsCall("starter_taskbar")
+                : window.LuminJsCall("starter_exit");
+            }, 500));
+        },
+        u = () => {
+          let c = 1;
+          (s.hasSaveChoose && (c = 0), s.setSaveChoose(c));
+        },
+        d = () => {
+          (i("update:modelValue", !1), i("close"));
+        };
+      return (
+        onMounted(() => {}),
+        onUnmounted(() => {}),
+        t({ close: d }),
+        (c, v) => (
+          openBlock(),
+          createBlock(
+            _sfc_main$c,
+            {
+              modelValue: o.isShowDialog,
+              "onUpdate:modelValue":
+                v[2] || (v[2] = (E) => (o.isShowDialog = E)),
+              className: "dialog-close-confirm",
+              title: "提示",
+              onClose: d,
+            },
+            {
+              default: withCtx(() => [
+                createBaseVNode("div", _hoisted_1$9, [
+                  createBaseVNode("div", _hoisted_2$9, [
+                    createBaseVNode("div", _hoisted_3$9, [
+                      v[6] ||
+                        (v[6] = createBaseVNode(
+                          "div",
+                          { class: "module-title" },
+                          "您点击了关闭按钮，希望：",
+                          -1,
+                        )),
+                      createBaseVNode(
+                        "div",
+                        {
+                          class: "module-radio cursor",
+                          onClick: v[0] || (v[0] = (E) => a(1)),
+                        },
+                        [
+                          createBaseVNode(
+                            "div",
+                            {
+                              class: normalizeClass([
+                                "icon icon-radio",
+                                unref(s).setting.close_action === 1
+                                  ? "active"
+                                  : "",
+                              ]),
+                            },
+                            null,
+                            2,
+                          ),
+                          v[3] || (v[3] = createTextVNode(" 最小化系统窗口 ")),
+                        ],
+                      ),
+                      createBaseVNode(
+                        "div",
+                        {
+                          class: "module-radio cursor",
+                          onClick: v[1] || (v[1] = (E) => a(2)),
+                        },
+                        [
+                          createBaseVNode(
+                            "div",
+                            {
+                              class: normalizeClass([
+                                "icon icon-radio",
+                                unref(s).setting.close_action === 2
+                                  ? "active"
+                                  : "",
+                              ]),
+                            },
+                            null,
+                            2,
+                          ),
+                          v[4] || (v[4] = createTextVNode(" 退出启动器 ")),
+                        ],
+                      ),
+                      createBaseVNode(
+                        "div",
+                        {
+                          class: "module-radio cursor bottom-center",
+                          onClick: u,
+                        },
+                        [
+                          createBaseVNode(
+                            "div",
+                            {
+                              class: normalizeClass([
+                                "icon icon-radio",
+                                unref(s).hasSaveChoose ? "active" : "",
+                              ]),
+                            },
+                            null,
+                            2,
+                          ),
+                          v[5] || (v[5] = createTextVNode(" 不再提醒 ")),
+                        ],
+                      ),
+                    ]),
+                  ]),
+                  createBaseVNode("div", { class: "dialog-btns" }, [
+                    createBaseVNode(
+                      "div",
+                      {
+                        class: "dialog-btn bg-btn-grey bold flex flex-center",
+                        onClick: d,
+                      },
+                      " 取消 ",
+                    ),
+                    createBaseVNode(
+                      "div",
+                      {
+                        class: "dialog-btn bg-btn-common bold flex flex-center",
+                        onClick: l,
+                      },
+                      " 确定 ",
+                    ),
+                  ]),
+                ]),
+              ]),
+              _: 1,
+            },
+            8,
+            ["modelValue"],
+          )
+        )
+      );
+    },
+  },
+  _hoisted_1$8 = { class: "dialog-tips-content" },
+  _hoisted_2$8 = { class: "dialog-tips-body" },
+  _hoisted_3$8 = ["innerHTML"],
+  _hoisted_4$8 = { class: "dialog-btns" },
+  _sfc_main$9 = {
+    __name: "CustomConfirm",
+    props: {
+      modelValue: { type: Boolean, default: !1 },
+      tp: { type: String, default: "repair" },
+      title: { type: String, default: "" },
+      desc: { type: String, default: "" },
+      isShowCancel: { type: Boolean, default: !0 },
+      isShowExit: { type: Boolean, default: !1 },
+    },
+    emits: ["update:modelValue", "close", "success"],
+    setup(e, { expose: t, emit: n }) {
+      const s = e,
+        r = n,
+        i = useVersionStore(),
+        o = useGameStore(),
+        a = computed(() =>
+          s.title !== ""
+            ? s.title
+            : s.tp === "repair"
+              ? "游戏修复提示"
+              : "游戏卸载提示",
+        ),
+        l = computed(() =>
+          s.desc !== ""
+            ? s.desc
+            : s.tp === "repair"
+              ? "您确定要修复游戏客户端吗? <br />修复过程中将扫描并修复当前已安装的游戏目录。扫描时间可能因为文件大小和磁盘类型而异,请耐心等待。"
+              : "您确定要卸载游戏客户端吗? <br />卸载游戏后，需要重新下载游戏客户端。",
+        ),
+        u = reactive({ isShowDialog: s.modelValue });
+      watch(
+        () => s.modelValue,
+        (E) => {
+          u.isShowDialog = E;
+        },
+      );
+      const d = async () => {
+          if ((v(), s.tp === "repair")) {
+            ta.track("pclauncher_fix_game_begin", {
+              game_version: o.gameStatus.game_version,
+            });
+            const E = await getGameNativeBuildId({
+              env: o.gameStatus.game_env,
+              region: i.versionInfo.region,
+              client_version: o.gameStatus.game_version,
+              channel: i.versionInfo.channel,
+            });
+            let x = `https://lm-package-qt.zhuziplay.com/Win64/${E.native_build_id}/hash.json`;
+            (E.sync_outer_status === 2 &&
+              (x = `https://lm-package.zhuziplay.com/Win64/${E.native_build_id}/hash.json`),
+              window.LuminJsCall("repair_start", { url: x }));
+          } else
+            s.tp === "uninstall" &&
+              o.gameStatus.game_version !== "" &&
+              (ta.track("pclauncher_uninstall_game", {
+                game_version: o.gameStatus.game_version,
+              }),
+              window.LuminJsCall("uninstall_game"),
+              o.updateGameUninstall());
+        },
+        c = () => {
+          window.LuminJsCall("starter_exit");
+        },
+        v = () => {
+          (r("update:modelValue", !1), r("close"));
+        };
+      return (
+        onMounted(() => {}),
+        onUnmounted(() => {}),
+        t({ close: v }),
+        (E, x) => (
+          openBlock(),
+          createBlock(
+            _sfc_main$c,
+            {
+              modelValue: u.isShowDialog,
+              "onUpdate:modelValue":
+                x[0] || (x[0] = (B) => (u.isShowDialog = B)),
+              className: "dialog-close-confirm",
+              title: a.value,
+              isHighest: !0,
+              onClose: v,
+              showClose: !e.isShowExit,
+            },
+            {
+              default: withCtx(() => [
+                createBaseVNode("div", _hoisted_1$8, [
+                  createBaseVNode("div", _hoisted_2$8, [
+                    createBaseVNode(
+                      "div",
+                      { class: "dialog-tips-text", innerHTML: l.value },
+                      null,
+                      8,
+                      _hoisted_3$8,
+                    ),
+                  ]),
+                  createBaseVNode("div", _hoisted_4$8, [
+                    e.isShowCancel
+                      ? (openBlock(),
+                        createElementBlock(
+                          "div",
+                          {
+                            key: 0,
+                            class:
+                              "dialog-btn bg-btn-grey bold flex flex-center",
+                            onClick: v,
+                          },
+                          " 取消 ",
+                        ))
+                      : createCommentVNode("", !0),
+                    e.isShowExit
+                      ? createCommentVNode("", !0)
+                      : (openBlock(),
+                        createElementBlock(
+                          "div",
+                          {
+                            key: 1,
+                            class:
+                              "dialog-btn bg-btn-common bold flex flex-center",
+                            onClick: d,
+                          },
+                          " 确定 ",
+                        )),
+                    e.isShowExit
+                      ? (openBlock(),
+                        createElementBlock(
+                          "div",
+                          {
+                            key: 2,
+                            class:
+                              "dialog-btn bg-btn-common bold flex flex-center",
+                            onClick: c,
+                          },
+                          " 退出 ",
+                        ))
+                      : createCommentVNode("", !0),
+                  ]),
+                ]),
+              ]),
+              _: 1,
+            },
+            8,
+            ["modelValue", "title", "showClose"],
+          )
+        )
+      );
+    },
+  },
+  ENABLE_PROD_DX11_AND_ENV_CHECK = !1,
+  isDx11AndEnvCheckEnabled = (e) =>
+    e === "Prod" ? ENABLE_PROD_DX11_AND_ENV_CHECK : !0,
+  _hoisted_1$7 = { class: "pre-download-dialog-content" },
+  _hoisted_2$7 = { class: "pre-download-size-panel" },
+  _hoisted_3$7 = { class: "size-row" },
+  _hoisted_4$7 = { class: "size-row" },
+  _hoisted_5$7 = { class: "size-row" },
+  _hoisted_6$7 = { key: 0, class: "space-warning" },
+  _sfc_main$8 = {
+    __name: "PreDownloadConfirm",
+    props: { modelValue: { type: Boolean, default: !1 } },
+    emits: ["update:modelValue", "close"],
+    setup(e, { emit: t }) {
+      const n = e,
+        s = t,
+        r = usePreDownloadStore(),
+        i = useSettingStore(),
+        o = reactive({ isShowDialog: n.modelValue }),
+        a = computed(
+          () => new BigNumber((i.setting.available_space || 0).toString()),
+        ),
+        l = computed(() => formatFileSize$1(r.downloadSize)),
+        u = computed(() => formatFileSize$1(r.requiredSize)),
+        d = computed(() => formatFileSize$1(a.value)),
+        c = computed(() => r.requiredSize.isGreaterThan(a.value)),
+        v = () => {
+          const B = i.setting.game_path;
+          B &&
+            window.LuminJsCall &&
+            window.LuminJsCall("get_game_path", { path: B });
+        };
+      watch(
+        () => n.modelValue,
+        (B) => {
+          ((o.isShowDialog = B), B && v());
+        },
+        { immediate: !0 },
+      );
+      const E = () => {
+          (s("update:modelValue", !1), s("close"));
+        },
+        x = async () => {
+          (await r.startPreDownload()) && E();
+        };
+      return (B, G) => (
+        openBlock(),
+        createBlock(
+          _sfc_main$c,
+          {
+            modelValue: o.isShowDialog,
+            "onUpdate:modelValue": G[0] || (G[0] = (q) => (o.isShowDialog = q)),
+            className: "dialog-pre-download",
+            title: "预下载新版本",
+            onClose: E,
+          },
+          {
+            default: withCtx(() => [
+              createBaseVNode("div", _hoisted_1$7, [
+                G[4] ||
+                  (G[4] = createBaseVNode(
+                    "p",
+                    { class: "pre-download-description" },
+                    " 预下载不会影响进入游戏，但可能占用较多网络带宽。网络延迟较高时，建议在设置中限制下载速度。 ",
+                    -1,
+                  )),
+                createBaseVNode("div", _hoisted_2$7, [
+                  createBaseVNode("div", _hoisted_3$7, [
+                    G[1] ||
+                      (G[1] = createBaseVNode(
+                        "span",
+                        null,
+                        "下载文件大小",
+                        -1,
+                      )),
+                    createBaseVNode(
+                      "strong",
+                      null,
+                      toDisplayString(l.value),
+                      1,
+                    ),
+                  ]),
+                  createBaseVNode("div", _hoisted_4$7, [
+                    G[2] ||
+                      (G[2] = createBaseVNode(
+                        "span",
+                        { class: "size-label" },
+                        [
+                          createTextVNode(" 所需空间 "),
+                          createBaseVNode(
+                            "span",
+                            { class: "tooltip-container" },
+                            [
+                              createBaseVNode("span", {
+                                class: "icon icon-tips",
+                              }),
+                              createBaseVNode(
+                                "span",
+                                { class: "tooltip" },
+                                " 已包含下载过程所需的临时缓冲空间。 ",
+                              ),
+                            ],
+                          ),
+                        ],
+                        -1,
+                      )),
+                    createBaseVNode(
+                      "strong",
+                      null,
+                      toDisplayString(u.value),
+                      1,
+                    ),
+                  ]),
+                  createBaseVNode("div", _hoisted_5$7, [
+                    G[3] ||
+                      (G[3] = createBaseVNode("span", null, "可用空间", -1)),
+                    createBaseVNode(
+                      "strong",
+                      { class: normalizeClass({ danger: c.value }) },
+                      toDisplayString(d.value),
+                      3,
+                    ),
+                  ]),
+                ]),
+                G[5] ||
+                  (G[5] = createBaseVNode(
+                    "p",
+                    { class: "pre-download-note" },
+                    " * 新版本发布后，已下载文件将自动用于资源更新，冗余文件由更新流程清理。 ",
+                    -1,
+                  )),
+                c.value
+                  ? (openBlock(),
+                    createElementBlock(
+                      "p",
+                      _hoisted_6$7,
+                      " 磁盘空间不足，请清理空间后重试。 ",
+                    ))
+                  : createCommentVNode("", !0),
+                createBaseVNode(
+                  "button",
+                  {
+                    class: normalizeClass([
+                      "confirm-button bold flex flex-center",
+                      c.value
+                        ? "bg-btn-disabled is-disabled"
+                        : "bg-btn-common cursor",
+                    ]),
+                    type: "button",
+                    onClick: x,
+                  },
+                  " 确认下载 ",
+                  2,
+                ),
+              ]),
+            ]),
+            _: 1,
+          },
+          8,
+          ["modelValue"],
+        )
+      );
+    },
+  },
+  PreDownloadConfirm = _export_sfc(_sfc_main$8, [
+    ["__scopeId", "data-v-890a8be3"],
+  ]),
+  _hoisted_1$6 = { key: 0, class: "status-panel" },
+  _hoisted_2$6 = { class: "status-header" },
+  _hoisted_3$6 = { class: "status-detail" },
+  _hoisted_4$6 = { key: 0, class: "detail-item" },
+  _hoisted_5$6 = { class: "time-value" },
+  _hoisted_6$6 = { class: "detail-item speed-detail" },
+  _hoisted_7$5 = { key: 0, class: "icon icon-download-small" },
+  _hoisted_8$5 = ["aria-label", "disabled"],
+  _hoisted_9$4 = { class: "button-disc" },
+  _hoisted_10$4 = { key: 1, class: "completed-badge" },
+  _hoisted_11$3 = { class: "button-label bold lm-font-serif" },
+  _sfc_main$7 = {
+    __name: "PreDownload",
+    setup(e) {
+      const t = usePreDownloadStore(),
+        n = ref(!1),
+        s = ref(!1),
+        r = computed(() => t.preDownloadStatus.status),
+        i = computed(() => r.value === "ready"),
+        o = computed(() => ["downloading", "pause"].includes(r.value)),
+        a = computed(() => ({
+          "--pre-download-progress": `${t.downloadProgress}%`,
+        })),
+        l = computed(() => s.value && o.value),
+        u = computed(() => (r.value === "pause" ? "已暂停" : "下载中")),
+        d = computed(() => {
+          switch (r.value) {
+            case "downloading":
+              return "暂停预下载";
+            case "pause":
+              return "继续预下载";
+            case "ready":
+              return "预下载可用";
+            default:
+              return "预下载";
+          }
+        }),
+        c = computed(() => (i.value ? "预下载可用" : "预下载")),
+        v = computed(() =>
+          i.value
+            ? ["center-icon-small", "pre-download-click-completed"]
+            : r.value === "pause"
+              ? ["center-icon-small", "pre-download-resume"]
+              : r.value === "downloading" && s.value
+                ? ["center-icon-small", "pre-download-pause"]
+                : ["center-icon-large", "pre-download-click"],
+        ),
+        E = () => {
+          switch (r.value) {
+            case "downloading":
+              t.pausePreDownload();
+              break;
+            case "pause":
+              t.resumePreDownload();
+              break;
+            case "ready":
+              break;
+            default:
+              n.value = !0;
+              break;
+          }
+        };
+      return (x, B) => (
+        openBlock(),
+        createElementBlock(
+          Fragment,
+          null,
+          [
+            createVNode(
+              Transition,
+              { name: "pre-download-fade" },
+              {
+                default: withCtx(() => [
+                  unref(t).hasPreDownload
+                    ? (openBlock(),
+                      createElementBlock(
+                        "div",
+                        {
+                          key: 0,
+                          class: normalizeClass([
+                            "pre-download-control",
+                            r.value,
+                          ]),
+                        },
+                        [
+                          createVNode(
+                            Transition,
+                            { name: "status-panel-fade" },
+                            {
+                              default: withCtx(() => [
+                                l.value
+                                  ? (openBlock(),
+                                    createElementBlock("div", _hoisted_1$6, [
+                                      createBaseVNode("div", _hoisted_2$6, [
+                                        createBaseVNode(
+                                          "span",
+                                          null,
+                                          toDisplayString(u.value),
+                                          1,
+                                        ),
+                                        createBaseVNode(
+                                          "strong",
+                                          null,
+                                          toDisplayString(
+                                            unref(t).downloadProgress,
+                                          ) + "%",
+                                          1,
+                                        ),
+                                      ]),
+                                      createBaseVNode("div", _hoisted_3$6, [
+                                        unref(t).remainingTime
+                                          ? (openBlock(),
+                                            createElementBlock(
+                                              "span",
+                                              _hoisted_4$6,
+                                              [
+                                                B[3] ||
+                                                  (B[3] = createBaseVNode(
+                                                    "span",
+                                                    { class: "icon icon-time" },
+                                                    null,
+                                                    -1,
+                                                  )),
+                                                createBaseVNode(
+                                                  "span",
+                                                  _hoisted_5$6,
+                                                  toDisplayString(
+                                                    unref(t).remainingTime,
+                                                  ),
+                                                  1,
+                                                ),
+                                              ],
+                                            ))
+                                          : createCommentVNode("", !0),
+                                        createBaseVNode("span", _hoisted_6$6, [
+                                          r.value !== "pause"
+                                            ? (openBlock(),
+                                              createElementBlock(
+                                                "span",
+                                                _hoisted_7$5,
+                                              ))
+                                            : createCommentVNode("", !0),
+                                          createTextVNode(
+                                            " " +
+                                              toDisplayString(
+                                                unref(t).speedSize,
+                                              ),
+                                            1,
+                                          ),
+                                        ]),
+                                      ]),
+                                    ]))
+                                  : createCommentVNode("", !0),
+                              ]),
+                              _: 1,
+                            },
+                          ),
+                          createBaseVNode(
+                            "button",
+                            {
+                              class: normalizeClass([
+                                "pre-download-button cursor",
+                                { cursor: !i.value },
+                              ]),
+                              type: "button",
+                              "aria-label": d.value,
+                              disabled: i.value,
+                              onMouseenter:
+                                B[0] || (B[0] = (G) => (s.value = !0)),
+                              onMouseleave:
+                                B[1] || (B[1] = (G) => (s.value = !1)),
+                              onClick: E,
+                            },
+                            [
+                              createBaseVNode("span", _hoisted_9$4, [
+                                B[5] ||
+                                  (B[5] = createBaseVNode(
+                                    "span",
+                                    {
+                                      class:
+                                        "pre-download-layer pre-download-bg",
+                                    },
+                                    null,
+                                    -1,
+                                  )),
+                                o.value
+                                  ? (openBlock(),
+                                    createElementBlock(
+                                      Fragment,
+                                      { key: 0 },
+                                      [
+                                        B[4] ||
+                                          (B[4] = createBaseVNode(
+                                            "span",
+                                            {
+                                              class:
+                                                "pre-download-layer progress-bg",
+                                            },
+                                            null,
+                                            -1,
+                                          )),
+                                        createBaseVNode(
+                                          "span",
+                                          {
+                                            class:
+                                              "pre-download-layer progress-value",
+                                            style: normalizeStyle(a.value),
+                                          },
+                                          null,
+                                          4,
+                                        ),
+                                      ],
+                                      64,
+                                    ))
+                                  : createCommentVNode("", !0),
+                                createBaseVNode(
+                                  "span",
+                                  {
+                                    class: normalizeClass([
+                                      "center-icon",
+                                      v.value,
+                                    ]),
+                                  },
+                                  null,
+                                  2,
+                                ),
+                                i.value
+                                  ? (openBlock(),
+                                    createElementBlock("span", _hoisted_10$4))
+                                  : createCommentVNode("", !0),
+                              ]),
+                              createBaseVNode(
+                                "span",
+                                _hoisted_11$3,
+                                toDisplayString(c.value),
+                                1,
+                              ),
+                            ],
+                            42,
+                            _hoisted_8$5,
+                          ),
+                        ],
+                        2,
+                      ))
+                    : createCommentVNode("", !0),
+                ]),
+                _: 1,
+              },
+            ),
+            createVNode(
+              PreDownloadConfirm,
+              {
+                modelValue: n.value,
+                "onUpdate:modelValue": B[2] || (B[2] = (G) => (n.value = G)),
+              },
+              null,
+              8,
+              ["modelValue"],
+            ),
+          ],
+          64,
+        )
+      );
+    },
+  },
+  PreDownload = _export_sfc(_sfc_main$7, [["__scopeId", "data-v-40388e7a"]]),
+  _hoisted_1$5 = { class: "game" },
+  _hoisted_2$5 = { class: "game-line" },
+  _hoisted_3$5 = { class: "right" },
+  _hoisted_4$5 = { key: 1, class: "game-position" },
+  _hoisted_5$5 = { class: "text-download center bold" },
+  _hoisted_6$5 = {
+    key: 3,
+    class: "download-item cursor bg-btn-download flex flex-center",
+  },
+  _hoisted_7$4 = {
+    key: 7,
+    class: "download-item cursor bg-btn-playing flex flex-center",
+  },
+  _hoisted_8$4 = { class: "text-tips" },
+  _hoisted_9$3 = { class: "text-tips-desc download-stats" },
+  _hoisted_10$3 = { class: "download-size current-size" },
+  _hoisted_11$2 = { class: "download-size total-size" },
+  _hoisted_12$2 = { class: "icon-pause-wrapper" },
+  _hoisted_13$2 = { class: "progress-ring" },
+  _hoisted_14$2 = { viewBox: "0 0 72 72", class: "progress-svg" },
+  _hoisted_15$2 = ["stroke-dasharray", "stroke-dashoffset"],
+  _hoisted_16$2 = { class: "text-tips" },
+  _hoisted_17$2 = { class: "text-tips-desc download-stats" },
+  _hoisted_18$2 = { class: "download-speed" },
+  _hoisted_19$2 = { class: "download-size current-size" },
+  _hoisted_20$2 = { class: "download-size total-size" },
+  _hoisted_21$2 = { class: "icon-pause-wrapper" },
+  _hoisted_22$2 = { class: "progress-ring" },
+  _hoisted_23$2 = { viewBox: "0 0 72 72", class: "progress-svg" },
+  _hoisted_24$2 = ["stroke-dasharray"],
+  _hoisted_25$2 = ["stroke-dasharray", "stroke-dashoffset"],
+  _hoisted_26$2 = { class: "progress-text" },
+  _hoisted_27$2 = { class: "text-downloading white bold" },
+  _hoisted_28 = { class: "icon-pause-wrapper" },
+  _hoisted_29 = { class: "progress-ring" },
+  _hoisted_30 = { viewBox: "0 0 72 72", class: "progress-svg" },
+  _hoisted_31 = ["stroke-dasharray"],
+  _hoisted_32 = ["stroke-dasharray", "stroke-dashoffset"],
+  _hoisted_33 = { class: "progress-text" },
+  _hoisted_34 = { key: 11, class: "download-item cursor" },
+  _hoisted_35 = { class: "icon-pause-wrapper" },
+  _hoisted_36 = { class: "progress-ring" },
+  _hoisted_37 = { viewBox: "0 0 72 72", class: "progress-svg" },
+  _hoisted_38 = ["stroke-dasharray"],
+  _hoisted_39 = ["stroke-dasharray", "stroke-dashoffset"],
+  _hoisted_40 = { class: "progress-text" },
+  _hoisted_41 = { key: 0, class: "game-line dx11-line" },
+  FORCE_D3D11_STORAGE_KEY = "launcher_force_d3d11",
+  _sfc_main$6 = {
+    __name: "Game",
+    props: { showDx11: { type: Boolean, default: !0 } },
+    emits: ["showGameMenu", "downloadGame", "installPath", "networkError"],
+    setup(e, { emit: t }) {
+      const n = e,
+        s = useGameStore(),
+        r = useVersionStore(),
+        i = useSettingStore(),
+        o = useResStore(),
+        a = usePreDownloadStore(),
+        l = t,
+        u = ref(storage.getItem(FORCE_D3D11_STORAGE_KEY) === "1"),
+        d = computed(() =>
+          isDx11AndEnvCheckEnabled(r.versionInfo.launcher_env),
+        ),
+        c = () => {
+          ((u.value = !u.value),
+            storage.setItem(FORCE_D3D11_STORAGE_KEY, u.value ? "1" : "0"));
+        },
+        v = computed(() => 2 * Math.PI * 29),
+        E = computed(() => !s.needLoadResource || a.skipGameResourceCheck),
+        x = computed(() =>
+          E.value ? s : s.gameStatus.status === "ready" ? o : s,
+        ),
+        B = computed(() =>
+          E.value
+            ? s.gameStatus.status
+            : s.gameStatus.status === "ready"
+              ? o.resStatus.status
+              : s.gameStatus.status,
+        ),
+        G = computed(() => x.value === o),
+        q = () => {},
+        b = () => {
+          (l("installPath"), console.log("downloadGame"));
+        },
+        N = () => {
+          G.value ? o.resUpdate() : s.gameDownload();
+        },
+        z = () => {
+          G.value ? o.resResume() : X();
+        },
+        Y = () => {
+          G.value ? o.resPause() : K();
+        },
+        X = () => {
+          (ta.track("pclauncher_download_game", {
+            action: "resume",
+            game_version: s.downloadInfo.client_version,
+            speed_limit: i.setting.speed_limit,
+            size: formatFileMB(s.downloadInfo.zip_size),
+          }),
+            window.LuminJsCall("game_resume"));
+        },
+        K = () => {
+          (ta.track("pclauncher_download_game", {
+            action: "pause",
+            game_version: s.downloadInfo.client_version,
+            speed_limit: i.setting.speed_limit,
+            size: formatFileMB(s.downloadInfo.zip_size),
+          }),
+            window.LuminJsCall("game_pause"));
+        },
+        w = () => {
+          (ta.track("pclauncher_download_game", {
+            action: "install",
+            game_version: s.downloadInfo.client_version,
+            size: formatFileMB(s.downloadInfo.zip_size),
+          }),
+            window.LuminJsCall("game_install"));
+        },
+        m = () => {
+          const R = !!(n.showDx11 && d.value && u.value);
+          (ta.track("pclauncher_download_game", {
+            action: "enter",
+            game_version: r.versionInfo.game_version,
+            is_dx11: R,
+          }),
+            s.enterCheck(() => {
+              s.gameEnter({ forceD3d11: R });
+            }));
+        },
+        S = () => {
+          l("packageEmptyError");
+        },
+        $ = () => {
+          window.LuminJsCall("locate_game_path");
+        };
+      return (R, P) => (
+        openBlock(),
+        createElementBlock("div", _hoisted_1$5, [
+          createBaseVNode("div", _hoisted_2$5, [
+            createVNode(PreDownload),
+            createBaseVNode("div", {
+              class: "icon icon-menu cursor",
+              onClick: P[0] || (P[0] = (W) => l("showGameMenu")),
+            }),
+            createBaseVNode("div", _hoisted_3$5, [
+              B.value === "wait_download"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 0,
+                      class: "download-item d1 cursor bg-btn-download",
+                      onClick: b,
+                    },
+                    P[1] ||
+                      (P[1] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "icon icon-download" },
+                          null,
+                          -1,
+                        ),
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download bold" },
+                          "下载游戏",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "wait_download"
+                ? (openBlock(),
+                  createElementBlock("div", _hoisted_4$5, [
+                    P[2] || (P[2] = createTextVNode(" 已下载？")),
+                    createBaseVNode(
+                      "span",
+                      {
+                        class: "yellow cursor",
+                        onClick: withModifiers($, ["stop"]),
+                      },
+                      "定位游戏",
+                    ),
+                  ]))
+                : createCommentVNode("", !0),
+              B.value === "wait_update"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 2,
+                      class:
+                        "download-item cursor bg-btn-download flex flex-center",
+                      onClick: N,
+                    },
+                    [
+                      createBaseVNode(
+                        "div",
+                        _hoisted_5$5,
+                        toDisplayString(G.value ? "更新资源" : "更新"),
+                        1,
+                      ),
+                    ],
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "uninstalling"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    _hoisted_6$5,
+                    P[3] ||
+                      (P[3] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download center bold" },
+                          "卸载中",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "download_complete"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 4,
+                      class:
+                        "download-item d1 cursor bg-btn-download flex flex-center",
+                      onClick: w,
+                    },
+                    P[4] ||
+                      (P[4] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download center bold" },
+                          "安装游戏",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "empty"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 5,
+                      class:
+                        "download-item d1 cursor bg-btn-download flex flex-center",
+                      onClick: S,
+                    },
+                    P[5] ||
+                      (P[5] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download center bold" },
+                          "检查中",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "ready"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 6,
+                      class:
+                        "download-item d1 cursor bg-btn-download flex flex-center",
+                      onClick: m,
+                    },
+                    P[6] ||
+                      (P[6] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download center bold" },
+                          "进入游戏",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "playing"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    _hoisted_7$4,
+                    P[7] ||
+                      (P[7] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "text-download center bold" },
+                          "游戏中",
+                          -1,
+                        ),
+                      ]),
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "pause"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    { key: 8, class: "download-item cursor", onClick: z },
+                    [
+                      createBaseVNode("div", _hoisted_8$4, [
+                        P[9] ||
+                          (P[9] = createBaseVNode(
+                            "div",
+                            { class: "text-tips-title" },
+                            "已暂停",
+                            -1,
+                          )),
+                        createBaseVNode("div", _hoisted_9$3, [
+                          createBaseVNode(
+                            "span",
+                            _hoisted_10$3,
+                            toDisplayString(x.value.formattedCurrentSize),
+                            1,
+                          ),
+                          P[8] ||
+                            (P[8] = createBaseVNode(
+                              "span",
+                              { class: "stats-separator" },
+                              "/",
+                              -1,
+                            )),
+                          createBaseVNode(
+                            "span",
+                            _hoisted_11$2,
+                            toDisplayString(x.value.formattedTotalSize),
+                            1,
+                          ),
+                        ]),
+                      ]),
+                      createBaseVNode("div", _hoisted_12$2, [
+                        P[10] ||
+                          (P[10] = createBaseVNode(
+                            "div",
+                            { class: "icon icon-pause" },
+                            null,
+                            -1,
+                          )),
+                        createBaseVNode("div", _hoisted_13$2, [
+                          (openBlock(),
+                          createElementBlock("svg", _hoisted_14$2, [
+                            createBaseVNode(
+                              "circle",
+                              {
+                                cx: "36",
+                                cy: "36",
+                                r: "29",
+                                fill: "none",
+                                stroke: "#7be688",
+                                "stroke-width": "6",
+                                "stroke-dasharray": v.value,
+                                "stroke-dashoffset":
+                                  v.value -
+                                  (v.value * x.value.downloadProgress) / 100,
+                                "stroke-linecap": "round",
+                                class: "progress-circle",
+                              },
+                              null,
+                              8,
+                              _hoisted_15$2,
+                            ),
+                          ])),
+                        ]),
+                      ]),
+                      P[11] ||
+                        (P[11] = createBaseVNode(
+                          "div",
+                          { class: "text-download green bold" },
+                          "继续下载",
+                          -1,
+                        )),
+                    ],
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "downloading"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    {
+                      key: 9,
+                      class: "download-item downloading cursor",
+                      onClick: Y,
+                    },
+                    [
+                      createBaseVNode("div", _hoisted_16$2, [
+                        P[16] ||
+                          (P[16] = createBaseVNode(
+                            "div",
+                            { class: "text-tips-title" },
+                            "下载中",
+                            -1,
+                          )),
+                        createBaseVNode("div", _hoisted_17$2, [
+                          P[12] ||
+                            (P[12] = createBaseVNode(
+                              "div",
+                              { class: "icon icon-download-small" },
+                              null,
+                              -1,
+                            )),
+                          createBaseVNode(
+                            "span",
+                            _hoisted_18$2,
+                            toDisplayString(x.value.formattedSpeed),
+                            1,
+                          ),
+                          P[13] ||
+                            (P[13] = createBaseVNode(
+                              "span",
+                              { class: "stats-bracket" },
+                              "(",
+                              -1,
+                            )),
+                          createBaseVNode(
+                            "span",
+                            _hoisted_19$2,
+                            toDisplayString(x.value.formattedCurrentSize),
+                            1,
+                          ),
+                          P[14] ||
+                            (P[14] = createBaseVNode(
+                              "span",
+                              { class: "stats-separator" },
+                              "/",
+                              -1,
+                            )),
+                          createBaseVNode(
+                            "span",
+                            _hoisted_20$2,
+                            toDisplayString(x.value.formattedTotalSize),
+                            1,
+                          ),
+                          P[15] ||
+                            (P[15] = createBaseVNode(
+                              "span",
+                              { class: "stats-bracket" },
+                              ")",
+                              -1,
+                            )),
+                        ]),
+                      ]),
+                      createBaseVNode("div", _hoisted_21$2, [
+                        P[17] ||
+                          (P[17] = createBaseVNode(
+                            "div",
+                            { class: "download-empty-icon" },
+                            null,
+                            -1,
+                          )),
+                        createBaseVNode("div", _hoisted_22$2, [
+                          (openBlock(),
+                          createElementBlock("svg", _hoisted_23$2, [
+                            createBaseVNode(
+                              "circle",
+                              {
+                                cx: "36",
+                                cy: "36",
+                                r: "29",
+                                fill: "none",
+                                stroke: "#26241e",
+                                "stroke-width": "6",
+                                "stroke-dasharray": v.value,
+                                "stroke-dashoffset": 0,
+                                "stroke-linecap": "round",
+                                class: "progress-bg-circle",
+                              },
+                              null,
+                              8,
+                              _hoisted_24$2,
+                            ),
+                            createBaseVNode(
+                              "circle",
+                              {
+                                cx: "36",
+                                cy: "36",
+                                r: "29",
+                                fill: "none",
+                                stroke: "#7be688",
+                                "stroke-width": "6",
+                                "stroke-dasharray": v.value,
+                                "stroke-dashoffset":
+                                  v.value -
+                                  (v.value * x.value.downloadProgress) / 100,
+                                "stroke-linecap": "round",
+                                class: "progress-circle",
+                              },
+                              null,
+                              8,
+                              _hoisted_25$2,
+                            ),
+                          ])),
+                        ]),
+                        createBaseVNode(
+                          "div",
+                          _hoisted_26$2,
+                          toDisplayString(x.value.downloadProgress),
+                          1,
+                        ),
+                      ]),
+                      createBaseVNode("div", _hoisted_27$2, [
+                        P[18] ||
+                          (P[18] = createBaseVNode(
+                            "div",
+                            { class: "icon icon-time" },
+                            null,
+                            -1,
+                          )),
+                        createTextVNode(
+                          " " + toDisplayString(x.value.remainingTime),
+                          1,
+                        ),
+                      ]),
+                      P[19] ||
+                        (P[19] = createBaseVNode(
+                          "div",
+                          {
+                            class: "text-downloading green bold lm-font-serif",
+                          },
+                          " 暂停 ",
+                          -1,
+                        )),
+                    ],
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "verifying"
+                ? (openBlock(),
+                  createElementBlock(
+                    "div",
+                    { key: 10, class: "download-item cursor", onClick: q },
+                    [
+                      createBaseVNode("div", _hoisted_28, [
+                        P[20] ||
+                          (P[20] = createBaseVNode(
+                            "div",
+                            { class: "download-empty-icon" },
+                            null,
+                            -1,
+                          )),
+                        createBaseVNode("div", _hoisted_29, [
+                          (openBlock(),
+                          createElementBlock("svg", _hoisted_30, [
+                            createBaseVNode(
+                              "circle",
+                              {
+                                cx: "36",
+                                cy: "36",
+                                r: "29",
+                                fill: "none",
+                                stroke: "#26241e",
+                                "stroke-width": "6",
+                                "stroke-dasharray": v.value,
+                                "stroke-dashoffset": 0,
+                                "stroke-linecap": "round",
+                                class: "progress-bg-circle",
+                              },
+                              null,
+                              8,
+                              _hoisted_31,
+                            ),
+                            createBaseVNode(
+                              "circle",
+                              {
+                                cx: "36",
+                                cy: "36",
+                                r: "29",
+                                fill: "none",
+                                stroke: "#7be688",
+                                "stroke-width": "6",
+                                "stroke-dasharray": v.value,
+                                "stroke-dashoffset":
+                                  v.value -
+                                  (v.value * x.value.downloadProgress) / 100,
+                                "stroke-linecap": "round",
+                                class: "progress-circle",
+                              },
+                              null,
+                              8,
+                              _hoisted_32,
+                            ),
+                          ])),
+                        ]),
+                        createBaseVNode(
+                          "div",
+                          _hoisted_33,
+                          toDisplayString(x.value.downloadProgress),
+                          1,
+                        ),
+                      ]),
+                      P[21] ||
+                        (P[21] = createBaseVNode(
+                          "div",
+                          {
+                            class: "text-downloading common bold lm-font-serif",
+                          },
+                          " 校验中 ",
+                          -1,
+                        )),
+                    ],
+                  ))
+                : createCommentVNode("", !0),
+              B.value === "installing"
+                ? (openBlock(),
+                  createElementBlock("div", _hoisted_34, [
+                    createBaseVNode("div", _hoisted_35, [
+                      P[22] ||
+                        (P[22] = createBaseVNode(
+                          "div",
+                          { class: "download-empty-icon" },
+                          null,
+                          -1,
+                        )),
+                      createBaseVNode("div", _hoisted_36, [
+                        (openBlock(),
+                        createElementBlock("svg", _hoisted_37, [
+                          createBaseVNode(
+                            "circle",
+                            {
+                              cx: "36",
+                              cy: "36",
+                              r: "29",
+                              fill: "none",
+                              stroke: "#26241e",
+                              "stroke-width": "6",
+                              "stroke-dasharray": v.value,
+                              "stroke-dashoffset": 0,
+                              "stroke-linecap": "round",
+                              class: "progress-bg-circle",
+                            },
+                            null,
+                            8,
+                            _hoisted_38,
+                          ),
+                          createBaseVNode(
+                            "circle",
+                            {
+                              cx: "36",
+                              cy: "36",
+                              r: "29",
+                              fill: "none",
+                              stroke: "#7be688",
+                              "stroke-width": "6",
+                              "stroke-dasharray": v.value,
+                              "stroke-dashoffset":
+                                v.value -
+                                (v.value * x.value.downloadProgress) / 100,
+                              "stroke-linecap": "round",
+                              class: "progress-circle",
+                            },
+                            null,
+                            8,
+                            _hoisted_39,
+                          ),
+                        ])),
+                      ]),
+                      createBaseVNode(
+                        "div",
+                        _hoisted_40,
+                        toDisplayString(x.value.downloadProgress),
+                        1,
+                      ),
+                    ]),
+                    P[23] ||
+                      (P[23] = createBaseVNode(
+                        "div",
+                        { class: "text-downloading common bold lm-font-serif" },
+                        " 安装中 ",
+                        -1,
+                      )),
+                  ]))
+                : createCommentVNode("", !0),
+            ]),
+          ]),
+          B.value === "ready" && e.showDx11 && d.value
+            ? (openBlock(),
+              createElementBlock("div", _hoisted_41, [
+                createBaseVNode(
+                  "div",
+                  {
+                    class: "dx11-option cursor",
+                    onClick: withModifiers(c, ["stop"]),
+                  },
+                  [
+                    createBaseVNode(
+                      "span",
+                      {
+                        class: normalizeClass([
+                          "dx11-mark",
+                          { active: u.value },
+                        ]),
+                      },
+                      null,
+                      2,
+                    ),
+                    P[24] ||
+                      (P[24] = createBaseVNode(
+                        "span",
+                        null,
+                        "使用DX11启动 (游戏异常时选择)",
+                        -1,
+                      )),
+                  ],
+                ),
+              ]))
+            : createCommentVNode("", !0),
+        ])
+      );
+    },
+  },
+  Game = _export_sfc(_sfc_main$6, [["__scopeId", "data-v-3c63ae4e"]]),
+  _sfc_main$5 = {
+    __name: "GameMenu",
+    props: { modelValue: { type: Boolean, default: !1 } },
+    emits: ["update:modelValue", "openSetting"],
+    setup(e, { emit: t }) {
+      const n = t,
+        s = () => {
+          n("update:modelValue", !1);
+        },
+        r = () => {
+          (n("openSetting", 1), s());
+        },
+        i = () => {
+          (window.LuminJsCall && window.LuminJsCall("open_game_path"), s());
+        },
+        o = () => {
+          (n("uninstallGame", 1), s());
+        };
+      return (a, l) =>
+        e.modelValue
+          ? (openBlock(),
+            createElementBlock(
+              "div",
+              { key: 0, class: "game-menu-overlay", onClick: s },
+              [
+                createBaseVNode(
+                  "div",
+                  {
+                    class: "game-menu-modal bg-btn-menu",
+                    onClick: l[0] || (l[0] = withModifiers(() => {}, ["stop"])),
+                  },
+                  [
+                    createBaseVNode("div", { class: "game-menu-items" }, [
+                      createBaseVNode(
+                        "div",
+                        { class: "game-menu-item cursor", onClick: r },
+                        " 下载限速 ",
+                      ),
+                      createBaseVNode(
+                        "div",
+                        { class: "game-menu-item cursor", onClick: i },
+                        " 游戏目录 ",
+                      ),
+                      createBaseVNode(
+                        "div",
+                        { class: "game-menu-item cursor", onClick: o },
+                        " 卸载游戏 ",
+                      ),
+                    ]),
+                  ],
+                ),
+              ],
+            ))
+          : createCommentVNode("", !0);
+    },
+  },
+  GameMenu = _export_sfc(_sfc_main$5, [["__scopeId", "data-v-4755341f"]]),
+  _hoisted_1$4 = { class: "dialog-install-content" },
+  _hoisted_2$4 = ["title"],
+  _hoisted_3$4 = { class: "tips" },
+  _hoisted_4$4 = { class: "label" },
+  _hoisted_5$4 = { class: "text" },
+  _hoisted_6$4 = { class: "label" },
+  _hoisted_7$3 = { class: "text flex flex-center" },
+  _hoisted_8$3 = { class: "label" },
+  _hoisted_9$2 = { class: "text" },
+  _hoisted_10$2 = { class: "dialog-btn-wrapper" },
+  _sfc_main$4 = {
+    __name: "Install",
+    props: { modelValue: { type: Boolean, default: !1 } },
+    emits: ["update:modelValue", "close", "success"],
+    setup(e, { expose: t, emit: n }) {
+      const s = e,
+        r = n,
+        i = useSettingStore(),
+        o = useGameStore(),
+        a = reactive({ isShowDialog: s.modelValue }),
+        l = computed(() => formatFileSize$1(i.setting.available_space)),
+        u = computed(() =>
+          o.downloadInfo.zip_size.plus(o.downloadInfo.resource_size),
+        ),
+        d = computed(() => formatFileSize$1(u.value)),
+        c = computed(() =>
+          o.downloadInfo.game_size.plus(
+            calculateFirstDownloadExtraSize(
+              o.downloadInfo.resource_size,
+              o.downloadInfo.max_resource_zip_size,
+            ),
+          ),
+        ),
+        v = computed(() => formatFileSize$1(c.value)),
+        E = computed(() =>
+          c.value.isGreaterThanOrEqualTo(i.setting.available_space),
+        ),
+        x = () => {
+          const N = i.setting.game_path;
+          N && window.LuminJsCall("get_game_path", { path: N });
+        };
+      watch(
+        () => s.modelValue,
+        (N) => {
+          ((a.isShowDialog = N), N && x());
+        },
+        { immediate: !0 },
+      );
+      const B = () => {
+          window.LuminJsCall("choose_game_path");
+        },
+        G = () => {
+          window.LuminJsCall("locate_game_path");
+        },
+        q = () => {
+          (r("update:modelValue", !1), r("close"));
+        };
+      (onMounted(() => {
+        window.emitter.on("luminEvent", (N) => {
+          N.event === "locate_game_path" && q();
+        });
+      }),
+        onUnmounted(() => {}));
+      const b = () => {
+        E.value || (o.gameDownload(), q());
+      };
+      return (
+        t({ close: q }),
+        (N, z) => (
+          openBlock(),
+          createBlock(
+            _sfc_main$c,
+            {
+              modelValue: a.isShowDialog,
+              "onUpdate:modelValue":
+                z[0] || (z[0] = (Y) => (a.isShowDialog = Y)),
+              className: "dialog-install",
+              title: "安装",
+              onClose: q,
+            },
+            {
+              default: withCtx(() => [
+                createBaseVNode("div", _hoisted_1$4, [
+                  z[7] ||
+                    (z[7] = createBaseVNode(
+                      "div",
+                      { class: "title" },
+                      "选择安装路径",
+                      -1,
+                    )),
+                  createBaseVNode(
+                    "div",
+                    { class: "choose-path flex flex-between", onClick: B },
+                    [
+                      createBaseVNode(
+                        "div",
+                        {
+                          class: "path-text",
+                          title: unref(i).setting.game_path,
+                        },
+                        toDisplayString(unref(i).setting.game_path),
+                        9,
+                        _hoisted_2$4,
+                      ),
+                      z[1] ||
+                        (z[1] = createBaseVNode(
+                          "div",
+                          { class: "icon icon-folder" },
+                          null,
+                          -1,
+                        )),
+                    ],
+                  ),
+                  withDirectives(
+                    createBaseVNode(
+                      "div",
+                      _hoisted_3$4,
+                      " 磁盘空间不足，请更换目录 ",
+                      512,
+                    ),
+                    [[vShow, E.value]],
+                  ),
+                  createBaseVNode("div", _hoisted_4$4, [
+                    z[2] || (z[2] = createTextVNode(" ·下载文件大小： ")),
+                    createBaseVNode(
+                      "div",
+                      _hoisted_5$4,
+                      toDisplayString(d.value),
+                      1,
+                    ),
+                  ]),
+                  createBaseVNode("div", _hoisted_6$4, [
+                    z[4] || (z[4] = createTextVNode(" ·所需空间： ")),
+                    createBaseVNode("div", _hoisted_7$3, [
+                      createTextVNode(toDisplayString(v.value) + " ", 1),
+                      z[3] ||
+                        (z[3] = createBaseVNode(
+                          "div",
+                          { class: "tooltip-container" },
+                          [
+                            createBaseVNode("div", { class: "icon icon-tips" }),
+                            createBaseVNode(
+                              "div",
+                              { class: "tooltip" },
+                              " 下载文件后将进行合并或解压,过程不消耗流量,但需要额外的磁盘空间。 ",
+                            ),
+                          ],
+                          -1,
+                        )),
+                    ]),
+                  ]),
+                  createBaseVNode("div", _hoisted_8$3, [
+                    z[5] || (z[5] = createTextVNode(" ·可用空间： ")),
+                    createBaseVNode(
+                      "div",
+                      _hoisted_9$2,
+                      toDisplayString(l.value),
+                      1,
+                    ),
+                  ]),
+                  createBaseVNode("div", _hoisted_10$2, [
+                    createBaseVNode(
+                      "div",
+                      { class: "dialog-btn-tips flex flex-center" },
+                      [
+                        z[6] || (z[6] = createTextVNode(" 已下载， ")),
+                        createBaseVNode(
+                          "div",
+                          { class: "open-game-path cursor", onClick: G },
+                          " 定位游戏 ",
+                        ),
+                      ],
+                    ),
+                    createBaseVNode(
+                      "div",
+                      {
+                        class: normalizeClass([
+                          "dialog-btn-download bold flex flex-center cursor",
+                          E.value ? "bg-btn-disabled" : "bg-btn-common",
+                        ]),
+                        onClick: b,
+                      },
+                      " 下载游戏 ",
+                      2,
+                    ),
+                  ]),
+                ]),
+              ]),
+              _: 1,
+            },
+            8,
+            ["modelValue"],
+          )
+        )
+      );
+    },
+  },
+  Install = _export_sfc(_sfc_main$4, [["__scopeId", "data-v-8118d316"]]),
+  _hoisted_1$3 = { class: "media-links flex flex-center" },
+  _hoisted_2$3 = { class: "icon-wrapper" },
+  _hoisted_3$3 = ["onMouseover"],
+  _hoisted_4$3 = { class: "media-wrapper" },
+  _hoisted_5$3 = ["onClick", "innerHTML"],
+  _hoisted_6$3 = { key: 1, class: "media-qr" },
+  _hoisted_7$2 = ["src"],
+  _hoisted_8$2 = { class: "qr-text" },
+  _sfc_main$3 = {
+    __name: "MediaLinks",
+    props: {
+      mediaList: {
+        type: Array,
+        default: () => [
+          { name: "browser", link: "https://lvmeng.zhuziplay.com" },
+          { name: "wechat", link: "" },
+          { name: "qq", link: "" },
+          { name: "weibo", link: "https://weibo.com" },
+          { name: "taptap", link: "" },
+          { name: "bilibili", link: "" },
+          { name: "douyin", link: "" },
+          { name: "service", link: "https://lvmeng.zhuziplay.com" },
+        ],
+      },
+    },
+    emits: ["mediaClick"],
+    setup(e, { emit: t }) {
+      const n = t,
+        s = (i, o) => {
+          (ta.track("pclauncher_visit_click", { media_name: i, op: 2 }),
+            n("mediaClick", o));
+        },
+        r = (i) => {
+          ta.track("pclauncher_visit_click", { media_name: i, op: 1 });
+        };
+      return (i, o) => (
+        openBlock(),
+        createElementBlock("div", _hoisted_1$3, [
+          (openBlock(!0),
+          createElementBlock(
+            Fragment,
+            null,
+            renderList(
+              e.mediaList,
+              (a, l) => (
+                openBlock(),
+                createElementBlock(
+                  "div",
+                  { class: "media-item cursor", key: "media" + l },
+                  [
+                    createBaseVNode("div", _hoisted_2$3, [
+                      createBaseVNode(
+                        "div",
+                        {
+                          class: normalizeClass(["icon", "icon-" + a.name]),
+                          onMouseover: (u) => r(a.name),
+                        },
+                        null,
+                        42,
+                        _hoisted_3$3,
+                      ),
+                    ]),
+                    createBaseVNode("div", _hoisted_4$3, [
+                      a.title != ""
+                        ? (openBlock(),
+                          createElementBlock(
+                            "div",
+                            {
+                              key: 0,
+                              class: "media-tooltip",
+                              onClick: (u) => s(a.name, a.link),
+                              innerHTML: a.title,
+                            },
+                            null,
+                            8,
+                            _hoisted_5$3,
+                          ))
+                        : createCommentVNode("", !0),
+                      a.qrcode != ""
+                        ? (openBlock(),
+                          createElementBlock("div", _hoisted_6$3, [
+                            createBaseVNode(
+                              "img",
+                              { src: a.qrcode },
+                              null,
+                              8,
+                              _hoisted_7$2,
+                            ),
+                            createBaseVNode(
+                              "div",
+                              _hoisted_8$2,
+                              toDisplayString(a.desc),
+                              1,
+                            ),
+                          ]))
+                        : createCommentVNode("", !0),
+                    ]),
+                  ],
+                )
+              ),
+            ),
+            128,
+          )),
+        ])
+      );
+    },
+  },
+  MediaLinks = _export_sfc(_sfc_main$3, [["__scopeId", "data-v-0fce6db8"]]),
+  activityIcon =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAmCAYAAACsyDmTAAADwklEQVR4AeyYT0hUURTG7zwddWZylBYiBi0CpX2LWlsLDYoWthDEWrqOrFBIMEhaRIVBtRFCcCNhBf2DdrUJ2rUocBG4SoLUN+Oo8+/1+0ZHx5lxfG+GeRA0vG/uvefdc+537zvnvDNjLS0tTa+srMQ3NzedeDzurK6ujpidz9ra2mQikXB0b2Njw6kXZN+27djy8vITq7Ozsy8ajUaamppMKBQyLS0t4R0+Gh9lbJqbmyWvG2T/CJ/29vZeK5VKbTmOYwKBgMlms2aLT54QzBOS5cf1bLVOOp1OWJDJgMK1nMKBX31xAFnLrwXdrlMVIXZiasVBBD0TSiaTv9bX1xeIuBdVYp7IfY+/rJYj5YmQTgWf/wSR4VgsdqUakEquEkgj2Pkme8WkPBGSMkZSHR0dcdLFejXo6upKNDQ0xLFVNng8E8JQNTqo7V2BQKABlLVTVrin6n/v3ydkWVam1nMjK6fxxXQ5O55OiOdugsHgSSJlGAxViUGIDDU2Nh6XPfr7Lk+EpMmL8FQ4HH4OZnkZ70Jjl5hj3iPsnJC9YngmJAPamcAudWI58CiNZG6gubJTDp4I8dxVDSxSBUyRHCfI2C/xhwxZd4v+AzLwXTBVCcy7w/3Hyvg1E5IBsuxXSpex1tbWSfozIoPxNcY3qKvGwVgltLW13WYTE+guaoOyWQhPJyRFjOxGGRk3hUwZ1+FRlY0a7pdcbEB6u3YKJ3gmhN9027Z9iVL3LIR68YcmIu8I5e8g8gvgYiUQmf049AB2jrGJQi65vidCMkBJexosEGEfMTyKYfgEVQLPIX8NXlUCem+5P4Nud45B0ZcnQtIVKU7GQCQHyQSNJXcDzZVOOXgmxPP/SZRME2X3aD/goIqyJNHzjPHDw8C8+8yZwal/10wIhzaE/Bei7FokEhmD3FOibJPWhuB15MIo7YEgGm9CZByd77JHf9/l+YTQTvLY0iALYgCRSatGop8BulcJGTazglIWlFyeCeHBPUTKedCHL5xTlNG2Uj0OIOt3gT6i8DI6XZCvjZAMECFnwBvwDtzCiYP8yIwQNfOMFUGHQXqzzO8pYYPA8wmJFASMABlMbF+cXE4muRtsa5V+uyFUqlVHyX9Chx2uTihaNKk5P8ZfQvm+Hy3rRUXIj7VcryFCdtHsrfyYTLqR7/vRsp4tQn6s5XoNi+cmFCoECgd+9eGhmtyySGgh0n/u7xW1ZNBdpybzhiXzg5TWgUvYovL7QbVnePsa3th6myfyBBj/4e2uwl7yuoF/QgxlSQIun/8CAAD//yxwAwEAAAAGSURBVAMAzDGjZGCl/xwAAAAASUVORK5CYII=",
+  battlePassIcon =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAA0CAYAAADxAdr3AAAObklEQVR4AbSZCXiNVxrHb25SJKV2xWOp2lpP0XkoWlup9mlVLaOWMgy1j31sRRhbLPWYUusQY42UKspYM/Zl7IPaYqmdxJbkJrm59yb33vn9v/pCkptI1OT53nu+c867/M97znnP+51YLS/vzw9VIuk0SXURXS/nkeKXoUmgrNu2bStot9sHud3uEypVR7lsqJ/X3/9I2e/RIiDS4X/hwoUqDRs2nBEYGDjVarW+q1J1tWPAHxKf+Hl98UdKXkRahiVrPXToUAmbzTa0UqVK/8qTJ08XlPknJyffogxQnfbN9A85cOBAcdoMGUrJU+T8kYKcSsmYdfr06YGPHj36Y82aNcPz5cs3Ba+Wcblc1y9evDg1LCxsAOUU6jdoL03/1Fq1aoWLX3IYlF3p4TVnjwSzKyED4ve/c+dO7X79+oUWLFgw9JVXXqnv9XpdUVFRK5YsWTLovffeW9W/f//LKlesWDEoOjo6jP5k+BqIX3K3b9+uhdEXWiYCgGyWjwnUumzZsoKJiYnjixcvHs50t/fz83stISFh/+7du/vWrl172tChQy9NnDixzPHjx7uoHDRoUCSenbJr165+4hO/5EqUKBEuPdKHZWEQyQ7VrB8xZsUhJdbBgwfnfvDgQdsOHTpsDwoKGsU0l0lJSYk6d+7c2O7duw9p2bLlgbx581pYz2369Okzt3Llyn9VqbraW7Vqta87fOfPn/+b5JAvKz3Sd//+/S+lHxDCInu8Zv6IyVevBNXnf/ny5WqTJ09eUqRIkbCAgIAaHo/HDvh148eP/+r999//ccuWLbbw8PCahw8fXlC1atXxuXPnLodCq0rVaZ+vfvHVqVNnTUhIyFfIr5ce6StatOgq6b906VJV5J67TAQKvtTHBGplWksxbSPefPPN7UxjOzj8iK0H9+3bN6R8+fKjZ82aFcW0l8Vrwz/77LN/sLHqwZPhob2++sUn/hkzZkQhP0p6pA8Bq/TTtp1oMlx21faEhIfXp8+zgNVp7P6HDx92rFat2mqmbRLTV5Tdfh2DE3r37j2kefPme1q3bl0AxZ179eo1q1SpUl/DE/RUZcY39YtP/JKTvPRIn/RKPzzFGFyI7Mp+ZtHEBKzSPzo6usmAAQOWFipUaC67uo6mLSoqahm7fwDTGb5hw4a4tWvX1v3++++nE19H4JnKGeFl3iJ+yUleeqRPeqVfdmRPdmVfOIQHbeYy4dViEVA/3lQGsJ5W58qV60t2c1529a4dO3b0feedd6YNGzbs8rRp08pHRkaOadKkyXd4QtMvGURz/FglLz3SJ73SLzuyJ7uyLxzCg/YASLaEMxWwP6PKBWN+Oi2//vrrLKZrdJs2bY7Ur18/6MSJE126des2l3DUganLJ57fS9IjfdKL/q6yI3uyK/vSLzzCxbu8nBYwx2kuOoxn586de3/++ee4+fPnVyH4z6lYseIIRlzW6Mz443U6nTGsQ1tmpH4OD29GUYtFetE/nNNxnuzJruybvE9w+VN/ChjXW1k/aqTdYmGzydueBvwRR+sYjT5+kEk+ffr06gULFkzEYAikMj2FLFq0aOLJkyeXw+/yocZowmYtvNwQr3p4T3UeMv7CB9NTwKSDVjygdUK7xcJ0eSUIs8doyOQnNjb2fLt27RaOHTv2Pxy5u6DdUIZy9OjRhzhcljx+/PhsJqqMZjC4ZVf2jQZ+aLMKH69+kLGGVaahgIAAAfU6+EvT8UyFwTjXr1+/kLwgBqWx7O6YZ+jxk3ejpD8uJiYmluleLLln1KR5xZyDBu8T+7xmfFK9mrHL4sfIfDT/1nT9+vUt8izKbfAZVLp06URyByex1KGSut3sgy9+6tSphxngv3/TkPEXXjUantSLL8oUMF7xwxs+hdlcjzhuwwhB8eQGdjaOfc2aNUU5hkcSW6fwpRGCN6eSS4yAr7D6xUfeYKM9jI1k8wVG9mTXV5/ZlilgkyF9iUL32bNnfyB+nhMIpt5BsqMN2vnVV18dyIbpDHUNDAzsRLwd3KhRo86sSY+/v78LoI5Ro0adOXbsWCjgktPrzk49x4Dj4uIig4ODwwHggFwCs3jx4hqcYp18GQR4DxKo8VBfkvoegO34+uuvl2Dg/3/AeDRx165di/jceSBvsS6TCfxBb7zxRm/Al/QFmAEVIfgPKlas2IQyZcqMfeutt0aS6LSjPdAX//PaMvWwL0F28d2VK1ceF1gAuiAPmVhZ1mhNX/xZtFkJXz73RxYyRleOADO9pUaMGFEHoC68myIN5AE32UzbePd5ktH+Up8cAQZoYPXq1buRSb3GlOpw8ZLApHB8/0Rue80XsqSkpPunTp1aSr4wD5pPJJnDOg6FP9oX//PacgRYyviSKA/g9uxyY0qZWi/x9TqfS2toMzeS4W3qLkLbigYNGoQ2btx4eePGjZd98sknqz766KPl5BcPpS+nlGPAAHylcOHCXxNfK7LT/fC0m7jsIsxtANw0aDYfpTMPHjw4e8+ePd9OmDBhI8Djn6FE+lvnz5+/Qk7Bij/HgCVE7C37wQcfjOzYsWMQy8QNOTdv3hzFBgz/+OOPlzRr1mwVnlzaokWL1SyHe5xgsVAcZJs9e3YZcl9FidzSlVPKEjC7P09mCsniWvXv378RHvbC52QQiQCKo4yFjByCeiyejaM/AbJrYCRBf2JZ6RYog2p4MrVnMmcJmEiQlQJryZIl+7EJcwHQHRQUlEQUiWeZxAmkSg6TeE6/RD4ukwCTjLebFihQ4EvTePryOfYM9kwBs1a9t27dukDMzXRzAKhGaGhoGzxpjY6O9pI+pgDaCXiHSjK0ZNrdWPJbvXp1ZQ6O0ehNzbtpT304lGLv3r0bSb+xYVM70r2kAhYjnklQPwYDqLsHDhy4c968ef04Vn9CodGnfpPgyUNGNpmBbWHjbRfxvs0k1aEIDpxt9erVC2cmKpqyZole+7Vr1zYuXLjwL+TSEej0MFhzUB7qaQYgwF7Wljo8W7du7cj0RTA1SRhKvnnzZsKYMWNOs4Gmc60UjLdOMNXymGnPgmxBPF0PMJkSa7Y+/RnAcqFyihgejP6p33zzzX9lD7vKTxzciew/cuRIdwArcTLycxk1ACPoYfOktG3b9hif3T2GDx9+AiBOlkMSHkjk1jGW2Lvv008/Hbp379458fHxNyT8osShcefo0aML2rdvPwKv7sURMdiyQw5wuLhsOdWjR4+exO3t1FOED1uGpw3AVNx4QcetkwQ7keTcDuDkyMjIVleuXGnPxYcfXo/n/eHnn3++kuumUVevXt2IgVhks/0weNuNGze2zZkzZ0yjRo3+iQfvSS+Rw4+rqrbYaym7nIQJmzZtekSfQ5sVA5rVtIAZRTLLwQFwJ4wpBP3qRIEQ6Fti5zTuxmqgLBGKx+C5unXrTlmzZs2k+/fvH0Hhcx/4jq5bt24ycpwlE05KD3YErCr7ZAp7YTq2Qvbv3/8uyyeZZWZsXG6B9OGaAbDWiJKZZBhSOnXqFPj222+PY/0UEhJibnMu/ubh1WFYKyRDrDFbz549d7OMxrBMvmOa74o3PdF+h/6/c1MZ3LVr1wjy6TjJk1MXYDMPYQAL0N9CcrLHx8A42QeHm6Wio164hE8sFi0JvahBLveSXFvHjRsXjKcbqsMk1lIhjuQ+ffv2Xcone1tONQuG40lo7jVt2jQcAEMAsIlII49Y3G63g/9vrBs5cuRQ+n8g6YkSv+SQb8MV6zI+3/vi6aKmDZXYrY/9MVWqVBE2AxPtZpkKmDbjsXLP0IJPm5YYfMiOvUdIuk3GdRVPnSVCJDFdlbjRnEjUmM86+wMeUpSxEZYucK8wmbYJd+7c2cNyCWadTudr5AKgbCRAbr7nqiM3D/lJ0oP+G4S0RSyXrSzHk9i5xDqPxn6LiIiIZiAyEixKAaawZATMprvJiRTMx+QADoUhkyZNGsB09sIbf0bxdkPKYvEnVoKhQdjSpUu7YCQR79kYVCz5xUamdTC7fAf1GLXTnyC+Dz/8MBw5zZwRZ7G1jTvkueXKlQvm2qrHF1980WXVqlW9zpw5M5pB38SWvEzx9DEb/GgSWbikOwuSCD59jpKsn5o5c+YVRvuA9eXm02gHXjamHH4L73546TGgHMxIAstBuYMSnZgn70p4Euh3MlOPxC85EfyJ6N0tvSw3hbMkQt1jwucvHDIRxObz4oOES8SrJY2H5XYPU5XCFDrxipIZ3Tdok8SjNIkr0rNMm0ZuCLMx1rIklsOvI1m5RCK72wbFQTZOzAQ8mqR++FbC/6MhyA96rnJQXadPdxdKPzU4m+xqgMIBmwcSLorfHtPDZqOH8JaCIYU3O0YTIBveMhRxa/6A02inRDF4g8u7ReQPXgYjOUUYB/lDEldYdpXockLJ6ofPA3+o5CRPPN7Jhn0MQDuxNgGb8ZBKJUsOycEnwBQWE19GD9OrhMWFgSQZlfH4+HhtNtUTiQTHvF6vhy+MME6kG5pSvKE4aZIZilQabeqHzyN+IsdKr9frIUSe5gS10+cg1CXhfYcIoE4waNmZ4SwVLO0+AWtUYhbJqMjF1DqZPgcb5cq9e/eWE6b2cdI5mD4X8VLAJCeSgWdLj/rFJ36+RPaxoZZCWg4uHCJwsiF7JqXXJ6wGmUvCqDz5kcH0JKMpeMM1bNiwixUqVBjDhvwFEEksGRmUIck8UZGmUHuK+MRPknOWfxuM5Wv7IktB3hQ48fiiNIpU8QVY7elJyjwsEReBXctD687OmnPgPXnH9Gh6OdUNWfGJH/lEgNopk1h2kjUBi/e5lBPAUpyCESdBXhtLYOVdtQtUVsbUr6PWxaCdrFmH9CCgmclqsLCkfbILWFKGUV5kRJ4RCWx2DEpWfOKXnEh6VFcfarP35BSwlJuGVaouyo418YkkJ6AqVRdlR97gyQlgCUh5elJ7dim9rOrZlTX4/gcAAP//jjIXagAAAAZJREFUAwBI7d3hqmMx8wAAAABJRU5ErkJggg==",
+  powerIcon = "" + new URL("power-Dvx9Q53Y.png", import.meta.url).href,
+  raidIcon =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAA2CAYAAABTCxDCAAAPbUlEQVR4AcSZCXBUVRaG3+vusBMCJGyKgCg6go4KCKLoOCKIyACiowxWqaiF4BQOglhsDiITHEEFJLIoIAoUYLHIJiAWBAHZd2SRLRACgZCQhN7obb7/kdeVmEBYumpS9/R7fe655/z33HPOvbfjMGL7Z6KuJIIduxZL0BbY7du3JwaDwXHQFz/99FM8UC0+z5i1WIN21qlT516Hw/GiqEmTJg+A1AkJOI/YtFiBFijpcoXD4TtN06wGVQX43cB0QeqTDK8336Ts5rVc1mAmJSU5D/MXCoUyAZ+dzp94dMcMMLqMmIImjp3nzp0LADgkysrK8ouHof8baDM7O7tKfn5+UgGIYkAikYhJSMQRGnKGicdd4hXI84g2jTUvXLjQICcnpz5c6zvPa2pSfi2CllKn09mofPnyIzIzM29nkMXjWaQBWHyLh7z1/MOH+h1HjhypW6lSpRFlypS5j37hEJ/X0puES5cyDCl0ejyeSniyW9WqVZPnz59f1TCMYpXB5VLe0WMY8rqtP2Jc/jN5OF544YUyt9xyyyB0tc/Nzc0RD1KfiNerN1vp1aSkSHKK1zDL7QbY39q0afNa06ZNyzBQfZIxTNOMEMtheGph4jmolwKSjGRdKSkp3fDwP9CV99tvv+XSr5mqn9fSm5SULmUYZs2aNZ179+7NAcg5wJWrWLHiuwsXLuxiGIZt0ASE6fV6BdQBeA+AztKvJkAi54kTJ9pXq1btA3RUDgQCORSYELodCKmfR+lNwqVLIUFSOX788cd8n893kq8GS1sbYx8Cokvbtm3LwXM8++yz5R955JG2xHJSXFzcrV26dGnTsGFDTUp2XMg+w+aTQn895A10ek+ePBnmqX6xromuSxjQfrI9TZoxlE+Y1CE2v/z666+fVD1+5ZVX6vF8kb5Mv99/kL4eY8aMuZvJOQ4dOtQCwJ/i4Sr0ny/Q4SMhg6zKNXtZ464G2hw2bJjj9OnTiTt37qxRu3ZtF3GIk5xlNZBQCB4/fnwalWTa+fPnQyy1KzU19dzBgwdHk6T/HD58eM/9+/d/AuVcunTJxWQjR48eHbt169bhyHqkg4n53G63g8k5N2zYUCMtLS0BviYg4tVqhd8thg1aHSYKHpw7d240uQBtVqhQ4cHGjRt/t2nTpqkY7Es8NtNIvJzA5pH9888/p1avXv3PBw4c6H3bbbdVbtGixRI8vuPzzz/PePjhh1cS4yZgP7jjjju6IrsXHUfLli1bSzrQXW/cuHHvbNy4cUrz5s0n870hfGESHsfZs2drkUNdC/F4NQxbwOSbkxo8sVOnTv379u0rb6rPgfEtlLo15cqV64C3+6L4XmTVTOps4j333HMvnhpICPyne/fuo6ZMmdKAeA+IRo0aVfONN974OCEh4V3K5Jv3339/Yw5RDQmROClA1921atXqhd2OlL51vXv3PgBfdp3oqci4gegZAM8JiS+cUdBiuog1gxD4YMSIEUPnzZunnc81fvz4AKAmHDt2LJnYczPYGsjTIEabLV68eAvH0aF4JAMQbZ577rmUNWvWPLpixYoWPXr0GAOvA33pLH8fcmIvwF/Q2AJyKMxOnTqVUr9+/a9Xr14t3S6OtLW7dev2AcncE0xKZFER0BrvSExMjCPGjvClLIYGUBE+JMFqYNCJYmfLli1n7Nq1azzAvchYrUqVKs369OkzZOLEiVvmz5/fh8qyj6W/j/r9JaExGQ+2RueBBQsW9P344493vPPOO4Pj4+ObWoMLPjIyMhb27NlzimzIFnlxR6tWrYYztg8iZcmH04SkVkaOhWVEPe2gM45zRYbFNQwnS9+D2Y4FeAN4EZIn+PTTT8/asWPHZGbvg2c1lr01YfDRjBkzTowePfpfLHMqS1qdjE0krLZPmjSp35gxYw5PmzZtOMaftAYVfJw5c2b10KFDJ6xfv94t1vLlyx9q1qzZKJz2Mt+VWwY5ob1BnjbhiSzQvBsGM3VQCY7zvGQxDMPJ4E4dOnQYt2DBgiZ4LIgCHzvhdIBPZJLnAe9FPgDwJwD1EZtNNkn4fl5e3ia8fmzWrFkjk5OTT/7www8jWMkO0os8ixX2U7OXDRo06L/ff//9aXSHAN7mgQceEOB2yEW9evHixUwG6LsJ32qKE/tcEFm1atUuvLPf6in4IAEfffzxx1N++eWXx/CeH6DuV199dRaJ0m/p0qVDMZZMWVxI0jxCzA7DgIm306hEx+fMmZNOvA9hUq1wyFJq8nfsqlOI2eS33357FIBPSufOnTs7k6CjyCcdngosGwY69pAbKwoYNs6op8MsaXjIkCHH8eoohA8WCFoPlN1FAn22bdu2rg0aNAiw9WYPGDBgM9ViBSEzj3gdB6BJlStXvnvkyJGd2OKrAcaA/xfiviGT60tyj2bpPyXWU7p27bqA2D3dunVrA8Av33nnnf9GvpZlrOADDx9ipZLff//9Q2ALwRZokQVaL2GABRh4ibKzlcT6kPguApy+mnXr1u1NMlUnYdx4XDviRfheEukxSt6D+/btm7Rnz55tv/7663Q8NGH37t17MTz0T/wNHDiwe7169YIul+siVSFfOtiAmlLb+wNKJ0ZwXW6yTS4M69ev307C8JKw0WMDt0Dz3Qhz4wi6XC4/CedlU9k9YcKEj9jptqvTJpRXu+uuu5IAKkVuGZY8no3Ho0+wgXRkRzzbvXv3DUxkG+GSRt1/EU++R34kELvWGI1Dhz8pKak+Oivb+vXkYrAbwCOEAd0eMPnYxAL0hSGr2TEtRpBY9OMFCbrxwm5q9SRmap0TJM2mUB5wdTAYItYF3M/7JZLrovrpe/y9994bOXjw4Nq9evWqSnKOr1Gjxiv0ObQyJLL0+/CcH11aXW3bso2IYTCZvLVr184E8C7AuoWF0uen0/ayoiLqaX3R4AAe8TJYZ2Y3CZbB+wUGWQ1DZSiFdQFpkljh7OzsIDyNs/r5CDO+1euvv96PRHuNFXgMWXlJgCIACQEkCAkE4kYFPqJVAQflsVJHkLNWBF1e7KiaSV4YETeioPVFzJCE8KIPsJ709PQsSleWOkUAdGCwNhVCK2SKJwKYvhss/xm8eQiPP8n23I2lTiU+90qGMdKvV4N3nb2JDEclGFE98K1cISy8wiAs9NuAo+MtY3SoiSkKKYa07GzH58jidHXaxNJWxQNOEk8XAxlkLqaKv4Gx82z3a2DocuuiTM6nhFoXAXgmoATWIpIah7oUHrZq7RU+dLhlWxjoKAYYXhFP67tAi0JoDHIm8LFkmeqwCdDVKXMVBUCEl4VH26wO9SGqxSo8vA8PH1y0aNFhYrKmxiKnq5omaXn6qaeeqoSNePXZxOrmEB458HX7UdgJi8gWsZ6FPW0x+JBQmDAIsX4hljsbXrTBr0V9TSSxdNixQNidxHvDxo0bJ5GAn82ePfsLLrD3cdaIngolp4nqSRWshK4qereJiZ6g4uThaRuw3VXkWRJoS4B4iuBCJVsGHsi3mHzg6cRbb701Cc9Zyw1LVy9tswbGKnfs2LEXt5TzbOnHOSN3RofVhwOitjSWM3g88oXDI8JF4QQ5FGKMHGeTTBShqKIiXI4ifA8zOMwpLB3QhStIWbblangsOpY49CFvNbzd5JNPPvnom2++GZyQkNDcYvIBUIfH4+ER0WQdJKtAV6DLaujzaVVlkwleEbCEo4b15Q9keZoby5k/gI4js6tiPRoa1NZUDP5ujwfQQ1SPdgCw9OO9k2zXKwCtZVfCmZRDbSpWLmgc4eYj6XMZE2aVJSfg6ipGltJi3MuejjDjMFehC4COhgdKy5FcCg9rLN/D3HQOcBeci7e0ERRRBxgvh6bJL7300kZk5QgLDPFcnu8uW5jVyqbynIJ3VcCStwzrpQSyQHPFp/z6i9RqvNh26tSpjQDpwEgEgdDhw4d/B6B1Li6sCxkv9f6kZJANa4WeeeaZipS85jglGh70Z3KIyoBng7YmV1iX/X4l0BoQIVHClK8AdMweoCdx25Jz9qebN29uz0o81r9/f53qlEAl6QOHI8LZufqWLVueQv6vnC1GM/EeTCIqT2k9v2zZslyEBVokUyVSdFAJvREOUTqyhjiDLM7KylpfWIYQaXn77bd/1qhRoxTq9p+IaV3DonFuywLMJJbz27Vrdx8HqvHQV/Hx8X+HH41nvHyWc/ZyngFqtL2h2CqKPa8KGmmBDnKdOsIh5kOW2T6Q02WoxNXCM0l4yUkYmBazhA/6TQCB09R/B6oXFiH5Di1ZsmQYF+KV6ArKUfRbK82zxFYa6BB1mRwJ+L799ts0DkLJ1ODZxKV2LEsh736uVy6S9Uq6IsS6yl0cstFxDA7jhJVcFAZxE0rFiI/kLHY4Qq5Yu5IhWzBMWARQpgOUm8P92c6dO4/dtm3bJIBYSQcQ/dio/7VoEynR25oQK+GSq6WYsaooU7jBjBg7duwB+nWq9LK56ER48+GBkSCJ6MfjHpTn450cLrfTOAyN4fsFllQ/Pl41PACpKqNDVBnCJJPfQD4nkb/iV9UsdOTjFDeHMG1QAq0kVHhguuRWmqc1WEoCubm5Pn7TsI6OeC2fX0jnUj1Gk2RHbA+WbMJQ7BvIhAmjLfw+MqR9+/ZzuIfmMpk8nHGRM4eHDeWaQkM2SgMtGYHWkl3C41HgZHk+xuficcV5GrugfkrTJDUmSpFIxOBaVYET386RI0cOeOutt1I1FsD5cgITUdUpDLiYjqiygpdrAS1RKRL4AHHnYxt3y9ssrbtLly6ruQgf5QBUEW8qriUfJfEocXEzZ87M4EebowKrsdKBEwoDln7ZiY690su1gtZ4KZTiINcsHzHolafwmodrmZb3DBUgT4KFiRjO4Ix8lLKn+6GbMR6Fg3Qgp2oindLN12tr1wPaMAxDymUkqBgs8LqPndPPTwQ72O2+AJz+8WNZZxI569atm0BYHGZyfibqKwCrcLghwFJ8vaA1RsBFMhqkJFq3cp4+ztKL+P35KwlBEUrj5Oeff34lnrVqMBNVddA45YgmLz2IXl+7EdCyIGMiGVa4aPuVx73Tp09fzgTWQWupwUvxsBfy42F5V2A1TiQ9N0Q3Cto2JuOiIImlfyl75syZk8aZ5E3oLa5O6SSrhziOGWAZvlnQ0iHQIc4MAcB5VR0Aqp+98nm/SB32qQ9B28u83lyLFWgBV5j4uZF4OAHmi/ROWOhioDiWjOjmEDM6FqBRU7SqANSqEiSewkKAFfsxASxjsQItXQIlcAJZmMRTn2RiQrEELUACJxJQkd5F6osZ/Q8AAP//h2vvgQAAAAZJREFUAwDkurzlv6YxhAAAAABJRU5ErkJggg==",
+  refreshIcon =
+    "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%2030%2030'%20fill='none'%3e%3cpath%20d='M24.6%2013.2A10.2%2010.2%200%200%200%206.9%208.1L4.8%2010.2'%20stroke='%23F7FFF3'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M4.8%205.8v4.4h4.4'%20stroke='%23F7FFF3'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M5.4%2016.8A10.2%2010.2%200%200%200%2023.1%2021.9l2.1-2.1'%20stroke='%23F7FFF3'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M25.2%2024.2v-4.4h-4.4'%20stroke='%23F7FFF3'%20stroke-width='2.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e";
+function isObject$2(e) {
+  return (
+    e !== null &&
+    typeof e == "object" &&
+    "constructor" in e &&
+    e.constructor === Object
+  );
+}
+function extend$2(e, t) {
+  (e === void 0 && (e = {}), t === void 0 && (t = {}));
+  const n = ["__proto__", "constructor", "prototype"];
+  Object.keys(t)
+    .filter((s) => n.indexOf(s) < 0)
+    .forEach((s) => {
+      typeof e[s] > "u"
+        ? (e[s] = t[s])
+        : isObject$2(t[s]) &&
+          isObject$2(e[s]) &&
+          Object.keys(t[s]).length > 0 &&
+          extend$2(e[s], t[s]);
+    });
+}
+const ssrDocument = {
+  body: {},
+  addEventListener() {},
+  removeEventListener() {},
+  activeElement: { blur() {}, nodeName: "" },
+  querySelector() {
+    return null;
+  },
+  querySelectorAll() {
+    return [];
+  },
+  getElementById() {
+    return null;
+  },
+  createEvent() {
+    return { initEvent() {} };
+  },
+  createElement() {
+    return {
+      children: [],
+      childNodes: [],
+      style: {},
+      setAttribute() {},
+      getElementsByTagName() {
+        return [];
+      },
+    };
+  },
+  createElementNS() {
+    return {};
+  },
+  importNode() {
+    return null;
+  },
+  location: {
+    hash: "",
+    host: "",
+    hostname: "",
+    href: "",
+    origin: "",
+    pathname: "",
+    protocol: "",
+    search: "",
+  },
+};
+function getDocument() {
+  const e = typeof document < "u" ? document : {};
+  return (extend$2(e, ssrDocument), e);
+}
+const ssrWindow = {
+  document: ssrDocument,
+  navigator: { userAgent: "" },
+  location: {
+    hash: "",
+    host: "",
+    hostname: "",
+    href: "",
+    origin: "",
+    pathname: "",
+    protocol: "",
+    search: "",
+  },
+  history: { replaceState() {}, pushState() {}, go() {}, back() {} },
+  CustomEvent: function e() {
+    return this;
+  },
+  addEventListener() {},
+  removeEventListener() {},
+  getComputedStyle() {
+    return {
+      getPropertyValue() {
+        return "";
+      },
+    };
+  },
+  Image() {},
+  Date() {},
+  screen: {},
+  setTimeout() {},
+  clearTimeout() {},
+  matchMedia() {
+    return {};
+  },
+  requestAnimationFrame(e) {
+    return typeof setTimeout > "u" ? (e(), null) : setTimeout(e, 0);
+  },
+  cancelAnimationFrame(e) {
+    typeof setTimeout > "u" || clearTimeout(e);
+  },
+};
+function getWindow() {
+  const e = typeof window < "u" ? window : {};
+  return (extend$2(e, ssrWindow), e);
+}
+function classesToTokens(e) {
+  return (
+    e === void 0 && (e = ""),
+    e
+      .trim()
+      .split(" ")
+      .filter((t) => !!t.trim())
+  );
+}
+function deleteProps(e) {
+  const t = e;
+  Object.keys(t).forEach((n) => {
+    try {
+      t[n] = null;
+    } catch {}
+    try {
+      delete t[n];
+    } catch {}
+  });
+}
+function nextTick(e, t) {
+  return (t === void 0 && (t = 0), setTimeout(e, t));
+}
+function now() {
+  return Date.now();
+}
+function getComputedStyle$1(e) {
+  const t = getWindow();
+  let n;
+  return (
+    t.getComputedStyle && (n = t.getComputedStyle(e, null)),
+    !n && e.currentStyle && (n = e.currentStyle),
+    n || (n = e.style),
+    n
+  );
+}
+function getTranslate(e, t) {
+  t === void 0 && (t = "x");
+  const n = getWindow();
+  let s, r, i;
+  const o = getComputedStyle$1(e);
+  return (
+    n.WebKitCSSMatrix
+      ? ((r = o.transform || o.webkitTransform),
+        r.split(",").length > 6 &&
+          (r = r
+            .split(", ")
+            .map((a) => a.replace(",", "."))
+            .join(", ")),
+        (i = new n.WebKitCSSMatrix(r === "none" ? "" : r)))
+      : ((i =
+          o.MozTransform ||
+          o.OTransform ||
+          o.MsTransform ||
+          o.msTransform ||
+          o.transform ||
+          o
+            .getPropertyValue("transform")
+            .replace("translate(", "matrix(1, 0, 0, 1,")),
+        (s = i.toString().split(","))),
+    t === "x" &&
+      (n.WebKitCSSMatrix
+        ? (r = i.m41)
+        : s.length === 16
+          ? (r = parseFloat(s[12]))
+          : (r = parseFloat(s[4]))),
+    t === "y" &&
+      (n.WebKitCSSMatrix
+        ? (r = i.m42)
+        : s.length === 16
+          ? (r = parseFloat(s[13]))
+          : (r = parseFloat(s[5]))),
+    r || 0
+  );
+}
+function isObject$1(e) {
+  return (
+    typeof e == "object" &&
+    e !== null &&
+    e.constructor &&
+    Object.prototype.toString.call(e).slice(8, -1) === "Object"
+  );
+}
+function isNode(e) {
+  return typeof window < "u" && typeof window.HTMLElement < "u"
+    ? e instanceof HTMLElement
+    : e && (e.nodeType === 1 || e.nodeType === 11);
+}
+function extend$1() {
+  const e = Object(arguments.length <= 0 ? void 0 : arguments[0]),
+    t = ["__proto__", "constructor", "prototype"];
+  for (let n = 1; n < arguments.length; n += 1) {
+    const s = n < 0 || arguments.length <= n ? void 0 : arguments[n];
+    if (s != null && !isNode(s)) {
+      const r = Object.keys(Object(s)).filter((i) => t.indexOf(i) < 0);
+      for (let i = 0, o = r.length; i < o; i += 1) {
+        const a = r[i],
+          l = Object.getOwnPropertyDescriptor(s, a);
+        l !== void 0 &&
+          l.enumerable &&
+          (isObject$1(e[a]) && isObject$1(s[a])
+            ? s[a].__swiper__
+              ? (e[a] = s[a])
+              : extend$1(e[a], s[a])
+            : !isObject$1(e[a]) && isObject$1(s[a])
+              ? ((e[a] = {}),
+                s[a].__swiper__ ? (e[a] = s[a]) : extend$1(e[a], s[a]))
+              : (e[a] = s[a]));
+      }
+    }
+  }
+  return e;
+}
+function setCSSProperty(e, t, n) {
+  e.style.setProperty(t, n);
+}
+function animateCSSModeScroll(e) {
+  let { swiper: t, targetPosition: n, side: s } = e;
+  const r = getWindow(),
+    i = -t.translate;
+  let o = null,
+    a;
+  const l = t.params.speed;
+  ((t.wrapperEl.style.scrollSnapType = "none"),
+    r.cancelAnimationFrame(t.cssModeFrameID));
+  const u = n > i ? "next" : "prev",
+    d = (v, E) => (u === "next" && v >= E) || (u === "prev" && v <= E),
+    c = () => {
+      ((a = new Date().getTime()), o === null && (o = a));
+      const v = Math.max(Math.min((a - o) / l, 1), 0),
+        E = 0.5 - Math.cos(v * Math.PI) / 2;
+      let x = i + E * (n - i);
+      if ((d(x, n) && (x = n), t.wrapperEl.scrollTo({ [s]: x }), d(x, n))) {
+        ((t.wrapperEl.style.overflow = "hidden"),
+          (t.wrapperEl.style.scrollSnapType = ""),
+          setTimeout(() => {
+            ((t.wrapperEl.style.overflow = ""),
+              t.wrapperEl.scrollTo({ [s]: x }));
+          }),
+          r.cancelAnimationFrame(t.cssModeFrameID));
+        return;
+      }
+      t.cssModeFrameID = r.requestAnimationFrame(c);
+    };
+  c();
+}
+function elementChildren(e, t) {
+  t === void 0 && (t = "");
+  const n = getWindow(),
+    s = [...e.children];
+  return (
+    n.HTMLSlotElement &&
+      e instanceof HTMLSlotElement &&
+      s.push(...e.assignedElements()),
+    t ? s.filter((r) => r.matches(t)) : s
+  );
+}
+function elementIsChildOfSlot(e, t) {
+  const n = [t];
+  for (; n.length > 0;) {
+    const s = n.shift();
+    if (e === s) return !0;
+    n.push(
+      ...s.children,
+      ...(s.shadowRoot ? s.shadowRoot.children : []),
+      ...(s.assignedElements ? s.assignedElements() : []),
+    );
+  }
+}
+function elementIsChildOf(e, t) {
+  const n = getWindow();
+  let s = t.contains(e);
+  return (
+    !s &&
+      n.HTMLSlotElement &&
+      t instanceof HTMLSlotElement &&
+      ((s = [...t.assignedElements()].includes(e)),
+      s || (s = elementIsChildOfSlot(e, t))),
+    s
+  );
+}
+function showWarning(e) {
+  try {
+    console.warn(e);
+    return;
+  } catch {}
+}
+function createElement(e, t) {
+  t === void 0 && (t = []);
+  const n = document.createElement(e);
+  return (n.classList.add(...(Array.isArray(t) ? t : classesToTokens(t))), n);
+}
+function elementPrevAll(e, t) {
+  const n = [];
+  for (; e.previousElementSibling;) {
+    const s = e.previousElementSibling;
+    (t ? s.matches(t) && n.push(s) : n.push(s), (e = s));
+  }
+  return n;
+}
+function elementNextAll(e, t) {
+  const n = [];
+  for (; e.nextElementSibling;) {
+    const s = e.nextElementSibling;
+    (t ? s.matches(t) && n.push(s) : n.push(s), (e = s));
+  }
+  return n;
+}
+function elementStyle(e, t) {
+  return getWindow().getComputedStyle(e, null).getPropertyValue(t);
+}
+function elementIndex(e) {
+  let t = e,
+    n;
+  if (t) {
+    for (n = 0; (t = t.previousSibling) !== null;) t.nodeType === 1 && (n += 1);
+    return n;
+  }
+}
+function elementParents(e, t) {
+  const n = [];
+  let s = e.parentElement;
+  for (; s;) (t ? s.matches(t) && n.push(s) : n.push(s), (s = s.parentElement));
+  return n;
+}
+function elementOuterSize(e, t, n) {
+  const s = getWindow();
+  return (
+    e[t === "width" ? "offsetWidth" : "offsetHeight"] +
+    parseFloat(
+      s
+        .getComputedStyle(e, null)
+        .getPropertyValue(t === "width" ? "margin-right" : "margin-top"),
+    ) +
+    parseFloat(
+      s
+        .getComputedStyle(e, null)
+        .getPropertyValue(t === "width" ? "margin-left" : "margin-bottom"),
+    )
+  );
+}
+function makeElementsArray(e) {
+  return (Array.isArray(e) ? e : [e]).filter((t) => !!t);
+}
+function setInnerHTML(e, t) {
+  (t === void 0 && (t = ""),
+    typeof trustedTypes < "u"
+      ? (e.innerHTML = trustedTypes
+          .createPolicy("html", { createHTML: (n) => n })
+          .createHTML(t))
+      : (e.innerHTML = t));
+}
+function createElementIfNotDefined(e, t, n, s) {
+  return (
+    e.params.createElements &&
+      Object.keys(s).forEach((r) => {
+        if (!n[r] && n.auto === !0) {
+          let i = elementChildren(e.el, `.${s[r]}`)[0];
+          (i ||
+            ((i = createElement("div", s[r])),
+            (i.className = s[r]),
+            e.el.append(i)),
+            (n[r] = i),
+            (t[r] = i));
+        }
+      }),
+    n
+  );
+}
+function classesToSelector(e) {
+  return (
+    e === void 0 && (e = ""),
+    `.${e
+      .trim()
+      .replace(/([\.:!+\/()[\]])/g, "\\$1")
+      .replace(/ /g, ".")}`
+  );
+}
+function Pagination(e) {
+  let { swiper: t, extendParams: n, on: s, emit: r } = e;
+  const i = "swiper-pagination";
+  (n({
+    pagination: {
+      el: null,
+      bulletElement: "span",
+      clickable: !1,
+      hideOnClick: !1,
+      renderBullet: null,
+      renderProgressbar: null,
+      renderFraction: null,
+      renderCustom: null,
+      progressbarOpposite: !1,
+      type: "bullets",
+      dynamicBullets: !1,
+      dynamicMainBullets: 1,
+      formatFractionCurrent: (b) => b,
+      formatFractionTotal: (b) => b,
+      bulletClass: `${i}-bullet`,
+      bulletActiveClass: `${i}-bullet-active`,
+      modifierClass: `${i}-`,
+      currentClass: `${i}-current`,
+      totalClass: `${i}-total`,
+      hiddenClass: `${i}-hidden`,
+      progressbarFillClass: `${i}-progressbar-fill`,
+      progressbarOppositeClass: `${i}-progressbar-opposite`,
+      clickableClass: `${i}-clickable`,
+      lockClass: `${i}-lock`,
+      horizontalClass: `${i}-horizontal`,
+      verticalClass: `${i}-vertical`,
+      paginationDisabledClass: `${i}-disabled`,
+    },
+  }),
+    (t.pagination = { el: null, bullets: [] }));
+  let o,
+    a = 0;
+  function l() {
+    return (
+      !t.params.pagination.el ||
+      !t.pagination.el ||
+      (Array.isArray(t.pagination.el) && t.pagination.el.length === 0)
+    );
+  }
+  function u(b, N) {
+    const { bulletActiveClass: z } = t.params.pagination;
+    b &&
+      ((b = b[`${N === "prev" ? "previous" : "next"}ElementSibling`]),
+      b &&
+        (b.classList.add(`${z}-${N}`),
+        (b = b[`${N === "prev" ? "previous" : "next"}ElementSibling`]),
+        b && b.classList.add(`${z}-${N}-${N}`)));
+  }
+  function d(b, N, z) {
+    if (((b = b % z), (N = N % z), N === b + 1)) return "next";
+    if (N === b - 1) return "previous";
+  }
+  function c(b) {
+    const N = b.target.closest(
+      classesToSelector(t.params.pagination.bulletClass),
+    );
+    if (!N) return;
+    b.preventDefault();
+    const z = elementIndex(N) * t.params.slidesPerGroup;
+    if (t.params.loop) {
+      if (t.realIndex === z) return;
+      const Y = d(t.realIndex, z, t.slides.length);
+      Y === "next"
+        ? t.slideNext()
+        : Y === "previous"
+          ? t.slidePrev()
+          : t.slideToLoop(z);
+    } else t.slideTo(z);
+  }
+  function v() {
+    const b = t.rtl,
+      N = t.params.pagination;
+    if (l()) return;
+    let z = t.pagination.el;
+    z = makeElementsArray(z);
+    let Y, X;
+    const K =
+        t.virtual && t.params.virtual.enabled
+          ? t.virtual.slides.length
+          : t.slides.length,
+      w = t.params.loop
+        ? Math.ceil(K / t.params.slidesPerGroup)
+        : t.snapGrid.length;
+    if (
+      (t.params.loop
+        ? ((X = t.previousRealIndex || 0),
+          (Y =
+            t.params.slidesPerGroup > 1
+              ? Math.floor(t.realIndex / t.params.slidesPerGroup)
+              : t.realIndex))
+        : typeof t.snapIndex < "u"
+          ? ((Y = t.snapIndex), (X = t.previousSnapIndex))
+          : ((X = t.previousIndex || 0), (Y = t.activeIndex || 0)),
+      N.type === "bullets" &&
+        t.pagination.bullets &&
+        t.pagination.bullets.length > 0)
+    ) {
+      const m = t.pagination.bullets;
+      let S, $, R;
+      if (
+        (N.dynamicBullets &&
+          ((o = elementOuterSize(m[0], t.isHorizontal() ? "width" : "height")),
+          z.forEach((P) => {
+            P.style[t.isHorizontal() ? "width" : "height"] =
+              `${o * (N.dynamicMainBullets + 4)}px`;
+          }),
+          N.dynamicMainBullets > 1 &&
+            X !== void 0 &&
+            ((a += Y - (X || 0)),
+            a > N.dynamicMainBullets - 1
+              ? (a = N.dynamicMainBullets - 1)
+              : a < 0 && (a = 0)),
+          (S = Math.max(Y - a, 0)),
+          ($ = S + (Math.min(m.length, N.dynamicMainBullets) - 1)),
+          (R = ($ + S) / 2)),
+        m.forEach((P) => {
+          const W = [
+            ...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map(
+              (D) => `${N.bulletActiveClass}${D}`,
+            ),
+          ]
+            .map((D) =>
+              typeof D == "string" && D.includes(" ") ? D.split(" ") : D,
+            )
+            .flat();
+          P.classList.remove(...W);
+        }),
+        z.length > 1)
+      )
+        m.forEach((P) => {
+          const W = elementIndex(P);
+          (W === Y
+            ? P.classList.add(...N.bulletActiveClass.split(" "))
+            : t.isElement && P.setAttribute("part", "bullet"),
+            N.dynamicBullets &&
+              (W >= S &&
+                W <= $ &&
+                P.classList.add(...`${N.bulletActiveClass}-main`.split(" ")),
+              W === S && u(P, "prev"),
+              W === $ && u(P, "next")));
+        });
+      else {
+        const P = m[Y];
+        if (
+          (P && P.classList.add(...N.bulletActiveClass.split(" ")),
+          t.isElement &&
+            m.forEach((W, D) => {
+              W.setAttribute("part", D === Y ? "bullet-active" : "bullet");
+            }),
+          N.dynamicBullets)
+        ) {
+          const W = m[S],
+            D = m[$];
+          for (let k = S; k <= $; k += 1)
+            m[k] &&
+              m[k].classList.add(...`${N.bulletActiveClass}-main`.split(" "));
+          (u(W, "prev"), u(D, "next"));
+        }
+      }
+      if (N.dynamicBullets) {
+        const P = Math.min(m.length, N.dynamicMainBullets + 4),
+          W = (o * P - o) / 2 - R * o,
+          D = b ? "right" : "left";
+        m.forEach((k) => {
+          k.style[t.isHorizontal() ? D : "top"] = `${W}px`;
+        });
+      }
+    }
+    z.forEach((m, S) => {
+      if (
+        (N.type === "fraction" &&
+          (m
+            .querySelectorAll(classesToSelector(N.currentClass))
+            .forEach(($) => {
+              $.textContent = N.formatFractionCurrent(Y + 1);
+            }),
+          m.querySelectorAll(classesToSelector(N.totalClass)).forEach(($) => {
+            $.textContent = N.formatFractionTotal(w);
+          })),
+        N.type === "progressbar")
+      ) {
+        let $;
+        N.progressbarOpposite
+          ? ($ = t.isHorizontal() ? "vertical" : "horizontal")
+          : ($ = t.isHorizontal() ? "horizontal" : "vertical");
+        const R = (Y + 1) / w;
+        let P = 1,
+          W = 1;
+        ($ === "horizontal" ? (P = R) : (W = R),
+          m
+            .querySelectorAll(classesToSelector(N.progressbarFillClass))
+            .forEach((D) => {
+              ((D.style.transform = `translate3d(0,0,0) scaleX(${P}) scaleY(${W})`),
+                (D.style.transitionDuration = `${t.params.speed}ms`));
+            }));
+      }
+      (N.type === "custom" && N.renderCustom
+        ? (setInnerHTML(m, N.renderCustom(t, Y + 1, w)),
+          S === 0 && r("paginationRender", m))
+        : (S === 0 && r("paginationRender", m), r("paginationUpdate", m)),
+        t.params.watchOverflow &&
+          t.enabled &&
+          m.classList[t.isLocked ? "add" : "remove"](N.lockClass));
+    });
+  }
+  function E() {
+    const b = t.params.pagination;
+    if (l()) return;
+    const N =
+      t.virtual && t.params.virtual.enabled
+        ? t.virtual.slides.length
+        : t.grid && t.params.grid.rows > 1
+          ? t.slides.length / Math.ceil(t.params.grid.rows)
+          : t.slides.length;
+    let z = t.pagination.el;
+    z = makeElementsArray(z);
+    let Y = "";
+    if (b.type === "bullets") {
+      let X = t.params.loop
+        ? Math.ceil(N / t.params.slidesPerGroup)
+        : t.snapGrid.length;
+      t.params.freeMode && t.params.freeMode.enabled && X > N && (X = N);
+      for (let K = 0; K < X; K += 1)
+        b.renderBullet
+          ? (Y += b.renderBullet.call(t, K, b.bulletClass))
+          : (Y += `<${b.bulletElement} ${t.isElement ? 'part="bullet"' : ""} class="${b.bulletClass}"></${b.bulletElement}>`);
+    }
+    (b.type === "fraction" &&
+      (b.renderFraction
+        ? (Y = b.renderFraction.call(t, b.currentClass, b.totalClass))
+        : (Y = `<span class="${b.currentClass}"></span> / <span class="${b.totalClass}"></span>`)),
+      b.type === "progressbar" &&
+        (b.renderProgressbar
+          ? (Y = b.renderProgressbar.call(t, b.progressbarFillClass))
+          : (Y = `<span class="${b.progressbarFillClass}"></span>`)),
+      (t.pagination.bullets = []),
+      z.forEach((X) => {
+        (b.type !== "custom" && setInnerHTML(X, Y || ""),
+          b.type === "bullets" &&
+            t.pagination.bullets.push(
+              ...X.querySelectorAll(classesToSelector(b.bulletClass)),
+            ));
+      }),
+      b.type !== "custom" && r("paginationRender", z[0]));
+  }
+  function x() {
+    t.params.pagination = createElementIfNotDefined(
+      t,
+      t.originalParams.pagination,
+      t.params.pagination,
+      { el: "swiper-pagination" },
+    );
+    const b = t.params.pagination;
+    if (!b.el) return;
+    let N;
+    (typeof b.el == "string" && t.isElement && (N = t.el.querySelector(b.el)),
+      !N &&
+        typeof b.el == "string" &&
+        (N = [...document.querySelectorAll(b.el)]),
+      N || (N = b.el),
+      !(!N || N.length === 0) &&
+        (t.params.uniqueNavElements &&
+          typeof b.el == "string" &&
+          Array.isArray(N) &&
+          N.length > 1 &&
+          ((N = [...t.el.querySelectorAll(b.el)]),
+          N.length > 1 &&
+            (N = N.find((z) => elementParents(z, ".swiper")[0] === t.el))),
+        Array.isArray(N) && N.length === 1 && (N = N[0]),
+        Object.assign(t.pagination, { el: N }),
+        (N = makeElementsArray(N)),
+        N.forEach((z) => {
+          (b.type === "bullets" &&
+            b.clickable &&
+            z.classList.add(...(b.clickableClass || "").split(" ")),
+            z.classList.add(b.modifierClass + b.type),
+            z.classList.add(
+              t.isHorizontal() ? b.horizontalClass : b.verticalClass,
+            ),
+            b.type === "bullets" &&
+              b.dynamicBullets &&
+              (z.classList.add(`${b.modifierClass}${b.type}-dynamic`),
+              (a = 0),
+              b.dynamicMainBullets < 1 && (b.dynamicMainBullets = 1)),
+            b.type === "progressbar" &&
+              b.progressbarOpposite &&
+              z.classList.add(b.progressbarOppositeClass),
+            b.clickable && z.addEventListener("click", c),
+            t.enabled || z.classList.add(b.lockClass));
+        })));
+  }
+  function B() {
+    const b = t.params.pagination;
+    if (l()) return;
+    let N = t.pagination.el;
+    (N &&
+      ((N = makeElementsArray(N)),
+      N.forEach((z) => {
+        (z.classList.remove(b.hiddenClass),
+          z.classList.remove(b.modifierClass + b.type),
+          z.classList.remove(
+            t.isHorizontal() ? b.horizontalClass : b.verticalClass,
+          ),
+          b.clickable &&
+            (z.classList.remove(...(b.clickableClass || "").split(" ")),
+            z.removeEventListener("click", c)));
+      })),
+      t.pagination.bullets &&
+        t.pagination.bullets.forEach((z) =>
+          z.classList.remove(...b.bulletActiveClass.split(" ")),
+        ));
+  }
+  (s("changeDirection", () => {
+    if (!t.pagination || !t.pagination.el) return;
+    const b = t.params.pagination;
+    let { el: N } = t.pagination;
+    ((N = makeElementsArray(N)),
+      N.forEach((z) => {
+        (z.classList.remove(b.horizontalClass, b.verticalClass),
+          z.classList.add(
+            t.isHorizontal() ? b.horizontalClass : b.verticalClass,
+          ));
+      }));
+  }),
+    s("init", () => {
+      t.params.pagination.enabled === !1 ? q() : (x(), E(), v());
+    }),
+    s("activeIndexChange", () => {
+      typeof t.snapIndex > "u" && v();
+    }),
+    s("snapIndexChange", () => {
+      v();
+    }),
+    s("snapGridLengthChange", () => {
+      (E(), v());
+    }),
+    s("destroy", () => {
+      B();
+    }),
+    s("enable disable", () => {
+      let { el: b } = t.pagination;
+      b &&
+        ((b = makeElementsArray(b)),
+        b.forEach((N) =>
+          N.classList[t.enabled ? "remove" : "add"](
+            t.params.pagination.lockClass,
+          ),
+        ));
+    }),
+    s("lock unlock", () => {
+      v();
+    }),
+    s("click", (b, N) => {
+      const z = N.target,
+        Y = makeElementsArray(t.pagination.el);
+      if (
+        t.params.pagination.el &&
+        t.params.pagination.hideOnClick &&
+        Y &&
+        Y.length > 0 &&
+        !z.classList.contains(t.params.pagination.bulletClass)
+      ) {
+        if (
+          t.navigation &&
+          ((t.navigation.nextEl && z === t.navigation.nextEl) ||
+            (t.navigation.prevEl && z === t.navigation.prevEl))
+        )
+          return;
+        const X = Y[0].classList.contains(t.params.pagination.hiddenClass);
+        (r(X === !0 ? "paginationShow" : "paginationHide"),
+          Y.forEach((K) =>
+            K.classList.toggle(t.params.pagination.hiddenClass),
+          ));
+      }
+    }));
+  const G = () => {
+      t.el.classList.remove(t.params.pagination.paginationDisabledClass);
+      let { el: b } = t.pagination;
+      (b &&
+        ((b = makeElementsArray(b)),
+        b.forEach((N) =>
+          N.classList.remove(t.params.pagination.paginationDisabledClass),
+        )),
+        x(),
+        E(),
+        v());
+    },
+    q = () => {
+      t.el.classList.add(t.params.pagination.paginationDisabledClass);
+      let { el: b } = t.pagination;
+      (b &&
+        ((b = makeElementsArray(b)),
+        b.forEach((N) =>
+          N.classList.add(t.params.pagination.paginationDisabledClass),
+        )),
+        B());
+    };
+  Object.assign(t.pagination, {
+    enable: G,
+    disable: q,
+    render: E,
+    update: v,
+    init: x,
+    destroy: B,
+  });
+}
+function Autoplay(e) {
+  let { swiper: t, extendParams: n, on: s, emit: r, params: i } = e;
+  ((t.autoplay = { running: !1, paused: !1, timeLeft: 0 }),
+    n({
+      autoplay: {
+        enabled: !1,
+        delay: 3e3,
+        waitForTransition: !0,
+        disableOnInteraction: !1,
+        stopOnLastSlide: !1,
+        reverseDirection: !1,
+        pauseOnMouseEnter: !1,
+      },
+    }));
+  let o,
+    a,
+    l = i && i.autoplay ? i.autoplay.delay : 3e3,
+    u = i && i.autoplay ? i.autoplay.delay : 3e3,
+    d,
+    c = new Date().getTime(),
+    v,
+    E,
+    x,
+    B,
+    G,
+    q,
+    b;
+  function N(F) {
+    !t ||
+      t.destroyed ||
+      !t.wrapperEl ||
+      (F.target === t.wrapperEl &&
+        (t.wrapperEl.removeEventListener("transitionend", N),
+        !(b || (F.detail && F.detail.bySwiperTouchMove)) && S()));
+  }
+  const z = () => {
+      if (t.destroyed || !t.autoplay.running) return;
+      t.autoplay.paused ? (v = !0) : v && ((u = d), (v = !1));
+      const F = t.autoplay.paused ? d : c + u - new Date().getTime();
+      ((t.autoplay.timeLeft = F),
+        r("autoplayTimeLeft", F, F / l),
+        (a = requestAnimationFrame(() => {
+          z();
+        })));
+    },
+    Y = () => {
+      let F;
+      return (
+        t.virtual && t.params.virtual.enabled
+          ? (F = t.slides.find((re) =>
+              re.classList.contains("swiper-slide-active"),
+            ))
+          : (F = t.slides[t.activeIndex]),
+        F ? parseInt(F.getAttribute("data-swiper-autoplay"), 10) : void 0
+      );
+    },
+    X = (F) => {
+      if (t.destroyed || !t.autoplay.running) return;
+      (cancelAnimationFrame(a), z());
+      let Z = typeof F > "u" ? t.params.autoplay.delay : F;
+      ((l = t.params.autoplay.delay), (u = t.params.autoplay.delay));
+      const re = Y();
+      (!Number.isNaN(re) &&
+        re > 0 &&
+        typeof F > "u" &&
+        ((Z = re), (l = re), (u = re)),
+        (d = Z));
+      const ae = t.params.speed,
+        ce = () => {
+          !t ||
+            t.destroyed ||
+            (t.params.autoplay.reverseDirection
+              ? !t.isBeginning || t.params.loop || t.params.rewind
+                ? (t.slidePrev(ae, !0, !0), r("autoplay"))
+                : t.params.autoplay.stopOnLastSlide ||
+                  (t.slideTo(t.slides.length - 1, ae, !0, !0), r("autoplay"))
+              : !t.isEnd || t.params.loop || t.params.rewind
+                ? (t.slideNext(ae, !0, !0), r("autoplay"))
+                : t.params.autoplay.stopOnLastSlide ||
+                  (t.slideTo(0, ae, !0, !0), r("autoplay")),
+            t.params.cssMode &&
+              ((c = new Date().getTime()),
+              requestAnimationFrame(() => {
+                X();
+              })));
+        };
+      return (
+        Z > 0
+          ? (clearTimeout(o),
+            (o = setTimeout(() => {
+              ce();
+            }, Z)))
+          : requestAnimationFrame(() => {
+              ce();
+            }),
+        Z
+      );
+    },
+    K = () => {
+      ((c = new Date().getTime()),
+        (t.autoplay.running = !0),
+        X(),
+        r("autoplayStart"));
+    },
+    w = () => {
+      ((t.autoplay.running = !1),
+        clearTimeout(o),
+        cancelAnimationFrame(a),
+        r("autoplayStop"));
+    },
+    m = (F, Z) => {
+      if (t.destroyed || !t.autoplay.running) return;
+      (clearTimeout(o), F || (q = !0));
+      const re = () => {
+        (r("autoplayPause"),
+          t.params.autoplay.waitForTransition
+            ? t.wrapperEl.addEventListener("transitionend", N)
+            : S());
+      };
+      if (((t.autoplay.paused = !0), Z)) {
+        (G && (d = t.params.autoplay.delay), (G = !1), re());
+        return;
+      }
+      ((d = (d || t.params.autoplay.delay) - (new Date().getTime() - c)),
+        !(t.isEnd && d < 0 && !t.params.loop) && (d < 0 && (d = 0), re()));
+    },
+    S = () => {
+      (t.isEnd && d < 0 && !t.params.loop) ||
+        t.destroyed ||
+        !t.autoplay.running ||
+        ((c = new Date().getTime()),
+        q ? ((q = !1), X(d)) : X(),
+        (t.autoplay.paused = !1),
+        r("autoplayResume"));
+    },
+    $ = () => {
+      if (t.destroyed || !t.autoplay.running) return;
+      const F = getDocument();
+      (F.visibilityState === "hidden" && ((q = !0), m(!0)),
+        F.visibilityState === "visible" && S());
+    },
+    R = (F) => {
+      F.pointerType === "mouse" &&
+        ((q = !0), (b = !0), !(t.animating || t.autoplay.paused) && m(!0));
+    },
+    P = (F) => {
+      F.pointerType === "mouse" && ((b = !1), t.autoplay.paused && S());
+    },
+    W = () => {
+      t.params.autoplay.pauseOnMouseEnter &&
+        (t.el.addEventListener("pointerenter", R),
+        t.el.addEventListener("pointerleave", P));
+    },
+    D = () => {
+      t.el &&
+        typeof t.el != "string" &&
+        (t.el.removeEventListener("pointerenter", R),
+        t.el.removeEventListener("pointerleave", P));
+    },
+    k = () => {
+      getDocument().addEventListener("visibilitychange", $);
+    },
+    V = () => {
+      getDocument().removeEventListener("visibilitychange", $);
+    };
+  (s("init", () => {
+    t.params.autoplay.enabled && (W(), k(), K());
+  }),
+    s("destroy", () => {
+      (D(), V(), t.autoplay.running && w());
+    }),
+    s("_freeModeStaticRelease", () => {
+      (x || q) && S();
+    }),
+    s("_freeModeNoMomentumRelease", () => {
+      t.params.autoplay.disableOnInteraction ? w() : m(!0, !0);
+    }),
+    s("beforeTransitionStart", (F, Z, re) => {
+      t.destroyed ||
+        !t.autoplay.running ||
+        (re || !t.params.autoplay.disableOnInteraction ? m(!0, !0) : w());
+    }),
+    s("sliderFirstMove", () => {
+      if (!(t.destroyed || !t.autoplay.running)) {
+        if (t.params.autoplay.disableOnInteraction) {
+          w();
+          return;
+        }
+        ((E = !0),
+          (x = !1),
+          (q = !1),
+          (B = setTimeout(() => {
+            ((q = !0), (x = !0), m(!0));
+          }, 200)));
+      }
+    }),
+    s("touchEnd", () => {
+      if (!(t.destroyed || !t.autoplay.running || !E)) {
+        if (
+          (clearTimeout(B),
+          clearTimeout(o),
+          t.params.autoplay.disableOnInteraction)
+        ) {
+          ((x = !1), (E = !1));
+          return;
+        }
+        (x && t.params.cssMode && S(), (x = !1), (E = !1));
+      }
+    }),
+    s("slideChange", () => {
+      t.destroyed || !t.autoplay.running || (G = !0);
+    }),
+    Object.assign(t.autoplay, { start: K, stop: w, pause: m, resume: S }));
+}
+let support;
+function calcSupport() {
+  const e = getWindow(),
+    t = getDocument();
+  return {
+    smoothScroll:
+      t.documentElement &&
+      t.documentElement.style &&
+      "scrollBehavior" in t.documentElement.style,
+    touch: !!(
+      "ontouchstart" in e ||
+      (e.DocumentTouch && t instanceof e.DocumentTouch)
+    ),
+  };
+}
+function getSupport() {
+  return (support || (support = calcSupport()), support);
+}
+let deviceCached;
+function calcDevice(e) {
+  let { userAgent: t } = e === void 0 ? {} : e;
+  const n = getSupport(),
+    s = getWindow(),
+    r = s.navigator.platform,
+    i = t || s.navigator.userAgent,
+    o = { ios: !1, android: !1 },
+    a = s.screen.width,
+    l = s.screen.height,
+    u = i.match(/(Android);?[\s\/]+([\d.]+)?/);
+  let d = i.match(/(iPad).*OS\s([\d_]+)/);
+  const c = i.match(/(iPod)(.*OS\s([\d_]+))?/),
+    v = !d && i.match(/(iPhone\sOS|iOS)\s([\d_]+)/),
+    E = r === "Win32";
+  let x = r === "MacIntel";
+  const B = [
+    "1024x1366",
+    "1366x1024",
+    "834x1194",
+    "1194x834",
+    "834x1112",
+    "1112x834",
+    "768x1024",
+    "1024x768",
+    "820x1180",
+    "1180x820",
+    "810x1080",
+    "1080x810",
+  ];
+  return (
+    !d &&
+      x &&
+      n.touch &&
+      B.indexOf(`${a}x${l}`) >= 0 &&
+      ((d = i.match(/(Version)\/([\d.]+)/)),
+      d || (d = [0, 1, "13_0_0"]),
+      (x = !1)),
+    u && !E && ((o.os = "android"), (o.android = !0)),
+    (d || v || c) && ((o.os = "ios"), (o.ios = !0)),
+    o
+  );
+}
+function getDevice(e) {
+  return (
+    e === void 0 && (e = {}),
+    deviceCached || (deviceCached = calcDevice(e)),
+    deviceCached
+  );
+}
+let browser;
+function calcBrowser() {
+  const e = getWindow(),
+    t = getDevice();
+  let n = !1;
+  function s() {
+    const a = e.navigator.userAgent.toLowerCase();
+    return (
+      a.indexOf("safari") >= 0 &&
+      a.indexOf("chrome") < 0 &&
+      a.indexOf("android") < 0
+    );
+  }
+  if (s()) {
+    const a = String(e.navigator.userAgent);
+    if (a.includes("Version/")) {
+      const [l, u] = a
+        .split("Version/")[1]
+        .split(" ")[0]
+        .split(".")
+        .map((d) => Number(d));
+      n = l < 16 || (l === 16 && u < 2);
+    }
+  }
+  const r = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(
+      e.navigator.userAgent,
+    ),
+    i = s(),
+    o = i || (r && t.ios);
+  return {
+    isSafari: n || i,
+    needPerspectiveFix: n,
+    need3dFix: o,
+    isWebView: r,
+  };
+}
+function getBrowser() {
+  return (browser || (browser = calcBrowser()), browser);
+}
+function Resize(e) {
+  let { swiper: t, on: n, emit: s } = e;
+  const r = getWindow();
+  let i = null,
+    o = null;
+  const a = () => {
+      !t || t.destroyed || !t.initialized || (s("beforeResize"), s("resize"));
+    },
+    l = () => {
+      !t ||
+        t.destroyed ||
+        !t.initialized ||
+        ((i = new ResizeObserver((c) => {
+          o = r.requestAnimationFrame(() => {
+            const { width: v, height: E } = t;
+            let x = v,
+              B = E;
+            (c.forEach((G) => {
+              let { contentBoxSize: q, contentRect: b, target: N } = G;
+              (N && N !== t.el) ||
+                ((x = b ? b.width : (q[0] || q).inlineSize),
+                (B = b ? b.height : (q[0] || q).blockSize));
+            }),
+              (x !== v || B !== E) && a());
+          });
+        })),
+        i.observe(t.el));
+    },
+    u = () => {
+      (o && r.cancelAnimationFrame(o),
+        i && i.unobserve && t.el && (i.unobserve(t.el), (i = null)));
+    },
+    d = () => {
+      !t || t.destroyed || !t.initialized || s("orientationchange");
+    };
+  (n("init", () => {
+    if (t.params.resizeObserver && typeof r.ResizeObserver < "u") {
+      l();
+      return;
+    }
+    (r.addEventListener("resize", a),
+      r.addEventListener("orientationchange", d));
+  }),
+    n("destroy", () => {
+      (u(),
+        r.removeEventListener("resize", a),
+        r.removeEventListener("orientationchange", d));
+    }));
+}
+function Observer(e) {
+  let { swiper: t, extendParams: n, on: s, emit: r } = e;
+  const i = [],
+    o = getWindow(),
+    a = function (d, c) {
+      c === void 0 && (c = {});
+      const v = o.MutationObserver || o.WebkitMutationObserver,
+        E = new v((x) => {
+          if (t.__preventObserver__) return;
+          if (x.length === 1) {
+            r("observerUpdate", x[0]);
+            return;
+          }
+          const B = function () {
+            r("observerUpdate", x[0]);
+          };
+          o.requestAnimationFrame
+            ? o.requestAnimationFrame(B)
+            : o.setTimeout(B, 0);
+        });
+      (E.observe(d, {
+        attributes: typeof c.attributes > "u" ? !0 : c.attributes,
+        childList: t.isElement || (typeof c.childList > "u" ? !0 : c).childList,
+        characterData: typeof c.characterData > "u" ? !0 : c.characterData,
+      }),
+        i.push(E));
+    },
+    l = () => {
+      if (t.params.observer) {
+        if (t.params.observeParents) {
+          const d = elementParents(t.hostEl);
+          for (let c = 0; c < d.length; c += 1) a(d[c]);
+        }
+        (a(t.hostEl, { childList: t.params.observeSlideChildren }),
+          a(t.wrapperEl, { attributes: !1 }));
+      }
+    },
+    u = () => {
+      (i.forEach((d) => {
+        d.disconnect();
+      }),
+        i.splice(0, i.length));
+    };
+  (n({ observer: !1, observeParents: !1, observeSlideChildren: !1 }),
+    s("init", l),
+    s("destroy", u));
+}
+var eventsEmitter = {
+  on(e, t, n) {
+    const s = this;
+    if (!s.eventsListeners || s.destroyed || typeof t != "function") return s;
+    const r = n ? "unshift" : "push";
+    return (
+      e.split(" ").forEach((i) => {
+        (s.eventsListeners[i] || (s.eventsListeners[i] = []),
+          s.eventsListeners[i][r](t));
+      }),
+      s
+    );
+  },
+  once(e, t, n) {
+    const s = this;
+    if (!s.eventsListeners || s.destroyed || typeof t != "function") return s;
+    function r() {
+      (s.off(e, r), r.__emitterProxy && delete r.__emitterProxy);
+      for (var i = arguments.length, o = new Array(i), a = 0; a < i; a++)
+        o[a] = arguments[a];
+      t.apply(s, o);
+    }
+    return ((r.__emitterProxy = t), s.on(e, r, n));
+  },
+  onAny(e, t) {
+    const n = this;
+    if (!n.eventsListeners || n.destroyed || typeof e != "function") return n;
+    const s = t ? "unshift" : "push";
+    return (
+      n.eventsAnyListeners.indexOf(e) < 0 && n.eventsAnyListeners[s](e),
+      n
+    );
+  },
+  offAny(e) {
+    const t = this;
+    if (!t.eventsListeners || t.destroyed || !t.eventsAnyListeners) return t;
+    const n = t.eventsAnyListeners.indexOf(e);
+    return (n >= 0 && t.eventsAnyListeners.splice(n, 1), t);
+  },
+  off(e, t) {
+    const n = this;
+    return (
+      !n.eventsListeners ||
+        n.destroyed ||
+        !n.eventsListeners ||
+        e.split(" ").forEach((s) => {
+          typeof t > "u"
+            ? (n.eventsListeners[s] = [])
+            : n.eventsListeners[s] &&
+              n.eventsListeners[s].forEach((r, i) => {
+                (r === t || (r.__emitterProxy && r.__emitterProxy === t)) &&
+                  n.eventsListeners[s].splice(i, 1);
+              });
+        }),
+      n
+    );
+  },
+  emit() {
+    const e = this;
+    if (!e.eventsListeners || e.destroyed || !e.eventsListeners) return e;
+    let t, n, s;
+    for (var r = arguments.length, i = new Array(r), o = 0; o < r; o++)
+      i[o] = arguments[o];
+    return (
+      typeof i[0] == "string" || Array.isArray(i[0])
+        ? ((t = i[0]), (n = i.slice(1, i.length)), (s = e))
+        : ((t = i[0].events), (n = i[0].data), (s = i[0].context || e)),
+      n.unshift(s),
+      (Array.isArray(t) ? t : t.split(" ")).forEach((l) => {
+        (e.eventsAnyListeners &&
+          e.eventsAnyListeners.length &&
+          e.eventsAnyListeners.forEach((u) => {
+            u.apply(s, [l, ...n]);
+          }),
+          e.eventsListeners &&
+            e.eventsListeners[l] &&
+            e.eventsListeners[l].forEach((u) => {
+              u.apply(s, n);
+            }));
+      }),
+      e
+    );
+  },
+};
+function updateSize() {
+  const e = this;
+  let t, n;
+  const s = e.el;
+  (typeof e.params.width < "u" && e.params.width !== null
+    ? (t = e.params.width)
+    : (t = s.clientWidth),
+    typeof e.params.height < "u" && e.params.height !== null
+      ? (n = e.params.height)
+      : (n = s.clientHeight),
+    !((t === 0 && e.isHorizontal()) || (n === 0 && e.isVertical())) &&
+      ((t =
+        t -
+        parseInt(elementStyle(s, "padding-left") || 0, 10) -
+        parseInt(elementStyle(s, "padding-right") || 0, 10)),
+      (n =
+        n -
+        parseInt(elementStyle(s, "padding-top") || 0, 10) -
+        parseInt(elementStyle(s, "padding-bottom") || 0, 10)),
+      Number.isNaN(t) && (t = 0),
+      Number.isNaN(n) && (n = 0),
+      Object.assign(e, {
+        width: t,
+        height: n,
+        size: e.isHorizontal() ? t : n,
+      })));
+}
+function updateSlides() {
+  const e = this;
+  function t(S, $) {
+    return parseFloat(S.getPropertyValue(e.getDirectionLabel($)) || 0);
+  }
+  const n = e.params,
+    { wrapperEl: s, slidesEl: r, size: i, rtlTranslate: o, wrongRTL: a } = e,
+    l = e.virtual && n.virtual.enabled,
+    u = l ? e.virtual.slides.length : e.slides.length,
+    d = elementChildren(r, `.${e.params.slideClass}, swiper-slide`),
+    c = l ? e.virtual.slides.length : d.length;
+  let v = [];
+  const E = [],
+    x = [];
+  let B = n.slidesOffsetBefore;
+  typeof B == "function" && (B = n.slidesOffsetBefore.call(e));
+  let G = n.slidesOffsetAfter;
+  typeof G == "function" && (G = n.slidesOffsetAfter.call(e));
+  const q = e.snapGrid.length,
+    b = e.slidesGrid.length;
+  let N = n.spaceBetween,
+    z = -B,
+    Y = 0,
+    X = 0;
+  if (typeof i > "u") return;
+  (typeof N == "string" && N.indexOf("%") >= 0
+    ? (N = (parseFloat(N.replace("%", "")) / 100) * i)
+    : typeof N == "string" && (N = parseFloat(N)),
+    (e.virtualSize = -N),
+    d.forEach((S) => {
+      (o ? (S.style.marginLeft = "") : (S.style.marginRight = ""),
+        (S.style.marginBottom = ""),
+        (S.style.marginTop = ""));
+    }),
+    n.centeredSlides &&
+      n.cssMode &&
+      (setCSSProperty(s, "--swiper-centered-offset-before", ""),
+      setCSSProperty(s, "--swiper-centered-offset-after", "")));
+  const K = n.grid && n.grid.rows > 1 && e.grid;
+  K ? e.grid.initSlides(d) : e.grid && e.grid.unsetSlides();
+  let w;
+  const m =
+    n.slidesPerView === "auto" &&
+    n.breakpoints &&
+    Object.keys(n.breakpoints).filter(
+      (S) => typeof n.breakpoints[S].slidesPerView < "u",
+    ).length > 0;
+  for (let S = 0; S < c; S += 1) {
+    w = 0;
+    let $;
+    if (
+      (d[S] && ($ = d[S]),
+      K && e.grid.updateSlide(S, $, d),
+      !(d[S] && elementStyle($, "display") === "none"))
+    ) {
+      if (n.slidesPerView === "auto") {
+        m && (d[S].style[e.getDirectionLabel("width")] = "");
+        const R = getComputedStyle($),
+          P = $.style.transform,
+          W = $.style.webkitTransform;
+        if (
+          (P && ($.style.transform = "none"),
+          W && ($.style.webkitTransform = "none"),
+          n.roundLengths)
+        )
+          w = e.isHorizontal()
+            ? elementOuterSize($, "width")
+            : elementOuterSize($, "height");
+        else {
+          const D = t(R, "width"),
+            k = t(R, "padding-left"),
+            V = t(R, "padding-right"),
+            F = t(R, "margin-left"),
+            Z = t(R, "margin-right"),
+            re = R.getPropertyValue("box-sizing");
+          if (re && re === "border-box") w = D + F + Z;
+          else {
+            const { clientWidth: ae, offsetWidth: ce } = $;
+            w = D + k + V + F + Z + (ce - ae);
+          }
+        }
+        (P && ($.style.transform = P),
+          W && ($.style.webkitTransform = W),
+          n.roundLengths && (w = Math.floor(w)));
+      } else
+        ((w = (i - (n.slidesPerView - 1) * N) / n.slidesPerView),
+          n.roundLengths && (w = Math.floor(w)),
+          d[S] && (d[S].style[e.getDirectionLabel("width")] = `${w}px`));
+      (d[S] && (d[S].swiperSlideSize = w),
+        x.push(w),
+        n.centeredSlides
+          ? ((z = z + w / 2 + Y / 2 + N),
+            Y === 0 && S !== 0 && (z = z - i / 2 - N),
+            S === 0 && (z = z - i / 2 - N),
+            Math.abs(z) < 1 / 1e3 && (z = 0),
+            n.roundLengths && (z = Math.floor(z)),
+            X % n.slidesPerGroup === 0 && v.push(z),
+            E.push(z))
+          : (n.roundLengths && (z = Math.floor(z)),
+            (X - Math.min(e.params.slidesPerGroupSkip, X)) %
+              e.params.slidesPerGroup ===
+              0 && v.push(z),
+            E.push(z),
+            (z = z + w + N)),
+        (e.virtualSize += w + N),
+        (Y = w),
+        (X += 1));
+    }
+  }
+  if (
+    ((e.virtualSize = Math.max(e.virtualSize, i) + G),
+    o &&
+      a &&
+      (n.effect === "slide" || n.effect === "coverflow") &&
+      (s.style.width = `${e.virtualSize + N}px`),
+    n.setWrapperSize &&
+      (s.style[e.getDirectionLabel("width")] = `${e.virtualSize + N}px`),
+    K && e.grid.updateWrapperSize(w, v),
+    !n.centeredSlides)
+  ) {
+    const S = [];
+    for (let $ = 0; $ < v.length; $ += 1) {
+      let R = v[$];
+      (n.roundLengths && (R = Math.floor(R)),
+        v[$] <= e.virtualSize - i && S.push(R));
+    }
+    ((v = S),
+      Math.floor(e.virtualSize - i) - Math.floor(v[v.length - 1]) > 1 &&
+        v.push(e.virtualSize - i));
+  }
+  if (l && n.loop) {
+    const S = x[0] + N;
+    if (n.slidesPerGroup > 1) {
+      const $ = Math.ceil(
+          (e.virtual.slidesBefore + e.virtual.slidesAfter) / n.slidesPerGroup,
+        ),
+        R = S * n.slidesPerGroup;
+      for (let P = 0; P < $; P += 1) v.push(v[v.length - 1] + R);
+    }
+    for (let $ = 0; $ < e.virtual.slidesBefore + e.virtual.slidesAfter; $ += 1)
+      (n.slidesPerGroup === 1 && v.push(v[v.length - 1] + S),
+        E.push(E[E.length - 1] + S),
+        (e.virtualSize += S));
+  }
+  if ((v.length === 0 && (v = [0]), N !== 0)) {
+    const S =
+      e.isHorizontal() && o ? "marginLeft" : e.getDirectionLabel("marginRight");
+    d.filter(($, R) =>
+      !n.cssMode || n.loop ? !0 : R !== d.length - 1,
+    ).forEach(($) => {
+      $.style[S] = `${N}px`;
+    });
+  }
+  if (n.centeredSlides && n.centeredSlidesBounds) {
+    let S = 0;
+    (x.forEach((R) => {
+      S += R + (N || 0);
+    }),
+      (S -= N));
+    const $ = S > i ? S - i : 0;
+    v = v.map((R) => (R <= 0 ? -B : R > $ ? $ + G : R));
+  }
+  if (n.centerInsufficientSlides) {
+    let S = 0;
+    (x.forEach((R) => {
+      S += R + (N || 0);
+    }),
+      (S -= N));
+    const $ = (n.slidesOffsetBefore || 0) + (n.slidesOffsetAfter || 0);
+    if (S + $ < i) {
+      const R = (i - S - $) / 2;
+      (v.forEach((P, W) => {
+        v[W] = P - R;
+      }),
+        E.forEach((P, W) => {
+          E[W] = P + R;
+        }));
+    }
+  }
+  if (
+    (Object.assign(e, {
+      slides: d,
+      snapGrid: v,
+      slidesGrid: E,
+      slidesSizesGrid: x,
+    }),
+    n.centeredSlides && n.cssMode && !n.centeredSlidesBounds)
+  ) {
+    (setCSSProperty(s, "--swiper-centered-offset-before", `${-v[0]}px`),
+      setCSSProperty(
+        s,
+        "--swiper-centered-offset-after",
+        `${e.size / 2 - x[x.length - 1] / 2}px`,
+      ));
+    const S = -e.snapGrid[0],
+      $ = -e.slidesGrid[0];
+    ((e.snapGrid = e.snapGrid.map((R) => R + S)),
+      (e.slidesGrid = e.slidesGrid.map((R) => R + $)));
+  }
+  if (
+    (c !== u && e.emit("slidesLengthChange"),
+    v.length !== q &&
+      (e.params.watchOverflow && e.checkOverflow(),
+      e.emit("snapGridLengthChange")),
+    E.length !== b && e.emit("slidesGridLengthChange"),
+    n.watchSlidesProgress && e.updateSlidesOffset(),
+    e.emit("slidesUpdated"),
+    !l && !n.cssMode && (n.effect === "slide" || n.effect === "fade"))
+  ) {
+    const S = `${n.containerModifierClass}backface-hidden`,
+      $ = e.el.classList.contains(S);
+    c <= n.maxBackfaceHiddenSlides
+      ? $ || e.el.classList.add(S)
+      : $ && e.el.classList.remove(S);
+  }
+}
+function updateAutoHeight(e) {
+  const t = this,
+    n = [],
+    s = t.virtual && t.params.virtual.enabled;
+  let r = 0,
+    i;
+  typeof e == "number"
+    ? t.setTransition(e)
+    : e === !0 && t.setTransition(t.params.speed);
+  const o = (a) => (s ? t.slides[t.getSlideIndexByData(a)] : t.slides[a]);
+  if (t.params.slidesPerView !== "auto" && t.params.slidesPerView > 1)
+    if (t.params.centeredSlides)
+      (t.visibleSlides || []).forEach((a) => {
+        n.push(a);
+      });
+    else
+      for (i = 0; i < Math.ceil(t.params.slidesPerView); i += 1) {
+        const a = t.activeIndex + i;
+        if (a > t.slides.length && !s) break;
+        n.push(o(a));
+      }
+  else n.push(o(t.activeIndex));
+  for (i = 0; i < n.length; i += 1)
+    if (typeof n[i] < "u") {
+      const a = n[i].offsetHeight;
+      r = a > r ? a : r;
+    }
+  (r || r === 0) && (t.wrapperEl.style.height = `${r}px`);
+}
+function updateSlidesOffset() {
+  const e = this,
+    t = e.slides,
+    n = e.isElement
+      ? e.isHorizontal()
+        ? e.wrapperEl.offsetLeft
+        : e.wrapperEl.offsetTop
+      : 0;
+  for (let s = 0; s < t.length; s += 1)
+    t[s].swiperSlideOffset =
+      (e.isHorizontal() ? t[s].offsetLeft : t[s].offsetTop) -
+      n -
+      e.cssOverflowAdjustment();
+}
+const toggleSlideClasses$1 = (e, t, n) => {
+  t && !e.classList.contains(n)
+    ? e.classList.add(n)
+    : !t && e.classList.contains(n) && e.classList.remove(n);
+};
+function updateSlidesProgress(e) {
+  e === void 0 && (e = (this && this.translate) || 0);
+  const t = this,
+    n = t.params,
+    { slides: s, rtlTranslate: r, snapGrid: i } = t;
+  if (s.length === 0) return;
+  typeof s[0].swiperSlideOffset > "u" && t.updateSlidesOffset();
+  let o = -e;
+  (r && (o = e), (t.visibleSlidesIndexes = []), (t.visibleSlides = []));
+  let a = n.spaceBetween;
+  typeof a == "string" && a.indexOf("%") >= 0
+    ? (a = (parseFloat(a.replace("%", "")) / 100) * t.size)
+    : typeof a == "string" && (a = parseFloat(a));
+  for (let l = 0; l < s.length; l += 1) {
+    const u = s[l];
+    let d = u.swiperSlideOffset;
+    n.cssMode && n.centeredSlides && (d -= s[0].swiperSlideOffset);
+    const c =
+        (o + (n.centeredSlides ? t.minTranslate() : 0) - d) /
+        (u.swiperSlideSize + a),
+      v =
+        (o - i[0] + (n.centeredSlides ? t.minTranslate() : 0) - d) /
+        (u.swiperSlideSize + a),
+      E = -(o - d),
+      x = E + t.slidesSizesGrid[l],
+      B = E >= 0 && E <= t.size - t.slidesSizesGrid[l],
+      G =
+        (E >= 0 && E < t.size - 1) ||
+        (x > 1 && x <= t.size) ||
+        (E <= 0 && x >= t.size);
+    (G && (t.visibleSlides.push(u), t.visibleSlidesIndexes.push(l)),
+      toggleSlideClasses$1(u, G, n.slideVisibleClass),
+      toggleSlideClasses$1(u, B, n.slideFullyVisibleClass),
+      (u.progress = r ? -c : c),
+      (u.originalProgress = r ? -v : v));
+  }
+}
+function updateProgress(e) {
+  const t = this;
+  if (typeof e > "u") {
+    const d = t.rtlTranslate ? -1 : 1;
+    e = (t && t.translate && t.translate * d) || 0;
+  }
+  const n = t.params,
+    s = t.maxTranslate() - t.minTranslate();
+  let { progress: r, isBeginning: i, isEnd: o, progressLoop: a } = t;
+  const l = i,
+    u = o;
+  if (s === 0) ((r = 0), (i = !0), (o = !0));
+  else {
+    r = (e - t.minTranslate()) / s;
+    const d = Math.abs(e - t.minTranslate()) < 1,
+      c = Math.abs(e - t.maxTranslate()) < 1;
+    ((i = d || r <= 0), (o = c || r >= 1), d && (r = 0), c && (r = 1));
+  }
+  if (n.loop) {
+    const d = t.getSlideIndexByData(0),
+      c = t.getSlideIndexByData(t.slides.length - 1),
+      v = t.slidesGrid[d],
+      E = t.slidesGrid[c],
+      x = t.slidesGrid[t.slidesGrid.length - 1],
+      B = Math.abs(e);
+    (B >= v ? (a = (B - v) / x) : (a = (B + x - E) / x), a > 1 && (a -= 1));
+  }
+  (Object.assign(t, { progress: r, progressLoop: a, isBeginning: i, isEnd: o }),
+    (n.watchSlidesProgress || (n.centeredSlides && n.autoHeight)) &&
+      t.updateSlidesProgress(e),
+    i && !l && t.emit("reachBeginning toEdge"),
+    o && !u && t.emit("reachEnd toEdge"),
+    ((l && !i) || (u && !o)) && t.emit("fromEdge"),
+    t.emit("progress", r));
+}
+const toggleSlideClasses = (e, t, n) => {
+  t && !e.classList.contains(n)
+    ? e.classList.add(n)
+    : !t && e.classList.contains(n) && e.classList.remove(n);
+};
+function updateSlidesClasses() {
+  const e = this,
+    { slides: t, params: n, slidesEl: s, activeIndex: r } = e,
+    i = e.virtual && n.virtual.enabled,
+    o = e.grid && n.grid && n.grid.rows > 1,
+    a = (c) => elementChildren(s, `.${n.slideClass}${c}, swiper-slide${c}`)[0];
+  let l, u, d;
+  if (i)
+    if (n.loop) {
+      let c = r - e.virtual.slidesBefore;
+      (c < 0 && (c = e.virtual.slides.length + c),
+        c >= e.virtual.slides.length && (c -= e.virtual.slides.length),
+        (l = a(`[data-swiper-slide-index="${c}"]`)));
+    } else l = a(`[data-swiper-slide-index="${r}"]`);
+  else
+    o
+      ? ((l = t.find((c) => c.column === r)),
+        (d = t.find((c) => c.column === r + 1)),
+        (u = t.find((c) => c.column === r - 1)))
+      : (l = t[r]);
+  (l &&
+    (o ||
+      ((d = elementNextAll(l, `.${n.slideClass}, swiper-slide`)[0]),
+      n.loop && !d && (d = t[0]),
+      (u = elementPrevAll(l, `.${n.slideClass}, swiper-slide`)[0]),
+      n.loop && !u === 0 && (u = t[t.length - 1]))),
+    t.forEach((c) => {
+      (toggleSlideClasses(c, c === l, n.slideActiveClass),
+        toggleSlideClasses(c, c === d, n.slideNextClass),
+        toggleSlideClasses(c, c === u, n.slidePrevClass));
+    }),
+    e.emitSlidesClasses());
+}
+const processLazyPreloader = (e, t) => {
+    if (!e || e.destroyed || !e.params) return;
+    const n = () => (e.isElement ? "swiper-slide" : `.${e.params.slideClass}`),
+      s = t.closest(n());
+    if (s) {
+      let r = s.querySelector(`.${e.params.lazyPreloaderClass}`);
+      (!r &&
+        e.isElement &&
+        (s.shadowRoot
+          ? (r = s.shadowRoot.querySelector(`.${e.params.lazyPreloaderClass}`))
+          : requestAnimationFrame(() => {
+              s.shadowRoot &&
+                ((r = s.shadowRoot.querySelector(
+                  `.${e.params.lazyPreloaderClass}`,
+                )),
+                r && r.remove());
+            })),
+        r && r.remove());
+    }
+  },
+  unlazy = (e, t) => {
+    if (!e.slides[t]) return;
+    const n = e.slides[t].querySelector('[loading="lazy"]');
+    n && n.removeAttribute("loading");
+  },
+  preload = (e) => {
+    if (!e || e.destroyed || !e.params) return;
+    let t = e.params.lazyPreloadPrevNext;
+    const n = e.slides.length;
+    if (!n || !t || t < 0) return;
+    t = Math.min(t, n);
+    const s =
+        e.params.slidesPerView === "auto"
+          ? e.slidesPerViewDynamic()
+          : Math.ceil(e.params.slidesPerView),
+      r = e.activeIndex;
+    if (e.params.grid && e.params.grid.rows > 1) {
+      const o = r,
+        a = [o - t];
+      (a.push(...Array.from({ length: t }).map((l, u) => o + s + u)),
+        e.slides.forEach((l, u) => {
+          a.includes(l.column) && unlazy(e, u);
+        }));
+      return;
+    }
+    const i = r + s - 1;
+    if (e.params.rewind || e.params.loop)
+      for (let o = r - t; o <= i + t; o += 1) {
+        const a = ((o % n) + n) % n;
+        (a < r || a > i) && unlazy(e, a);
+      }
+    else
+      for (let o = Math.max(r - t, 0); o <= Math.min(i + t, n - 1); o += 1)
+        o !== r && (o > i || o < r) && unlazy(e, o);
+  };
+function getActiveIndexByTranslate(e) {
+  const { slidesGrid: t, params: n } = e,
+    s = e.rtlTranslate ? e.translate : -e.translate;
+  let r;
+  for (let i = 0; i < t.length; i += 1)
+    typeof t[i + 1] < "u"
+      ? s >= t[i] && s < t[i + 1] - (t[i + 1] - t[i]) / 2
+        ? (r = i)
+        : s >= t[i] && s < t[i + 1] && (r = i + 1)
+      : s >= t[i] && (r = i);
+  return (n.normalizeSlideIndex && (r < 0 || typeof r > "u") && (r = 0), r);
+}
+function updateActiveIndex(e) {
+  const t = this,
+    n = t.rtlTranslate ? t.translate : -t.translate,
+    { snapGrid: s, params: r, activeIndex: i, realIndex: o, snapIndex: a } = t;
+  let l = e,
+    u;
+  const d = (E) => {
+    let x = E - t.virtual.slidesBefore;
+    return (
+      x < 0 && (x = t.virtual.slides.length + x),
+      x >= t.virtual.slides.length && (x -= t.virtual.slides.length),
+      x
+    );
+  };
+  if ((typeof l > "u" && (l = getActiveIndexByTranslate(t)), s.indexOf(n) >= 0))
+    u = s.indexOf(n);
+  else {
+    const E = Math.min(r.slidesPerGroupSkip, l);
+    u = E + Math.floor((l - E) / r.slidesPerGroup);
+  }
+  if ((u >= s.length && (u = s.length - 1), l === i && !t.params.loop)) {
+    u !== a && ((t.snapIndex = u), t.emit("snapIndexChange"));
+    return;
+  }
+  if (l === i && t.params.loop && t.virtual && t.params.virtual.enabled) {
+    t.realIndex = d(l);
+    return;
+  }
+  const c = t.grid && r.grid && r.grid.rows > 1;
+  let v;
+  if (t.virtual && r.virtual.enabled && r.loop) v = d(l);
+  else if (c) {
+    const E = t.slides.find((B) => B.column === l);
+    let x = parseInt(E.getAttribute("data-swiper-slide-index"), 10);
+    (Number.isNaN(x) && (x = Math.max(t.slides.indexOf(E), 0)),
+      (v = Math.floor(x / r.grid.rows)));
+  } else if (t.slides[l]) {
+    const E = t.slides[l].getAttribute("data-swiper-slide-index");
+    E ? (v = parseInt(E, 10)) : (v = l);
+  } else v = l;
+  (Object.assign(t, {
+    previousSnapIndex: a,
+    snapIndex: u,
+    previousRealIndex: o,
+    realIndex: v,
+    previousIndex: i,
+    activeIndex: l,
+  }),
+    t.initialized && preload(t),
+    t.emit("activeIndexChange"),
+    t.emit("snapIndexChange"),
+    (t.initialized || t.params.runCallbacksOnInit) &&
+      (o !== v && t.emit("realIndexChange"), t.emit("slideChange")));
+}
+function updateClickedSlide(e, t) {
+  const n = this,
+    s = n.params;
+  let r = e.closest(`.${s.slideClass}, swiper-slide`);
+  !r &&
+    n.isElement &&
+    t &&
+    t.length > 1 &&
+    t.includes(e) &&
+    [...t.slice(t.indexOf(e) + 1, t.length)].forEach((a) => {
+      !r && a.matches && a.matches(`.${s.slideClass}, swiper-slide`) && (r = a);
+    });
+  let i = !1,
+    o;
+  if (r) {
+    for (let a = 0; a < n.slides.length; a += 1)
+      if (n.slides[a] === r) {
+        ((i = !0), (o = a));
+        break;
+      }
+  }
+  if (r && i)
+    ((n.clickedSlide = r),
+      n.virtual && n.params.virtual.enabled
+        ? (n.clickedIndex = parseInt(
+            r.getAttribute("data-swiper-slide-index"),
+            10,
+          ))
+        : (n.clickedIndex = o));
+  else {
+    ((n.clickedSlide = void 0), (n.clickedIndex = void 0));
+    return;
+  }
+  s.slideToClickedSlide &&
+    n.clickedIndex !== void 0 &&
+    n.clickedIndex !== n.activeIndex &&
+    n.slideToClickedSlide();
+}
+var update = {
+  updateSize,
+  updateSlides,
+  updateAutoHeight,
+  updateSlidesOffset,
+  updateSlidesProgress,
+  updateProgress,
+  updateSlidesClasses,
+  updateActiveIndex,
+  updateClickedSlide,
+};
+function getSwiperTranslate(e) {
+  e === void 0 && (e = this.isHorizontal() ? "x" : "y");
+  const t = this,
+    { params: n, rtlTranslate: s, translate: r, wrapperEl: i } = t;
+  if (n.virtualTranslate) return s ? -r : r;
+  if (n.cssMode) return r;
+  let o = getTranslate(i, e);
+  return ((o += t.cssOverflowAdjustment()), s && (o = -o), o || 0);
+}
+function setTranslate(e, t) {
+  const n = this,
+    { rtlTranslate: s, params: r, wrapperEl: i, progress: o } = n;
+  let a = 0,
+    l = 0;
+  const u = 0;
+  (n.isHorizontal() ? (a = s ? -e : e) : (l = e),
+    r.roundLengths && ((a = Math.floor(a)), (l = Math.floor(l))),
+    (n.previousTranslate = n.translate),
+    (n.translate = n.isHorizontal() ? a : l),
+    r.cssMode
+      ? (i[n.isHorizontal() ? "scrollLeft" : "scrollTop"] = n.isHorizontal()
+          ? -a
+          : -l)
+      : r.virtualTranslate ||
+        (n.isHorizontal()
+          ? (a -= n.cssOverflowAdjustment())
+          : (l -= n.cssOverflowAdjustment()),
+        (i.style.transform = `translate3d(${a}px, ${l}px, ${u}px)`)));
+  let d;
+  const c = n.maxTranslate() - n.minTranslate();
+  (c === 0 ? (d = 0) : (d = (e - n.minTranslate()) / c),
+    d !== o && n.updateProgress(e),
+    n.emit("setTranslate", n.translate, t));
+}
+function minTranslate() {
+  return -this.snapGrid[0];
+}
+function maxTranslate() {
+  return -this.snapGrid[this.snapGrid.length - 1];
+}
+function translateTo(e, t, n, s, r) {
+  (e === void 0 && (e = 0),
+    t === void 0 && (t = this.params.speed),
+    n === void 0 && (n = !0),
+    s === void 0 && (s = !0));
+  const i = this,
+    { params: o, wrapperEl: a } = i;
+  if (i.animating && o.preventInteractionOnTransition) return !1;
+  const l = i.minTranslate(),
+    u = i.maxTranslate();
+  let d;
+  if (
+    (s && e > l ? (d = l) : s && e < u ? (d = u) : (d = e),
+    i.updateProgress(d),
+    o.cssMode)
+  ) {
+    const c = i.isHorizontal();
+    if (t === 0) a[c ? "scrollLeft" : "scrollTop"] = -d;
+    else {
+      if (!i.support.smoothScroll)
+        return (
+          animateCSSModeScroll({
+            swiper: i,
+            targetPosition: -d,
+            side: c ? "left" : "top",
+          }),
+          !0
+        );
+      a.scrollTo({ [c ? "left" : "top"]: -d, behavior: "smooth" });
+    }
+    return !0;
+  }
+  return (
+    t === 0
+      ? (i.setTransition(0),
+        i.setTranslate(d),
+        n && (i.emit("beforeTransitionStart", t, r), i.emit("transitionEnd")))
+      : (i.setTransition(t),
+        i.setTranslate(d),
+        n && (i.emit("beforeTransitionStart", t, r), i.emit("transitionStart")),
+        i.animating ||
+          ((i.animating = !0),
+          i.onTranslateToWrapperTransitionEnd ||
+            (i.onTranslateToWrapperTransitionEnd = function (v) {
+              !i ||
+                i.destroyed ||
+                (v.target === this &&
+                  (i.wrapperEl.removeEventListener(
+                    "transitionend",
+                    i.onTranslateToWrapperTransitionEnd,
+                  ),
+                  (i.onTranslateToWrapperTransitionEnd = null),
+                  delete i.onTranslateToWrapperTransitionEnd,
+                  (i.animating = !1),
+                  n && i.emit("transitionEnd")));
+            }),
+          i.wrapperEl.addEventListener(
+            "transitionend",
+            i.onTranslateToWrapperTransitionEnd,
+          ))),
+    !0
+  );
+}
+var translate = {
+  getTranslate: getSwiperTranslate,
+  setTranslate,
+  minTranslate,
+  maxTranslate,
+  translateTo,
+};
+function setTransition(e, t) {
+  const n = this;
+  (n.params.cssMode ||
+    ((n.wrapperEl.style.transitionDuration = `${e}ms`),
+    (n.wrapperEl.style.transitionDelay = e === 0 ? "0ms" : "")),
+    n.emit("setTransition", e, t));
+}
+function transitionEmit(e) {
+  let { swiper: t, runCallbacks: n, direction: s, step: r } = e;
+  const { activeIndex: i, previousIndex: o } = t;
+  let a = s;
+  (a || (i > o ? (a = "next") : i < o ? (a = "prev") : (a = "reset")),
+    t.emit(`transition${r}`),
+    n && a === "reset"
+      ? t.emit(`slideResetTransition${r}`)
+      : n &&
+        i !== o &&
+        (t.emit(`slideChangeTransition${r}`),
+        a === "next"
+          ? t.emit(`slideNextTransition${r}`)
+          : t.emit(`slidePrevTransition${r}`)));
+}
+function transitionStart(e, t) {
+  e === void 0 && (e = !0);
+  const n = this,
+    { params: s } = n;
+  s.cssMode ||
+    (s.autoHeight && n.updateAutoHeight(),
+    transitionEmit({
+      swiper: n,
+      runCallbacks: e,
+      direction: t,
+      step: "Start",
+    }));
+}
+function transitionEnd(e, t) {
+  e === void 0 && (e = !0);
+  const n = this,
+    { params: s } = n;
+  ((n.animating = !1),
+    !s.cssMode &&
+      (n.setTransition(0),
+      transitionEmit({
+        swiper: n,
+        runCallbacks: e,
+        direction: t,
+        step: "End",
+      })));
+}
+var transition = { setTransition, transitionStart, transitionEnd };
+function slideTo(e, t, n, s, r) {
+  (e === void 0 && (e = 0),
+    n === void 0 && (n = !0),
+    typeof e == "string" && (e = parseInt(e, 10)));
+  const i = this;
+  let o = e;
+  o < 0 && (o = 0);
+  const {
+    params: a,
+    snapGrid: l,
+    slidesGrid: u,
+    previousIndex: d,
+    activeIndex: c,
+    rtlTranslate: v,
+    wrapperEl: E,
+    enabled: x,
+  } = i;
+  if (
+    (!x && !s && !r) ||
+    i.destroyed ||
+    (i.animating && a.preventInteractionOnTransition)
+  )
+    return !1;
+  typeof t > "u" && (t = i.params.speed);
+  const B = Math.min(i.params.slidesPerGroupSkip, o);
+  let G = B + Math.floor((o - B) / i.params.slidesPerGroup);
+  G >= l.length && (G = l.length - 1);
+  const q = -l[G];
+  if (a.normalizeSlideIndex)
+    for (let K = 0; K < u.length; K += 1) {
+      const w = -Math.floor(q * 100),
+        m = Math.floor(u[K] * 100),
+        S = Math.floor(u[K + 1] * 100);
+      typeof u[K + 1] < "u"
+        ? w >= m && w < S - (S - m) / 2
+          ? (o = K)
+          : w >= m && w < S && (o = K + 1)
+        : w >= m && (o = K);
+    }
+  if (
+    i.initialized &&
+    o !== c &&
+    ((!i.allowSlideNext &&
+      (v
+        ? q > i.translate && q > i.minTranslate()
+        : q < i.translate && q < i.minTranslate())) ||
+      (!i.allowSlidePrev &&
+        q > i.translate &&
+        q > i.maxTranslate() &&
+        (c || 0) !== o))
+  )
+    return !1;
+  (o !== (d || 0) && n && i.emit("beforeSlideChangeStart"),
+    i.updateProgress(q));
+  let b;
+  o > c ? (b = "next") : o < c ? (b = "prev") : (b = "reset");
+  const N = i.virtual && i.params.virtual.enabled;
+  if (!(N && r) && ((v && -q === i.translate) || (!v && q === i.translate)))
+    return (
+      i.updateActiveIndex(o),
+      a.autoHeight && i.updateAutoHeight(),
+      i.updateSlidesClasses(),
+      a.effect !== "slide" && i.setTranslate(q),
+      b !== "reset" && (i.transitionStart(n, b), i.transitionEnd(n, b)),
+      !1
+    );
+  if (a.cssMode) {
+    const K = i.isHorizontal(),
+      w = v ? q : -q;
+    if (t === 0)
+      (N &&
+        ((i.wrapperEl.style.scrollSnapType = "none"),
+        (i._immediateVirtual = !0)),
+        N && !i._cssModeVirtualInitialSet && i.params.initialSlide > 0
+          ? ((i._cssModeVirtualInitialSet = !0),
+            requestAnimationFrame(() => {
+              E[K ? "scrollLeft" : "scrollTop"] = w;
+            }))
+          : (E[K ? "scrollLeft" : "scrollTop"] = w),
+        N &&
+          requestAnimationFrame(() => {
+            ((i.wrapperEl.style.scrollSnapType = ""),
+              (i._immediateVirtual = !1));
+          }));
+    else {
+      if (!i.support.smoothScroll)
+        return (
+          animateCSSModeScroll({
+            swiper: i,
+            targetPosition: w,
+            side: K ? "left" : "top",
+          }),
+          !0
+        );
+      E.scrollTo({ [K ? "left" : "top"]: w, behavior: "smooth" });
+    }
+    return !0;
+  }
+  const X = getBrowser().isSafari;
+  return (
+    N && !r && X && i.isElement && i.virtual.update(!1, !1, o),
+    i.setTransition(t),
+    i.setTranslate(q),
+    i.updateActiveIndex(o),
+    i.updateSlidesClasses(),
+    i.emit("beforeTransitionStart", t, s),
+    i.transitionStart(n, b),
+    t === 0
+      ? i.transitionEnd(n, b)
+      : i.animating ||
+        ((i.animating = !0),
+        i.onSlideToWrapperTransitionEnd ||
+          (i.onSlideToWrapperTransitionEnd = function (w) {
+            !i ||
+              i.destroyed ||
+              (w.target === this &&
+                (i.wrapperEl.removeEventListener(
+                  "transitionend",
+                  i.onSlideToWrapperTransitionEnd,
+                ),
+                (i.onSlideToWrapperTransitionEnd = null),
+                delete i.onSlideToWrapperTransitionEnd,
+                i.transitionEnd(n, b)));
+          }),
+        i.wrapperEl.addEventListener(
+          "transitionend",
+          i.onSlideToWrapperTransitionEnd,
+        )),
+    !0
+  );
+}
+function slideToLoop(e, t, n, s) {
+  (e === void 0 && (e = 0),
+    n === void 0 && (n = !0),
+    typeof e == "string" && (e = parseInt(e, 10)));
+  const r = this;
+  if (r.destroyed) return;
+  typeof t > "u" && (t = r.params.speed);
+  const i = r.grid && r.params.grid && r.params.grid.rows > 1;
+  let o = e;
+  if (r.params.loop)
+    if (r.virtual && r.params.virtual.enabled) o = o + r.virtual.slidesBefore;
+    else {
+      let a;
+      if (i) {
+        const v = o * r.params.grid.rows;
+        a = r.slides.find(
+          (E) => E.getAttribute("data-swiper-slide-index") * 1 === v,
+        ).column;
+      } else a = r.getSlideIndexByData(o);
+      const l = i
+          ? Math.ceil(r.slides.length / r.params.grid.rows)
+          : r.slides.length,
+        { centeredSlides: u } = r.params;
+      let d = r.params.slidesPerView;
+      d === "auto"
+        ? (d = r.slidesPerViewDynamic())
+        : ((d = Math.ceil(parseFloat(r.params.slidesPerView, 10))),
+          u && d % 2 === 0 && (d = d + 1));
+      let c = l - a < d;
+      if (
+        (u && (c = c || a < Math.ceil(d / 2)),
+        s && u && r.params.slidesPerView !== "auto" && !i && (c = !1),
+        c)
+      ) {
+        const v = u
+          ? a < r.activeIndex
+            ? "prev"
+            : "next"
+          : a - r.activeIndex - 1 < r.params.slidesPerView
+            ? "next"
+            : "prev";
+        r.loopFix({
+          direction: v,
+          slideTo: !0,
+          activeSlideIndex: v === "next" ? a + 1 : a - l + 1,
+          slideRealIndex: v === "next" ? r.realIndex : void 0,
+        });
+      }
+      if (i) {
+        const v = o * r.params.grid.rows;
+        o = r.slides.find(
+          (E) => E.getAttribute("data-swiper-slide-index") * 1 === v,
+        ).column;
+      } else o = r.getSlideIndexByData(o);
+    }
+  return (
+    requestAnimationFrame(() => {
+      r.slideTo(o, t, n, s);
+    }),
+    r
+  );
+}
+function slideNext(e, t, n) {
+  t === void 0 && (t = !0);
+  const s = this,
+    { enabled: r, params: i, animating: o } = s;
+  if (!r || s.destroyed) return s;
+  typeof e > "u" && (e = s.params.speed);
+  let a = i.slidesPerGroup;
+  i.slidesPerView === "auto" &&
+    i.slidesPerGroup === 1 &&
+    i.slidesPerGroupAuto &&
+    (a = Math.max(s.slidesPerViewDynamic("current", !0), 1));
+  const l = s.activeIndex < i.slidesPerGroupSkip ? 1 : a,
+    u = s.virtual && i.virtual.enabled;
+  if (i.loop) {
+    if (o && !u && i.loopPreventsSliding) return !1;
+    if (
+      (s.loopFix({ direction: "next" }),
+      (s._clientLeft = s.wrapperEl.clientLeft),
+      s.activeIndex === s.slides.length - 1 && i.cssMode)
+    )
+      return (
+        requestAnimationFrame(() => {
+          s.slideTo(s.activeIndex + l, e, t, n);
+        }),
+        !0
+      );
+  }
+  return i.rewind && s.isEnd
+    ? s.slideTo(0, e, t, n)
+    : s.slideTo(s.activeIndex + l, e, t, n);
+}
+function slidePrev(e, t, n) {
+  t === void 0 && (t = !0);
+  const s = this,
+    {
+      params: r,
+      snapGrid: i,
+      slidesGrid: o,
+      rtlTranslate: a,
+      enabled: l,
+      animating: u,
+    } = s;
+  if (!l || s.destroyed) return s;
+  typeof e > "u" && (e = s.params.speed);
+  const d = s.virtual && r.virtual.enabled;
+  if (r.loop) {
+    if (u && !d && r.loopPreventsSliding) return !1;
+    (s.loopFix({ direction: "prev" }),
+      (s._clientLeft = s.wrapperEl.clientLeft));
+  }
+  const c = a ? s.translate : -s.translate;
+  function v(b) {
+    return b < 0 ? -Math.floor(Math.abs(b)) : Math.floor(b);
+  }
+  const E = v(c),
+    x = i.map((b) => v(b)),
+    B = r.freeMode && r.freeMode.enabled;
+  let G = i[x.indexOf(E) - 1];
+  if (typeof G > "u" && (r.cssMode || B)) {
+    let b;
+    (i.forEach((N, z) => {
+      E >= N && (b = z);
+    }),
+      typeof b < "u" && (G = B ? i[b] : i[b > 0 ? b - 1 : b]));
+  }
+  let q = 0;
+  if (
+    (typeof G < "u" &&
+      ((q = o.indexOf(G)),
+      q < 0 && (q = s.activeIndex - 1),
+      r.slidesPerView === "auto" &&
+        r.slidesPerGroup === 1 &&
+        r.slidesPerGroupAuto &&
+        ((q = q - s.slidesPerViewDynamic("previous", !0) + 1),
+        (q = Math.max(q, 0)))),
+    r.rewind && s.isBeginning)
+  ) {
+    const b =
+      s.params.virtual && s.params.virtual.enabled && s.virtual
+        ? s.virtual.slides.length - 1
+        : s.slides.length - 1;
+    return s.slideTo(b, e, t, n);
+  } else if (r.loop && s.activeIndex === 0 && r.cssMode)
+    return (
+      requestAnimationFrame(() => {
+        s.slideTo(q, e, t, n);
+      }),
+      !0
+    );
+  return s.slideTo(q, e, t, n);
+}
+function slideReset(e, t, n) {
+  t === void 0 && (t = !0);
+  const s = this;
+  if (!s.destroyed)
+    return (
+      typeof e > "u" && (e = s.params.speed),
+      s.slideTo(s.activeIndex, e, t, n)
+    );
+}
+function slideToClosest(e, t, n, s) {
+  (t === void 0 && (t = !0), s === void 0 && (s = 0.5));
+  const r = this;
+  if (r.destroyed) return;
+  typeof e > "u" && (e = r.params.speed);
+  let i = r.activeIndex;
+  const o = Math.min(r.params.slidesPerGroupSkip, i),
+    a = o + Math.floor((i - o) / r.params.slidesPerGroup),
+    l = r.rtlTranslate ? r.translate : -r.translate;
+  if (l >= r.snapGrid[a]) {
+    const u = r.snapGrid[a],
+      d = r.snapGrid[a + 1];
+    l - u > (d - u) * s && (i += r.params.slidesPerGroup);
+  } else {
+    const u = r.snapGrid[a - 1],
+      d = r.snapGrid[a];
+    l - u <= (d - u) * s && (i -= r.params.slidesPerGroup);
+  }
+  return (
+    (i = Math.max(i, 0)),
+    (i = Math.min(i, r.slidesGrid.length - 1)),
+    r.slideTo(i, e, t, n)
+  );
+}
+function slideToClickedSlide() {
+  const e = this;
+  if (e.destroyed) return;
+  const { params: t, slidesEl: n } = e,
+    s = t.slidesPerView === "auto" ? e.slidesPerViewDynamic() : t.slidesPerView;
+  let r = e.getSlideIndexWhenGrid(e.clickedIndex),
+    i;
+  const o = e.isElement ? "swiper-slide" : `.${t.slideClass}`,
+    a = e.grid && e.params.grid && e.params.grid.rows > 1;
+  if (t.loop) {
+    if (e.animating) return;
+    ((i = parseInt(e.clickedSlide.getAttribute("data-swiper-slide-index"), 10)),
+      t.centeredSlides
+        ? e.slideToLoop(i)
+        : r >
+            (a
+              ? (e.slides.length - s) / 2 - (e.params.grid.rows - 1)
+              : e.slides.length - s)
+          ? (e.loopFix(),
+            (r = e.getSlideIndex(
+              elementChildren(n, `${o}[data-swiper-slide-index="${i}"]`)[0],
+            )),
+            nextTick(() => {
+              e.slideTo(r);
+            }))
+          : e.slideTo(r));
+  } else e.slideTo(r);
+}
+var slide = {
+  slideTo,
+  slideToLoop,
+  slideNext,
+  slidePrev,
+  slideReset,
+  slideToClosest,
+  slideToClickedSlide,
+};
+function loopCreate(e, t) {
+  const n = this,
+    { params: s, slidesEl: r } = n;
+  if (!s.loop || (n.virtual && n.params.virtual.enabled)) return;
+  const i = () => {
+      elementChildren(r, `.${s.slideClass}, swiper-slide`).forEach((E, x) => {
+        E.setAttribute("data-swiper-slide-index", x);
+      });
+    },
+    o = () => {
+      const v = elementChildren(r, `.${s.slideBlankClass}`);
+      (v.forEach((E) => {
+        E.remove();
+      }),
+        v.length > 0 && (n.recalcSlides(), n.updateSlides()));
+    },
+    a = n.grid && s.grid && s.grid.rows > 1;
+  s.loopAddBlankSlides && (s.slidesPerGroup > 1 || a) && o();
+  const l = s.slidesPerGroup * (a ? s.grid.rows : 1),
+    u = n.slides.length % l !== 0,
+    d = a && n.slides.length % s.grid.rows !== 0,
+    c = (v) => {
+      for (let E = 0; E < v; E += 1) {
+        const x = n.isElement
+          ? createElement("swiper-slide", [s.slideBlankClass])
+          : createElement("div", [s.slideClass, s.slideBlankClass]);
+        n.slidesEl.append(x);
+      }
+    };
+  if (u) {
+    if (s.loopAddBlankSlides) {
+      const v = l - (n.slides.length % l);
+      (c(v), n.recalcSlides(), n.updateSlides());
+    } else
+      showWarning(
+        "Swiper Loop Warning: The number of slides is not even to slidesPerGroup, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)",
+      );
+    i();
+  } else if (d) {
+    if (s.loopAddBlankSlides) {
+      const v = s.grid.rows - (n.slides.length % s.grid.rows);
+      (c(v), n.recalcSlides(), n.updateSlides());
+    } else
+      showWarning(
+        "Swiper Loop Warning: The number of slides is not even to grid.rows, loop mode may not function properly. You need to add more slides (or make duplicates, or empty slides)",
+      );
+    i();
+  } else i();
+  n.loopFix({
+    slideRealIndex: e,
+    direction: s.centeredSlides ? void 0 : "next",
+    initial: t,
+  });
+}
+function loopFix(e) {
+  let {
+    slideRealIndex: t,
+    slideTo: n = !0,
+    direction: s,
+    setTranslate: r,
+    activeSlideIndex: i,
+    initial: o,
+    byController: a,
+    byMousewheel: l,
+  } = e === void 0 ? {} : e;
+  const u = this;
+  if (!u.params.loop) return;
+  u.emit("beforeLoopFix");
+  const {
+      slides: d,
+      allowSlidePrev: c,
+      allowSlideNext: v,
+      slidesEl: E,
+      params: x,
+    } = u,
+    { centeredSlides: B, initialSlide: G } = x;
+  if (
+    ((u.allowSlidePrev = !0),
+    (u.allowSlideNext = !0),
+    u.virtual && x.virtual.enabled)
+  ) {
+    (n &&
+      (!x.centeredSlides && u.snapIndex === 0
+        ? u.slideTo(u.virtual.slides.length, 0, !1, !0)
+        : x.centeredSlides && u.snapIndex < x.slidesPerView
+          ? u.slideTo(u.virtual.slides.length + u.snapIndex, 0, !1, !0)
+          : u.snapIndex === u.snapGrid.length - 1 &&
+            u.slideTo(u.virtual.slidesBefore, 0, !1, !0)),
+      (u.allowSlidePrev = c),
+      (u.allowSlideNext = v),
+      u.emit("loopFix"));
+    return;
+  }
+  let q = x.slidesPerView;
+  q === "auto"
+    ? (q = u.slidesPerViewDynamic())
+    : ((q = Math.ceil(parseFloat(x.slidesPerView, 10))),
+      B && q % 2 === 0 && (q = q + 1));
+  const b = x.slidesPerGroupAuto ? q : x.slidesPerGroup;
+  let N = B ? Math.max(b, Math.ceil(q / 2)) : b;
+  (N % b !== 0 && (N += b - (N % b)),
+    (N += x.loopAdditionalSlides),
+    (u.loopedSlides = N));
+  const z = u.grid && x.grid && x.grid.rows > 1;
+  d.length < q + N || (u.params.effect === "cards" && d.length < q + N * 2)
+    ? showWarning(
+        "Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters",
+      )
+    : z &&
+      x.grid.fill === "row" &&
+      showWarning(
+        "Swiper Loop Warning: Loop mode is not compatible with grid.fill = `row`",
+      );
+  const Y = [],
+    X = [],
+    K = z ? Math.ceil(d.length / x.grid.rows) : d.length,
+    w = o && K - G < q && !B;
+  let m = w ? G : u.activeIndex;
+  typeof i > "u"
+    ? (i = u.getSlideIndex(
+        d.find((k) => k.classList.contains(x.slideActiveClass)),
+      ))
+    : (m = i);
+  const S = s === "next" || !s,
+    $ = s === "prev" || !s;
+  let R = 0,
+    P = 0;
+  const D = (z ? d[i].column : i) + (B && typeof r > "u" ? -q / 2 + 0.5 : 0);
+  if (D < N) {
+    R = Math.max(N - D, b);
+    for (let k = 0; k < N - D; k += 1) {
+      const V = k - Math.floor(k / K) * K;
+      if (z) {
+        const F = K - V - 1;
+        for (let Z = d.length - 1; Z >= 0; Z -= 1)
+          d[Z].column === F && Y.push(Z);
+      } else Y.push(K - V - 1);
+    }
+  } else if (D + q > K - N) {
+    ((P = Math.max(D - (K - N * 2), b)), w && (P = Math.max(P, q - K + G + 1)));
+    for (let k = 0; k < P; k += 1) {
+      const V = k - Math.floor(k / K) * K;
+      z
+        ? d.forEach((F, Z) => {
+            F.column === V && X.push(Z);
+          })
+        : X.push(V);
+    }
+  }
+  if (
+    ((u.__preventObserver__ = !0),
+    requestAnimationFrame(() => {
+      u.__preventObserver__ = !1;
+    }),
+    u.params.effect === "cards" &&
+      d.length < q + N * 2 &&
+      (X.includes(i) && X.splice(X.indexOf(i), 1),
+      Y.includes(i) && Y.splice(Y.indexOf(i), 1)),
+    $ &&
+      Y.forEach((k) => {
+        ((d[k].swiperLoopMoveDOM = !0),
+          E.prepend(d[k]),
+          (d[k].swiperLoopMoveDOM = !1));
+      }),
+    S &&
+      X.forEach((k) => {
+        ((d[k].swiperLoopMoveDOM = !0),
+          E.append(d[k]),
+          (d[k].swiperLoopMoveDOM = !1));
+      }),
+    u.recalcSlides(),
+    x.slidesPerView === "auto"
+      ? u.updateSlides()
+      : z &&
+        ((Y.length > 0 && $) || (X.length > 0 && S)) &&
+        u.slides.forEach((k, V) => {
+          u.grid.updateSlide(V, k, u.slides);
+        }),
+    x.watchSlidesProgress && u.updateSlidesOffset(),
+    n)
+  ) {
+    if (Y.length > 0 && $) {
+      if (typeof t > "u") {
+        const k = u.slidesGrid[m],
+          F = u.slidesGrid[m + R] - k;
+        l
+          ? u.setTranslate(u.translate - F)
+          : (u.slideTo(m + Math.ceil(R), 0, !1, !0),
+            r &&
+              ((u.touchEventsData.startTranslate =
+                u.touchEventsData.startTranslate - F),
+              (u.touchEventsData.currentTranslate =
+                u.touchEventsData.currentTranslate - F)));
+      } else if (r) {
+        const k = z ? Y.length / x.grid.rows : Y.length;
+        (u.slideTo(u.activeIndex + k, 0, !1, !0),
+          (u.touchEventsData.currentTranslate = u.translate));
+      }
+    } else if (X.length > 0 && S)
+      if (typeof t > "u") {
+        const k = u.slidesGrid[m],
+          F = u.slidesGrid[m - P] - k;
+        l
+          ? u.setTranslate(u.translate - F)
+          : (u.slideTo(m - P, 0, !1, !0),
+            r &&
+              ((u.touchEventsData.startTranslate =
+                u.touchEventsData.startTranslate - F),
+              (u.touchEventsData.currentTranslate =
+                u.touchEventsData.currentTranslate - F)));
+      } else {
+        const k = z ? X.length / x.grid.rows : X.length;
+        u.slideTo(u.activeIndex - k, 0, !1, !0);
+      }
+  }
+  if (
+    ((u.allowSlidePrev = c),
+    (u.allowSlideNext = v),
+    u.controller && u.controller.control && !a)
+  ) {
+    const k = {
+      slideRealIndex: t,
+      direction: s,
+      setTranslate: r,
+      activeSlideIndex: i,
+      byController: !0,
+    };
+    Array.isArray(u.controller.control)
+      ? u.controller.control.forEach((V) => {
+          !V.destroyed &&
+            V.params.loop &&
+            V.loopFix({
+              ...k,
+              slideTo: V.params.slidesPerView === x.slidesPerView ? n : !1,
+            });
+        })
+      : u.controller.control instanceof u.constructor &&
+        u.controller.control.params.loop &&
+        u.controller.control.loopFix({
+          ...k,
+          slideTo:
+            u.controller.control.params.slidesPerView === x.slidesPerView
+              ? n
+              : !1,
+        });
+  }
+  u.emit("loopFix");
+}
+function loopDestroy() {
+  const e = this,
+    { params: t, slidesEl: n } = e;
+  if (!t.loop || !n || (e.virtual && e.params.virtual.enabled)) return;
+  e.recalcSlides();
+  const s = [];
+  (e.slides.forEach((r) => {
+    const i =
+      typeof r.swiperSlideIndex > "u"
+        ? r.getAttribute("data-swiper-slide-index") * 1
+        : r.swiperSlideIndex;
+    s[i] = r;
+  }),
+    e.slides.forEach((r) => {
+      r.removeAttribute("data-swiper-slide-index");
+    }),
+    s.forEach((r) => {
+      n.append(r);
+    }),
+    e.recalcSlides(),
+    e.slideTo(e.realIndex, 0));
+}
+var loop = { loopCreate, loopFix, loopDestroy };
+function setGrabCursor(e) {
+  const t = this;
+  if (
+    !t.params.simulateTouch ||
+    (t.params.watchOverflow && t.isLocked) ||
+    t.params.cssMode
+  )
+    return;
+  const n = t.params.touchEventsTarget === "container" ? t.el : t.wrapperEl;
+  (t.isElement && (t.__preventObserver__ = !0),
+    (n.style.cursor = "move"),
+    (n.style.cursor = e ? "grabbing" : "grab"),
+    t.isElement &&
+      requestAnimationFrame(() => {
+        t.__preventObserver__ = !1;
+      }));
+}
+function unsetGrabCursor() {
+  const e = this;
+  (e.params.watchOverflow && e.isLocked) ||
+    e.params.cssMode ||
+    (e.isElement && (e.__preventObserver__ = !0),
+    (e[
+      e.params.touchEventsTarget === "container" ? "el" : "wrapperEl"
+    ].style.cursor = ""),
+    e.isElement &&
+      requestAnimationFrame(() => {
+        e.__preventObserver__ = !1;
+      }));
+}
+var grabCursor = { setGrabCursor, unsetGrabCursor };
+function closestElement(e, t) {
+  t === void 0 && (t = this);
+  function n(s) {
+    if (!s || s === getDocument() || s === getWindow()) return null;
+    s.assignedSlot && (s = s.assignedSlot);
+    const r = s.closest(e);
+    return !r && !s.getRootNode ? null : r || n(s.getRootNode().host);
+  }
+  return n(t);
+}
+function preventEdgeSwipe(e, t, n) {
+  const s = getWindow(),
+    { params: r } = e,
+    i = r.edgeSwipeDetection,
+    o = r.edgeSwipeThreshold;
+  return i && (n <= o || n >= s.innerWidth - o)
+    ? i === "prevent"
+      ? (t.preventDefault(), !0)
+      : !1
+    : !0;
+}
+function onTouchStart(e) {
+  const t = this,
+    n = getDocument();
+  let s = e;
+  s.originalEvent && (s = s.originalEvent);
+  const r = t.touchEventsData;
+  if (s.type === "pointerdown") {
+    if (r.pointerId !== null && r.pointerId !== s.pointerId) return;
+    r.pointerId = s.pointerId;
+  } else
+    s.type === "touchstart" &&
+      s.targetTouches.length === 1 &&
+      (r.touchId = s.targetTouches[0].identifier);
+  if (s.type === "touchstart") {
+    preventEdgeSwipe(t, s, s.targetTouches[0].pageX);
+    return;
+  }
+  const { params: i, touches: o, enabled: a } = t;
+  if (
+    !a ||
+    (!i.simulateTouch && s.pointerType === "mouse") ||
+    (t.animating && i.preventInteractionOnTransition)
+  )
+    return;
+  !t.animating && i.cssMode && i.loop && t.loopFix();
+  let l = s.target;
+  if (
+    (i.touchEventsTarget === "wrapper" && !elementIsChildOf(l, t.wrapperEl)) ||
+    ("which" in s && s.which === 3) ||
+    ("button" in s && s.button > 0) ||
+    (r.isTouched && r.isMoved)
+  )
+    return;
+  const u = !!i.noSwipingClass && i.noSwipingClass !== "",
+    d = s.composedPath ? s.composedPath() : s.path;
+  u && s.target && s.target.shadowRoot && d && (l = d[0]);
+  const c = i.noSwipingSelector ? i.noSwipingSelector : `.${i.noSwipingClass}`,
+    v = !!(s.target && s.target.shadowRoot);
+  if (i.noSwiping && (v ? closestElement(c, l) : l.closest(c))) {
+    t.allowClick = !0;
+    return;
+  }
+  if (i.swipeHandler && !l.closest(i.swipeHandler)) return;
+  ((o.currentX = s.pageX), (o.currentY = s.pageY));
+  const E = o.currentX,
+    x = o.currentY;
+  if (!preventEdgeSwipe(t, s, E)) return;
+  (Object.assign(r, {
+    isTouched: !0,
+    isMoved: !1,
+    allowTouchCallbacks: !0,
+    isScrolling: void 0,
+    startMoving: void 0,
+  }),
+    (o.startX = E),
+    (o.startY = x),
+    (r.touchStartTime = now()),
+    (t.allowClick = !0),
+    t.updateSize(),
+    (t.swipeDirection = void 0),
+    i.threshold > 0 && (r.allowThresholdMove = !1));
+  let B = !0;
+  (l.matches(r.focusableElements) &&
+    ((B = !1), l.nodeName === "SELECT" && (r.isTouched = !1)),
+    n.activeElement &&
+      n.activeElement.matches(r.focusableElements) &&
+      n.activeElement !== l &&
+      (s.pointerType === "mouse" ||
+        (s.pointerType !== "mouse" && !l.matches(r.focusableElements))) &&
+      n.activeElement.blur());
+  const G = B && t.allowTouchMove && i.touchStartPreventDefault;
+  ((i.touchStartForcePreventDefault || G) &&
+    !l.isContentEditable &&
+    s.preventDefault(),
+    i.freeMode &&
+      i.freeMode.enabled &&
+      t.freeMode &&
+      t.animating &&
+      !i.cssMode &&
+      t.freeMode.onTouchStart(),
+    t.emit("touchStart", s));
+}
+function onTouchMove(e) {
+  const t = getDocument(),
+    n = this,
+    s = n.touchEventsData,
+    { params: r, touches: i, rtlTranslate: o, enabled: a } = n;
+  if (!a || (!r.simulateTouch && e.pointerType === "mouse")) return;
+  let l = e;
+  if (
+    (l.originalEvent && (l = l.originalEvent),
+    l.type === "pointermove" &&
+      (s.touchId !== null || l.pointerId !== s.pointerId))
+  )
+    return;
+  let u;
+  if (l.type === "touchmove") {
+    if (
+      ((u = [...l.changedTouches].find((Y) => Y.identifier === s.touchId)),
+      !u || u.identifier !== s.touchId)
+    )
+      return;
+  } else u = l;
+  if (!s.isTouched) {
+    s.startMoving && s.isScrolling && n.emit("touchMoveOpposite", l);
+    return;
+  }
+  const d = u.pageX,
+    c = u.pageY;
+  if (l.preventedByNestedSwiper) {
+    ((i.startX = d), (i.startY = c));
+    return;
+  }
+  if (!n.allowTouchMove) {
+    (l.target.matches(s.focusableElements) || (n.allowClick = !1),
+      s.isTouched &&
+        (Object.assign(i, { startX: d, startY: c, currentX: d, currentY: c }),
+        (s.touchStartTime = now())));
+    return;
+  }
+  if (r.touchReleaseOnEdges && !r.loop)
+    if (n.isVertical()) {
+      if (
+        (c < i.startY && n.translate <= n.maxTranslate()) ||
+        (c > i.startY && n.translate >= n.minTranslate())
+      ) {
+        ((s.isTouched = !1), (s.isMoved = !1));
+        return;
+      }
+    } else {
+      if (
+        o &&
+        ((d > i.startX && -n.translate <= n.maxTranslate()) ||
+          (d < i.startX && -n.translate >= n.minTranslate()))
+      )
+        return;
+      if (
+        !o &&
+        ((d < i.startX && n.translate <= n.maxTranslate()) ||
+          (d > i.startX && n.translate >= n.minTranslate()))
+      )
+        return;
+    }
+  if (
+    (t.activeElement &&
+      t.activeElement.matches(s.focusableElements) &&
+      t.activeElement !== l.target &&
+      l.pointerType !== "mouse" &&
+      t.activeElement.blur(),
+    t.activeElement &&
+      l.target === t.activeElement &&
+      l.target.matches(s.focusableElements))
+  ) {
+    ((s.isMoved = !0), (n.allowClick = !1));
+    return;
+  }
+  (s.allowTouchCallbacks && n.emit("touchMove", l),
+    (i.previousX = i.currentX),
+    (i.previousY = i.currentY),
+    (i.currentX = d),
+    (i.currentY = c));
+  const v = i.currentX - i.startX,
+    E = i.currentY - i.startY;
+  if (n.params.threshold && Math.sqrt(v ** 2 + E ** 2) < n.params.threshold)
+    return;
+  if (typeof s.isScrolling > "u") {
+    let Y;
+    (n.isHorizontal() && i.currentY === i.startY) ||
+    (n.isVertical() && i.currentX === i.startX)
+      ? (s.isScrolling = !1)
+      : v * v + E * E >= 25 &&
+        ((Y = (Math.atan2(Math.abs(E), Math.abs(v)) * 180) / Math.PI),
+        (s.isScrolling = n.isHorizontal()
+          ? Y > r.touchAngle
+          : 90 - Y > r.touchAngle));
+  }
+  if (
+    (s.isScrolling && n.emit("touchMoveOpposite", l),
+    typeof s.startMoving > "u" &&
+      (i.currentX !== i.startX || i.currentY !== i.startY) &&
+      (s.startMoving = !0),
+    s.isScrolling ||
+      (l.type === "touchmove" && s.preventTouchMoveFromPointerMove))
+  ) {
+    s.isTouched = !1;
+    return;
+  }
+  if (!s.startMoving) return;
+  ((n.allowClick = !1),
+    !r.cssMode && l.cancelable && l.preventDefault(),
+    r.touchMoveStopPropagation && !r.nested && l.stopPropagation());
+  let x = n.isHorizontal() ? v : E,
+    B = n.isHorizontal() ? i.currentX - i.previousX : i.currentY - i.previousY;
+  (r.oneWayMovement &&
+    ((x = Math.abs(x) * (o ? 1 : -1)), (B = Math.abs(B) * (o ? 1 : -1))),
+    (i.diff = x),
+    (x *= r.touchRatio),
+    o && ((x = -x), (B = -B)));
+  const G = n.touchesDirection;
+  ((n.swipeDirection = x > 0 ? "prev" : "next"),
+    (n.touchesDirection = B > 0 ? "prev" : "next"));
+  const q = n.params.loop && !r.cssMode,
+    b =
+      (n.touchesDirection === "next" && n.allowSlideNext) ||
+      (n.touchesDirection === "prev" && n.allowSlidePrev);
+  if (!s.isMoved) {
+    if (
+      (q && b && n.loopFix({ direction: n.swipeDirection }),
+      (s.startTranslate = n.getTranslate()),
+      n.setTransition(0),
+      n.animating)
+    ) {
+      const Y = new window.CustomEvent("transitionend", {
+        bubbles: !0,
+        cancelable: !0,
+        detail: { bySwiperTouchMove: !0 },
+      });
+      n.wrapperEl.dispatchEvent(Y);
+    }
+    ((s.allowMomentumBounce = !1),
+      r.grabCursor &&
+        (n.allowSlideNext === !0 || n.allowSlidePrev === !0) &&
+        n.setGrabCursor(!0),
+      n.emit("sliderFirstMove", l));
+  }
+  if (
+    (new Date().getTime(),
+    r._loopSwapReset !== !1 &&
+      s.isMoved &&
+      s.allowThresholdMove &&
+      G !== n.touchesDirection &&
+      q &&
+      b &&
+      Math.abs(x) >= 1)
+  ) {
+    (Object.assign(i, {
+      startX: d,
+      startY: c,
+      currentX: d,
+      currentY: c,
+      startTranslate: s.currentTranslate,
+    }),
+      (s.loopSwapReset = !0),
+      (s.startTranslate = s.currentTranslate));
+    return;
+  }
+  (n.emit("sliderMove", l),
+    (s.isMoved = !0),
+    (s.currentTranslate = x + s.startTranslate));
+  let N = !0,
+    z = r.resistanceRatio;
+  if (
+    (r.touchReleaseOnEdges && (z = 0),
+    x > 0
+      ? (q &&
+          b &&
+          s.allowThresholdMove &&
+          s.currentTranslate >
+            (r.centeredSlides
+              ? n.minTranslate() -
+                n.slidesSizesGrid[n.activeIndex + 1] -
+                (r.slidesPerView !== "auto" &&
+                n.slides.length - r.slidesPerView >= 2
+                  ? n.slidesSizesGrid[n.activeIndex + 1] + n.params.spaceBetween
+                  : 0) -
+                n.params.spaceBetween
+              : n.minTranslate()) &&
+          n.loopFix({
+            direction: "prev",
+            setTranslate: !0,
+            activeSlideIndex: 0,
+          }),
+        s.currentTranslate > n.minTranslate() &&
+          ((N = !1),
+          r.resistance &&
+            (s.currentTranslate =
+              n.minTranslate() -
+              1 +
+              (-n.minTranslate() + s.startTranslate + x) ** z)))
+      : x < 0 &&
+        (q &&
+          b &&
+          s.allowThresholdMove &&
+          s.currentTranslate <
+            (r.centeredSlides
+              ? n.maxTranslate() +
+                n.slidesSizesGrid[n.slidesSizesGrid.length - 1] +
+                n.params.spaceBetween +
+                (r.slidesPerView !== "auto" &&
+                n.slides.length - r.slidesPerView >= 2
+                  ? n.slidesSizesGrid[n.slidesSizesGrid.length - 1] +
+                    n.params.spaceBetween
+                  : 0)
+              : n.maxTranslate()) &&
+          n.loopFix({
+            direction: "next",
+            setTranslate: !0,
+            activeSlideIndex:
+              n.slides.length -
+              (r.slidesPerView === "auto"
+                ? n.slidesPerViewDynamic()
+                : Math.ceil(parseFloat(r.slidesPerView, 10))),
+          }),
+        s.currentTranslate < n.maxTranslate() &&
+          ((N = !1),
+          r.resistance &&
+            (s.currentTranslate =
+              n.maxTranslate() +
+              1 -
+              (n.maxTranslate() - s.startTranslate - x) ** z))),
+    N && (l.preventedByNestedSwiper = !0),
+    !n.allowSlideNext &&
+      n.swipeDirection === "next" &&
+      s.currentTranslate < s.startTranslate &&
+      (s.currentTranslate = s.startTranslate),
+    !n.allowSlidePrev &&
+      n.swipeDirection === "prev" &&
+      s.currentTranslate > s.startTranslate &&
+      (s.currentTranslate = s.startTranslate),
+    !n.allowSlidePrev &&
+      !n.allowSlideNext &&
+      (s.currentTranslate = s.startTranslate),
+    r.threshold > 0)
+  )
+    if (Math.abs(x) > r.threshold || s.allowThresholdMove) {
+      if (!s.allowThresholdMove) {
+        ((s.allowThresholdMove = !0),
+          (i.startX = i.currentX),
+          (i.startY = i.currentY),
+          (s.currentTranslate = s.startTranslate),
+          (i.diff = n.isHorizontal()
+            ? i.currentX - i.startX
+            : i.currentY - i.startY));
+        return;
+      }
+    } else {
+      s.currentTranslate = s.startTranslate;
+      return;
+    }
+  !r.followFinger ||
+    r.cssMode ||
+    (((r.freeMode && r.freeMode.enabled && n.freeMode) ||
+      r.watchSlidesProgress) &&
+      (n.updateActiveIndex(), n.updateSlidesClasses()),
+    r.freeMode && r.freeMode.enabled && n.freeMode && n.freeMode.onTouchMove(),
+    n.updateProgress(s.currentTranslate),
+    n.setTranslate(s.currentTranslate));
+}
+function onTouchEnd(e) {
+  const t = this,
+    n = t.touchEventsData;
+  let s = e;
+  s.originalEvent && (s = s.originalEvent);
+  let r;
+  if (s.type === "touchend" || s.type === "touchcancel") {
+    if (
+      ((r = [...s.changedTouches].find((Y) => Y.identifier === n.touchId)),
+      !r || r.identifier !== n.touchId)
+    )
+      return;
+  } else {
+    if (n.touchId !== null || s.pointerId !== n.pointerId) return;
+    r = s;
+  }
+  if (
+    ["pointercancel", "pointerout", "pointerleave", "contextmenu"].includes(
+      s.type,
+    ) &&
+    !(
+      ["pointercancel", "contextmenu"].includes(s.type) &&
+      (t.browser.isSafari || t.browser.isWebView)
+    )
+  )
+    return;
+  ((n.pointerId = null), (n.touchId = null));
+  const {
+    params: o,
+    touches: a,
+    rtlTranslate: l,
+    slidesGrid: u,
+    enabled: d,
+  } = t;
+  if (!d || (!o.simulateTouch && s.pointerType === "mouse")) return;
+  if (
+    (n.allowTouchCallbacks && t.emit("touchEnd", s),
+    (n.allowTouchCallbacks = !1),
+    !n.isTouched)
+  ) {
+    (n.isMoved && o.grabCursor && t.setGrabCursor(!1),
+      (n.isMoved = !1),
+      (n.startMoving = !1));
+    return;
+  }
+  o.grabCursor &&
+    n.isMoved &&
+    n.isTouched &&
+    (t.allowSlideNext === !0 || t.allowSlidePrev === !0) &&
+    t.setGrabCursor(!1);
+  const c = now(),
+    v = c - n.touchStartTime;
+  if (t.allowClick) {
+    const Y = s.path || (s.composedPath && s.composedPath());
+    (t.updateClickedSlide((Y && Y[0]) || s.target, Y),
+      t.emit("tap click", s),
+      v < 300 &&
+        c - n.lastClickTime < 300 &&
+        t.emit("doubleTap doubleClick", s));
+  }
+  if (
+    ((n.lastClickTime = now()),
+    nextTick(() => {
+      t.destroyed || (t.allowClick = !0);
+    }),
+    !n.isTouched ||
+      !n.isMoved ||
+      !t.swipeDirection ||
+      (a.diff === 0 && !n.loopSwapReset) ||
+      (n.currentTranslate === n.startTranslate && !n.loopSwapReset))
+  ) {
+    ((n.isTouched = !1), (n.isMoved = !1), (n.startMoving = !1));
+    return;
+  }
+  ((n.isTouched = !1), (n.isMoved = !1), (n.startMoving = !1));
+  let E;
+  if (
+    (o.followFinger
+      ? (E = l ? t.translate : -t.translate)
+      : (E = -n.currentTranslate),
+    o.cssMode)
+  )
+    return;
+  if (o.freeMode && o.freeMode.enabled) {
+    t.freeMode.onTouchEnd({ currentPos: E });
+    return;
+  }
+  const x = E >= -t.maxTranslate() && !t.params.loop;
+  let B = 0,
+    G = t.slidesSizesGrid[0];
+  for (
+    let Y = 0;
+    Y < u.length;
+    Y += Y < o.slidesPerGroupSkip ? 1 : o.slidesPerGroup
+  ) {
+    const X = Y < o.slidesPerGroupSkip - 1 ? 1 : o.slidesPerGroup;
+    typeof u[Y + X] < "u"
+      ? (x || (E >= u[Y] && E < u[Y + X])) && ((B = Y), (G = u[Y + X] - u[Y]))
+      : (x || E >= u[Y]) && ((B = Y), (G = u[u.length - 1] - u[u.length - 2]));
+  }
+  let q = null,
+    b = null;
+  o.rewind &&
+    (t.isBeginning
+      ? (b =
+          o.virtual && o.virtual.enabled && t.virtual
+            ? t.virtual.slides.length - 1
+            : t.slides.length - 1)
+      : t.isEnd && (q = 0));
+  const N = (E - u[B]) / G,
+    z = B < o.slidesPerGroupSkip - 1 ? 1 : o.slidesPerGroup;
+  if (v > o.longSwipesMs) {
+    if (!o.longSwipes) {
+      t.slideTo(t.activeIndex);
+      return;
+    }
+    (t.swipeDirection === "next" &&
+      (N >= o.longSwipesRatio
+        ? t.slideTo(o.rewind && t.isEnd ? q : B + z)
+        : t.slideTo(B)),
+      t.swipeDirection === "prev" &&
+        (N > 1 - o.longSwipesRatio
+          ? t.slideTo(B + z)
+          : b !== null && N < 0 && Math.abs(N) > o.longSwipesRatio
+            ? t.slideTo(b)
+            : t.slideTo(B)));
+  } else {
+    if (!o.shortSwipes) {
+      t.slideTo(t.activeIndex);
+      return;
+    }
+    t.navigation &&
+    (s.target === t.navigation.nextEl || s.target === t.navigation.prevEl)
+      ? s.target === t.navigation.nextEl
+        ? t.slideTo(B + z)
+        : t.slideTo(B)
+      : (t.swipeDirection === "next" && t.slideTo(q !== null ? q : B + z),
+        t.swipeDirection === "prev" && t.slideTo(b !== null ? b : B));
+  }
+}
+function onResize() {
+  const e = this,
+    { params: t, el: n } = e;
+  if (n && n.offsetWidth === 0) return;
+  t.breakpoints && e.setBreakpoint();
+  const { allowSlideNext: s, allowSlidePrev: r, snapGrid: i } = e,
+    o = e.virtual && e.params.virtual.enabled;
+  ((e.allowSlideNext = !0),
+    (e.allowSlidePrev = !0),
+    e.updateSize(),
+    e.updateSlides(),
+    e.updateSlidesClasses());
+  const a = o && t.loop;
+  ((t.slidesPerView === "auto" || t.slidesPerView > 1) &&
+  e.isEnd &&
+  !e.isBeginning &&
+  !e.params.centeredSlides &&
+  !a
+    ? e.slideTo(e.slides.length - 1, 0, !1, !0)
+    : e.params.loop && !o
+      ? e.slideToLoop(e.realIndex, 0, !1, !0)
+      : e.slideTo(e.activeIndex, 0, !1, !0),
+    e.autoplay &&
+      e.autoplay.running &&
+      e.autoplay.paused &&
+      (clearTimeout(e.autoplay.resizeTimeout),
+      (e.autoplay.resizeTimeout = setTimeout(() => {
+        e.autoplay &&
+          e.autoplay.running &&
+          e.autoplay.paused &&
+          e.autoplay.resume();
+      }, 500))),
+    (e.allowSlidePrev = r),
+    (e.allowSlideNext = s),
+    e.params.watchOverflow && i !== e.snapGrid && e.checkOverflow());
+}
+function onClick(e) {
+  const t = this;
+  t.enabled &&
+    (t.allowClick ||
+      (t.params.preventClicks && e.preventDefault(),
+      t.params.preventClicksPropagation &&
+        t.animating &&
+        (e.stopPropagation(), e.stopImmediatePropagation())));
+}
+function onScroll() {
+  const e = this,
+    { wrapperEl: t, rtlTranslate: n, enabled: s } = e;
+  if (!s) return;
+  ((e.previousTranslate = e.translate),
+    e.isHorizontal()
+      ? (e.translate = -t.scrollLeft)
+      : (e.translate = -t.scrollTop),
+    e.translate === 0 && (e.translate = 0),
+    e.updateActiveIndex(),
+    e.updateSlidesClasses());
+  let r;
+  const i = e.maxTranslate() - e.minTranslate();
+  (i === 0 ? (r = 0) : (r = (e.translate - e.minTranslate()) / i),
+    r !== e.progress && e.updateProgress(n ? -e.translate : e.translate),
+    e.emit("setTranslate", e.translate, !1));
+}
+function onLoad(e) {
+  const t = this;
+  (processLazyPreloader(t, e.target),
+    !(
+      t.params.cssMode ||
+      (t.params.slidesPerView !== "auto" && !t.params.autoHeight)
+    ) && t.update());
+}
+function onDocumentTouchStart() {
+  const e = this;
+  e.documentTouchHandlerProceeded ||
+    ((e.documentTouchHandlerProceeded = !0),
+    e.params.touchReleaseOnEdges && (e.el.style.touchAction = "auto"));
+}
+const events = (e, t) => {
+  const n = getDocument(),
+    { params: s, el: r, wrapperEl: i, device: o } = e,
+    a = !!s.nested,
+    l = t === "on" ? "addEventListener" : "removeEventListener",
+    u = t;
+  !r ||
+    typeof r == "string" ||
+    (n[l]("touchstart", e.onDocumentTouchStart, { passive: !1, capture: a }),
+    r[l]("touchstart", e.onTouchStart, { passive: !1 }),
+    r[l]("pointerdown", e.onTouchStart, { passive: !1 }),
+    n[l]("touchmove", e.onTouchMove, { passive: !1, capture: a }),
+    n[l]("pointermove", e.onTouchMove, { passive: !1, capture: a }),
+    n[l]("touchend", e.onTouchEnd, { passive: !0 }),
+    n[l]("pointerup", e.onTouchEnd, { passive: !0 }),
+    n[l]("pointercancel", e.onTouchEnd, { passive: !0 }),
+    n[l]("touchcancel", e.onTouchEnd, { passive: !0 }),
+    n[l]("pointerout", e.onTouchEnd, { passive: !0 }),
+    n[l]("pointerleave", e.onTouchEnd, { passive: !0 }),
+    n[l]("contextmenu", e.onTouchEnd, { passive: !0 }),
+    (s.preventClicks || s.preventClicksPropagation) &&
+      r[l]("click", e.onClick, !0),
+    s.cssMode && i[l]("scroll", e.onScroll),
+    s.updateOnWindowResize
+      ? e[u](
+          o.ios || o.android
+            ? "resize orientationchange observerUpdate"
+            : "resize observerUpdate",
+          onResize,
+          !0,
+        )
+      : e[u]("observerUpdate", onResize, !0),
+    r[l]("load", e.onLoad, { capture: !0 }));
+};
+function attachEvents() {
+  const e = this,
+    { params: t } = e;
+  ((e.onTouchStart = onTouchStart.bind(e)),
+    (e.onTouchMove = onTouchMove.bind(e)),
+    (e.onTouchEnd = onTouchEnd.bind(e)),
+    (e.onDocumentTouchStart = onDocumentTouchStart.bind(e)),
+    t.cssMode && (e.onScroll = onScroll.bind(e)),
+    (e.onClick = onClick.bind(e)),
+    (e.onLoad = onLoad.bind(e)),
+    events(e, "on"));
+}
+function detachEvents() {
+  events(this, "off");
+}
+var events$1 = { attachEvents, detachEvents };
+const isGridEnabled = (e, t) => e.grid && t.grid && t.grid.rows > 1;
+function setBreakpoint() {
+  const e = this,
+    { realIndex: t, initialized: n, params: s, el: r } = e,
+    i = s.breakpoints;
+  if (!i || (i && Object.keys(i).length === 0)) return;
+  const o = getDocument(),
+    a =
+      s.breakpointsBase === "window" || !s.breakpointsBase
+        ? s.breakpointsBase
+        : "container",
+    l =
+      ["window", "container"].includes(s.breakpointsBase) || !s.breakpointsBase
+        ? e.el
+        : o.querySelector(s.breakpointsBase),
+    u = e.getBreakpoint(i, a, l);
+  if (!u || e.currentBreakpoint === u) return;
+  const c = (u in i ? i[u] : void 0) || e.originalParams,
+    v = isGridEnabled(e, s),
+    E = isGridEnabled(e, c),
+    x = e.params.grabCursor,
+    B = c.grabCursor,
+    G = s.enabled;
+  (v && !E
+    ? (r.classList.remove(
+        `${s.containerModifierClass}grid`,
+        `${s.containerModifierClass}grid-column`,
+      ),
+      e.emitContainerClasses())
+    : !v &&
+      E &&
+      (r.classList.add(`${s.containerModifierClass}grid`),
+      ((c.grid.fill && c.grid.fill === "column") ||
+        (!c.grid.fill && s.grid.fill === "column")) &&
+        r.classList.add(`${s.containerModifierClass}grid-column`),
+      e.emitContainerClasses()),
+    x && !B ? e.unsetGrabCursor() : !x && B && e.setGrabCursor(),
+    ["navigation", "pagination", "scrollbar"].forEach((X) => {
+      if (typeof c[X] > "u") return;
+      const K = s[X] && s[X].enabled,
+        w = c[X] && c[X].enabled;
+      (K && !w && e[X].disable(), !K && w && e[X].enable());
+    }));
+  const q = c.direction && c.direction !== s.direction,
+    b = s.loop && (c.slidesPerView !== s.slidesPerView || q),
+    N = s.loop;
+  (q && n && e.changeDirection(), extend$1(e.params, c));
+  const z = e.params.enabled,
+    Y = e.params.loop;
+  (Object.assign(e, {
+    allowTouchMove: e.params.allowTouchMove,
+    allowSlideNext: e.params.allowSlideNext,
+    allowSlidePrev: e.params.allowSlidePrev,
+  }),
+    G && !z ? e.disable() : !G && z && e.enable(),
+    (e.currentBreakpoint = u),
+    e.emit("_beforeBreakpoint", c),
+    n &&
+      (b
+        ? (e.loopDestroy(), e.loopCreate(t), e.updateSlides())
+        : !N && Y
+          ? (e.loopCreate(t), e.updateSlides())
+          : N && !Y && e.loopDestroy()),
+    e.emit("breakpoint", c));
+}
+function getBreakpoint(e, t, n) {
+  if ((t === void 0 && (t = "window"), !e || (t === "container" && !n))) return;
+  let s = !1;
+  const r = getWindow(),
+    i = t === "window" ? r.innerHeight : n.clientHeight,
+    o = Object.keys(e).map((a) => {
+      if (typeof a == "string" && a.indexOf("@") === 0) {
+        const l = parseFloat(a.substr(1));
+        return { value: i * l, point: a };
+      }
+      return { value: a, point: a };
+    });
+  o.sort((a, l) => parseInt(a.value, 10) - parseInt(l.value, 10));
+  for (let a = 0; a < o.length; a += 1) {
+    const { point: l, value: u } = o[a];
+    t === "window"
+      ? r.matchMedia(`(min-width: ${u}px)`).matches && (s = l)
+      : u <= n.clientWidth && (s = l);
+  }
+  return s || "max";
+}
+var breakpoints = { setBreakpoint, getBreakpoint };
+function prepareClasses(e, t) {
+  const n = [];
+  return (
+    e.forEach((s) => {
+      typeof s == "object"
+        ? Object.keys(s).forEach((r) => {
+            s[r] && n.push(t + r);
+          })
+        : typeof s == "string" && n.push(t + s);
+    }),
+    n
+  );
+}
+function addClasses() {
+  const e = this,
+    { classNames: t, params: n, rtl: s, el: r, device: i } = e,
+    o = prepareClasses(
+      [
+        "initialized",
+        n.direction,
+        { "free-mode": e.params.freeMode && n.freeMode.enabled },
+        { autoheight: n.autoHeight },
+        { rtl: s },
+        { grid: n.grid && n.grid.rows > 1 },
+        {
+          "grid-column": n.grid && n.grid.rows > 1 && n.grid.fill === "column",
+        },
+        { android: i.android },
+        { ios: i.ios },
+        { "css-mode": n.cssMode },
+        { centered: n.cssMode && n.centeredSlides },
+        { "watch-progress": n.watchSlidesProgress },
+      ],
+      n.containerModifierClass,
+    );
+  (t.push(...o), r.classList.add(...t), e.emitContainerClasses());
+}
+function removeClasses() {
+  const e = this,
+    { el: t, classNames: n } = e;
+  !t ||
+    typeof t == "string" ||
+    (t.classList.remove(...n), e.emitContainerClasses());
+}
+var classes = { addClasses, removeClasses };
+function checkOverflow() {
+  const e = this,
+    { isLocked: t, params: n } = e,
+    { slidesOffsetBefore: s } = n;
+  if (s) {
+    const r = e.slides.length - 1,
+      i = e.slidesGrid[r] + e.slidesSizesGrid[r] + s * 2;
+    e.isLocked = e.size > i;
+  } else e.isLocked = e.snapGrid.length === 1;
+  (n.allowSlideNext === !0 && (e.allowSlideNext = !e.isLocked),
+    n.allowSlidePrev === !0 && (e.allowSlidePrev = !e.isLocked),
+    t && t !== e.isLocked && (e.isEnd = !1),
+    t !== e.isLocked && e.emit(e.isLocked ? "lock" : "unlock"));
+}
+var checkOverflow$1 = { checkOverflow },
+  defaults = {
+    init: !0,
+    direction: "horizontal",
+    oneWayMovement: !1,
+    swiperElementNodeName: "SWIPER-CONTAINER",
+    touchEventsTarget: "wrapper",
+    initialSlide: 0,
+    speed: 300,
+    cssMode: !1,
+    updateOnWindowResize: !0,
+    resizeObserver: !0,
+    nested: !1,
+    createElements: !1,
+    eventsPrefix: "swiper",
+    enabled: !0,
+    focusableElements: "input, select, option, textarea, button, video, label",
+    width: null,
+    height: null,
+    preventInteractionOnTransition: !1,
+    userAgent: null,
+    url: null,
+    edgeSwipeDetection: !1,
+    edgeSwipeThreshold: 20,
+    autoHeight: !1,
+    setWrapperSize: !1,
+    virtualTranslate: !1,
+    effect: "slide",
+    breakpoints: void 0,
+    breakpointsBase: "window",
+    spaceBetween: 0,
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    slidesPerGroupSkip: 0,
+    slidesPerGroupAuto: !1,
+    centeredSlides: !1,
+    centeredSlidesBounds: !1,
+    slidesOffsetBefore: 0,
+    slidesOffsetAfter: 0,
+    normalizeSlideIndex: !0,
+    centerInsufficientSlides: !1,
+    watchOverflow: !0,
+    roundLengths: !1,
+    touchRatio: 1,
+    touchAngle: 45,
+    simulateTouch: !0,
+    shortSwipes: !0,
+    longSwipes: !0,
+    longSwipesRatio: 0.5,
+    longSwipesMs: 300,
+    followFinger: !0,
+    allowTouchMove: !0,
+    threshold: 5,
+    touchMoveStopPropagation: !1,
+    touchStartPreventDefault: !0,
+    touchStartForcePreventDefault: !1,
+    touchReleaseOnEdges: !1,
+    uniqueNavElements: !0,
+    resistance: !0,
+    resistanceRatio: 0.85,
+    watchSlidesProgress: !1,
+    grabCursor: !1,
+    preventClicks: !0,
+    preventClicksPropagation: !0,
+    slideToClickedSlide: !1,
+    loop: !1,
+    loopAddBlankSlides: !0,
+    loopAdditionalSlides: 0,
+    loopPreventsSliding: !0,
+    rewind: !1,
+    allowSlidePrev: !0,
+    allowSlideNext: !0,
+    swipeHandler: null,
+    noSwiping: !0,
+    noSwipingClass: "swiper-no-swiping",
+    noSwipingSelector: null,
+    passiveListeners: !0,
+    maxBackfaceHiddenSlides: 10,
+    containerModifierClass: "swiper-",
+    slideClass: "swiper-slide",
+    slideBlankClass: "swiper-slide-blank",
+    slideActiveClass: "swiper-slide-active",
+    slideVisibleClass: "swiper-slide-visible",
+    slideFullyVisibleClass: "swiper-slide-fully-visible",
+    slideNextClass: "swiper-slide-next",
+    slidePrevClass: "swiper-slide-prev",
+    wrapperClass: "swiper-wrapper",
+    lazyPreloaderClass: "swiper-lazy-preloader",
+    lazyPreloadPrevNext: 0,
+    runCallbacksOnInit: !0,
+    _emitClasses: !1,
+  };
+function moduleExtendParams(e, t) {
+  return function (s) {
+    s === void 0 && (s = {});
+    const r = Object.keys(s)[0],
+      i = s[r];
+    if (typeof i != "object" || i === null) {
+      extend$1(t, s);
+      return;
+    }
+    if (
+      (e[r] === !0 && (e[r] = { enabled: !0 }),
+      r === "navigation" &&
+        e[r] &&
+        e[r].enabled &&
+        !e[r].prevEl &&
+        !e[r].nextEl &&
+        (e[r].auto = !0),
+      ["pagination", "scrollbar"].indexOf(r) >= 0 &&
+        e[r] &&
+        e[r].enabled &&
+        !e[r].el &&
+        (e[r].auto = !0),
+      !(r in e && "enabled" in i))
+    ) {
+      extend$1(t, s);
+      return;
+    }
+    (typeof e[r] == "object" && !("enabled" in e[r]) && (e[r].enabled = !0),
+      e[r] || (e[r] = { enabled: !1 }),
+      extend$1(t, s));
+  };
+}
+const prototypes = {
+    eventsEmitter,
+    update,
+    translate,
+    transition,
+    slide,
+    loop,
+    grabCursor,
+    events: events$1,
+    breakpoints,
+    checkOverflow: checkOverflow$1,
+    classes,
+  },
+  extendedDefaults = {};
+let Swiper$1 = class Te {
+  constructor() {
+    let t, n;
+    for (var s = arguments.length, r = new Array(s), i = 0; i < s; i++)
+      r[i] = arguments[i];
+    (r.length === 1 &&
+    r[0].constructor &&
+    Object.prototype.toString.call(r[0]).slice(8, -1) === "Object"
+      ? (n = r[0])
+      : ([t, n] = r),
+      n || (n = {}),
+      (n = extend$1({}, n)),
+      t && !n.el && (n.el = t));
+    const o = getDocument();
+    if (
+      n.el &&
+      typeof n.el == "string" &&
+      o.querySelectorAll(n.el).length > 1
+    ) {
+      const d = [];
+      return (
+        o.querySelectorAll(n.el).forEach((c) => {
+          const v = extend$1({}, n, { el: c });
+          d.push(new Te(v));
+        }),
+        d
+      );
+    }
+    const a = this;
+    ((a.__swiper__ = !0),
+      (a.support = getSupport()),
+      (a.device = getDevice({ userAgent: n.userAgent })),
+      (a.browser = getBrowser()),
+      (a.eventsListeners = {}),
+      (a.eventsAnyListeners = []),
+      (a.modules = [...a.__modules__]),
+      n.modules && Array.isArray(n.modules) && a.modules.push(...n.modules));
+    const l = {};
+    a.modules.forEach((d) => {
+      d({
+        params: n,
+        swiper: a,
+        extendParams: moduleExtendParams(n, l),
+        on: a.on.bind(a),
+        once: a.once.bind(a),
+        off: a.off.bind(a),
+        emit: a.emit.bind(a),
+      });
+    });
+    const u = extend$1({}, defaults, l);
+    return (
+      (a.params = extend$1({}, u, extendedDefaults, n)),
+      (a.originalParams = extend$1({}, a.params)),
+      (a.passedParams = extend$1({}, n)),
+      a.params &&
+        a.params.on &&
+        Object.keys(a.params.on).forEach((d) => {
+          a.on(d, a.params.on[d]);
+        }),
+      a.params && a.params.onAny && a.onAny(a.params.onAny),
+      Object.assign(a, {
+        enabled: a.params.enabled,
+        el: t,
+        classNames: [],
+        slides: [],
+        slidesGrid: [],
+        snapGrid: [],
+        slidesSizesGrid: [],
+        isHorizontal() {
+          return a.params.direction === "horizontal";
+        },
+        isVertical() {
+          return a.params.direction === "vertical";
+        },
+        activeIndex: 0,
+        realIndex: 0,
+        isBeginning: !0,
+        isEnd: !1,
+        translate: 0,
+        previousTranslate: 0,
+        progress: 0,
+        velocity: 0,
+        animating: !1,
+        cssOverflowAdjustment() {
+          return Math.trunc(this.translate / 2 ** 23) * 2 ** 23;
+        },
+        allowSlideNext: a.params.allowSlideNext,
+        allowSlidePrev: a.params.allowSlidePrev,
+        touchEventsData: {
+          isTouched: void 0,
+          isMoved: void 0,
+          allowTouchCallbacks: void 0,
+          touchStartTime: void 0,
+          isScrolling: void 0,
+          currentTranslate: void 0,
+          startTranslate: void 0,
+          allowThresholdMove: void 0,
+          focusableElements: a.params.focusableElements,
+          lastClickTime: 0,
+          clickTimeout: void 0,
+          velocities: [],
+          allowMomentumBounce: void 0,
+          startMoving: void 0,
+          pointerId: null,
+          touchId: null,
+        },
+        allowClick: !0,
+        allowTouchMove: a.params.allowTouchMove,
+        touches: { startX: 0, startY: 0, currentX: 0, currentY: 0, diff: 0 },
+        imagesToLoad: [],
+        imagesLoaded: 0,
+      }),
+      a.emit("_swiper"),
+      a.params.init && a.init(),
+      a
+    );
+  }
+  getDirectionLabel(t) {
+    return this.isHorizontal()
+      ? t
+      : {
+          width: "height",
+          "margin-top": "margin-left",
+          "margin-bottom ": "margin-right",
+          "margin-left": "margin-top",
+          "margin-right": "margin-bottom",
+          "padding-left": "padding-top",
+          "padding-right": "padding-bottom",
+          marginRight: "marginBottom",
+        }[t];
+  }
+  getSlideIndex(t) {
+    const { slidesEl: n, params: s } = this,
+      r = elementChildren(n, `.${s.slideClass}, swiper-slide`),
+      i = elementIndex(r[0]);
+    return elementIndex(t) - i;
+  }
+  getSlideIndexByData(t) {
+    return this.getSlideIndex(
+      this.slides.find(
+        (n) => n.getAttribute("data-swiper-slide-index") * 1 === t,
+      ),
+    );
+  }
+  getSlideIndexWhenGrid(t) {
+    return (
+      this.grid &&
+        this.params.grid &&
+        this.params.grid.rows > 1 &&
+        (this.params.grid.fill === "column"
+          ? (t = Math.floor(t / this.params.grid.rows))
+          : this.params.grid.fill === "row" &&
+            (t = t % Math.ceil(this.slides.length / this.params.grid.rows))),
+      t
+    );
+  }
+  recalcSlides() {
+    const t = this,
+      { slidesEl: n, params: s } = t;
+    t.slides = elementChildren(n, `.${s.slideClass}, swiper-slide`);
+  }
+  enable() {
+    const t = this;
+    t.enabled ||
+      ((t.enabled = !0),
+      t.params.grabCursor && t.setGrabCursor(),
+      t.emit("enable"));
+  }
+  disable() {
+    const t = this;
+    t.enabled &&
+      ((t.enabled = !1),
+      t.params.grabCursor && t.unsetGrabCursor(),
+      t.emit("disable"));
+  }
+  setProgress(t, n) {
+    const s = this;
+    t = Math.min(Math.max(t, 0), 1);
+    const r = s.minTranslate(),
+      o = (s.maxTranslate() - r) * t + r;
+    (s.translateTo(o, typeof n > "u" ? 0 : n),
+      s.updateActiveIndex(),
+      s.updateSlidesClasses());
+  }
+  emitContainerClasses() {
+    const t = this;
+    if (!t.params._emitClasses || !t.el) return;
+    const n = t.el.className
+      .split(" ")
+      .filter(
+        (s) =>
+          s.indexOf("swiper") === 0 ||
+          s.indexOf(t.params.containerModifierClass) === 0,
+      );
+    t.emit("_containerClasses", n.join(" "));
+  }
+  getSlideClasses(t) {
+    const n = this;
+    return n.destroyed
+      ? ""
+      : t.className
+          .split(" ")
+          .filter(
+            (s) =>
+              s.indexOf("swiper-slide") === 0 ||
+              s.indexOf(n.params.slideClass) === 0,
+          )
+          .join(" ");
+  }
+  emitSlidesClasses() {
+    const t = this;
+    if (!t.params._emitClasses || !t.el) return;
+    const n = [];
+    (t.slides.forEach((s) => {
+      const r = t.getSlideClasses(s);
+      (n.push({ slideEl: s, classNames: r }), t.emit("_slideClass", s, r));
+    }),
+      t.emit("_slideClasses", n));
+  }
+  slidesPerViewDynamic(t, n) {
+    (t === void 0 && (t = "current"), n === void 0 && (n = !1));
+    const s = this,
+      {
+        params: r,
+        slides: i,
+        slidesGrid: o,
+        slidesSizesGrid: a,
+        size: l,
+        activeIndex: u,
+      } = s;
+    let d = 1;
+    if (typeof r.slidesPerView == "number") return r.slidesPerView;
+    if (r.centeredSlides) {
+      let c = i[u] ? Math.ceil(i[u].swiperSlideSize) : 0,
+        v;
+      for (let E = u + 1; E < i.length; E += 1)
+        i[E] &&
+          !v &&
+          ((c += Math.ceil(i[E].swiperSlideSize)), (d += 1), c > l && (v = !0));
+      for (let E = u - 1; E >= 0; E -= 1)
+        i[E] &&
+          !v &&
+          ((c += i[E].swiperSlideSize), (d += 1), c > l && (v = !0));
+    } else if (t === "current")
+      for (let c = u + 1; c < i.length; c += 1)
+        (n ? o[c] + a[c] - o[u] < l : o[c] - o[u] < l) && (d += 1);
+    else for (let c = u - 1; c >= 0; c -= 1) o[u] - o[c] < l && (d += 1);
+    return d;
+  }
+  update() {
+    const t = this;
+    if (!t || t.destroyed) return;
+    const { snapGrid: n, params: s } = t;
+    (s.breakpoints && t.setBreakpoint(),
+      [...t.el.querySelectorAll('[loading="lazy"]')].forEach((o) => {
+        o.complete && processLazyPreloader(t, o);
+      }),
+      t.updateSize(),
+      t.updateSlides(),
+      t.updateProgress(),
+      t.updateSlidesClasses());
+    function r() {
+      const o = t.rtlTranslate ? t.translate * -1 : t.translate,
+        a = Math.min(Math.max(o, t.maxTranslate()), t.minTranslate());
+      (t.setTranslate(a), t.updateActiveIndex(), t.updateSlidesClasses());
+    }
+    let i;
+    if (s.freeMode && s.freeMode.enabled && !s.cssMode)
+      (r(), s.autoHeight && t.updateAutoHeight());
+    else {
+      if (
+        (s.slidesPerView === "auto" || s.slidesPerView > 1) &&
+        t.isEnd &&
+        !s.centeredSlides
+      ) {
+        const o = t.virtual && s.virtual.enabled ? t.virtual.slides : t.slides;
+        i = t.slideTo(o.length - 1, 0, !1, !0);
+      } else i = t.slideTo(t.activeIndex, 0, !1, !0);
+      i || r();
+    }
+    (s.watchOverflow && n !== t.snapGrid && t.checkOverflow(),
+      t.emit("update"));
+  }
+  changeDirection(t, n) {
+    n === void 0 && (n = !0);
+    const s = this,
+      r = s.params.direction;
+    return (
+      t || (t = r === "horizontal" ? "vertical" : "horizontal"),
+      t === r ||
+        (t !== "horizontal" && t !== "vertical") ||
+        (s.el.classList.remove(`${s.params.containerModifierClass}${r}`),
+        s.el.classList.add(`${s.params.containerModifierClass}${t}`),
+        s.emitContainerClasses(),
+        (s.params.direction = t),
+        s.slides.forEach((i) => {
+          t === "vertical" ? (i.style.width = "") : (i.style.height = "");
+        }),
+        s.emit("changeDirection"),
+        n && s.update()),
+      s
+    );
+  }
+  changeLanguageDirection(t) {
+    const n = this;
+    (n.rtl && t === "rtl") ||
+      (!n.rtl && t === "ltr") ||
+      ((n.rtl = t === "rtl"),
+      (n.rtlTranslate = n.params.direction === "horizontal" && n.rtl),
+      n.rtl
+        ? (n.el.classList.add(`${n.params.containerModifierClass}rtl`),
+          (n.el.dir = "rtl"))
+        : (n.el.classList.remove(`${n.params.containerModifierClass}rtl`),
+          (n.el.dir = "ltr")),
+      n.update());
+  }
+  mount(t) {
+    const n = this;
+    if (n.mounted) return !0;
+    let s = t || n.params.el;
+    if ((typeof s == "string" && (s = document.querySelector(s)), !s))
+      return !1;
+    ((s.swiper = n),
+      s.parentNode &&
+        s.parentNode.host &&
+        s.parentNode.host.nodeName ===
+          n.params.swiperElementNodeName.toUpperCase() &&
+        (n.isElement = !0));
+    const r = () =>
+      `.${(n.params.wrapperClass || "").trim().split(" ").join(".")}`;
+    let o =
+      s && s.shadowRoot && s.shadowRoot.querySelector
+        ? s.shadowRoot.querySelector(r())
+        : elementChildren(s, r())[0];
+    return (
+      !o &&
+        n.params.createElements &&
+        ((o = createElement("div", n.params.wrapperClass)),
+        s.append(o),
+        elementChildren(s, `.${n.params.slideClass}`).forEach((a) => {
+          o.append(a);
+        })),
+      Object.assign(n, {
+        el: s,
+        wrapperEl: o,
+        slidesEl:
+          n.isElement && !s.parentNode.host.slideSlots ? s.parentNode.host : o,
+        hostEl: n.isElement ? s.parentNode.host : s,
+        mounted: !0,
+        rtl:
+          s.dir.toLowerCase() === "rtl" ||
+          elementStyle(s, "direction") === "rtl",
+        rtlTranslate:
+          n.params.direction === "horizontal" &&
+          (s.dir.toLowerCase() === "rtl" ||
+            elementStyle(s, "direction") === "rtl"),
+        wrongRTL: elementStyle(o, "display") === "-webkit-box",
+      }),
+      !0
+    );
+  }
+  init(t) {
+    const n = this;
+    if (n.initialized || n.mount(t) === !1) return n;
+    (n.emit("beforeInit"),
+      n.params.breakpoints && n.setBreakpoint(),
+      n.addClasses(),
+      n.updateSize(),
+      n.updateSlides(),
+      n.params.watchOverflow && n.checkOverflow(),
+      n.params.grabCursor && n.enabled && n.setGrabCursor(),
+      n.params.loop && n.virtual && n.params.virtual.enabled
+        ? n.slideTo(
+            n.params.initialSlide + n.virtual.slidesBefore,
+            0,
+            n.params.runCallbacksOnInit,
+            !1,
+            !0,
+          )
+        : n.slideTo(
+            n.params.initialSlide,
+            0,
+            n.params.runCallbacksOnInit,
+            !1,
+            !0,
+          ),
+      n.params.loop && n.loopCreate(void 0, !0),
+      n.attachEvents());
+    const r = [...n.el.querySelectorAll('[loading="lazy"]')];
+    return (
+      n.isElement && r.push(...n.hostEl.querySelectorAll('[loading="lazy"]')),
+      r.forEach((i) => {
+        i.complete
+          ? processLazyPreloader(n, i)
+          : i.addEventListener("load", (o) => {
+              processLazyPreloader(n, o.target);
+            });
+      }),
+      preload(n),
+      (n.initialized = !0),
+      preload(n),
+      n.emit("init"),
+      n.emit("afterInit"),
+      n
+    );
+  }
+  destroy(t, n) {
+    (t === void 0 && (t = !0), n === void 0 && (n = !0));
+    const s = this,
+      { params: r, el: i, wrapperEl: o, slides: a } = s;
+    return (
+      typeof s.params > "u" ||
+        s.destroyed ||
+        (s.emit("beforeDestroy"),
+        (s.initialized = !1),
+        s.detachEvents(),
+        r.loop && s.loopDestroy(),
+        n &&
+          (s.removeClasses(),
+          i && typeof i != "string" && i.removeAttribute("style"),
+          o && o.removeAttribute("style"),
+          a &&
+            a.length &&
+            a.forEach((l) => {
+              (l.classList.remove(
+                r.slideVisibleClass,
+                r.slideFullyVisibleClass,
+                r.slideActiveClass,
+                r.slideNextClass,
+                r.slidePrevClass,
+              ),
+                l.removeAttribute("style"),
+                l.removeAttribute("data-swiper-slide-index"));
+            })),
+        s.emit("destroy"),
+        Object.keys(s.eventsListeners).forEach((l) => {
+          s.off(l);
+        }),
+        t !== !1 &&
+          (s.el && typeof s.el != "string" && (s.el.swiper = null),
+          deleteProps(s)),
+        (s.destroyed = !0)),
+      null
+    );
+  }
+  static extendDefaults(t) {
+    extend$1(extendedDefaults, t);
+  }
+  static get extendedDefaults() {
+    return extendedDefaults;
+  }
+  static get defaults() {
+    return defaults;
+  }
+  static installModule(t) {
+    Te.prototype.__modules__ || (Te.prototype.__modules__ = []);
+    const n = Te.prototype.__modules__;
+    typeof t == "function" && n.indexOf(t) < 0 && n.push(t);
+  }
+  static use(t) {
+    return Array.isArray(t)
+      ? (t.forEach((n) => Te.installModule(n)), Te)
+      : (Te.installModule(t), Te);
+  }
+};
+Object.keys(prototypes).forEach((e) => {
+  Object.keys(prototypes[e]).forEach((t) => {
+    Swiper$1.prototype[t] = prototypes[e][t];
+  });
+});
+Swiper$1.use([Resize, Observer]);
+const paramsList = [
+  "eventsPrefix",
+  "injectStyles",
+  "injectStylesUrls",
+  "modules",
+  "init",
+  "_direction",
+  "oneWayMovement",
+  "swiperElementNodeName",
+  "touchEventsTarget",
+  "initialSlide",
+  "_speed",
+  "cssMode",
+  "updateOnWindowResize",
+  "resizeObserver",
+  "nested",
+  "focusableElements",
+  "_enabled",
+  "_width",
+  "_height",
+  "preventInteractionOnTransition",
+  "userAgent",
+  "url",
+  "_edgeSwipeDetection",
+  "_edgeSwipeThreshold",
+  "_freeMode",
+  "_autoHeight",
+  "setWrapperSize",
+  "virtualTranslate",
+  "_effect",
+  "breakpoints",
+  "breakpointsBase",
+  "_spaceBetween",
+  "_slidesPerView",
+  "maxBackfaceHiddenSlides",
+  "_grid",
+  "_slidesPerGroup",
+  "_slidesPerGroupSkip",
+  "_slidesPerGroupAuto",
+  "_centeredSlides",
+  "_centeredSlidesBounds",
+  "_slidesOffsetBefore",
+  "_slidesOffsetAfter",
+  "normalizeSlideIndex",
+  "_centerInsufficientSlides",
+  "_watchOverflow",
+  "roundLengths",
+  "touchRatio",
+  "touchAngle",
+  "simulateTouch",
+  "_shortSwipes",
+  "_longSwipes",
+  "longSwipesRatio",
+  "longSwipesMs",
+  "_followFinger",
+  "allowTouchMove",
+  "_threshold",
+  "touchMoveStopPropagation",
+  "touchStartPreventDefault",
+  "touchStartForcePreventDefault",
+  "touchReleaseOnEdges",
+  "uniqueNavElements",
+  "_resistance",
+  "_resistanceRatio",
+  "_watchSlidesProgress",
+  "_grabCursor",
+  "preventClicks",
+  "preventClicksPropagation",
+  "_slideToClickedSlide",
+  "_loop",
+  "loopAdditionalSlides",
+  "loopAddBlankSlides",
+  "loopPreventsSliding",
+  "_rewind",
+  "_allowSlidePrev",
+  "_allowSlideNext",
+  "_swipeHandler",
+  "_noSwiping",
+  "noSwipingClass",
+  "noSwipingSelector",
+  "passiveListeners",
+  "containerModifierClass",
+  "slideClass",
+  "slideActiveClass",
+  "slideVisibleClass",
+  "slideFullyVisibleClass",
+  "slideNextClass",
+  "slidePrevClass",
+  "slideBlankClass",
+  "wrapperClass",
+  "lazyPreloaderClass",
+  "lazyPreloadPrevNext",
+  "runCallbacksOnInit",
+  "observer",
+  "observeParents",
+  "observeSlideChildren",
+  "a11y",
+  "_autoplay",
+  "_controller",
+  "coverflowEffect",
+  "cubeEffect",
+  "fadeEffect",
+  "flipEffect",
+  "creativeEffect",
+  "cardsEffect",
+  "hashNavigation",
+  "history",
+  "keyboard",
+  "mousewheel",
+  "_navigation",
+  "_pagination",
+  "parallax",
+  "_scrollbar",
+  "_thumbs",
+  "virtual",
+  "zoom",
+  "control",
+];
+function isObject(e) {
+  return (
+    typeof e == "object" &&
+    e !== null &&
+    e.constructor &&
+    Object.prototype.toString.call(e).slice(8, -1) === "Object" &&
+    !e.__swiper__
+  );
+}
+function extend(e, t) {
+  const n = ["__proto__", "constructor", "prototype"];
+  Object.keys(t)
+    .filter((s) => n.indexOf(s) < 0)
+    .forEach((s) => {
+      typeof e[s] > "u"
+        ? (e[s] = t[s])
+        : isObject(t[s]) && isObject(e[s]) && Object.keys(t[s]).length > 0
+          ? t[s].__swiper__
+            ? (e[s] = t[s])
+            : extend(e[s], t[s])
+          : (e[s] = t[s]);
+    });
+}
+function needsNavigation(e) {
+  return (
+    e === void 0 && (e = {}),
+    e.navigation &&
+      typeof e.navigation.nextEl > "u" &&
+      typeof e.navigation.prevEl > "u"
+  );
+}
+function needsPagination(e) {
+  return (
+    e === void 0 && (e = {}),
+    e.pagination && typeof e.pagination.el > "u"
+  );
+}
+function needsScrollbar(e) {
+  return (e === void 0 && (e = {}), e.scrollbar && typeof e.scrollbar.el > "u");
+}
+function uniqueClasses(e) {
+  e === void 0 && (e = "");
+  const t = e
+      .split(" ")
+      .map((s) => s.trim())
+      .filter((s) => !!s),
+    n = [];
+  return (
+    t.forEach((s) => {
+      n.indexOf(s) < 0 && n.push(s);
+    }),
+    n.join(" ")
+  );
+}
+function wrapperClass(e) {
+  return (
+    e === void 0 && (e = ""),
+    e
+      ? e.includes("swiper-wrapper")
+        ? e
+        : `swiper-wrapper ${e}`
+      : "swiper-wrapper"
+  );
+}
+function updateSwiper(e) {
+  let {
+    swiper: t,
+    slides: n,
+    passedParams: s,
+    changedParams: r,
+    nextEl: i,
+    prevEl: o,
+    scrollbarEl: a,
+    paginationEl: l,
+  } = e;
+  const u = r.filter(
+      (m) => m !== "children" && m !== "direction" && m !== "wrapperClass",
+    ),
+    {
+      params: d,
+      pagination: c,
+      navigation: v,
+      scrollbar: E,
+      virtual: x,
+      thumbs: B,
+    } = t;
+  let G, q, b, N, z, Y, X, K;
+  (r.includes("thumbs") &&
+    s.thumbs &&
+    s.thumbs.swiper &&
+    !s.thumbs.swiper.destroyed &&
+    d.thumbs &&
+    (!d.thumbs.swiper || d.thumbs.swiper.destroyed) &&
+    (G = !0),
+    r.includes("controller") &&
+      s.controller &&
+      s.controller.control &&
+      d.controller &&
+      !d.controller.control &&
+      (q = !0),
+    r.includes("pagination") &&
+      s.pagination &&
+      (s.pagination.el || l) &&
+      (d.pagination || d.pagination === !1) &&
+      c &&
+      !c.el &&
+      (b = !0),
+    r.includes("scrollbar") &&
+      s.scrollbar &&
+      (s.scrollbar.el || a) &&
+      (d.scrollbar || d.scrollbar === !1) &&
+      E &&
+      !E.el &&
+      (N = !0),
+    r.includes("navigation") &&
+      s.navigation &&
+      (s.navigation.prevEl || o) &&
+      (s.navigation.nextEl || i) &&
+      (d.navigation || d.navigation === !1) &&
+      v &&
+      !v.prevEl &&
+      !v.nextEl &&
+      (z = !0));
+  const w = (m) => {
+    t[m] &&
+      (t[m].destroy(),
+      m === "navigation"
+        ? (t.isElement && (t[m].prevEl.remove(), t[m].nextEl.remove()),
+          (d[m].prevEl = void 0),
+          (d[m].nextEl = void 0),
+          (t[m].prevEl = void 0),
+          (t[m].nextEl = void 0))
+        : (t.isElement && t[m].el.remove(),
+          (d[m].el = void 0),
+          (t[m].el = void 0)));
+  };
+  (r.includes("loop") &&
+    t.isElement &&
+    (d.loop && !s.loop ? (Y = !0) : !d.loop && s.loop ? (X = !0) : (K = !0)),
+    u.forEach((m) => {
+      if (isObject(d[m]) && isObject(s[m]))
+        (Object.assign(d[m], s[m]),
+          (m === "navigation" || m === "pagination" || m === "scrollbar") &&
+            "enabled" in s[m] &&
+            !s[m].enabled &&
+            w(m));
+      else {
+        const S = s[m];
+        (S === !0 || S === !1) &&
+        (m === "navigation" || m === "pagination" || m === "scrollbar")
+          ? S === !1 && w(m)
+          : (d[m] = s[m]);
+      }
+    }),
+    u.includes("controller") &&
+      !q &&
+      t.controller &&
+      t.controller.control &&
+      d.controller &&
+      d.controller.control &&
+      (t.controller.control = d.controller.control),
+    r.includes("children") && n && x && d.virtual.enabled
+      ? ((x.slides = n), x.update(!0))
+      : r.includes("virtual") &&
+        x &&
+        d.virtual.enabled &&
+        (n && (x.slides = n), x.update(!0)),
+    r.includes("children") && n && d.loop && (K = !0),
+    G && B.init() && B.update(!0),
+    q && (t.controller.control = d.controller.control),
+    b &&
+      (t.isElement &&
+        (!l || typeof l == "string") &&
+        ((l = document.createElement("div")),
+        l.classList.add("swiper-pagination"),
+        l.part.add("pagination"),
+        t.el.appendChild(l)),
+      l && (d.pagination.el = l),
+      c.init(),
+      c.render(),
+      c.update()),
+    N &&
+      (t.isElement &&
+        (!a || typeof a == "string") &&
+        ((a = document.createElement("div")),
+        a.classList.add("swiper-scrollbar"),
+        a.part.add("scrollbar"),
+        t.el.appendChild(a)),
+      a && (d.scrollbar.el = a),
+      E.init(),
+      E.updateSize(),
+      E.setTranslate()),
+    z &&
+      (t.isElement &&
+        ((!i || typeof i == "string") &&
+          ((i = document.createElement("div")),
+          i.classList.add("swiper-button-next"),
+          setInnerHTML(i, t.hostEl.constructor.nextButtonSvg),
+          i.part.add("button-next"),
+          t.el.appendChild(i)),
+        (!o || typeof o == "string") &&
+          ((o = document.createElement("div")),
+          o.classList.add("swiper-button-prev"),
+          setInnerHTML(o, t.hostEl.constructor.prevButtonSvg),
+          o.part.add("button-prev"),
+          t.el.appendChild(o))),
+      i && (d.navigation.nextEl = i),
+      o && (d.navigation.prevEl = o),
+      v.init(),
+      v.update()),
+    r.includes("allowSlideNext") && (t.allowSlideNext = s.allowSlideNext),
+    r.includes("allowSlidePrev") && (t.allowSlidePrev = s.allowSlidePrev),
+    r.includes("direction") && t.changeDirection(s.direction, !1),
+    (Y || K) && t.loopDestroy(),
+    (X || K) && t.loopCreate(),
+    t.update());
+}
+function getParams(e, t) {
+  e === void 0 && (e = {});
+  const n = { on: {} },
+    s = {},
+    r = {};
+  (extend(n, defaults), (n._emitClasses = !0), (n.init = !1));
+  const i = {},
+    o = paramsList.map((l) => l.replace(/_/, "")),
+    a = Object.assign({}, e);
+  return (
+    Object.keys(a).forEach((l) => {
+      typeof e[l] > "u" ||
+        (o.indexOf(l) >= 0
+          ? isObject(e[l])
+            ? ((n[l] = {}), (r[l] = {}), extend(n[l], e[l]), extend(r[l], e[l]))
+            : ((n[l] = e[l]), (r[l] = e[l]))
+          : l.search(/on[A-Z]/) === 0 && typeof e[l] == "function"
+            ? (n.on[`${l[2].toLowerCase()}${l.substr(3)}`] = e[l])
+            : (i[l] = e[l]));
+    }),
+    ["navigation", "pagination", "scrollbar"].forEach((l) => {
+      (n[l] === !0 && (n[l] = {}), n[l] === !1 && delete n[l]);
+    }),
+    { params: n, passedParams: r, rest: i, events: s }
+  );
+}
+function mountSwiper(e, t) {
+  let {
+    el: n,
+    nextEl: s,
+    prevEl: r,
+    paginationEl: i,
+    scrollbarEl: o,
+    swiper: a,
+  } = e;
+  (needsNavigation(t) &&
+    s &&
+    r &&
+    ((a.params.navigation.nextEl = s),
+    (a.originalParams.navigation.nextEl = s),
+    (a.params.navigation.prevEl = r),
+    (a.originalParams.navigation.prevEl = r)),
+    needsPagination(t) &&
+      i &&
+      ((a.params.pagination.el = i), (a.originalParams.pagination.el = i)),
+    needsScrollbar(t) &&
+      o &&
+      ((a.params.scrollbar.el = o), (a.originalParams.scrollbar.el = o)),
+    a.init(n));
+}
+function getChangedParams(e, t, n, s, r) {
+  const i = [];
+  if (!t) return i;
+  const o = (l) => {
+    i.indexOf(l) < 0 && i.push(l);
+  };
+  if (n && s) {
+    const l = s.map(r),
+      u = n.map(r);
+    (l.join("") !== u.join("") && o("children"),
+      s.length !== n.length && o("children"));
+  }
+  return (
+    paramsList
+      .filter((l) => l[0] === "_")
+      .map((l) => l.replace(/_/, ""))
+      .forEach((l) => {
+        if (l in e && l in t)
+          if (isObject(e[l]) && isObject(t[l])) {
+            const u = Object.keys(e[l]),
+              d = Object.keys(t[l]);
+            u.length !== d.length
+              ? o(l)
+              : (u.forEach((c) => {
+                  e[l][c] !== t[l][c] && o(l);
+                }),
+                d.forEach((c) => {
+                  e[l][c] !== t[l][c] && o(l);
+                }));
+          } else e[l] !== t[l] && o(l);
+      }),
+    i
+  );
+}
+const updateOnVirtualData = (e) => {
+  !e ||
+    e.destroyed ||
+    !e.params.virtual ||
+    (e.params.virtual && !e.params.virtual.enabled) ||
+    (e.updateSlides(),
+    e.updateProgress(),
+    e.updateSlidesClasses(),
+    e.emit("_virtualUpdated"),
+    e.parallax &&
+      e.params.parallax &&
+      e.params.parallax.enabled &&
+      e.parallax.setTranslate());
+};
+function getChildren(e, t, n) {
+  e === void 0 && (e = {});
+  const s = [],
+    r = {
+      "container-start": [],
+      "container-end": [],
+      "wrapper-start": [],
+      "wrapper-end": [],
+    },
+    i = (o, a) => {
+      Array.isArray(o) &&
+        o.forEach((l) => {
+          const u = typeof l.type == "symbol";
+          (a === "default" && (a = "container-end"),
+            u && l.children
+              ? i(l.children, a)
+              : (l.type &&
+                    (l.type.name === "SwiperSlide" ||
+                      l.type.name === "AsyncComponentWrapper")) ||
+                  (l.componentOptions &&
+                    l.componentOptions.tag === "SwiperSlide")
+                ? s.push(l)
+                : r[a] && r[a].push(l));
+        });
+    };
+  return (
+    Object.keys(e).forEach((o) => {
+      if (typeof e[o] != "function") return;
+      const a = e[o]();
+      i(a, o);
+    }),
+    (n.value = t.value),
+    (t.value = s),
+    { slides: s, slots: r }
+  );
+}
+function renderVirtual(e, t, n) {
+  if (!n) return null;
+  const s = (d) => {
+      let c = d;
+      return (
+        d < 0 ? (c = t.length + d) : c >= t.length && (c = c - t.length),
+        c
+      );
+    },
+    r = e.value.isHorizontal()
+      ? { [e.value.rtlTranslate ? "right" : "left"]: `${n.offset}px` }
+      : { top: `${n.offset}px` },
+    { from: i, to: o } = n,
+    a = e.value.params.loop ? -t.length : 0,
+    l = e.value.params.loop ? t.length * 2 : t.length,
+    u = [];
+  for (let d = a; d < l; d += 1)
+    d >= i && d <= o && u.length < t.length && u.push(t[s(d)]);
+  return u.map((d) => {
+    if (
+      (d.props || (d.props = {}),
+      d.props.style || (d.props.style = {}),
+      (d.props.swiperRef = e),
+      (d.props.style = r),
+      d.type)
+    )
+      return h(d.type, { ...d.props }, d.children);
+    if (d.componentOptions)
+      return h(
+        d.componentOptions.Ctor,
+        { ...d.props },
+        d.componentOptions.children,
+      );
+  });
+}
+const Swiper = {
+    name: "Swiper",
+    props: {
+      tag: { type: String, default: "div" },
+      wrapperTag: { type: String, default: "div" },
+      modules: { type: Array, default: void 0 },
+      init: { type: Boolean, default: void 0 },
+      direction: { type: String, default: void 0 },
+      oneWayMovement: { type: Boolean, default: void 0 },
+      swiperElementNodeName: { type: String, default: "SWIPER-CONTAINER" },
+      touchEventsTarget: { type: String, default: void 0 },
+      initialSlide: { type: Number, default: void 0 },
+      speed: { type: Number, default: void 0 },
+      cssMode: { type: Boolean, default: void 0 },
+      updateOnWindowResize: { type: Boolean, default: void 0 },
+      resizeObserver: { type: Boolean, default: void 0 },
+      nested: { type: Boolean, default: void 0 },
+      focusableElements: { type: String, default: void 0 },
+      width: { type: Number, default: void 0 },
+      height: { type: Number, default: void 0 },
+      preventInteractionOnTransition: { type: Boolean, default: void 0 },
+      userAgent: { type: String, default: void 0 },
+      url: { type: String, default: void 0 },
+      edgeSwipeDetection: { type: [Boolean, String], default: void 0 },
+      edgeSwipeThreshold: { type: Number, default: void 0 },
+      autoHeight: { type: Boolean, default: void 0 },
+      setWrapperSize: { type: Boolean, default: void 0 },
+      virtualTranslate: { type: Boolean, default: void 0 },
+      effect: { type: String, default: void 0 },
+      breakpoints: { type: Object, default: void 0 },
+      breakpointsBase: { type: String, default: void 0 },
+      spaceBetween: { type: [Number, String], default: void 0 },
+      slidesPerView: { type: [Number, String], default: void 0 },
+      maxBackfaceHiddenSlides: { type: Number, default: void 0 },
+      slidesPerGroup: { type: Number, default: void 0 },
+      slidesPerGroupSkip: { type: Number, default: void 0 },
+      slidesPerGroupAuto: { type: Boolean, default: void 0 },
+      centeredSlides: { type: Boolean, default: void 0 },
+      centeredSlidesBounds: { type: Boolean, default: void 0 },
+      slidesOffsetBefore: { type: Number, default: void 0 },
+      slidesOffsetAfter: { type: Number, default: void 0 },
+      normalizeSlideIndex: { type: Boolean, default: void 0 },
+      centerInsufficientSlides: { type: Boolean, default: void 0 },
+      watchOverflow: { type: Boolean, default: void 0 },
+      roundLengths: { type: Boolean, default: void 0 },
+      touchRatio: { type: Number, default: void 0 },
+      touchAngle: { type: Number, default: void 0 },
+      simulateTouch: { type: Boolean, default: void 0 },
+      shortSwipes: { type: Boolean, default: void 0 },
+      longSwipes: { type: Boolean, default: void 0 },
+      longSwipesRatio: { type: Number, default: void 0 },
+      longSwipesMs: { type: Number, default: void 0 },
+      followFinger: { type: Boolean, default: void 0 },
+      allowTouchMove: { type: Boolean, default: void 0 },
+      threshold: { type: Number, default: void 0 },
+      touchMoveStopPropagation: { type: Boolean, default: void 0 },
+      touchStartPreventDefault: { type: Boolean, default: void 0 },
+      touchStartForcePreventDefault: { type: Boolean, default: void 0 },
+      touchReleaseOnEdges: { type: Boolean, default: void 0 },
+      uniqueNavElements: { type: Boolean, default: void 0 },
+      resistance: { type: Boolean, default: void 0 },
+      resistanceRatio: { type: Number, default: void 0 },
+      watchSlidesProgress: { type: Boolean, default: void 0 },
+      grabCursor: { type: Boolean, default: void 0 },
+      preventClicks: { type: Boolean, default: void 0 },
+      preventClicksPropagation: { type: Boolean, default: void 0 },
+      slideToClickedSlide: { type: Boolean, default: void 0 },
+      loop: { type: Boolean, default: void 0 },
+      loopedSlides: { type: Number, default: void 0 },
+      loopPreventsSliding: { type: Boolean, default: void 0 },
+      loopAdditionalSlides: { type: Number, default: void 0 },
+      loopAddBlankSlides: { type: Boolean, default: void 0 },
+      rewind: { type: Boolean, default: void 0 },
+      allowSlidePrev: { type: Boolean, default: void 0 },
+      allowSlideNext: { type: Boolean, default: void 0 },
+      swipeHandler: { type: Boolean, default: void 0 },
+      noSwiping: { type: Boolean, default: void 0 },
+      noSwipingClass: { type: String, default: void 0 },
+      noSwipingSelector: { type: String, default: void 0 },
+      passiveListeners: { type: Boolean, default: void 0 },
+      containerModifierClass: { type: String, default: void 0 },
+      slideClass: { type: String, default: void 0 },
+      slideActiveClass: { type: String, default: void 0 },
+      slideVisibleClass: { type: String, default: void 0 },
+      slideFullyVisibleClass: { type: String, default: void 0 },
+      slideBlankClass: { type: String, default: void 0 },
+      slideNextClass: { type: String, default: void 0 },
+      slidePrevClass: { type: String, default: void 0 },
+      wrapperClass: { type: String, default: void 0 },
+      lazyPreloaderClass: { type: String, default: void 0 },
+      lazyPreloadPrevNext: { type: Number, default: void 0 },
+      runCallbacksOnInit: { type: Boolean, default: void 0 },
+      observer: { type: Boolean, default: void 0 },
+      observeParents: { type: Boolean, default: void 0 },
+      observeSlideChildren: { type: Boolean, default: void 0 },
+      a11y: { type: [Boolean, Object], default: void 0 },
+      autoplay: { type: [Boolean, Object], default: void 0 },
+      controller: { type: Object, default: void 0 },
+      coverflowEffect: { type: Object, default: void 0 },
+      cubeEffect: { type: Object, default: void 0 },
+      fadeEffect: { type: Object, default: void 0 },
+      flipEffect: { type: Object, default: void 0 },
+      creativeEffect: { type: Object, default: void 0 },
+      cardsEffect: { type: Object, default: void 0 },
+      hashNavigation: { type: [Boolean, Object], default: void 0 },
+      history: { type: [Boolean, Object], default: void 0 },
+      keyboard: { type: [Boolean, Object], default: void 0 },
+      mousewheel: { type: [Boolean, Object], default: void 0 },
+      navigation: { type: [Boolean, Object], default: void 0 },
+      pagination: { type: [Boolean, Object], default: void 0 },
+      parallax: { type: [Boolean, Object], default: void 0 },
+      scrollbar: { type: [Boolean, Object], default: void 0 },
+      thumbs: { type: Object, default: void 0 },
+      virtual: { type: [Boolean, Object], default: void 0 },
+      zoom: { type: [Boolean, Object], default: void 0 },
+      grid: { type: [Object], default: void 0 },
+      freeMode: { type: [Boolean, Object], default: void 0 },
+      enabled: { type: Boolean, default: void 0 },
+    },
+    emits: [
+      "_beforeBreakpoint",
+      "_containerClasses",
+      "_slideClass",
+      "_slideClasses",
+      "_swiper",
+      "_freeModeNoMomentumRelease",
+      "_virtualUpdated",
+      "activeIndexChange",
+      "afterInit",
+      "autoplay",
+      "autoplayStart",
+      "autoplayStop",
+      "autoplayPause",
+      "autoplayResume",
+      "autoplayTimeLeft",
+      "beforeDestroy",
+      "beforeInit",
+      "beforeLoopFix",
+      "beforeResize",
+      "beforeSlideChangeStart",
+      "beforeTransitionStart",
+      "breakpoint",
+      "changeDirection",
+      "click",
+      "disable",
+      "doubleTap",
+      "doubleClick",
+      "destroy",
+      "enable",
+      "fromEdge",
+      "hashChange",
+      "hashSet",
+      "init",
+      "keyPress",
+      "lock",
+      "loopFix",
+      "momentumBounce",
+      "navigationHide",
+      "navigationShow",
+      "navigationPrev",
+      "navigationNext",
+      "observerUpdate",
+      "orientationchange",
+      "paginationHide",
+      "paginationRender",
+      "paginationShow",
+      "paginationUpdate",
+      "progress",
+      "reachBeginning",
+      "reachEnd",
+      "realIndexChange",
+      "resize",
+      "scroll",
+      "scrollbarDragEnd",
+      "scrollbarDragMove",
+      "scrollbarDragStart",
+      "setTransition",
+      "setTranslate",
+      "slidesUpdated",
+      "slideChange",
+      "slideChangeTransitionEnd",
+      "slideChangeTransitionStart",
+      "slideNextTransitionEnd",
+      "slideNextTransitionStart",
+      "slidePrevTransitionEnd",
+      "slidePrevTransitionStart",
+      "slideResetTransitionStart",
+      "slideResetTransitionEnd",
+      "sliderMove",
+      "sliderFirstMove",
+      "slidesLengthChange",
+      "slidesGridLengthChange",
+      "snapGridLengthChange",
+      "snapIndexChange",
+      "swiper",
+      "tap",
+      "toEdge",
+      "touchEnd",
+      "touchMove",
+      "touchMoveOpposite",
+      "touchStart",
+      "transitionEnd",
+      "transitionStart",
+      "unlock",
+      "update",
+      "virtualUpdate",
+      "zoomChange",
+    ],
+    setup(e, t) {
+      let { slots: n, emit: s } = t;
+      const { tag: r, wrapperTag: i } = e,
+        o = ref("swiper"),
+        a = ref(null),
+        l = ref(!1),
+        u = ref(!1),
+        d = ref(null),
+        c = ref(null),
+        v = ref(null),
+        E = { value: [] },
+        x = { value: [] },
+        B = ref(null),
+        G = ref(null),
+        q = ref(null),
+        b = ref(null),
+        { params: N, passedParams: z } = getParams(e);
+      (getChildren(n, E, x), (v.value = z), (x.value = E.value));
+      const Y = () => {
+        (getChildren(n, E, x), (l.value = !0));
+      };
+      ((N.onAny = function (w) {
+        for (
+          var m = arguments.length, S = new Array(m > 1 ? m - 1 : 0), $ = 1;
+          $ < m;
+          $++
+        )
+          S[$ - 1] = arguments[$];
+        s(w, ...S);
+      }),
+        Object.assign(N.on, {
+          _beforeBreakpoint: Y,
+          _containerClasses(w, m) {
+            o.value = m;
+          },
+        }));
+      const X = { ...N };
+      if (
+        (delete X.wrapperClass,
+        (c.value = new Swiper$1(X)),
+        c.value.virtual && c.value.params.virtual.enabled)
+      ) {
+        c.value.virtual.slides = E.value;
+        const w = {
+          cache: !1,
+          slides: E.value,
+          renderExternal: (m) => {
+            a.value = m;
+          },
+          renderExternalUpdate: !1,
+        };
+        (extend(c.value.params.virtual, w),
+          extend(c.value.originalParams.virtual, w));
+      }
+      (onUpdated(() => {
+        !u.value && c.value && (c.value.emitSlidesClasses(), (u.value = !0));
+        const { passedParams: w } = getParams(e),
+          m = getChangedParams(
+            w,
+            v.value,
+            E.value,
+            x.value,
+            (S) => S.props && S.props.key,
+          );
+        ((v.value = w),
+          (m.length || l.value) &&
+            c.value &&
+            !c.value.destroyed &&
+            updateSwiper({
+              swiper: c.value,
+              slides: E.value,
+              passedParams: w,
+              changedParams: m,
+              nextEl: B.value,
+              prevEl: G.value,
+              scrollbarEl: b.value,
+              paginationEl: q.value,
+            }),
+          (l.value = !1));
+      }),
+        provide("swiper", c),
+        watch(a, () => {
+          nextTick$1(() => {
+            updateOnVirtualData(c.value);
+          });
+        }),
+        onMounted(() => {
+          d.value &&
+            (mountSwiper(
+              {
+                el: d.value,
+                nextEl: B.value,
+                prevEl: G.value,
+                paginationEl: q.value,
+                scrollbarEl: b.value,
+                swiper: c.value,
+              },
+              N,
+            ),
+            s("swiper", c.value));
+        }),
+        onBeforeUnmount(() => {
+          c.value && !c.value.destroyed && c.value.destroy(!0, !1);
+        }));
+      function K(w) {
+        return N.virtual
+          ? renderVirtual(c, w, a.value)
+          : (w.forEach((m, S) => {
+              (m.props || (m.props = {}),
+                (m.props.swiperRef = c),
+                (m.props.swiperSlideIndex = S));
+            }),
+            w);
+      }
+      return () => {
+        const { slides: w, slots: m } = getChildren(n, E, x);
+        return h(r, { ref: d, class: uniqueClasses(o.value) }, [
+          m["container-start"],
+          h(i, { class: wrapperClass(N.wrapperClass) }, [
+            m["wrapper-start"],
+            K(w),
+            m["wrapper-end"],
+          ]),
+          needsNavigation(e) && [
+            h("div", { ref: G, class: "swiper-button-prev" }),
+            h("div", { ref: B, class: "swiper-button-next" }),
+          ],
+          needsScrollbar(e) && h("div", { ref: b, class: "swiper-scrollbar" }),
+          needsPagination(e) &&
+            h("div", { ref: q, class: "swiper-pagination" }),
+          m["container-end"],
+        ]);
+      };
+    },
+  },
+  SwiperSlide = {
+    name: "SwiperSlide",
+    props: {
+      tag: { type: String, default: "div" },
+      swiperRef: { type: Object, required: !1 },
+      swiperSlideIndex: { type: Number, default: void 0, required: !1 },
+      zoom: { type: Boolean, default: void 0, required: !1 },
+      lazy: { type: Boolean, default: !1, required: !1 },
+      virtualIndex: { type: [String, Number], default: void 0 },
+    },
+    setup(e, t) {
+      let { slots: n } = t,
+        s = !1;
+      const { swiperRef: r } = e,
+        i = ref(null),
+        o = ref("swiper-slide"),
+        a = ref(!1);
+      function l(c, v, E) {
+        v === i.value && (o.value = E);
+      }
+      (onMounted(() => {
+        !r || !r.value || (r.value.on("_slideClass", l), (s = !0));
+      }),
+        onBeforeUpdate(() => {
+          s || !r || !r.value || (r.value.on("_slideClass", l), (s = !0));
+        }),
+        onUpdated(() => {
+          !i.value ||
+            !r ||
+            !r.value ||
+            (typeof e.swiperSlideIndex < "u" &&
+              (i.value.swiperSlideIndex = e.swiperSlideIndex),
+            r.value.destroyed &&
+              o.value !== "swiper-slide" &&
+              (o.value = "swiper-slide"));
+        }),
+        onBeforeUnmount(() => {
+          !r || !r.value || r.value.off("_slideClass", l);
+        }));
+      const u = computed(() => ({
+        isActive: o.value.indexOf("swiper-slide-active") >= 0,
+        isVisible: o.value.indexOf("swiper-slide-visible") >= 0,
+        isPrev: o.value.indexOf("swiper-slide-prev") >= 0,
+        isNext: o.value.indexOf("swiper-slide-next") >= 0,
+      }));
+      provide("swiperSlide", u);
+      const d = () => {
+        a.value = !0;
+      };
+      return () =>
+        h(
+          e.tag,
+          {
+            class: uniqueClasses(`${o.value}`),
+            ref: i,
+            "data-swiper-slide-index":
+              typeof e.virtualIndex > "u" && r && r.value && r.value.params.loop
+                ? e.swiperSlideIndex
+                : e.virtualIndex,
+            onLoadCapture: d,
+          },
+          e.zoom
+            ? h(
+                "div",
+                {
+                  class: "swiper-zoom-container",
+                  "data-swiper-zoom":
+                    typeof e.zoom == "number" ? e.zoom : void 0,
+                },
+                [
+                  n.default && n.default(u.value),
+                  e.lazy &&
+                    !a.value &&
+                    h("div", { class: "swiper-lazy-preloader" }),
+                ],
+              )
+            : [
+                n.default && n.default(u.value),
+                e.lazy &&
+                  !a.value &&
+                  h("div", { class: "swiper-lazy-preloader" }),
+              ],
+        );
+    },
+  },
+  _hoisted_1$2 = { key: 0, class: "launcher-sidebar", role: "complementary" },
+  _hoisted_2$2 = { class: "sidebar-content" },
+  _hoisted_3$2 = { key: 0, class: "banner-panel", "aria-label": "活动轮播图" },
+  _hoisted_4$2 = ["onClick"],
+  _hoisted_5$2 = ["src", "alt"],
+  _hoisted_6$2 = {
+    key: 1,
+    class: "announcement-panel",
+    "aria-label": "活动公告",
+  },
+  _hoisted_7$1 = { class: "news-tabs", role: "tablist" },
+  _hoisted_8$1 = ["aria-selected", "onClick"],
+  _hoisted_9$1 = { class: "news-list" },
+  _hoisted_10$1 = ["onClick"],
+  _hoisted_11$1 = { class: "news-title" },
+  _hoisted_12$1 = { key: 0, class: "news-date" },
+  _hoisted_13$1 = {
+    key: 2,
+    class: "player-panel",
+    "aria-label": "游戏用户信息",
+  },
+  _hoisted_14$1 = ["src"],
+  _hoisted_15$1 = { class: "player-header" },
+  _hoisted_16$1 = { class: "player-name-row" },
+  _hoisted_17$1 = ["title"],
+  _hoisted_18$1 = { class: "player-meta" },
+  _hoisted_19$1 = { class: "player-uid" },
+  _hoisted_20$1 = { class: "player-stats" },
+  _hoisted_21$1 = { class: "stat-icon-wrap" },
+  _hoisted_22$1 = ["src"],
+  _hoisted_23$1 = { class: "stat-content" },
+  _hoisted_24$1 = { class: "stat-title" },
+  _hoisted_25$1 = { key: 0, class: "stat-extra" },
+  _hoisted_26$1 = { class: "stat-value" },
+  _hoisted_27$1 = { key: 1, class: "player-empty-state" },
+  _sfc_main$2 = {
+    __name: "NoticePanel",
+    props: {
+      bannerList: { type: Array, default: () => [] },
+      newsTags: { type: Array, default: () => [] },
+      newsList: { type: Array, default: () => [] },
+      activeTagIndex: { type: Number, default: 0 },
+      playerInfo: { type: Object, default: null },
+      showBanner: { type: Boolean, default: !1 },
+      showAnnouncement: { type: Boolean, default: !1 },
+      showPlayer: { type: Boolean, default: !1 },
+    },
+    emits: ["bannerClick", "tagChange", "newsClick", "playerRefresh"],
+    setup(e, { emit: t }) {
+      const n = e,
+        s = t,
+        r = [Pagination, Autoplay],
+        i = ref(!1),
+        o = ref(!1);
+      let a = null,
+        l = null;
+      const u = () => {
+        i.value ||
+          ((i.value = !0),
+          (o.value = !0),
+          s("playerRefresh"),
+          (l = window.setTimeout(() => {
+            ((o.value = !1), (l = null));
+          }, 600)),
+          (a = window.setTimeout(() => {
+            ((i.value = !1), (a = null));
+          }, 1e3)));
+      };
+      onBeforeUnmount(() => {
+        (a && (window.clearTimeout(a), (a = null)),
+          l && (window.clearTimeout(l), (l = null)));
+      });
+      const d = computed(() => n.showBanner && n.bannerList.length > 0),
+        c = computed(
+          () =>
+            n.showAnnouncement &&
+            n.newsTags.length > 0 &&
+            n.newsList.length > 0,
+        ),
+        v = computed(() => n.showPlayer),
+        E = computed(
+          () =>
+            !!(
+              n.playerInfo &&
+              typeof n.playerInfo == "object" &&
+              Object.keys(n.playerInfo).length > 0
+            ),
+        ),
+        x = computed(() => d.value || c.value || v.value),
+        B = computed(() => {
+          const K = n.newsTags[n.activeTagIndex];
+          return K != null && K.category
+            ? n.newsList.filter((w) => w.category === K.category)
+            : n.newsList;
+        }),
+        G = computed(() => B.value.slice(0, 2)),
+        q = (K) => (K === null || typeof K > "u" || K === "" ? "--" : K),
+        b = (K, w) => `${q(K)}/${q(w)}`,
+        N = computed(() => {
+          var w, m, S, $, R, P, W, D, k;
+          const K = n.playerInfo || {};
+          return [
+            {
+              key: "power",
+              label: "体力值",
+              icon: powerIcon,
+              value: b(
+                (w = K.powerData) == null ? void 0 : w.power,
+                (m = K.powerData) == null ? void 0 : m.powerLimit,
+              ),
+            },
+            {
+              key: "activity",
+              label: "历练点",
+              icon: activityIcon,
+              value: b(
+                (S = K.dailyActiveData) == null ? void 0 : S.point,
+                ($ = K.dailyActiveData) == null ? void 0 : $.pointLimit,
+              ),
+            },
+            {
+              key: "raid",
+              label: "释能校准",
+              icon: raidIcon,
+              value: b(
+                (R = K.raidData) == null ? void 0 : R.count,
+                (P = K.raidData) == null ? void 0 : P.countLimit,
+              ),
+            },
+            {
+              key: "battle-pass",
+              label: "作战合约",
+              extra: `等级:${q((W = K.battlePassData) == null ? void 0 : W.level)}`,
+              icon: battlePassIcon,
+              value: b(
+                (D = K.battlePassData) == null ? void 0 : D.weeklyExp,
+                (k = K.battlePassData) == null ? void 0 : k.weeklyExpLimit,
+              ),
+            },
+          ];
+        }),
+        z = (K, w) => {
+          (ta.track("pclauncher_news_click", {
+            id: K,
+            category: "banner",
+            link: w,
+          }),
+            s("bannerClick", w));
+        },
+        Y = (K) => {
+          s("tagChange", K);
+        },
+        X = (K, w, m) => {
+          (ta.track("pclauncher_news_click", { id: K, category: w, link: m }),
+            s("newsClick", m));
+        };
+      return (K, w) => {
+        var m, S, $, R;
+        return x.value
+          ? (openBlock(),
+            createElementBlock("div", _hoisted_1$2, [
+              createBaseVNode("div", _hoisted_2$2, [
+                d.value
+                  ? (openBlock(),
+                    createElementBlock("section", _hoisted_3$2, [
+                      createVNode(
+                        unref(Swiper),
+                        {
+                          modules: r,
+                          loop: e.bannerList.length > 1,
+                          autoplay:
+                            e.bannerList.length > 1
+                              ? { delay: 5e3, disableOnInteraction: !1 }
+                              : !1,
+                          pagination: { clickable: !0 },
+                          class: "banner-swiper",
+                        },
+                        {
+                          default: withCtx(() => [
+                            (openBlock(!0),
+                            createElementBlock(
+                              Fragment,
+                              null,
+                              renderList(
+                                e.bannerList,
+                                (P) => (
+                                  openBlock(),
+                                  createBlock(
+                                    unref(SwiperSlide),
+                                    { key: P.id },
+                                    {
+                                      default: withCtx(() => [
+                                        createBaseVNode(
+                                          "button",
+                                          {
+                                            type: "button",
+                                            class: "banner-slide",
+                                            onClick: (W) => z(P.id, P.link),
+                                          },
+                                          [
+                                            createBaseVNode(
+                                              "img",
+                                              { src: P.image, alt: P.title },
+                                              null,
+                                              8,
+                                              _hoisted_5$2,
+                                            ),
+                                          ],
+                                          8,
+                                          _hoisted_4$2,
+                                        ),
+                                      ]),
+                                      _: 2,
+                                    },
+                                    1024,
+                                  )
+                                ),
+                              ),
+                              128,
+                            )),
+                          ]),
+                          _: 1,
+                        },
+                        8,
+                        ["loop", "autoplay"],
+                      ),
+                    ]))
+                  : createCommentVNode("", !0),
+                c.value
+                  ? (openBlock(),
+                    createElementBlock("section", _hoisted_6$2, [
+                      createBaseVNode("div", _hoisted_7$1, [
+                        (openBlock(!0),
+                        createElementBlock(
+                          Fragment,
+                          null,
+                          renderList(
+                            e.newsTags,
+                            (P, W) => (
+                              openBlock(),
+                              createElementBlock(
+                                "button",
+                                {
+                                  key: P.category,
+                                  type: "button",
+                                  class: normalizeClass([
+                                    "news-tab",
+                                    { active: e.activeTagIndex === W },
+                                  ]),
+                                  role: "tab",
+                                  "aria-selected": e.activeTagIndex === W,
+                                  onClick: (D) => Y(W),
+                                },
+                                toDisplayString(P.name),
+                                11,
+                                _hoisted_8$1,
+                              )
+                            ),
+                          ),
+                          128,
+                        )),
+                      ]),
+                      w[0] ||
+                        (w[0] = createBaseVNode(
+                          "div",
+                          { class: "news-divider" },
+                          null,
+                          -1,
+                        )),
+                      createBaseVNode("div", _hoisted_9$1, [
+                        (openBlock(!0),
+                        createElementBlock(
+                          Fragment,
+                          null,
+                          renderList(
+                            G.value,
+                            (P) => (
+                              openBlock(),
+                              createElementBlock(
+                                "button",
+                                {
+                                  key: P.id,
+                                  type: "button",
+                                  class: "news-list-item",
+                                  onClick: (W) => X(P.id, P.category, P.link),
+                                },
+                                [
+                                  createBaseVNode(
+                                    "span",
+                                    _hoisted_11$1,
+                                    toDisplayString(P.title),
+                                    1,
+                                  ),
+                                  P.date
+                                    ? (openBlock(),
+                                      createElementBlock(
+                                        "time",
+                                        _hoisted_12$1,
+                                        toDisplayString(P.date),
+                                        1,
+                                      ))
+                                    : createCommentVNode("", !0),
+                                ],
+                                8,
+                                _hoisted_10$1,
+                              )
+                            ),
+                          ),
+                          128,
+                        )),
+                      ]),
+                    ]))
+                  : createCommentVNode("", !0),
+                v.value
+                  ? (openBlock(),
+                    createElementBlock("section", _hoisted_13$1, [
+                      createBaseVNode(
+                        "button",
+                        {
+                          type: "button",
+                          class: normalizeClass([
+                            "player-refresh-button",
+                            { "is-refreshing": o.value },
+                          ]),
+                          "aria-label": "刷新用户信息",
+                          title: "刷新用户信息",
+                          onClick: withModifiers(u, ["stop"]),
+                        },
+                        [
+                          createBaseVNode(
+                            "img",
+                            {
+                              class: "player-refresh-icon",
+                              src: unref(refreshIcon),
+                              alt: "",
+                              "aria-hidden": "true",
+                            },
+                            null,
+                            8,
+                            _hoisted_14$1,
+                          ),
+                        ],
+                        2,
+                      ),
+                      E.value
+                        ? (openBlock(),
+                          createElementBlock(
+                            Fragment,
+                            { key: 0 },
+                            [
+                              createBaseVNode("div", _hoisted_15$1, [
+                                createBaseVNode("div", _hoisted_16$1, [
+                                  createBaseVNode(
+                                    "div",
+                                    {
+                                      class: "player-name",
+                                      title: q(
+                                        (m = e.playerInfo) == null
+                                          ? void 0
+                                          : m.nickName,
+                                      ),
+                                    },
+                                    toDisplayString(
+                                      q(
+                                        (S = e.playerInfo) == null
+                                          ? void 0
+                                          : S.nickName,
+                                      ),
+                                    ),
+                                    9,
+                                    _hoisted_17$1,
+                                  ),
+                                ]),
+                                createBaseVNode("div", _hoisted_18$1, [
+                                  createBaseVNode(
+                                    "span",
+                                    null,
+                                    " 权限等级: " +
+                                      toDisplayString(
+                                        q(
+                                          ($ = e.playerInfo) == null
+                                            ? void 0
+                                            : $.level,
+                                        ),
+                                      ) +
+                                      "级 ",
+                                    1,
+                                  ),
+                                  createBaseVNode(
+                                    "span",
+                                    _hoisted_19$1,
+                                    " UID:" +
+                                      toDisplayString(
+                                        q(
+                                          (R = e.playerInfo) == null
+                                            ? void 0
+                                            : R.uid,
+                                        ),
+                                      ),
+                                    1,
+                                  ),
+                                ]),
+                              ]),
+                              w[1] ||
+                                (w[1] = createBaseVNode(
+                                  "div",
+                                  { class: "player-divider" },
+                                  null,
+                                  -1,
+                                )),
+                              createBaseVNode("div", _hoisted_20$1, [
+                                (openBlock(!0),
+                                createElementBlock(
+                                  Fragment,
+                                  null,
+                                  renderList(
+                                    N.value,
+                                    (P) => (
+                                      openBlock(),
+                                      createElementBlock(
+                                        "div",
+                                        { key: P.key, class: "player-stat" },
+                                        [
+                                          createBaseVNode(
+                                            "div",
+                                            _hoisted_21$1,
+                                            [
+                                              createBaseVNode(
+                                                "img",
+                                                {
+                                                  class: normalizeClass([
+                                                    "stat-icon",
+                                                    `stat-icon-${P.key}`,
+                                                  ]),
+                                                  src: P.icon,
+                                                  alt: "",
+                                                },
+                                                null,
+                                                10,
+                                                _hoisted_22$1,
+                                              ),
+                                            ],
+                                          ),
+                                          createBaseVNode(
+                                            "div",
+                                            _hoisted_23$1,
+                                            [
+                                              createBaseVNode(
+                                                "div",
+                                                _hoisted_24$1,
+                                                [
+                                                  createBaseVNode(
+                                                    "span",
+                                                    null,
+                                                    toDisplayString(P.label),
+                                                    1,
+                                                  ),
+                                                  P.extra
+                                                    ? (openBlock(),
+                                                      createElementBlock(
+                                                        "span",
+                                                        _hoisted_25$1,
+                                                        toDisplayString(
+                                                          P.extra,
+                                                        ),
+                                                        1,
+                                                      ))
+                                                    : createCommentVNode(
+                                                        "",
+                                                        !0,
+                                                      ),
+                                                ],
+                                              ),
+                                              createBaseVNode(
+                                                "div",
+                                                _hoisted_26$1,
+                                                toDisplayString(P.value),
+                                                1,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ),
+                                  ),
+                                  128,
+                                )),
+                              ]),
+                              w[2] ||
+                                (w[2] = createBaseVNode(
+                                  "div",
+                                  { class: "player-tip" },
+                                  [
+                                    createBaseVNode(
+                                      "span",
+                                      { class: "tip-icon" },
+                                      "!",
+                                    ),
+                                    createBaseVNode(
+                                      "span",
+                                      null,
+                                      "查询结果可能存在延迟，请耐心等待",
+                                    ),
+                                  ],
+                                  -1,
+                                )),
+                            ],
+                            64,
+                          ))
+                        : (openBlock(),
+                          createElementBlock(
+                            "div",
+                            _hoisted_27$1,
+                            " 未查询到账号信息，请先登录游戏 ",
+                          )),
+                    ]))
+                  : createCommentVNode("", !0),
+              ]),
+            ]))
+          : createCommentVNode("", !0);
+      };
+    },
+  },
+  NoticePanel = _export_sfc(_sfc_main$2, [["__scopeId", "data-v-5226464d"]]),
+  _hoisted_1$1 = { class: "dialog-setting-menu" },
+  _hoisted_2$1 = ["onClick"],
+  _hoisted_3$1 = { class: "dialog-setting-body" },
+  _hoisted_4$1 = { key: 0, class: "module-page module-common" },
+  _hoisted_5$1 = { class: "module-form" },
+  _hoisted_6$1 = { class: "module-select" },
+  _hoisted_7 = { class: "module-options" },
+  _hoisted_8 = { key: 0, class: "module-form" },
+  _hoisted_9 = { class: "module-form" },
+  _hoisted_10 = { key: 1, class: "module-page module-download" },
+  _hoisted_11 = { class: "module-form" },
+  _hoisted_12 = { class: "module-radio cursor" },
+  _hoisted_13 = { class: "module-form" },
+  _hoisted_14 = { class: "module-text flex flex-between cursor" },
+  _hoisted_15 = ["title"],
+  _hoisted_16 = { key: 0, class: "icon icon-folder" },
+  _hoisted_17 = { class: "module-btn-wrapper" },
+  _hoisted_18 = { class: "module-form" },
+  _hoisted_19 = { class: "module-btn-wrapper" },
+  _hoisted_20 = { key: 2, class: "module-page module-about" },
+  _hoisted_21 = { class: "module-form version-info" },
+  _hoisted_22 = ["title"],
+  _hoisted_23 = { class: "launcher-version" },
+  _hoisted_24 = { key: 0, class: "device-id" },
+  _hoisted_25 = { class: "module-form" },
+  _hoisted_26 = { class: "module-btn-wrapper" },
+  _hoisted_27 = { class: "module-form" },
+  launcherLogUploadCooldown = 60 * 1e3,
+  logDebugClickLimit = 10,
+  logDebugClickWindow = 8 * 1e3,
+  _sfc_main$1 = {
+    __name: "Setting",
+    props: {
+      modelValue: { type: Boolean, default: !1 },
+      defaultIndex: { type: Number, default: 0 },
+    },
+    emits: ["update:modelValue", "close", "success", "starterVersion"],
+    setup(e, { expose: t, emit: n }) {
+      const s = e,
+        r = n,
+        i = useSettingStore(),
+        o = useVersionStore(),
+        a = useGameStore(),
+        l = useResStore();
+      let u = 0,
+        d = 0,
+        c = 0,
+        v = null;
+      const E = computed(() =>
+          isDx11AndEnvCheckEnabled(o.versionInfo.launcher_env),
+        ),
+        x = computed(() => {
+          const D = a.gameStatus.status,
+            k = l.resStatus.status,
+            V = ["ready", "wait_download"].includes(D),
+            F = ["downloading", "pause", "installing"].includes(k);
+          return V && !F;
+        }),
+        B = reactive({
+          choose_language: !1,
+          isShowDialog: s.modelValue,
+          activeIndex: s.defaultIndex,
+          menu: [
+            { name: "common", title: "通用" },
+            { name: "download", title: "下载" },
+            { name: "about", title: "关于" },
+          ],
+        });
+      (watch(
+        () => s.modelValue,
+        (D) => {
+          B.isShowDialog = D;
+        },
+      ),
+        watch(
+          () => s.defaultIndex,
+          (D) => {
+            B.activeIndex = D;
+          },
+        ),
+        watch(
+          () => i.setting.speed_limit,
+          (D) => {
+            D === 0
+              ? i.saveSetting()
+              : D < 1
+                ? i.updateSettingItem("speed_limit", 1)
+                : D > 100
+                  ? i.updateSettingItem("speed_limit", 100)
+                  : i.saveSetting();
+          },
+        ));
+      const G = () => {
+          o.checkLauncherUpdate(!0);
+        },
+        q = () => {
+          ((d = 0), (c = 0), v && (clearTimeout(v), (v = null)));
+        },
+        b = () => {
+          const D = Date.now();
+          ((!c || D - c > logDebugClickWindow) &&
+            (q(), (c = D), (v = setTimeout(q, logDebugClickWindow))),
+            (d += 1),
+            d >= logDebugClickLimit &&
+              (S("log_debug_on"),
+              window.toast({ value: "log_debug已开启" }),
+              q()));
+        },
+        N = (D) => {
+          const k = document.createElement("textarea");
+          ((k.value = D),
+            k.setAttribute("readonly", ""),
+            (k.style.position = "fixed"),
+            (k.style.left = "-9999px"),
+            (k.style.top = "-9999px"),
+            document.body.appendChild(k),
+            k.focus(),
+            k.select());
+          try {
+            if (!document.execCommand("copy"))
+              throw new Error("execCommand copy failed");
+          } finally {
+            document.body.removeChild(k);
+          }
+        },
+        z = async (D) => {
+          var k;
+          if (
+            (k = navigator.clipboard) != null &&
+            k.writeText &&
+            window.isSecureContext
+          )
+            try {
+              await navigator.clipboard.writeText(D);
+              return;
+            } catch (V) {
+              console.warn("标准剪贴板复制失败，尝试兜底方案:", V);
+            }
+          N(D);
+        },
+        Y = async () => {
+          const D = o.versionInfo.device_id;
+          if (!D) {
+            window.toast({ value: "暂无设备号" });
+            return;
+          }
+          try {
+            (await z(D), window.toast({ value: "设备号已复制" }));
+          } catch (k) {
+            (console.error("复制设备号失败:", k),
+              window.toast({ value: "复制失败，请手动复制" }));
+          }
+        },
+        X = () => {
+          const D = Date.now(),
+            k = D - u;
+          if (k < launcherLogUploadCooldown) {
+            const V = Math.ceil((launcherLogUploadCooldown - k) / 1e3);
+            window.toast({ value: `请${V}秒后再上传日志` });
+            return;
+          }
+          ((u = D), window.LuminJsCall("upload_launcher_log"));
+        },
+        K = (D) => {
+          B.activeIndex = D;
+        },
+        w = () => {
+          i.updateSettingItem("auto_start", !i.setting.auto_start);
+        },
+        m = (D) => {
+          i.updateSettingItem("close_action", D);
+        },
+        S = (D, k) => {
+          if (!(D === "env_check" && !E.value))
+            switch (D) {
+              case "open_browser":
+                window.LuminJsCall("open_browser", { url: k });
+                break;
+              default:
+                window.LuminJsCall(D);
+                break;
+            }
+        },
+        $ = (D) => {
+          typeof D < "u"
+            ? i.updateSettingItem("speed_limit", D)
+            : i.setting.speed_limit === 0 &&
+              i.updateSettingItem("speed_limit", 10);
+        },
+        R = (D) => {
+          let k = D.target.value;
+          k.includes(".") && ((k = k.split(".")[0]), (D.target.value = k));
+          const V = parseInt(k);
+          isNaN(V) || V < 1
+            ? i.updateSettingItem("speed_limit", 1)
+            : V > 100
+              ? i.updateSettingItem("speed_limit", 100)
+              : i.updateSettingItem("speed_limit", V);
+        },
+        P = (D) => {
+          [".", "-", "+", "e", "E"].includes(D.key) && D.preventDefault();
+        },
+        W = () => {
+          (r("update:modelValue", !1), r("close"));
+        };
+      return (
+        onMounted(() => {}),
+        onUnmounted(() => {
+          q();
+        }),
+        t({ close: W }),
+        (D, k) => (
+          openBlock(),
+          createBlock(
+            _sfc_main$c,
+            {
+              modelValue: B.isShowDialog,
+              "onUpdate:modelValue":
+                k[17] || (k[17] = (V) => (B.isShowDialog = V)),
+              className: "dialog-setting",
+              title: "设置",
+              onClose: W,
+            },
+            {
+              default: withCtx(() => [
+                createBaseVNode(
+                  "div",
+                  {
+                    class: "dialog-setting-content flex flex-between",
+                    onClick: k[16] || (k[16] = (V) => (B.choose_language = !1)),
+                  },
+                  [
+                    createBaseVNode("div", _hoisted_1$1, [
+                      (openBlock(!0),
+                      createElementBlock(
+                        Fragment,
+                        null,
+                        renderList(
+                          B.menu,
+                          (V, F) => (
+                            openBlock(),
+                            createElementBlock(
+                              "div",
+                              {
+                                class: normalizeClass([
+                                  "menu-item",
+                                  F === B.activeIndex ? "active" : "",
+                                ]),
+                                key: "menu" + F,
+                                onClick: (Z) => K(F),
+                              },
+                              [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: normalizeClass([
+                                      "icon",
+                                      "icon-setting-" + V.name,
+                                    ]),
+                                  },
+                                  null,
+                                  2,
+                                ),
+                                createTextVNode(
+                                  " " + toDisplayString(V.title),
+                                  1,
+                                ),
+                              ],
+                              10,
+                              _hoisted_2$1,
+                            )
+                          ),
+                        ),
+                        128,
+                      )),
+                    ]),
+                    createBaseVNode("div", _hoisted_3$1, [
+                      B.activeIndex === 0
+                        ? (openBlock(),
+                          createElementBlock("div", _hoisted_4$1, [
+                            k[25] ||
+                              (k[25] = createBaseVNode(
+                                "div",
+                                { class: "module-title" },
+                                "通用",
+                                -1,
+                              )),
+                            createBaseVNode("div", _hoisted_5$1, [
+                              k[19] ||
+                                (k[19] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "启动器语言",
+                                  -1,
+                                )),
+                              createBaseVNode("div", _hoisted_6$1, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: "module-select-title",
+                                    onClick:
+                                      k[0] ||
+                                      (k[0] = withModifiers(
+                                        (V) =>
+                                          (B.choose_language =
+                                            !B.choose_language),
+                                        ["stop"],
+                                      )),
+                                  },
+                                  " 简体中文 ",
+                                ),
+                                withDirectives(
+                                  createBaseVNode(
+                                    "div",
+                                    _hoisted_7,
+                                    [
+                                      createBaseVNode(
+                                        "div",
+                                        {
+                                          class: "module-option",
+                                          onClick:
+                                            k[1] ||
+                                            (k[1] = (V) =>
+                                              (B.choose_language = !1)),
+                                        },
+                                        " 简体中文 ",
+                                      ),
+                                      k[18] ||
+                                        (k[18] = createBaseVNode(
+                                          "div",
+                                          {
+                                            class: "module-option grey",
+                                            disabled: "",
+                                          },
+                                          "English",
+                                          -1,
+                                        )),
+                                    ],
+                                    512,
+                                  ),
+                                  [[vShow, B.choose_language]],
+                                ),
+                              ]),
+                            ]),
+                            createCommentVNode("", !0),
+                            createBaseVNode("div", _hoisted_9, [
+                              k[24] ||
+                                (k[24] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "关闭窗口",
+                                  -1,
+                                )),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-radio cursor",
+                                  onClick: k[2] || (k[2] = (V) => m(1)),
+                                },
+                                [
+                                  createBaseVNode(
+                                    "div",
+                                    {
+                                      class: normalizeClass([
+                                        "icon icon-radio",
+                                        unref(i).setting.close_action === 1
+                                          ? "active"
+                                          : "",
+                                      ]),
+                                    },
+                                    null,
+                                    2,
+                                  ),
+                                  k[22] ||
+                                    (k[22] =
+                                      createTextVNode(" 最小化系统窗口 ")),
+                                ],
+                              ),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-radio cursor",
+                                  onClick: k[3] || (k[3] = (V) => m(2)),
+                                },
+                                [
+                                  createBaseVNode(
+                                    "div",
+                                    {
+                                      class: normalizeClass([
+                                        "icon icon-radio",
+                                        unref(i).setting.close_action === 2
+                                          ? "active"
+                                          : "",
+                                      ]),
+                                    },
+                                    null,
+                                    2,
+                                  ),
+                                  k[23] ||
+                                    (k[23] = createTextVNode(" 退出启动器 ")),
+                                ],
+                              ),
+                            ]),
+                          ]))
+                        : createCommentVNode("", !0),
+                      B.activeIndex === 1
+                        ? (openBlock(),
+                          createElementBlock("div", _hoisted_10, [
+                            k[31] ||
+                              (k[31] = createBaseVNode(
+                                "div",
+                                { class: "module-title" },
+                                "下载",
+                                -1,
+                              )),
+                            createBaseVNode("div", _hoisted_11, [
+                              k[28] ||
+                                (k[28] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "下载速度",
+                                  -1,
+                                )),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-radio cursor",
+                                  onClick: k[4] || (k[4] = (V) => $(0)),
+                                },
+                                [
+                                  createBaseVNode(
+                                    "div",
+                                    {
+                                      class: normalizeClass([
+                                        "icon icon-radio",
+                                        unref(i).setting.speed_limit === 0
+                                          ? "active"
+                                          : "",
+                                      ]),
+                                    },
+                                    null,
+                                    2,
+                                  ),
+                                  k[26] ||
+                                    (k[26] = createTextVNode(" 无限制 ")),
+                                ],
+                              ),
+                              createBaseVNode("div", _hoisted_12, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: normalizeClass([
+                                      "icon icon-radio",
+                                      unref(i).setting.speed_limit > 0
+                                        ? "active"
+                                        : "",
+                                    ]),
+                                    onClick: k[5] || (k[5] = (V) => $()),
+                                  },
+                                  null,
+                                  2,
+                                ),
+                                createBaseVNode(
+                                  "label",
+                                  {
+                                    class: "cursor",
+                                    onClick: k[6] || (k[6] = (V) => $()),
+                                  },
+                                  "速度上限",
+                                ),
+                                withDirectives(
+                                  createBaseVNode(
+                                    "input",
+                                    {
+                                      type: "number",
+                                      "onUpdate:modelValue":
+                                        k[7] ||
+                                        (k[7] = (V) =>
+                                          (unref(i).setting.speed_limit = V)),
+                                      onInput: R,
+                                      onKeydown: P,
+                                      min: "1",
+                                      max: "100",
+                                      step: "1",
+                                    },
+                                    null,
+                                    544,
+                                  ),
+                                  [[vModelText, unref(i).setting.speed_limit]],
+                                ),
+                                k[27] ||
+                                  (k[27] = createTextVNode("MB/s(1-100) ")),
+                              ]),
+                            ]),
+                            createBaseVNode("div", _hoisted_13, [
+                              k[29] ||
+                                (k[29] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "游戏安装目录",
+                                  -1,
+                                )),
+                              createBaseVNode("div", _hoisted_14, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: "path-text",
+                                    title: unref(i).setting.game_path,
+                                  },
+                                  toDisplayString(unref(i).setting.game_path),
+                                  9,
+                                  _hoisted_15,
+                                ),
+                                createCommentVNode("", !0),
+                              ]),
+                              createBaseVNode("div", _hoisted_17, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: "module-btn",
+                                    onClick:
+                                      k[8] ||
+                                      (k[8] = (V) => S("open_game_path")),
+                                  },
+                                  " 打开游戏目录 ",
+                                ),
+                                x.value
+                                  ? (openBlock(),
+                                    createElementBlock(
+                                      "div",
+                                      {
+                                        key: 0,
+                                        class: "module-btn sub",
+                                        onClick:
+                                          k[9] ||
+                                          (k[9] = (V) => S("locate_game_path")),
+                                      },
+                                      " 重新定位游戏 ",
+                                    ))
+                                  : createCommentVNode("", !0),
+                              ]),
+                            ]),
+                            createBaseVNode("div", _hoisted_18, [
+                              k[30] ||
+                                (k[30] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "游戏日志",
+                                  -1,
+                                )),
+                              createBaseVNode("div", _hoisted_19, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: "module-btn",
+                                    onClick:
+                                      k[10] ||
+                                      (k[10] = (V) => S("open_log_game")),
+                                  },
+                                  " 打开游戏日志 ",
+                                ),
+                              ]),
+                            ]),
+                          ]))
+                        : createCommentVNode("", !0),
+                      B.activeIndex === 2
+                        ? (openBlock(),
+                          createElementBlock("div", _hoisted_20, [
+                            k[34] ||
+                              (k[34] = createBaseVNode(
+                                "div",
+                                { class: "module-title" },
+                                "关于",
+                                -1,
+                              )),
+                            createBaseVNode("div", { class: "module-form" }, [
+                              createBaseVNode(
+                                "div",
+                                { class: "module-label", onClick: b },
+                                " 启动器版本 ",
+                              ),
+                            ]),
+                            createBaseVNode("div", _hoisted_21, [
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-label version-detail",
+                                  title: unref(o).versionInfo.device_id,
+                                },
+                                [
+                                  createBaseVNode(
+                                    "span",
+                                    _hoisted_23,
+                                    toDisplayString(
+                                      unref(o).versionInfo.launcher_version,
+                                    ),
+                                    1,
+                                  ),
+                                  unref(o).versionInfo.device_id
+                                    ? (openBlock(),
+                                      createElementBlock(
+                                        "span",
+                                        _hoisted_24,
+                                        " 设备号：" +
+                                          toDisplayString(
+                                            unref(o).versionInfo.device_id,
+                                          ),
+                                        1,
+                                      ))
+                                    : createCommentVNode("", !0),
+                                ],
+                                8,
+                                _hoisted_22,
+                              ),
+                              createBaseVNode(
+                                "div",
+                                { class: "module-btn-wrapper" },
+                                [
+                                  createBaseVNode(
+                                    "div",
+                                    { class: "module-btn", onClick: G },
+                                    " 检查版本 ",
+                                  ),
+                                  createBaseVNode(
+                                    "div",
+                                    { class: "module-btn", onClick: Y },
+                                    "复制设备号",
+                                  ),
+                                ],
+                              ),
+                            ]),
+                            createBaseVNode("div", _hoisted_25, [
+                              k[32] ||
+                                (k[32] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "启动器日志",
+                                  -1,
+                                )),
+                              createBaseVNode("div", _hoisted_26, [
+                                createBaseVNode(
+                                  "div",
+                                  {
+                                    class: "module-btn",
+                                    onClick:
+                                      k[11] ||
+                                      (k[11] = (V) => S("open_log_launcher")),
+                                  },
+                                  " 打开日志目录 ",
+                                ),
+                                createBaseVNode(
+                                  "div",
+                                  { class: "module-btn sub", onClick: X },
+                                  " 上传日志 ",
+                                ),
+                                E.value
+                                  ? (openBlock(),
+                                    createElementBlock(
+                                      "div",
+                                      {
+                                        key: 0,
+                                        class: "module-btn sub",
+                                        onClick:
+                                          k[12] ||
+                                          (k[12] = (V) => S("env_check")),
+                                      },
+                                      " 环境检测 ",
+                                    ))
+                                  : createCommentVNode("", !0),
+                              ]),
+                            ]),
+                            createBaseVNode("div", _hoisted_27, [
+                              k[33] ||
+                                (k[33] = createBaseVNode(
+                                  "div",
+                                  { class: "module-label" },
+                                  "条款与政策",
+                                  -1,
+                                )),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-link cursor",
+                                  onClick:
+                                    k[13] ||
+                                    (k[13] = (V) =>
+                                      S(
+                                        "open_browser",
+                                        "https://pages.zhuziplay.com/userAgreement/1010/cn",
+                                      )),
+                                },
+                                " 服务协议 ",
+                              ),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-link cursor",
+                                  onClick:
+                                    k[14] ||
+                                    (k[14] = (V) =>
+                                      S(
+                                        "open_browser",
+                                        "https://pages.zhuziplay.com/privacyAgreement/1010/cn",
+                                      )),
+                                },
+                                " 隐私政策 ",
+                              ),
+                              createBaseVNode(
+                                "div",
+                                {
+                                  class: "module-link cursor",
+                                  onClick:
+                                    k[15] ||
+                                    (k[15] = (V) =>
+                                      S(
+                                        "open_browser",
+                                        "https://pages.zhuziplay.com/customPage/16",
+                                      )),
+                                },
+                                " 儿童隐私政策 ",
+                              ),
+                            ]),
+                            k[35] ||
+                              (k[35] = createBaseVNode(
+                                "div",
+                                { class: "module-footer" },
+                                " ©2025 上海竹子互联网信息服务有限公司版权所有 ",
+                                -1,
+                              )),
+                          ]))
+                        : createCommentVNode("", !0),
+                    ]),
+                  ],
+                ),
+              ]),
+              _: 1,
+            },
+            8,
+            ["modelValue"],
+          )
+        )
+      );
+    },
+  },
+  _hoisted_1 = ["src"],
+  _hoisted_2 = { id: "drag-region", class: "header flex flex-between" },
+  _hoisted_3 = { class: "left flex" },
+  _hoisted_4 = { class: "right flex flex-center" },
+  _hoisted_5 = { key: 1, class: "dev-env-tag" },
+  _hoisted_6 = { class: "game-wrapper" },
+  PLAYER_INFO_CACHE_KEY = "launcher_player_info",
+  PLAYER_VISIBILITY_CACHE_KEY = "launcher_player_visible",
+  PLAYER_LOG_PREFIX = "[PlayerInfo]",
+  _sfc_main = {
+    __name: "Index",
+    setup(e) {
+      const t = useVersionStore(),
+        n = useSettingStore(),
+        s = useResStore(),
+        r = useGameStore(),
+        i = usePreDownloadStore();
+      (t.initEventListener(),
+        n.initEventListener(),
+        r.initEventListener(),
+        s.initEventListener(),
+        i.initEventListener(),
+        r.fetchGameVersion());
+      const o = !1,
+        a = (g) =>
+          !!(
+            g &&
+            typeof g == "object" &&
+            !Array.isArray(g) &&
+            Object.keys(g).length > 0
+          ),
+        l = (g) => {
+          if (typeof g == "number" && Number.isFinite(g)) return g;
+          if (typeof g == "string" && g.trim() !== "") {
+            const C = Number(g);
+            if (Number.isFinite(C)) return C;
+          }
+          return 0;
+        },
+        u = (g) => {
+          if (!a(g) || typeof ta > "u") return;
+          const C = { uid: l(g.uid), level: l(g.level) };
+          (g.aid !== void 0 &&
+            g.aid !== null &&
+            g.aid !== "" &&
+            (C.bamboo_user_id = l(g.aid)),
+            ta.track("pclauncher_player_info_query", C));
+        },
+        d = () => {
+          try {
+            const g = JSON.parse(storage.getItem(PLAYER_INFO_CACHE_KEY));
+            return a(g) ? g : null;
+          } catch (g) {
+            return (
+              console.warn(`${PLAYER_LOG_PREFIX} 读取用户信息缓存失败`, g),
+              null
+            );
+          }
+        },
+        c = reactive({
+          isShowSetting: !1,
+          isShowInstallPath: !1,
+          isShowCloseConfirm: !1,
+          isShowCheckVersion: !1,
+          isShowConfirm: !1,
+          isShowCancel: !0,
+          isShowExit: !1,
+          isShowGameDownload: !1,
+          isShowGameMenu: !1,
+          isShowTestDrawer: !1,
+          settingIndex: 0,
+          confirmType: "repair",
+          backgroundType: "image",
+          backgroundImage: "",
+          backgroundVideo: "",
+          defaultBackgroundImage:
+            "https://lmcdn.zhuziplay.com/starter/bg/bg2.jpg",
+          media: [],
+          showBanner: !1,
+          showAnnouncement: !1,
+          showPlayer: storage.getItem(PLAYER_VISIBILITY_CACHE_KEY) === "true",
+          showDx11: !0,
+          newsTags: [],
+          activeTagIndex: 0,
+          bannerList: [],
+          newsList: [],
+          playerInfo: d(),
+        }),
+        v = computed(() => c.showBanner && c.bannerList.length > 0),
+        E = computed(
+          () =>
+            c.showAnnouncement &&
+            c.newsTags.length > 0 &&
+            c.newsList.length > 0,
+        ),
+        x = computed(() => c.showPlayer),
+        B = computed(() => v.value || E.value || x.value),
+        G = computed(
+          () =>
+            r.gameStatus.status === "ready" ||
+            r.gameStatus.status === "verifying" ||
+            r.gameStatus.status === "verification_complete",
+        ),
+        q = (g) => {
+          ((c.settingIndex = g), (c.isShowSetting = !0));
+        },
+        b = () => {
+          n.hasSaveChoose
+            ? n.setting.close_action === 1
+              ? window.LuminJsCall("starter_taskbar")
+              : window.LuminJsCall("starter_exit")
+            : (c.isShowCloseConfirm = !0);
+        },
+        N = () => {
+          r.gameDownload();
+        },
+        z = () => {
+          (n.setInstallPathStatus(!0), (c.isShowInstallPath = !0));
+        },
+        Y = () => {
+          c.isShowConfirm ||
+            ((c.isShowConfirm = !0),
+            (c.confirmType = "common"),
+            (c.confirmTitle = "提示"),
+            (c.confirmDesc = "当前网络异常，请检查网络状况后重试"),
+            (c.isShowCancel = !1),
+            (c.isShowExit = !1));
+        },
+        X = () => {
+          c.isShowConfirm ||
+            ((c.isShowConfirm = !0),
+            (c.confirmType = "common"),
+            (c.confirmTitle = "提示"),
+            (c.confirmDesc = "包体配置获取异常，请检查网络状况后重试"),
+            (c.isShowCancel = !1),
+            (c.isShowExit = !1));
+        },
+        K = (g) => {
+          c.activeTagIndex = g;
+        },
+        w = () => {
+          window.LuminJsCall("starter_mini");
+        },
+        m = (g) => {
+          window.LuminJsCall("open_browser", { url: g });
+        },
+        S = (g) =>
+          (g == null ? void 0 : g.videoLink) ||
+          (g == null ? void 0 : g.videoUrl) ||
+          (g == null ? void 0 : g.video) ||
+          "",
+        $ = (g, C = new Date()) => {
+          if (!g || Number(g.status) !== 1) return !1;
+          const I = g.stime ? new Date(g.stime) : null,
+            O = g.etime ? new Date(g.etime) : null;
+          return (
+            (!I || (!Number.isNaN(I.getTime()) && C >= I)) &&
+            (!O || (!Number.isNaN(O.getTime()) && C <= O))
+          );
+        },
+        R = () => {
+          ((c.backgroundType = "image"),
+            (c.backgroundVideo = ""),
+            (c.backgroundImage = c.defaultBackgroundImage),
+            console.log("使用默认背景图"));
+        },
+        P = (g) => {
+          const C = S(g);
+          if (C) {
+            ((c.backgroundType = "video"),
+              (c.backgroundImage = ""),
+              (c.backgroundVideo = C),
+              console.log("背景视频设置成功:", C));
+            return;
+          }
+          if (g != null && g.imageLink) {
+            ((c.backgroundType = "image"),
+              (c.backgroundVideo = ""),
+              (c.backgroundImage = g.imageLink),
+              window.LuminJsCall("update_background_url", { url: g.imageLink }),
+              console.log("背景图设置成功:", g.imageLink));
+            return;
+          }
+          R();
+        },
+        W = (g) => {
+          const C = g.currentTarget;
+          if (!C) return;
+          C.muted = !0;
+          const I = C.play();
+          I != null &&
+            I.catch &&
+            I.catch((O) => {
+              console.warn("背景视频自动播放失败:", O);
+            });
+        },
+        D = (g) => {
+          const C = g.currentTarget;
+          (console.error(
+            "背景视频加载失败，使用默认背景图:",
+            C == null ? void 0 : C.src,
+          ),
+            R());
+        },
+        k = async () => {
+          try {
+            const g = await updateLauncherBg(),
+              I = (
+                Array.isArray(g == null ? void 0 : g.value) ? g.value : []
+              ).find((O) => (O ? (O.imageLink || S(O)) && $(O) : !1));
+            I ? P(I) : R();
+          } catch (g) {
+            (R(), console.error("获取背景图失败，使用默认背景图:", g));
+          }
+        },
+        V = () => {
+          if (r.gameStatus.status !== "ready") {
+            window.toast({ value: "当前游戏状态不支持修复" });
+            return;
+          }
+          ((c.confirmType = "repair"),
+            (c.isShowConfirm = !0),
+            (c.isShowCancel = !0),
+            (c.isShowExit = !1),
+            (c.confirmTitle = ""),
+            (c.confirmDesc = ""));
+        },
+        F = () => {
+          if (
+            (console.log("handleUninstallGame"),
+            !r.gameStatus.game_version || r.gameStatus.game_version === "")
+          ) {
+            ((c.confirmType = "common"),
+              (c.isShowConfirm = !0),
+              (c.isShowCancel = !1),
+              (c.isShowExit = !1),
+              (c.confirmTitle = "提示"),
+              (c.confirmDesc = "当前没有已安装的游戏"));
+            return;
+          }
+          if (
+            r.gameStatus.status === "downloading" ||
+            r.gameStatus.status === "pause" ||
+            r.gameStatus.status === "installing" ||
+            (r.needLoadResource &&
+              !i.skipGameResourceCheck &&
+              (s.resStatus.status === "downloading" ||
+                s.resStatus.status === "pause" ||
+                s.resStatus.status === "installing"))
+          ) {
+            ((c.confirmType = "common"),
+              (c.isShowConfirm = !0),
+              (c.isShowCancel = !1),
+              (c.isShowExit = !1),
+              (c.confirmTitle = "提示"),
+              (c.confirmDesc = "当前状态不能卸载游戏"));
+            return;
+          }
+          ((c.confirmType = "uninstall"),
+            (c.isShowConfirm = !0),
+            (c.isShowCancel = !0),
+            (c.isShowExit = !1),
+            (c.confirmTitle = ""),
+            (c.confirmDesc = ""));
+        },
+        Z = (g, C, I = !1) => {
+          const O = C.map((M) => (g == null ? void 0 : g[M])).find(
+            (M) => M !== null && typeof M < "u",
+          );
+          return typeof O > "u" ? I : Number(O) === 2;
+        },
+        re = async () => {
+          try {
+            const g = await updateLauncherShield();
+            if ((console.log("getMediaLinks response ~~~ ", g), g)) {
+              const C = [];
+              (g.website_status === 2 &&
+                C.push({
+                  name: "browser",
+                  link: g.website_link || "https://lvmeng.zhuziplay.com",
+                  title: "前往访问官网 &gt;",
+                  qrcode: "",
+                }),
+                g.weixin_status === 2 &&
+                  C.push({
+                    name: "wechat",
+                    link: g.weixin_link || "",
+                    qrcode:
+                      g.weixin_qrcode ||
+                      "https://lmcdn.zhuziplay.com/starter/qr.png",
+                    title: "",
+                    desc: "扫描关注公众号",
+                  }),
+                g.qq_status === 2 &&
+                  C.push({
+                    name: "qq",
+                    link: g.qq_link || "",
+                    qrcode:
+                      g.qq_qrcode ||
+                      "https://lmcdn.zhuziplay.com/starter/qr.png",
+                    title: "",
+                    desc: "手机QQ扫码进群",
+                  }),
+                g.weibo_status === 2 &&
+                  C.push({
+                    name: "weibo",
+                    link: g.weibo_link || "https://weibo.com",
+                    qrcode:
+                      g.weibo_qrcode ||
+                      "https://lmcdn.zhuziplay.com/starter/qr.png",
+                    title: "访问官方微博 &gt;",
+                    desc: "扫描关注官方微博",
+                  }),
+                g.taptap_status === 2 &&
+                  C.push({
+                    name: "taptap",
+                    link: g.taptap_link || "https://taptap.com",
+                    title: "访问Taptap &gt;",
+                    qrcode: g.taptap_qrcode || "",
+                  }),
+                g.bilibili_status === 2 &&
+                  C.push({
+                    name: "bilibili",
+                    link: g.bilibili_link || "https://bilibili.com",
+                    title: "访问Bilibili &gt;",
+                    qrcode: g.bilibili_qrcode || "",
+                  }),
+                g.douyin_status === 2 &&
+                  C.push({
+                    name: "douyin",
+                    link: g.douyin_link || "https://douyin.com",
+                    title: "访问抖音 &gt;",
+                    qrcode: g.douyin_qrcode || "",
+                  }),
+                g.feedback_status === 2 &&
+                  C.push({
+                    name: "service",
+                    link: g.feedback_link || "https://lvmeng.zhuziplay.com",
+                    title: "联系客服 &gt;",
+                    qrcode: "",
+                  }),
+                (c.media = C),
+                (c.showDx11 = Number(g.dx11_status) !== 1),
+                (c.showBanner = Z(g, ["banner_status"])),
+                (c.showAnnouncement = Z(g, ["announcement_status"])));
+              const I = g.user_info_status;
+              (I !== null &&
+                typeof I < "u" &&
+                ((c.showPlayer = Z(g, ["user_info_status"])),
+                storage.setItem(
+                  PLAYER_VISIBILITY_CACHE_KEY,
+                  String(c.showPlayer),
+                )),
+                console.log("媒体链接设置成功:", C));
+            } else ae();
+          } catch (g) {
+            (console.error("获取媒体链接失败，使用默认配置:", g), ae());
+          }
+        },
+        ae = () => {
+          ((c.media = []),
+            (c.showBanner = !1),
+            (c.showAnnouncement = !1),
+            console.log("使用默认媒体链接配置"));
+        },
+        ce = async () => {
+          try {
+            const g = await updateLauncherBanner();
+            if (
+              (console.log("getBannerList response ~~~ ", g),
+              g && g.value && Array.isArray(g.value))
+            ) {
+              const C = g.value.filter(
+                (I) => !!(I != null && I.imageLink && $(I)),
+              );
+              if (C.length > 0) {
+                const I = (M) => {
+                    const U = Number(M == null ? void 0 : M.sort);
+                    return Number.isFinite(U) ? U : 0;
+                  },
+                  O = C.map((M, U) => ({ item: M, index: U }))
+                    .sort((M, U) => {
+                      const H = I(M.item) - I(U.item);
+                      return H !== 0 ? H : M.index - U.index;
+                    })
+                    .map(({ item: M }) => M);
+                ((c.bannerList = O.map((M, U) => ({
+                  id: M.id || U + 1,
+                  title: M.title || `轮播图${U + 1}`,
+                  image: M.imageLink,
+                  link: M.jumpLink || "#",
+                }))),
+                  console.log("轮播图设置成功:", c.bannerList));
+              } else ge();
+            } else ge();
+          } catch (g) {
+            (console.error("获取轮播图失败，使用默认配置:", g), ge());
+          }
+        },
+        ge = () => {
+          ((c.bannerList = []), console.log("使用默认轮播图配置"));
+        },
+        ne = (g) => {
+          if (!g) return "";
+          const C = new Date(g);
+          if (Number.isNaN(C.getTime())) {
+            const I = String(g).match(/(\d{1,2})[-/](\d{1,2})/);
+            return I ? `${I[1].padStart(2, "0")}/${I[2].padStart(2, "0")}` : "";
+          }
+          return `${String(C.getMonth() + 1).padStart(2, "0")}/${String(C.getDate()).padStart(2, "0")}`;
+        },
+        pe = (
+          g,
+          C,
+          { status: I, items: O, name: M, category: U, idPrefix: H },
+        ) => {
+          if (Number(I) !== 2 || !Array.isArray(O)) return;
+          const J = O.filter((te) => {
+            var ee;
+            return (ee = te == null ? void 0 : te.title) == null
+              ? void 0
+              : ee.trim();
+          });
+          J.length !== 0 &&
+            (g.push({ name: M, category: U }),
+            J.forEach((te, ee) => {
+              C.push({
+                id: te.id || `${H}_${ee + 1}`,
+                title: te.title.trim(),
+                category: U,
+                link: te.link || te.jumpLink || "#",
+                date: ne(
+                  te.date ||
+                    te.publishTime ||
+                    te.publishedAt ||
+                    te.createTime ||
+                    te.stime,
+                ),
+              });
+            }));
+        },
+        he = async () => {
+          try {
+            const g = await updateLauncherAnnouncement(),
+              C = g == null ? void 0 : g.value;
+            if (!C) {
+              Q();
+              return;
+            }
+            const I = [],
+              O = [];
+            if (
+              (pe(I, O, {
+                status: C.announcements_status,
+                items: C.announcements,
+                name: "公告",
+                category: "announcements",
+                idPrefix: "announcement",
+              }),
+              pe(I, O, {
+                status: C.activities_status,
+                items: C.activities,
+                name: "活动",
+                category: "activity",
+                idPrefix: "activity",
+              }),
+              pe(I, O, {
+                status: C.news_status,
+                items: C.news,
+                name: "资讯",
+                category: "news",
+                idPrefix: "news",
+              }),
+              I.length === 0 || O.length === 0)
+            ) {
+              Q();
+              return;
+            }
+            ((c.newsTags = I),
+              (c.newsList = O),
+              c.activeTagIndex >= I.length && (c.activeTagIndex = 0));
+          } catch (g) {
+            (console.error("获取公告数据失败:", g), Q());
+          }
+        },
+        Q = () => {
+          ((c.newsTags = []), (c.newsList = []), (c.activeTagIndex = 0));
+        };
+      let ie = 0,
+        se = null;
+      const A = (g = r.loginServerUrl) => {
+        const C = String(g || "")
+          .trim()
+          .replace(/\/+$/, "");
+        if (
+          (console.log(`${PLAYER_LOG_PREFIX} 调度用户信息请求`, {
+            loginServerUrl: C || "(empty)",
+            hasPendingRequest: !!se,
+          }),
+          (se == null ? void 0 : se.key) === C)
+        )
+          return (
+            console.log(`${PLAYER_LOG_PREFIX} 复用进行中的用户信息请求`, {
+              loginServerUrl: C || "(empty)",
+              requestId: se.id,
+            }),
+            se.promise
+          );
+        const I = ++ie;
+        console.log(`${PLAYER_LOG_PREFIX} 开始执行用户信息请求`, {
+          requestId: I,
+          loginServerUrl: C || "(empty)",
+        });
+        const O = (async () => {
+          try {
+            const M = await getPlayerInfo(g),
+              U = I === ie && a(M);
+            (a(M) && u(M),
+              U &&
+                ((c.playerInfo = M),
+                storage.setItem(PLAYER_INFO_CACHE_KEY, JSON.stringify(M))),
+              console.log(`${PLAYER_LOG_PREFIX} 用户信息请求完成`, {
+                requestId: I,
+                hasPlayerInfo: !!M,
+                keys: M && typeof M == "object" ? Object.keys(M) : [],
+                stateUpdated: U,
+              }));
+          } catch (M) {
+            console.error(`${PLAYER_LOG_PREFIX} 用户信息请求异常`, {
+              requestId: I,
+              message: (M == null ? void 0 : M.message) || "未知错误",
+              retainedPlayerInfo: !!c.playerInfo,
+            });
+          } finally {
+            ((se == null ? void 0 : se.id) === I && (se = null),
+              console.log(`${PLAYER_LOG_PREFIX} 用户信息请求清理完成`, {
+                requestId: I,
+                hasPendingRequest: !!se,
+              }));
+          }
+        })();
+        return ((se = { id: I, key: C, promise: O }), O);
+      };
+      let L = null;
+      const y = () => {
+          (console.log(`${PLAYER_LOG_PREFIX} 收起/展开触发用户信息刷新`, {
+            loginServerUrl: r.loginServerUrl || "(empty)",
+            debounceMs: 1e3,
+            resetExistingTimer: !!L,
+          }),
+            L && window.clearTimeout(L),
+            (L = window.setTimeout(() => {
+              ((L = null),
+                console.log(
+                  `${PLAYER_LOG_PREFIX} 防抖计时结束，执行用户信息刷新`,
+                ),
+                A(r.loginServerUrl));
+            }, 1e3)));
+        },
+        T = async () => {
+          console.log(`${PLAYER_LOG_PREFIX} 启动资源加载`, {
+            loginServerUrl: r.loginServerUrl || "(empty)",
+            isSidebarPreview: o,
+          });
+          const g = k();
+          (await re(),
+            console.log(`${PLAYER_LOG_PREFIX} 屏蔽配置加载完成`, {
+              loginServerUrl: r.loginServerUrl || "(empty)",
+              showPlayer: c.showPlayer,
+            }),
+            await Promise.all([g, ce(), he(), A(r.loginServerUrl)]));
+        };
+      return (
+        watch(
+          () => r.loginServerUrl,
+          (g) => {
+            (console.log(`${PLAYER_LOG_PREFIX} loginServerUrl 发生变化`, {
+              loginServerUrl: g || "(empty)",
+            }),
+              g && A(g));
+          },
+        ),
+        onMounted(() => {
+          (ta.track("pclauncher_open", { is_background: !1 }),
+            ta.timeEvent("pclauncher_close"),
+            T(),
+            window.emitter.on("version_deprecated", async () => {
+              c.isShowConfirm ||
+                ((c.isShowConfirm = !0),
+                (c.confirmType = "common"),
+                (c.confirmTitle = "提示"),
+                (c.confirmDesc = "当前版本已停用"),
+                (c.isShowCancel = !1),
+                (c.isShowExit = !0));
+            }),
+            window.emitter.on("luminEvent", async (g) => {
+              if (g.event === "common_error")
+                c.isShowConfirm ||
+                  ((c.isShowConfirm = !0),
+                  (c.confirmType = "common"),
+                  (c.confirmTitle = "提示"),
+                  (c.confirmDesc = g.data.msg),
+                  (c.isShowCancel = !1),
+                  (c.isShowExit = !1));
+              else if (g.event === "starter_back") {
+                if (
+                  (console.log("starter_back"),
+                  ta.track("pclauncher_open", { is_background: !0 }),
+                  ta.timeEvent("pclauncher_close"),
+                  T(),
+                  r.gameStatus.status === "playing" ||
+                    (await t.refreshAndCheckLauncherUpdate()))
+                )
+                  return;
+                r.fetchGameVersion();
+              }
+            }));
+        }),
+        onBeforeUnmount(() => {
+          L && (window.clearTimeout(L), (L = null));
+        }),
+        (g, C) => (
+          openBlock(),
+          createElementBlock(
+            "div",
+            {
+              class: "page-index",
+              style: normalizeStyle({
+                backgroundImage:
+                  c.backgroundType === "image"
+                    ? `url(${c.backgroundImage})`
+                    : "none",
+              }),
+            },
+            [
+              c.backgroundType === "video" && c.backgroundVideo
+                ? (openBlock(),
+                  createElementBlock(
+                    "video",
+                    {
+                      key: 0,
+                      class: "page-background-video",
+                      src: c.backgroundVideo,
+                      autoplay: "",
+                      muted: "",
+                      loop: "",
+                      playsinline: "",
+                      preload: "auto",
+                      "aria-hidden": "true",
+                      onCanplay: W,
+                      onError: D,
+                    },
+                    null,
+                    40,
+                    _hoisted_1,
+                  ))
+                : createCommentVNode("", !0),
+              createBaseVNode("div", _hoisted_2, [
+                createBaseVNode("div", _hoisted_3, [
+                  C[8] ||
+                    (C[8] = createBaseVNode(
+                      "div",
+                      { class: "icon icon-logo" },
+                      null,
+                      -1,
+                    )),
+                  createVNode(
+                    MediaLinks,
+                    { mediaList: c.media, onMediaClick: m },
+                    null,
+                    8,
+                    ["mediaList"],
+                  ),
+                ]),
+                createBaseVNode("div", _hoisted_4, [
+                  G.value
+                    ? (openBlock(),
+                      createElementBlock(
+                        "div",
+                        { key: 0, class: "icon-top cursor", onClick: V },
+                        C[9] ||
+                          (C[9] = [
+                            createBaseVNode(
+                              "div",
+                              { class: "icon icon-repair" },
+                              null,
+                              -1,
+                            ),
+                          ]),
+                      ))
+                    : createCommentVNode("", !0),
+                  unref(t).versionInfo.launcher_env === "DEV"
+                    ? (openBlock(),
+                      createElementBlock(
+                        "div",
+                        _hoisted_5,
+                        toDisplayString(unref(t).versionInfo.launcher_env),
+                        1,
+                      ))
+                    : createCommentVNode("", !0),
+                  createBaseVNode(
+                    "div",
+                    {
+                      class: "icon-top cursor",
+                      onClick: C[0] || (C[0] = (I) => (c.isShowSetting = !0)),
+                    },
+                    C[10] ||
+                      (C[10] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "icon icon-setting" },
+                          null,
+                          -1,
+                        ),
+                      ]),
+                  ),
+                  createBaseVNode(
+                    "div",
+                    { class: "icon-top cursor", onClick: w },
+                    C[11] ||
+                      (C[11] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "icon icon-mini" },
+                          null,
+                          -1,
+                        ),
+                      ]),
+                  ),
+                  createBaseVNode(
+                    "div",
+                    { class: "icon-top cursor", onClick: b },
+                    C[12] ||
+                      (C[12] = [
+                        createBaseVNode(
+                          "div",
+                          { class: "icon icon-close" },
+                          null,
+                          -1,
+                        ),
+                      ]),
+                  ),
+                ]),
+              ]),
+              B.value
+                ? (openBlock(),
+                  createBlock(
+                    NoticePanel,
+                    {
+                      key: 1,
+                      bannerList: c.bannerList,
+                      newsTags: c.newsTags,
+                      newsList: c.newsList,
+                      activeTagIndex: c.activeTagIndex,
+                      playerInfo: c.playerInfo,
+                      showBanner: v.value,
+                      showAnnouncement: E.value,
+                      showPlayer: x.value,
+                      onBannerClick: m,
+                      onTagChange: K,
+                      onNewsClick: m,
+                      onPlayerRefresh: y,
+                    },
+                    null,
+                    8,
+                    [
+                      "bannerList",
+                      "newsTags",
+                      "newsList",
+                      "activeTagIndex",
+                      "playerInfo",
+                      "showBanner",
+                      "showAnnouncement",
+                      "showPlayer",
+                    ],
+                  ))
+                : createCommentVNode("", !0),
+              createBaseVNode("div", _hoisted_6, [
+                createVNode(
+                  Game,
+                  {
+                    showDx11: c.showDx11,
+                    onShowGameMenu:
+                      C[1] || (C[1] = (I) => (c.isShowGameMenu = !0)),
+                    onDownloadGame: N,
+                    onInstallPath: z,
+                    onNetworkError: Y,
+                    onPackageEmptyError: X,
+                  },
+                  null,
+                  8,
+                  ["showDx11"],
+                ),
+              ]),
+              createVNode(
+                _sfc_main$1,
+                {
+                  modelValue: c.isShowSetting,
+                  "onUpdate:modelValue":
+                    C[2] || (C[2] = (I) => (c.isShowSetting = I)),
+                  defaultIndex: c.settingIndex,
+                },
+                null,
+                8,
+                ["modelValue", "defaultIndex"],
+              ),
+              createVNode(
+                Install,
+                {
+                  modelValue: c.isShowInstallPath,
+                  "onUpdate:modelValue":
+                    C[3] || (C[3] = (I) => (c.isShowInstallPath = I)),
+                },
+                null,
+                8,
+                ["modelValue"],
+              ),
+              createVNode(
+                _sfc_main$a,
+                {
+                  modelValue: c.isShowCloseConfirm,
+                  "onUpdate:modelValue":
+                    C[4] || (C[4] = (I) => (c.isShowCloseConfirm = I)),
+                },
+                null,
+                8,
+                ["modelValue"],
+              ),
+              createVNode(
+                CheckVersion,
+                {
+                  modelValue: unref(t).needUpdate,
+                  "onUpdate:modelValue":
+                    C[5] || (C[5] = (I) => (unref(t).needUpdate = I)),
+                },
+                null,
+                8,
+                ["modelValue"],
+              ),
+              createVNode(
+                _sfc_main$9,
+                {
+                  modelValue: c.isShowConfirm,
+                  "onUpdate:modelValue":
+                    C[6] || (C[6] = (I) => (c.isShowConfirm = I)),
+                  tp: c.confirmType,
+                  title: c.confirmTitle,
+                  desc: c.confirmDesc,
+                  isShowCancel: c.isShowCancel,
+                  isShowExit: c.isShowExit,
+                },
+                null,
+                8,
+                [
+                  "modelValue",
+                  "tp",
+                  "title",
+                  "desc",
+                  "isShowCancel",
+                  "isShowExit",
+                ],
+              ),
+              createVNode(
+                GameMenu,
+                {
+                  modelValue: c.isShowGameMenu,
+                  "onUpdate:modelValue":
+                    C[7] || (C[7] = (I) => (c.isShowGameMenu = I)),
+                  onOpenSetting: q,
+                  onUninstallGame: F,
+                },
+                null,
+                8,
+                ["modelValue"],
+              ),
+            ],
+            4,
+          )
+        )
+      );
+    },
+  },
+  Index = _export_sfc(_sfc_main, [["__scopeId", "data-v-48759c10"]]);
+/*!
+ * vue-router v4.5.1
+ * (c) 2025 Eduardo San Martin Morote
+ * @license MIT
+ */ const isBrowser = typeof document < "u";
+function isRouteComponent(e) {
+  return (
+    typeof e == "object" ||
+    "displayName" in e ||
+    "props" in e ||
+    "__vccOpts" in e
+  );
+}
+function isESModule(e) {
+  return (
+    e.__esModule ||
+    e[Symbol.toStringTag] === "Module" ||
+    (e.default && isRouteComponent(e.default))
+  );
+}
+const assign = Object.assign;
+function applyToParams(e, t) {
+  const n = {};
+  for (const s in t) {
+    const r = t[s];
+    n[s] = isArray(r) ? r.map(e) : e(r);
+  }
+  return n;
+}
+const noop = () => {},
+  isArray = Array.isArray,
+  HASH_RE = /#/g,
+  AMPERSAND_RE = /&/g,
+  SLASH_RE = /\//g,
+  EQUAL_RE = /=/g,
+  IM_RE = /\?/g,
+  PLUS_RE = /\+/g,
+  ENC_BRACKET_OPEN_RE = /%5B/g,
+  ENC_BRACKET_CLOSE_RE = /%5D/g,
+  ENC_CARET_RE = /%5E/g,
+  ENC_BACKTICK_RE = /%60/g,
+  ENC_CURLY_OPEN_RE = /%7B/g,
+  ENC_PIPE_RE = /%7C/g,
+  ENC_CURLY_CLOSE_RE = /%7D/g,
+  ENC_SPACE_RE = /%20/g;
+function commonEncode(e) {
+  return encodeURI("" + e)
+    .replace(ENC_PIPE_RE, "|")
+    .replace(ENC_BRACKET_OPEN_RE, "[")
+    .replace(ENC_BRACKET_CLOSE_RE, "]");
+}
+function encodeHash(e) {
+  return commonEncode(e)
+    .replace(ENC_CURLY_OPEN_RE, "{")
+    .replace(ENC_CURLY_CLOSE_RE, "}")
+    .replace(ENC_CARET_RE, "^");
+}
+function encodeQueryValue(e) {
+  return commonEncode(e)
+    .replace(PLUS_RE, "%2B")
+    .replace(ENC_SPACE_RE, "+")
+    .replace(HASH_RE, "%23")
+    .replace(AMPERSAND_RE, "%26")
+    .replace(ENC_BACKTICK_RE, "`")
+    .replace(ENC_CURLY_OPEN_RE, "{")
+    .replace(ENC_CURLY_CLOSE_RE, "}")
+    .replace(ENC_CARET_RE, "^");
+}
+function encodeQueryKey(e) {
+  return encodeQueryValue(e).replace(EQUAL_RE, "%3D");
+}
+function encodePath(e) {
+  return commonEncode(e).replace(HASH_RE, "%23").replace(IM_RE, "%3F");
+}
+function encodeParam(e) {
+  return e == null ? "" : encodePath(e).replace(SLASH_RE, "%2F");
+}
+function decode(e) {
+  try {
+    return decodeURIComponent("" + e);
+  } catch {}
+  return "" + e;
+}
+const TRAILING_SLASH_RE = /\/$/,
+  removeTrailingSlash = (e) => e.replace(TRAILING_SLASH_RE, "");
+function parseURL(e, t, n = "/") {
+  let s,
+    r = {},
+    i = "",
+    o = "";
+  const a = t.indexOf("#");
+  let l = t.indexOf("?");
+  return (
+    a < l && a >= 0 && (l = -1),
+    l > -1 &&
+      ((s = t.slice(0, l)),
+      (i = t.slice(l + 1, a > -1 ? a : t.length)),
+      (r = e(i))),
+    a > -1 && ((s = s || t.slice(0, a)), (o = t.slice(a, t.length))),
+    (s = resolveRelativePath(s ?? t, n)),
+    { fullPath: s + (i && "?") + i + o, path: s, query: r, hash: decode(o) }
+  );
+}
+function stringifyURL(e, t) {
+  const n = t.query ? e(t.query) : "";
+  return t.path + (n && "?") + n + (t.hash || "");
+}
+function stripBase(e, t) {
+  return !t || !e.toLowerCase().startsWith(t.toLowerCase())
+    ? e
+    : e.slice(t.length) || "/";
+}
+function isSameRouteLocation(e, t, n) {
+  const s = t.matched.length - 1,
+    r = n.matched.length - 1;
+  return (
+    s > -1 &&
+    s === r &&
+    isSameRouteRecord(t.matched[s], n.matched[r]) &&
+    isSameRouteLocationParams(t.params, n.params) &&
+    e(t.query) === e(n.query) &&
+    t.hash === n.hash
+  );
+}
+function isSameRouteRecord(e, t) {
+  return (e.aliasOf || e) === (t.aliasOf || t);
+}
+function isSameRouteLocationParams(e, t) {
+  if (Object.keys(e).length !== Object.keys(t).length) return !1;
+  for (const n in e) if (!isSameRouteLocationParamsValue(e[n], t[n])) return !1;
+  return !0;
+}
+function isSameRouteLocationParamsValue(e, t) {
+  return isArray(e)
+    ? isEquivalentArray(e, t)
+    : isArray(t)
+      ? isEquivalentArray(t, e)
+      : e === t;
+}
+function isEquivalentArray(e, t) {
+  return isArray(t)
+    ? e.length === t.length && e.every((n, s) => n === t[s])
+    : e.length === 1 && e[0] === t;
+}
+function resolveRelativePath(e, t) {
+  if (e.startsWith("/")) return e;
+  if (!e) return t;
+  const n = t.split("/"),
+    s = e.split("/"),
+    r = s[s.length - 1];
+  (r === ".." || r === ".") && s.push("");
+  let i = n.length - 1,
+    o,
+    a;
+  for (o = 0; o < s.length; o++)
+    if (((a = s[o]), a !== "."))
+      if (a === "..") i > 1 && i--;
+      else break;
+  return n.slice(0, i).join("/") + "/" + s.slice(o).join("/");
+}
+const START_LOCATION_NORMALIZED = {
+  path: "/",
+  name: void 0,
+  params: {},
+  query: {},
+  hash: "",
+  fullPath: "/",
+  matched: [],
+  meta: {},
+  redirectedFrom: void 0,
+};
+var NavigationType;
+(function (e) {
+  ((e.pop = "pop"), (e.push = "push"));
+})(NavigationType || (NavigationType = {}));
+var NavigationDirection;
+(function (e) {
+  ((e.back = "back"), (e.forward = "forward"), (e.unknown = ""));
+})(NavigationDirection || (NavigationDirection = {}));
+function normalizeBase(e) {
+  if (!e)
+    if (isBrowser) {
+      const t = document.querySelector("base");
+      ((e = (t && t.getAttribute("href")) || "/"),
+        (e = e.replace(/^\w+:\/\/[^\/]+/, "")));
+    } else e = "/";
+  return (
+    e[0] !== "/" && e[0] !== "#" && (e = "/" + e),
+    removeTrailingSlash(e)
+  );
+}
+const BEFORE_HASH_RE = /^[^#]+#/;
+function createHref(e, t) {
+  return e.replace(BEFORE_HASH_RE, "#") + t;
+}
+function getElementPosition(e, t) {
+  const n = document.documentElement.getBoundingClientRect(),
+    s = e.getBoundingClientRect();
+  return {
+    behavior: t.behavior,
+    left: s.left - n.left - (t.left || 0),
+    top: s.top - n.top - (t.top || 0),
+  };
+}
+const computeScrollPosition = () => ({
+  left: window.scrollX,
+  top: window.scrollY,
+});
+function scrollToPosition(e) {
+  let t;
+  if ("el" in e) {
+    const n = e.el,
+      s = typeof n == "string" && n.startsWith("#"),
+      r =
+        typeof n == "string"
+          ? s
+            ? document.getElementById(n.slice(1))
+            : document.querySelector(n)
+          : n;
+    if (!r) return;
+    t = getElementPosition(r, e);
+  } else t = e;
+  "scrollBehavior" in document.documentElement.style
+    ? window.scrollTo(t)
+    : window.scrollTo(
+        t.left != null ? t.left : window.scrollX,
+        t.top != null ? t.top : window.scrollY,
+      );
+}
+function getScrollKey(e, t) {
+  return (history.state ? history.state.position - t : -1) + e;
+}
+const scrollPositions = new Map();
+function saveScrollPosition(e, t) {
+  scrollPositions.set(e, t);
+}
+function getSavedScrollPosition(e) {
+  const t = scrollPositions.get(e);
+  return (scrollPositions.delete(e), t);
+}
+let createBaseLocation = () => location.protocol + "//" + location.host;
+function createCurrentLocation(e, t) {
+  const { pathname: n, search: s, hash: r } = t,
+    i = e.indexOf("#");
+  if (i > -1) {
+    let a = r.includes(e.slice(i)) ? e.slice(i).length : 1,
+      l = r.slice(a);
+    return (l[0] !== "/" && (l = "/" + l), stripBase(l, ""));
+  }
+  return stripBase(n, e) + s + r;
+}
+function useHistoryListeners(e, t, n, s) {
+  let r = [],
+    i = [],
+    o = null;
+  const a = ({ state: v }) => {
+    const E = createCurrentLocation(e, location),
+      x = n.value,
+      B = t.value;
+    let G = 0;
+    if (v) {
+      if (((n.value = E), (t.value = v), o && o === x)) {
+        o = null;
+        return;
+      }
+      G = B ? v.position - B.position : 0;
+    } else s(E);
+    r.forEach((q) => {
+      q(n.value, x, {
+        delta: G,
+        type: NavigationType.pop,
+        direction: G
+          ? G > 0
+            ? NavigationDirection.forward
+            : NavigationDirection.back
+          : NavigationDirection.unknown,
+      });
+    });
+  };
+  function l() {
+    o = n.value;
+  }
+  function u(v) {
+    r.push(v);
+    const E = () => {
+      const x = r.indexOf(v);
+      x > -1 && r.splice(x, 1);
+    };
+    return (i.push(E), E);
+  }
+  function d() {
+    const { history: v } = window;
+    v.state &&
+      v.replaceState(
+        assign({}, v.state, { scroll: computeScrollPosition() }),
+        "",
+      );
+  }
+  function c() {
+    for (const v of i) v();
+    ((i = []),
+      window.removeEventListener("popstate", a),
+      window.removeEventListener("beforeunload", d));
+  }
+  return (
+    window.addEventListener("popstate", a),
+    window.addEventListener("beforeunload", d, { passive: !0 }),
+    { pauseListeners: l, listen: u, destroy: c }
+  );
+}
+function buildState(e, t, n, s = !1, r = !1) {
+  return {
+    back: e,
+    current: t,
+    forward: n,
+    replaced: s,
+    position: window.history.length,
+    scroll: r ? computeScrollPosition() : null,
+  };
+}
+function useHistoryStateNavigation(e) {
+  const { history: t, location: n } = window,
+    s = { value: createCurrentLocation(e, n) },
+    r = { value: t.state };
+  r.value ||
+    i(
+      s.value,
+      {
+        back: null,
+        current: s.value,
+        forward: null,
+        position: t.length - 1,
+        replaced: !0,
+        scroll: null,
+      },
+      !0,
+    );
+  function i(l, u, d) {
+    const c = e.indexOf("#"),
+      v =
+        c > -1
+          ? (n.host && document.querySelector("base") ? e : e.slice(c)) + l
+          : createBaseLocation() + e + l;
+    try {
+      (t[d ? "replaceState" : "pushState"](u, "", v), (r.value = u));
+    } catch (E) {
+      (console.error(E), n[d ? "replace" : "assign"](v));
+    }
+  }
+  function o(l, u) {
+    const d = assign(
+      {},
+      t.state,
+      buildState(r.value.back, l, r.value.forward, !0),
+      u,
+      { position: r.value.position },
+    );
+    (i(l, d, !0), (s.value = l));
+  }
+  function a(l, u) {
+    const d = assign({}, r.value, t.state, {
+      forward: l,
+      scroll: computeScrollPosition(),
+    });
+    i(d.current, d, !0);
+    const c = assign(
+      {},
+      buildState(s.value, l, null),
+      { position: d.position + 1 },
+      u,
+    );
+    (i(l, c, !1), (s.value = l));
+  }
+  return { location: s, state: r, push: a, replace: o };
+}
+function createWebHistory(e) {
+  e = normalizeBase(e);
+  const t = useHistoryStateNavigation(e),
+    n = useHistoryListeners(e, t.state, t.location, t.replace);
+  function s(i, o = !0) {
+    (o || n.pauseListeners(), history.go(i));
+  }
+  const r = assign(
+    { location: "", base: e, go: s, createHref: createHref.bind(null, e) },
+    t,
+    n,
+  );
+  return (
+    Object.defineProperty(r, "location", {
+      enumerable: !0,
+      get: () => t.location.value,
+    }),
+    Object.defineProperty(r, "state", {
+      enumerable: !0,
+      get: () => t.state.value,
+    }),
+    r
+  );
+}
+function isRouteLocation(e) {
+  return typeof e == "string" || (e && typeof e == "object");
+}
+function isRouteName(e) {
+  return typeof e == "string" || typeof e == "symbol";
+}
+const NavigationFailureSymbol = Symbol("");
+var NavigationFailureType;
+(function (e) {
+  ((e[(e.aborted = 4)] = "aborted"),
+    (e[(e.cancelled = 8)] = "cancelled"),
+    (e[(e.duplicated = 16)] = "duplicated"));
+})(NavigationFailureType || (NavigationFailureType = {}));
+function createRouterError(e, t) {
+  return assign(new Error(), { type: e, [NavigationFailureSymbol]: !0 }, t);
+}
+function isNavigationFailure(e, t) {
+  return (
+    e instanceof Error &&
+    NavigationFailureSymbol in e &&
+    (t == null || !!(e.type & t))
+  );
+}
+const BASE_PARAM_PATTERN = "[^/]+?",
+  BASE_PATH_PARSER_OPTIONS = { sensitive: !1, strict: !1, start: !0, end: !0 },
+  REGEX_CHARS_RE = /[.+*?^${}()[\]/\\]/g;
+function tokensToParser(e, t) {
+  const n = assign({}, BASE_PATH_PARSER_OPTIONS, t),
+    s = [];
+  let r = n.start ? "^" : "";
+  const i = [];
+  for (const u of e) {
+    const d = u.length ? [] : [90];
+    n.strict && !u.length && (r += "/");
+    for (let c = 0; c < u.length; c++) {
+      const v = u[c];
+      let E = 40 + (n.sensitive ? 0.25 : 0);
+      if (v.type === 0)
+        (c || (r += "/"),
+          (r += v.value.replace(REGEX_CHARS_RE, "\\$&")),
+          (E += 40));
+      else if (v.type === 1) {
+        const { value: x, repeatable: B, optional: G, regexp: q } = v;
+        i.push({ name: x, repeatable: B, optional: G });
+        const b = q || BASE_PARAM_PATTERN;
+        if (b !== BASE_PARAM_PATTERN) {
+          E += 10;
+          try {
+            new RegExp(`(${b})`);
+          } catch (z) {
+            throw new Error(
+              `Invalid custom RegExp for param "${x}" (${b}): ` + z.message,
+            );
+          }
+        }
+        let N = B ? `((?:${b})(?:/(?:${b}))*)` : `(${b})`;
+        (c || (N = G && u.length < 2 ? `(?:/${N})` : "/" + N),
+          G && (N += "?"),
+          (r += N),
+          (E += 20),
+          G && (E += -8),
+          B && (E += -20),
+          b === ".*" && (E += -50));
+      }
+      d.push(E);
+    }
+    s.push(d);
+  }
+  if (n.strict && n.end) {
+    const u = s.length - 1;
+    s[u][s[u].length - 1] += 0.7000000000000001;
+  }
+  (n.strict || (r += "/?"),
+    n.end ? (r += "$") : n.strict && !r.endsWith("/") && (r += "(?:/|$)"));
+  const o = new RegExp(r, n.sensitive ? "" : "i");
+  function a(u) {
+    const d = u.match(o),
+      c = {};
+    if (!d) return null;
+    for (let v = 1; v < d.length; v++) {
+      const E = d[v] || "",
+        x = i[v - 1];
+      c[x.name] = E && x.repeatable ? E.split("/") : E;
+    }
+    return c;
+  }
+  function l(u) {
+    let d = "",
+      c = !1;
+    for (const v of e) {
+      ((!c || !d.endsWith("/")) && (d += "/"), (c = !1));
+      for (const E of v)
+        if (E.type === 0) d += E.value;
+        else if (E.type === 1) {
+          const { value: x, repeatable: B, optional: G } = E,
+            q = x in u ? u[x] : "";
+          if (isArray(q) && !B)
+            throw new Error(
+              `Provided param "${x}" is an array but it is not repeatable (* or + modifiers)`,
+            );
+          const b = isArray(q) ? q.join("/") : q;
+          if (!b)
+            if (G)
+              v.length < 2 &&
+                (d.endsWith("/") ? (d = d.slice(0, -1)) : (c = !0));
+            else throw new Error(`Missing required param "${x}"`);
+          d += b;
+        }
+    }
+    return d || "/";
+  }
+  return { re: o, score: s, keys: i, parse: a, stringify: l };
+}
+function compareScoreArray(e, t) {
+  let n = 0;
+  for (; n < e.length && n < t.length;) {
+    const s = t[n] - e[n];
+    if (s) return s;
+    n++;
+  }
+  return e.length < t.length
+    ? e.length === 1 && e[0] === 80
+      ? -1
+      : 1
+    : e.length > t.length
+      ? t.length === 1 && t[0] === 80
+        ? 1
+        : -1
+      : 0;
+}
+function comparePathParserScore(e, t) {
+  let n = 0;
+  const s = e.score,
+    r = t.score;
+  for (; n < s.length && n < r.length;) {
+    const i = compareScoreArray(s[n], r[n]);
+    if (i) return i;
+    n++;
+  }
+  if (Math.abs(r.length - s.length) === 1) {
+    if (isLastScoreNegative(s)) return 1;
+    if (isLastScoreNegative(r)) return -1;
+  }
+  return r.length - s.length;
+}
+function isLastScoreNegative(e) {
+  const t = e[e.length - 1];
+  return e.length > 0 && t[t.length - 1] < 0;
+}
+const ROOT_TOKEN = { type: 0, value: "" },
+  VALID_PARAM_RE = /[a-zA-Z0-9_]/;
+function tokenizePath(e) {
+  if (!e) return [[]];
+  if (e === "/") return [[ROOT_TOKEN]];
+  if (!e.startsWith("/")) throw new Error(`Invalid path "${e}"`);
+  function t(E) {
+    throw new Error(`ERR (${n})/"${u}": ${E}`);
+  }
+  let n = 0,
+    s = n;
+  const r = [];
+  let i;
+  function o() {
+    (i && r.push(i), (i = []));
+  }
+  let a = 0,
+    l,
+    u = "",
+    d = "";
+  function c() {
+    u &&
+      (n === 0
+        ? i.push({ type: 0, value: u })
+        : n === 1 || n === 2 || n === 3
+          ? (i.length > 1 &&
+              (l === "*" || l === "+") &&
+              t(
+                `A repeatable param (${u}) must be alone in its segment. eg: '/:ids+.`,
+              ),
+            i.push({
+              type: 1,
+              value: u,
+              regexp: d,
+              repeatable: l === "*" || l === "+",
+              optional: l === "*" || l === "?",
+            }))
+          : t("Invalid state to consume buffer"),
+      (u = ""));
+  }
+  function v() {
+    u += l;
+  }
+  for (; a < e.length;) {
+    if (((l = e[a++]), l === "\\" && n !== 2)) {
+      ((s = n), (n = 4));
+      continue;
+    }
+    switch (n) {
+      case 0:
+        l === "/" ? (u && c(), o()) : l === ":" ? (c(), (n = 1)) : v();
+        break;
+      case 4:
+        (v(), (n = s));
+        break;
+      case 1:
+        l === "("
+          ? (n = 2)
+          : VALID_PARAM_RE.test(l)
+            ? v()
+            : (c(), (n = 0), l !== "*" && l !== "?" && l !== "+" && a--);
+        break;
+      case 2:
+        l === ")"
+          ? d[d.length - 1] == "\\"
+            ? (d = d.slice(0, -1) + l)
+            : (n = 3)
+          : (d += l);
+        break;
+      case 3:
+        (c(), (n = 0), l !== "*" && l !== "?" && l !== "+" && a--, (d = ""));
+        break;
+      default:
+        t("Unknown state");
+        break;
+    }
+  }
+  return (
+    n === 2 && t(`Unfinished custom RegExp for param "${u}"`),
+    c(),
+    o(),
+    r
+  );
+}
+function createRouteRecordMatcher(e, t, n) {
+  const s = tokensToParser(tokenizePath(e.path), n),
+    r = assign(s, { record: e, parent: t, children: [], alias: [] });
+  return (t && !r.record.aliasOf == !t.record.aliasOf && t.children.push(r), r);
+}
+function createRouterMatcher(e, t) {
+  const n = [],
+    s = new Map();
+  t = mergeOptions({ strict: !1, end: !0, sensitive: !1 }, t);
+  function r(c) {
+    return s.get(c);
+  }
+  function i(c, v, E) {
+    const x = !E,
+      B = normalizeRouteRecord(c);
+    B.aliasOf = E && E.record;
+    const G = mergeOptions(t, c),
+      q = [B];
+    if ("alias" in c) {
+      const z = typeof c.alias == "string" ? [c.alias] : c.alias;
+      for (const Y of z)
+        q.push(
+          normalizeRouteRecord(
+            assign({}, B, {
+              components: E ? E.record.components : B.components,
+              path: Y,
+              aliasOf: E ? E.record : B,
+            }),
+          ),
+        );
+    }
+    let b, N;
+    for (const z of q) {
+      const { path: Y } = z;
+      if (v && Y[0] !== "/") {
+        const X = v.record.path,
+          K = X[X.length - 1] === "/" ? "" : "/";
+        z.path = v.record.path + (Y && K + Y);
+      }
+      if (
+        ((b = createRouteRecordMatcher(z, v, G)),
+        E
+          ? E.alias.push(b)
+          : ((N = N || b),
+            N !== b && N.alias.push(b),
+            x && c.name && !isAliasRecord(b) && o(c.name)),
+        isMatchable(b) && l(b),
+        B.children)
+      ) {
+        const X = B.children;
+        for (let K = 0; K < X.length; K++) i(X[K], b, E && E.children[K]);
+      }
+      E = E || b;
+    }
+    return N
+      ? () => {
+          o(N);
+        }
+      : noop;
+  }
+  function o(c) {
+    if (isRouteName(c)) {
+      const v = s.get(c);
+      v &&
+        (s.delete(c),
+        n.splice(n.indexOf(v), 1),
+        v.children.forEach(o),
+        v.alias.forEach(o));
+    } else {
+      const v = n.indexOf(c);
+      v > -1 &&
+        (n.splice(v, 1),
+        c.record.name && s.delete(c.record.name),
+        c.children.forEach(o),
+        c.alias.forEach(o));
+    }
+  }
+  function a() {
+    return n;
+  }
+  function l(c) {
+    const v = findInsertionIndex(c, n);
+    (n.splice(v, 0, c),
+      c.record.name && !isAliasRecord(c) && s.set(c.record.name, c));
+  }
+  function u(c, v) {
+    let E,
+      x = {},
+      B,
+      G;
+    if ("name" in c && c.name) {
+      if (((E = s.get(c.name)), !E))
+        throw createRouterError(1, { location: c });
+      ((G = E.record.name),
+        (x = assign(
+          paramsFromLocation(
+            v.params,
+            E.keys
+              .filter((N) => !N.optional)
+              .concat(E.parent ? E.parent.keys.filter((N) => N.optional) : [])
+              .map((N) => N.name),
+          ),
+          c.params &&
+            paramsFromLocation(
+              c.params,
+              E.keys.map((N) => N.name),
+            ),
+        )),
+        (B = E.stringify(x)));
+    } else if (c.path != null)
+      ((B = c.path),
+        (E = n.find((N) => N.re.test(B))),
+        E && ((x = E.parse(B)), (G = E.record.name)));
+    else {
+      if (((E = v.name ? s.get(v.name) : n.find((N) => N.re.test(v.path))), !E))
+        throw createRouterError(1, { location: c, currentLocation: v });
+      ((G = E.record.name),
+        (x = assign({}, v.params, c.params)),
+        (B = E.stringify(x)));
+    }
+    const q = [];
+    let b = E;
+    for (; b;) (q.unshift(b.record), (b = b.parent));
+    return {
+      name: G,
+      path: B,
+      params: x,
+      matched: q,
+      meta: mergeMetaFields(q),
+    };
+  }
+  e.forEach((c) => i(c));
+  function d() {
+    ((n.length = 0), s.clear());
+  }
+  return {
+    addRoute: i,
+    resolve: u,
+    removeRoute: o,
+    clearRoutes: d,
+    getRoutes: a,
+    getRecordMatcher: r,
+  };
+}
+function paramsFromLocation(e, t) {
+  const n = {};
+  for (const s of t) s in e && (n[s] = e[s]);
+  return n;
+}
+function normalizeRouteRecord(e) {
+  const t = {
+    path: e.path,
+    redirect: e.redirect,
+    name: e.name,
+    meta: e.meta || {},
+    aliasOf: e.aliasOf,
+    beforeEnter: e.beforeEnter,
+    props: normalizeRecordProps(e),
+    children: e.children || [],
+    instances: {},
+    leaveGuards: new Set(),
+    updateGuards: new Set(),
+    enterCallbacks: {},
+    components:
+      "components" in e
+        ? e.components || null
+        : e.component && { default: e.component },
+  };
+  return (Object.defineProperty(t, "mods", { value: {} }), t);
+}
+function normalizeRecordProps(e) {
+  const t = {},
+    n = e.props || !1;
+  if ("component" in e) t.default = n;
+  else for (const s in e.components) t[s] = typeof n == "object" ? n[s] : n;
+  return t;
+}
+function isAliasRecord(e) {
+  for (; e;) {
+    if (e.record.aliasOf) return !0;
+    e = e.parent;
+  }
+  return !1;
+}
+function mergeMetaFields(e) {
+  return e.reduce((t, n) => assign(t, n.meta), {});
+}
+function mergeOptions(e, t) {
+  const n = {};
+  for (const s in e) n[s] = s in t ? t[s] : e[s];
+  return n;
+}
+function findInsertionIndex(e, t) {
+  let n = 0,
+    s = t.length;
+  for (; n !== s;) {
+    const i = (n + s) >> 1;
+    comparePathParserScore(e, t[i]) < 0 ? (s = i) : (n = i + 1);
+  }
+  const r = getInsertionAncestor(e);
+  return (r && (s = t.lastIndexOf(r, s - 1)), s);
+}
+function getInsertionAncestor(e) {
+  let t = e;
+  for (; (t = t.parent);)
+    if (isMatchable(t) && comparePathParserScore(e, t) === 0) return t;
+}
+function isMatchable({ record: e }) {
+  return !!(
+    e.name ||
+    (e.components && Object.keys(e.components).length) ||
+    e.redirect
+  );
+}
+function parseQuery(e) {
+  const t = {};
+  if (e === "" || e === "?") return t;
+  const s = (e[0] === "?" ? e.slice(1) : e).split("&");
+  for (let r = 0; r < s.length; ++r) {
+    const i = s[r].replace(PLUS_RE, " "),
+      o = i.indexOf("="),
+      a = decode(o < 0 ? i : i.slice(0, o)),
+      l = o < 0 ? null : decode(i.slice(o + 1));
+    if (a in t) {
+      let u = t[a];
+      (isArray(u) || (u = t[a] = [u]), u.push(l));
+    } else t[a] = l;
+  }
+  return t;
+}
+function stringifyQuery(e) {
+  let t = "";
+  for (let n in e) {
+    const s = e[n];
+    if (((n = encodeQueryKey(n)), s == null)) {
+      s !== void 0 && (t += (t.length ? "&" : "") + n);
+      continue;
+    }
+    (isArray(s)
+      ? s.map((i) => i && encodeQueryValue(i))
+      : [s && encodeQueryValue(s)]
+    ).forEach((i) => {
+      i !== void 0 &&
+        ((t += (t.length ? "&" : "") + n), i != null && (t += "=" + i));
+    });
+  }
+  return t;
+}
+function normalizeQuery(e) {
+  const t = {};
+  for (const n in e) {
+    const s = e[n];
+    s !== void 0 &&
+      (t[n] = isArray(s)
+        ? s.map((r) => (r == null ? null : "" + r))
+        : s == null
+          ? s
+          : "" + s);
+  }
+  return t;
+}
+const matchedRouteKey = Symbol(""),
+  viewDepthKey = Symbol(""),
+  routerKey = Symbol(""),
+  routeLocationKey = Symbol(""),
+  routerViewLocationKey = Symbol("");
+function useCallbacks() {
+  let e = [];
+  function t(s) {
+    return (
+      e.push(s),
+      () => {
+        const r = e.indexOf(s);
+        r > -1 && e.splice(r, 1);
+      }
+    );
+  }
+  function n() {
+    e = [];
+  }
+  return { add: t, list: () => e.slice(), reset: n };
+}
+function guardToPromiseFn(e, t, n, s, r, i = (o) => o()) {
+  const o = s && (s.enterCallbacks[r] = s.enterCallbacks[r] || []);
+  return () =>
+    new Promise((a, l) => {
+      const u = (v) => {
+          v === !1
+            ? l(createRouterError(4, { from: n, to: t }))
+            : v instanceof Error
+              ? l(v)
+              : isRouteLocation(v)
+                ? l(createRouterError(2, { from: t, to: v }))
+                : (o &&
+                    s.enterCallbacks[r] === o &&
+                    typeof v == "function" &&
+                    o.push(v),
+                  a());
+        },
+        d = i(() => e.call(s && s.instances[r], t, n, u));
+      let c = Promise.resolve(d);
+      (e.length < 3 && (c = c.then(u)), c.catch((v) => l(v)));
+    });
+}
+function extractComponentsGuards(e, t, n, s, r = (i) => i()) {
+  const i = [];
+  for (const o of e)
+    for (const a in o.components) {
+      let l = o.components[a];
+      if (!(t !== "beforeRouteEnter" && !o.instances[a]))
+        if (isRouteComponent(l)) {
+          const d = (l.__vccOpts || l)[t];
+          d && i.push(guardToPromiseFn(d, n, s, o, a, r));
+        } else {
+          let u = l();
+          i.push(() =>
+            u.then((d) => {
+              if (!d)
+                throw new Error(
+                  `Couldn't resolve component "${a}" at "${o.path}"`,
+                );
+              const c = isESModule(d) ? d.default : d;
+              ((o.mods[a] = d), (o.components[a] = c));
+              const E = (c.__vccOpts || c)[t];
+              return E && guardToPromiseFn(E, n, s, o, a, r)();
+            }),
+          );
+        }
+    }
+  return i;
+}
+function useLink(e) {
+  const t = inject(routerKey),
+    n = inject(routeLocationKey),
+    s = computed(() => {
+      const l = unref(e.to);
+      return t.resolve(l);
+    }),
+    r = computed(() => {
+      const { matched: l } = s.value,
+        { length: u } = l,
+        d = l[u - 1],
+        c = n.matched;
+      if (!d || !c.length) return -1;
+      const v = c.findIndex(isSameRouteRecord.bind(null, d));
+      if (v > -1) return v;
+      const E = getOriginalPath(l[u - 2]);
+      return u > 1 && getOriginalPath(d) === E && c[c.length - 1].path !== E
+        ? c.findIndex(isSameRouteRecord.bind(null, l[u - 2]))
+        : v;
+    }),
+    i = computed(
+      () => r.value > -1 && includesParams(n.params, s.value.params),
+    ),
+    o = computed(
+      () =>
+        r.value > -1 &&
+        r.value === n.matched.length - 1 &&
+        isSameRouteLocationParams(n.params, s.value.params),
+    );
+  function a(l = {}) {
+    if (guardEvent(l)) {
+      const u = t[unref(e.replace) ? "replace" : "push"](unref(e.to)).catch(
+        noop,
+      );
+      return (
+        e.viewTransition &&
+          typeof document < "u" &&
+          "startViewTransition" in document &&
+          document.startViewTransition(() => u),
+        u
+      );
+    }
+    return Promise.resolve();
+  }
+  return {
+    route: s,
+    href: computed(() => s.value.href),
+    isActive: i,
+    isExactActive: o,
+    navigate: a,
+  };
+}
+function preferSingleVNode(e) {
+  return e.length === 1 ? e[0] : e;
+}
+const RouterLinkImpl = defineComponent({
+    name: "RouterLink",
+    compatConfig: { MODE: 3 },
+    props: {
+      to: { type: [String, Object], required: !0 },
+      replace: Boolean,
+      activeClass: String,
+      exactActiveClass: String,
+      custom: Boolean,
+      ariaCurrentValue: { type: String, default: "page" },
+      viewTransition: Boolean,
+    },
+    useLink,
+    setup(e, { slots: t }) {
+      const n = reactive(useLink(e)),
+        { options: s } = inject(routerKey),
+        r = computed(() => ({
+          [getLinkClass(
+            e.activeClass,
+            s.linkActiveClass,
+            "router-link-active",
+          )]: n.isActive,
+          [getLinkClass(
+            e.exactActiveClass,
+            s.linkExactActiveClass,
+            "router-link-exact-active",
+          )]: n.isExactActive,
+        }));
+      return () => {
+        const i = t.default && preferSingleVNode(t.default(n));
+        return e.custom
+          ? i
+          : h(
+              "a",
+              {
+                "aria-current": n.isExactActive ? e.ariaCurrentValue : null,
+                href: n.href,
+                onClick: n.navigate,
+                class: r.value,
+              },
+              i,
+            );
+      };
+    },
+  }),
+  RouterLink = RouterLinkImpl;
+function guardEvent(e) {
+  if (
+    !(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) &&
+    !e.defaultPrevented &&
+    !(e.button !== void 0 && e.button !== 0)
+  ) {
+    if (e.currentTarget && e.currentTarget.getAttribute) {
+      const t = e.currentTarget.getAttribute("target");
+      if (/\b_blank\b/i.test(t)) return;
+    }
+    return (e.preventDefault && e.preventDefault(), !0);
+  }
+}
+function includesParams(e, t) {
+  for (const n in t) {
+    const s = t[n],
+      r = e[n];
+    if (typeof s == "string") {
+      if (s !== r) return !1;
+    } else if (
+      !isArray(r) ||
+      r.length !== s.length ||
+      s.some((i, o) => i !== r[o])
+    )
+      return !1;
+  }
+  return !0;
+}
+function getOriginalPath(e) {
+  return e ? (e.aliasOf ? e.aliasOf.path : e.path) : "";
+}
+const getLinkClass = (e, t, n) => e ?? t ?? n,
+  RouterViewImpl = defineComponent({
+    name: "RouterView",
+    inheritAttrs: !1,
+    props: { name: { type: String, default: "default" }, route: Object },
+    compatConfig: { MODE: 3 },
+    setup(e, { attrs: t, slots: n }) {
+      const s = inject(routerViewLocationKey),
+        r = computed(() => e.route || s.value),
+        i = inject(viewDepthKey, 0),
+        o = computed(() => {
+          let u = unref(i);
+          const { matched: d } = r.value;
+          let c;
+          for (; (c = d[u]) && !c.components;) u++;
+          return u;
+        }),
+        a = computed(() => r.value.matched[o.value]);
+      (provide(
+        viewDepthKey,
+        computed(() => o.value + 1),
+      ),
+        provide(matchedRouteKey, a),
+        provide(routerViewLocationKey, r));
+      const l = ref();
+      return (
+        watch(
+          () => [l.value, a.value, e.name],
+          ([u, d, c], [v, E, x]) => {
+            (d &&
+              ((d.instances[c] = u),
+              E &&
+                E !== d &&
+                u &&
+                u === v &&
+                (d.leaveGuards.size || (d.leaveGuards = E.leaveGuards),
+                d.updateGuards.size || (d.updateGuards = E.updateGuards))),
+              u &&
+                d &&
+                (!E || !isSameRouteRecord(d, E) || !v) &&
+                (d.enterCallbacks[c] || []).forEach((B) => B(u)));
+          },
+          { flush: "post" },
+        ),
+        () => {
+          const u = r.value,
+            d = e.name,
+            c = a.value,
+            v = c && c.components[d];
+          if (!v) return normalizeSlot(n.default, { Component: v, route: u });
+          const E = c.props[d],
+            x = E
+              ? E === !0
+                ? u.params
+                : typeof E == "function"
+                  ? E(u)
+                  : E
+              : null,
+            G = h(
+              v,
+              assign({}, x, t, {
+                onVnodeUnmounted: (q) => {
+                  q.component.isUnmounted && (c.instances[d] = null);
+                },
+                ref: l,
+              }),
+            );
+          return normalizeSlot(n.default, { Component: G, route: u }) || G;
+        }
+      );
+    },
+  });
+function normalizeSlot(e, t) {
+  if (!e) return null;
+  const n = e(t);
+  return n.length === 1 ? n[0] : n;
+}
+const RouterView = RouterViewImpl;
+function createRouter(e) {
+  const t = createRouterMatcher(e.routes, e),
+    n = e.parseQuery || parseQuery,
+    s = e.stringifyQuery || stringifyQuery,
+    r = e.history,
+    i = useCallbacks(),
+    o = useCallbacks(),
+    a = useCallbacks(),
+    l = shallowRef(START_LOCATION_NORMALIZED);
+  let u = START_LOCATION_NORMALIZED;
+  isBrowser &&
+    e.scrollBehavior &&
+    "scrollRestoration" in history &&
+    (history.scrollRestoration = "manual");
+  const d = applyToParams.bind(null, (Q) => "" + Q),
+    c = applyToParams.bind(null, encodeParam),
+    v = applyToParams.bind(null, decode);
+  function E(Q, ie) {
+    let se, A;
+    return (
+      isRouteName(Q) ? ((se = t.getRecordMatcher(Q)), (A = ie)) : (A = Q),
+      t.addRoute(A, se)
+    );
+  }
+  function x(Q) {
+    const ie = t.getRecordMatcher(Q);
+    ie && t.removeRoute(ie);
+  }
+  function B() {
+    return t.getRoutes().map((Q) => Q.record);
+  }
+  function G(Q) {
+    return !!t.getRecordMatcher(Q);
+  }
+  function q(Q, ie) {
+    if (((ie = assign({}, ie || l.value)), typeof Q == "string")) {
+      const g = parseURL(n, Q, ie.path),
+        C = t.resolve({ path: g.path }, ie),
+        I = r.createHref(g.fullPath);
+      return assign(g, C, {
+        params: v(C.params),
+        hash: decode(g.hash),
+        redirectedFrom: void 0,
+        href: I,
+      });
+    }
+    let se;
+    if (Q.path != null)
+      se = assign({}, Q, { path: parseURL(n, Q.path, ie.path).path });
+    else {
+      const g = assign({}, Q.params);
+      for (const C in g) g[C] == null && delete g[C];
+      ((se = assign({}, Q, { params: c(g) })), (ie.params = c(ie.params)));
+    }
+    const A = t.resolve(se, ie),
+      L = Q.hash || "";
+    A.params = d(v(A.params));
+    const y = stringifyURL(
+        s,
+        assign({}, Q, { hash: encodeHash(L), path: A.path }),
+      ),
+      T = r.createHref(y);
+    return assign(
+      {
+        fullPath: y,
+        hash: L,
+        query: s === stringifyQuery ? normalizeQuery(Q.query) : Q.query || {},
+      },
+      A,
+      { redirectedFrom: void 0, href: T },
+    );
+  }
+  function b(Q) {
+    return typeof Q == "string" ? parseURL(n, Q, l.value.path) : assign({}, Q);
+  }
+  function N(Q, ie) {
+    if (u !== Q) return createRouterError(8, { from: ie, to: Q });
+  }
+  function z(Q) {
+    return K(Q);
+  }
+  function Y(Q) {
+    return z(assign(b(Q), { replace: !0 }));
+  }
+  function X(Q) {
+    const ie = Q.matched[Q.matched.length - 1];
+    if (ie && ie.redirect) {
+      const { redirect: se } = ie;
+      let A = typeof se == "function" ? se(Q) : se;
+      return (
+        typeof A == "string" &&
+          ((A = A.includes("?") || A.includes("#") ? (A = b(A)) : { path: A }),
+          (A.params = {})),
+        assign(
+          {
+            query: Q.query,
+            hash: Q.hash,
+            params: A.path != null ? {} : Q.params,
+          },
+          A,
+        )
+      );
+    }
+  }
+  function K(Q, ie) {
+    const se = (u = q(Q)),
+      A = l.value,
+      L = Q.state,
+      y = Q.force,
+      T = Q.replace === !0,
+      g = X(se);
+    if (g)
+      return K(
+        assign(b(g), {
+          state: typeof g == "object" ? assign({}, L, g.state) : L,
+          force: y,
+          replace: T,
+        }),
+        ie || se,
+      );
+    const C = se;
+    C.redirectedFrom = ie;
+    let I;
+    return (
+      !y &&
+        isSameRouteLocation(s, A, se) &&
+        ((I = createRouterError(16, { to: C, from: A })), ae(A, A, !0, !1)),
+      (I ? Promise.resolve(I) : S(C, A))
+        .catch((O) =>
+          isNavigationFailure(O)
+            ? isNavigationFailure(O, 2)
+              ? O
+              : re(O)
+            : F(O, C, A),
+        )
+        .then((O) => {
+          if (O) {
+            if (isNavigationFailure(O, 2))
+              return K(
+                assign({ replace: T }, b(O.to), {
+                  state:
+                    typeof O.to == "object" ? assign({}, L, O.to.state) : L,
+                  force: y,
+                }),
+                ie || C,
+              );
+          } else O = R(C, A, !0, T, L);
+          return ($(C, A, O), O);
+        })
+    );
+  }
+  function w(Q, ie) {
+    const se = N(Q, ie);
+    return se ? Promise.reject(se) : Promise.resolve();
+  }
+  function m(Q) {
+    const ie = ne.values().next().value;
+    return ie && typeof ie.runWithContext == "function"
+      ? ie.runWithContext(Q)
+      : Q();
+  }
+  function S(Q, ie) {
+    let se;
+    const [A, L, y] = extractChangingRecords(Q, ie);
+    se = extractComponentsGuards(A.reverse(), "beforeRouteLeave", Q, ie);
+    for (const g of A)
+      g.leaveGuards.forEach((C) => {
+        se.push(guardToPromiseFn(C, Q, ie));
+      });
+    const T = w.bind(null, Q, ie);
+    return (
+      se.push(T),
+      he(se)
+        .then(() => {
+          se = [];
+          for (const g of i.list()) se.push(guardToPromiseFn(g, Q, ie));
+          return (se.push(T), he(se));
+        })
+        .then(() => {
+          se = extractComponentsGuards(L, "beforeRouteUpdate", Q, ie);
+          for (const g of L)
+            g.updateGuards.forEach((C) => {
+              se.push(guardToPromiseFn(C, Q, ie));
+            });
+          return (se.push(T), he(se));
+        })
+        .then(() => {
+          se = [];
+          for (const g of y)
+            if (g.beforeEnter)
+              if (isArray(g.beforeEnter))
+                for (const C of g.beforeEnter)
+                  se.push(guardToPromiseFn(C, Q, ie));
+              else se.push(guardToPromiseFn(g.beforeEnter, Q, ie));
+          return (se.push(T), he(se));
+        })
+        .then(
+          () => (
+            Q.matched.forEach((g) => (g.enterCallbacks = {})),
+            (se = extractComponentsGuards(y, "beforeRouteEnter", Q, ie, m)),
+            se.push(T),
+            he(se)
+          ),
+        )
+        .then(() => {
+          se = [];
+          for (const g of o.list()) se.push(guardToPromiseFn(g, Q, ie));
+          return (se.push(T), he(se));
+        })
+        .catch((g) => (isNavigationFailure(g, 8) ? g : Promise.reject(g)))
+    );
+  }
+  function $(Q, ie, se) {
+    a.list().forEach((A) => m(() => A(Q, ie, se)));
+  }
+  function R(Q, ie, se, A, L) {
+    const y = N(Q, ie);
+    if (y) return y;
+    const T = ie === START_LOCATION_NORMALIZED,
+      g = isBrowser ? history.state : {};
+    (se &&
+      (A || T
+        ? r.replace(Q.fullPath, assign({ scroll: T && g && g.scroll }, L))
+        : r.push(Q.fullPath, L)),
+      (l.value = Q),
+      ae(Q, ie, se, T),
+      re());
+  }
+  let P;
+  function W() {
+    P ||
+      (P = r.listen((Q, ie, se) => {
+        if (!pe.listening) return;
+        const A = q(Q),
+          L = X(A);
+        if (L) {
+          K(assign(L, { replace: !0, force: !0 }), A).catch(noop);
+          return;
+        }
+        u = A;
+        const y = l.value;
+        (isBrowser &&
+          saveScrollPosition(
+            getScrollKey(y.fullPath, se.delta),
+            computeScrollPosition(),
+          ),
+          S(A, y)
+            .catch((T) =>
+              isNavigationFailure(T, 12)
+                ? T
+                : isNavigationFailure(T, 2)
+                  ? (K(assign(b(T.to), { force: !0 }), A)
+                      .then((g) => {
+                        isNavigationFailure(g, 20) &&
+                          !se.delta &&
+                          se.type === NavigationType.pop &&
+                          r.go(-1, !1);
+                      })
+                      .catch(noop),
+                    Promise.reject())
+                  : (se.delta && r.go(-se.delta, !1), F(T, A, y)),
+            )
+            .then((T) => {
+              ((T = T || R(A, y, !1)),
+                T &&
+                  (se.delta && !isNavigationFailure(T, 8)
+                    ? r.go(-se.delta, !1)
+                    : se.type === NavigationType.pop &&
+                      isNavigationFailure(T, 20) &&
+                      r.go(-1, !1)),
+                $(A, y, T));
+            })
+            .catch(noop));
+      }));
+  }
+  let D = useCallbacks(),
+    k = useCallbacks(),
+    V;
+  function F(Q, ie, se) {
+    re(Q);
+    const A = k.list();
+    return (
+      A.length ? A.forEach((L) => L(Q, ie, se)) : console.error(Q),
+      Promise.reject(Q)
+    );
+  }
+  function Z() {
+    return V && l.value !== START_LOCATION_NORMALIZED
+      ? Promise.resolve()
+      : new Promise((Q, ie) => {
+          D.add([Q, ie]);
+        });
+  }
+  function re(Q) {
+    return (
+      V ||
+        ((V = !Q),
+        W(),
+        D.list().forEach(([ie, se]) => (Q ? se(Q) : ie())),
+        D.reset()),
+      Q
+    );
+  }
+  function ae(Q, ie, se, A) {
+    const { scrollBehavior: L } = e;
+    if (!isBrowser || !L) return Promise.resolve();
+    const y =
+      (!se && getSavedScrollPosition(getScrollKey(Q.fullPath, 0))) ||
+      ((A || !se) && history.state && history.state.scroll) ||
+      null;
+    return nextTick$1()
+      .then(() => L(Q, ie, y))
+      .then((T) => T && scrollToPosition(T))
+      .catch((T) => F(T, Q, ie));
+  }
+  const ce = (Q) => r.go(Q);
+  let ge;
+  const ne = new Set(),
+    pe = {
+      currentRoute: l,
+      listening: !0,
+      addRoute: E,
+      removeRoute: x,
+      clearRoutes: t.clearRoutes,
+      hasRoute: G,
+      getRoutes: B,
+      resolve: q,
+      options: e,
+      push: z,
+      replace: Y,
+      go: ce,
+      back: () => ce(-1),
+      forward: () => ce(1),
+      beforeEach: i.add,
+      beforeResolve: o.add,
+      afterEach: a.add,
+      onError: k.add,
+      isReady: Z,
+      install(Q) {
+        const ie = this;
+        (Q.component("RouterLink", RouterLink),
+          Q.component("RouterView", RouterView),
+          (Q.config.globalProperties.$router = ie),
+          Object.defineProperty(Q.config.globalProperties, "$route", {
+            enumerable: !0,
+            get: () => unref(l),
+          }),
+          isBrowser &&
+            !ge &&
+            l.value === START_LOCATION_NORMALIZED &&
+            ((ge = !0), z(r.location).catch((L) => {})));
+        const se = {};
+        for (const L in START_LOCATION_NORMALIZED)
+          Object.defineProperty(se, L, {
+            get: () => l.value[L],
+            enumerable: !0,
+          });
+        (Q.provide(routerKey, ie),
+          Q.provide(routeLocationKey, shallowReactive(se)),
+          Q.provide(routerViewLocationKey, l));
+        const A = Q.unmount;
+        (ne.add(Q),
+          (Q.unmount = function () {
+            (ne.delete(Q),
+              ne.size < 1 &&
+                ((u = START_LOCATION_NORMALIZED),
+                P && P(),
+                (P = null),
+                (l.value = START_LOCATION_NORMALIZED),
+                (ge = !1),
+                (V = !1)),
+              A());
+          }));
+      },
+    };
+  function he(Q) {
+    return Q.reduce((ie, se) => ie.then(() => m(se)), Promise.resolve());
+  }
+  return pe;
+}
+function extractChangingRecords(e, t) {
+  const n = [],
+    s = [],
+    r = [],
+    i = Math.max(t.matched.length, e.matched.length);
+  for (let o = 0; o < i; o++) {
+    const a = t.matched[o];
+    a &&
+      (e.matched.find((u) => isSameRouteRecord(u, a)) ? s.push(a) : n.push(a));
+    const l = e.matched[o];
+    l && (t.matched.find((u) => isSameRouteRecord(u, l)) || r.push(l));
+  }
+  return [n, s, r];
+}
+const routes = [{ path: "/", name: "Index", component: Index }],
+  router = createRouter({ history: createWebHistory(), routes });
+router.beforeEach((e, t, n) => {
+  n();
+});
+const pinia = createPinia(),
+  urlParams = new URLSearchParams(window.location.search),
+  queryParams = {
+    region: urlParams.get("region"),
+    launcher_env: urlParams.get("launcher_env"),
+    channel: urlParams.get("channel"),
+    launcher_version: urlParams.get("launcher_version"),
+    device_id: urlParams.get("device_id"),
+    cps: urlParams.get("cps"),
+  };
+window.toast = Toast;
+const emitter = mitt();
+window.emitter = emitter;
+var config = {
+  appId: "a592a831f40d489684f905e1dbd92a64",
+  serverUrl: "https://te-receiver.zhuziplay.com",
+  autoTrack: { pageShow: !0, pageHide: !0 },
+  showLog: !1,
+};
+queryParams.device_id && (config.uuid = queryParams.device_id);
+thinkingData.init(config);
+window.ta = thinkingData;
+var superProperties = { web_platform: "starter" };
+queryParams.channel && (superProperties.channel = queryParams.channel);
+queryParams.launcher_env &&
+  (superProperties.launcher_env = queryParams.launcher_env);
+queryParams.cps && (superProperties.cps = queryParams.cps);
+thinkingData.setSuperProperties(superProperties);
+window.LuminJsCall = (e, t) => {
+  switch (e) {
+    case "starter_taskbar":
+      ta.track("pclauncher_close", { result: 3 });
+      break;
+    case "starter_mini":
+      ta.track("pclauncher_close", { result: 2 });
+      break;
+    case "starter_exit":
+      ta.track("pclauncher_close", { result: 1 });
+      break;
+    case "locate_game_path":
+      ta.track("pclauncher_locate_game_begin");
+      break;
+  }
+  typeof t > "u" && (t = {});
+  let n = JSON.stringify(t);
+  (console.log(`LuminJsCall被调用: ${e}`, t ? `参数: ${n}` : "无参数"),
+    typeof window.chrome < "u" &&
+      typeof window.chrome.webview < "u" &&
+      typeof window.chrome.webview.hostObjects < "u" &&
+      window.chrome.webview.hostObjects.BridgeLinker.LuminJsCall(e, n));
+};
+window.LuminJsEvent = (e, t) => {
+  if (e === "ticket") {
+    const n =
+      typeof t == "string"
+        ? { type: "string", length: t.length }
+        : t && typeof t == "object"
+          ? { type: "object", keys: Object.keys(t) }
+          : { type: typeof t };
+    console.log("[LuminBridge] 收到 ticket 回调", n);
+  } else {
+    const n = JSON.stringify(t);
+    console.log(`LuminJsEvent接收事件: ${e}`, `数据: ${n}`);
+  }
+  emitter.emit("luminEvent", { event: e, data: t });
+};
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("mousedown", (e) => {
+    const { target: t } = e;
+    typeof t < "u" &&
+      typeof t.id < "u" &&
+      t.id === "drag-region" &&
+      (console.log("drag ticker"),
+      typeof window.chrome < "u" &&
+        typeof window.chrome.webview < "u" &&
+        typeof window.chrome.webview.hostObjects < "u" &&
+        window.chrome.webview.hostObjects.sync.DragMove.MouseDownDrag(),
+      e.preventDefault(),
+      e.stopPropagation());
+  });
+});
+const app = createApp(_sfc_main$e);
+app.use(pinia);
+app.use(router);
+const versionStore = useVersionStore(),
+  versionData = {};
+Object.keys(queryParams).forEach((e) => {
+  queryParams[e] && (versionData[e] = queryParams[e]);
+});
+Object.keys(versionData).length > 0 && versionStore.checkVersion(versionData);
+app.mount("#app");
+//# sourceMappingURL=index-Dp-VqxYb.js.map

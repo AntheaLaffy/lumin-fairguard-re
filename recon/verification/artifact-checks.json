@@ -1,0 +1,10 @@
+{
+  "verified_bundle_count": 1123,
+  "dll_count": 48,
+  "client_static_exports": {
+    "valid_json": 374
+  },
+  "non_json_names": [],
+  "full_input_inventory_count": 12883,
+  "failures": []
+}
