@@ -29,6 +29,9 @@ recon/run/
 
 # 本地环境
 .venv/
+.serena/
+/recon/private/
+/recon/references/bili-login/
 __pycache__/
 *.pyc
 recon/il2cpp_verified/GameAssembly.dll

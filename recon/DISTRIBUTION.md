@@ -2,6 +2,8 @@
 
 这些内容来自前次启动器静态反编译、前端文件及已保存的服务端响应；本轮重点验证 IL2CPP 注册表和资源恢复，没有逐项重放在线接口。它们属于启动器分发协议，不是完整游戏业务协议。网络返回中的版本、URL 和大小均为采集时的快照。
 
+2026-11-14 安装方案补验：`POST /launcher/app` 仅携带公共 JSON 字段、未附签名头时也实际返回 `code=0` 和当前整包信息；`install.sh` 据此动态获取整包。该结果只适用于本次验证的公开分发接口，不外推到登录或其他端点。接口若改变要求，安装脚本将明确报错并等待适配。
+
 证据：`recon/decomp/Lumin.Launcher/`、`recon/starter/index.pretty.js`、`recon/remote_config.json`、`recon/manifest_hash.json`。历史启动器实现只保留压缩归档，不作为原生客户端的语言选择。
 
 ## 2. 分发链
@@ -105,6 +107,8 @@ log_debug_on  upload_launcher_log  update_background_url
 - `ticket` → 读注册表 `HKCU\Software\bamboo\lumin` 的 `token`（登录票据，前端拿去换玩家信息）
 - `repair_start {url}` → `url` 是 `.../hash.json`，内部把 `hash.json` 换成 `files/` 再逐文件比对 MD5
 
+2026-11-14 已实际验证无需启动器桥接即可完成渠道扫码、竹子票据交换和游戏登录，见 [BILIBILI.md](BILIBILI.md)。本节的注册表读取是启动器行为，不是原生客户端取得游戏票据的必要步骤。
+
 ---
 
 ## 4. 服务端 API 与签名（可直接复用）
@@ -179,7 +183,7 @@ x_signature = base64( nonce12 || AES-256-GCM(key, nonce12, utf8(sig)) )
 | `lm-package.zhuziplay.com` | 客户端整包 + `Win64/<build>/hash.json` + `Win64/<build>/files/<path>`（修复源） |
 | `lm-package-qt.zhuziplay.com` | 同上（`sync_outer_status != 2` 时切到 qt 域名） |
 | `cdn-rs-lm.zhuziplay.com` / `lm-cdn.zhuziplay.com` | YooAsset 资源卷 |
-| `login-prod-lm.zhuziplay.com` | 游戏登录服（`/api/player`，`loginTicket` 表单；token 来自注册表） |
+| `login-prod-lm.zhuziplay.com` | 登录服务域名；启动器 `/api/player` 用于查询玩家信息，游戏实际登录为 `/api/login` JSON，见 `recon/LOGIN.md` |
 | `te-receiver.zhuziplay.com` | 数数 ThinkingData 埋点 |
 | `lvmeng-feedback.zhuziplay.com` | 反馈页 |
 

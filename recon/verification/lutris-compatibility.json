@@ -1,0 +1,38 @@
+{
+  "verified_date": "2026-11-14",
+  "client_version": "1.0.2",
+  "build_id": 12450,
+  "lutris_version": "0.5.22",
+  "wine_version": "11.21",
+  "wine_graphics_backend": "x11",
+  "desktop": "niri/Wayland",
+  "gpu": "Intel Graphics (RPL-P)",
+  "mesa_version": "26.2.6",
+  "before": {
+    "dxvk": "2.6.2",
+    "observed_black_screen": true,
+    "shared_handle_errors": 248
+  },
+  "after": {
+    "dxvk": "3.0.2",
+    "observed_scene_and_dialogue_rendering": true,
+    "shared_handle_errors": 0,
+    "movement_verified": false,
+    "jump_verified": false,
+    "dodge_verified": false
+  },
+  "changed_variable": "DXVK version only",
+  "game_binaries_modified": false,
+  "dxvk_archive_sha256": "9c538924110a7cdef871ca36dee218c0774124374ffdeb38af4b76be55bdf7c2",
+  "evidence": "Private per-run logs and observed game window; account data excluded.",
+  "user_acceptance": {
+    "playable_confirmed": true,
+    "approximate_scene_fps": 10,
+    "performance_tuning_deferred_at_user_request": true,
+    "earlier_movement_issue_user_assessment": "tutorial input restriction",
+    "power_profile_trial_user_result": "roughly unchanged",
+    "temporary_balanced_trial_ended": true,
+    "power_profile_at_trial_end": "performance",
+    "externally_changed_profile_preserved": true
+  }
+}

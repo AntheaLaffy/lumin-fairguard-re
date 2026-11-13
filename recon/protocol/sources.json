@@ -1,0 +1,17 @@
+{
+  "collected_at": "2026-11-14T00:49:37.246284+08:00",
+  "public_sdk_sources": [
+    {
+      "url": "https://sdk.biligame.com/login/",
+      "sha256": "e0e2c534a5d808ae49d3533b1c496d149c2bd4d579cc786a9f3bbd1ef2903067",
+      "bytes": 2375
+    },
+    {
+      "url": "https://sdk.biligame.com/login/index.js?6eb1380b",
+      "sha256": "6eb1380b7404e691d0b8ad1be841239fa356e3106e027c577e4250857ed692b4",
+      "bytes": 399586
+    }
+  ],
+  "community_reference": "https://github.com/Goooler/bilibili-API-collect",
+  "evidence": "Official SDK assets, installed client and authorized account HTTP/TCP observation; credentials excluded."
+}
